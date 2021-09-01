@@ -7,7 +7,7 @@ const Footer = () => {
     <S.Wrapper>
       {FOOTER_TEXT.map(ele => {
         return (
-          <S.FooterTab to={ele.url}>
+          <S.FooterTab to={ele.url} activeStyle={{ opacity: 1 }}>
             <S.ImageWrapper>
               <S.TabImage src={ele.img} />
             </S.ImageWrapper>
