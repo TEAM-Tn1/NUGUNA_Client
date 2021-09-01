@@ -3,8 +3,6 @@ import { FOOTER_TEXT } from '../../constance/footer';
 import * as S from './style';
 
 const Footer = () => {
-  // const imaArray = [footerMain, footerPost, footerChatting, footerProfile];
-
   return (
     <S.Wrapper>
       {FOOTER_TEXT.map(ele => {
