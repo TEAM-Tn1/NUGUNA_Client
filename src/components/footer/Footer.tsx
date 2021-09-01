@@ -1,17 +1,22 @@
 import React from 'react';
-import { footerMain, footerPost, footerChatting, footerProfile } from '../../assets/footer';
 import { FOOTER_TEXT } from '../../constance/footer';
 import * as S from './style';
 
 const Footer = () => {
-  const imaArray = [footerMain, footerPost, footerChatting, footerProfile];
+  // const imaArray = [footerMain, footerPost, footerChatting, footerProfile];
 
   return (
     <S.Wrapper>
-      <S.FooterTab to='/'>
-        <S.TabImage />
-        <S.TabText>{}</S.TabText>
-      </S.FooterTab>
+      {FOOTER_TEXT.map(ele => {
+        return (
+          <S.FooterTab to={ele.url}>
+            <S.ImageWrapper>
+              <S.TabImage src={ele.img} />
+            </S.ImageWrapper>
+            <S.TabText key={ele.id}>{ele.text}</S.TabText>
+          </S.FooterTab>
+        );
+      })}
     </S.Wrapper>
   );
 };
