@@ -39,14 +39,14 @@ export const Logo = styled.div`
 
 export const Called = styled.div`
   width: 100%;
-  & div {
+  & a {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 150px;
     border-top: solid 1px ${color.subColor};
   }
-  & div:last-child{
+  & a:last-child{
     border-bottom: solid 1px ${color.subColor};
   }
 
