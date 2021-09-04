@@ -14,7 +14,6 @@ export const Wrapper = styled.div`
   position: fixed;
   bottom: calc(constant(safe-area-inset-bottom) + 0px);
   bottom: calc(env(safe-area-inset-bottom) + 0px);
-  left: calc(50% - 250px);
   display: flex;
   justify-content: center;
   align-items: center;
