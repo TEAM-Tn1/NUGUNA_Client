@@ -2,6 +2,12 @@ import styled from 'styled-components';
 import { color } from '../../../style';
 import { NavLink } from 'react-router-dom';
 
+export const Box = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
+
 export const Wrapper = styled.div`
   width: 100%;
   height: 60px;
