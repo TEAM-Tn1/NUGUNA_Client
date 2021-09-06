@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
@@ -43,3 +44,32 @@ export const DormitoryInfo = styled.div`
 `;
 
 export const AccountInfo = styled(DormitoryInfo)``;
+
+export const DetailPage = styled(Link)`
+  height: 60px;
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  padding: 0px 30px;
+  border-top: 1px solid #ff9d86;
+
+  & span {
+    color: black;
+    font-size: 18px;
+  }
+`;
+
+export const Logout = styled.div`
+  height: 60px;
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  padding: 0px 30px;
+  border-top: 1px solid #ff9d86;
+  border-bottom: 1px solid #ff9d86;
+
+  & span {
+    color: black;
+    font-size: 18px;
+  }
+`;
