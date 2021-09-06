@@ -25,7 +25,7 @@ const Profile = () => {
       </S.UserInfoBox>
       {PROFILE_ELEMENT.map(ele => {
         return (
-          <S.DetailPage to={`/profile${ele.path}`}>
+          <S.DetailPage key={ele.id} to={`/profile${ele.path}`}>
             <img src={ele.img} alt='' />
             <span>{ele.text}</span>
           </S.DetailPage>
