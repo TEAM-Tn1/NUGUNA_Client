@@ -8,11 +8,11 @@ const Footer = () => {
       <S.Wrapper>
         {FOOTER_TEXT.map(ele => {
           return (
-            <S.FooterTab to={ele.url} activeStyle={{ opacity: 1 }}>
+            <S.FooterTab key={ele.id} to={ele.url} activeStyle={{ opacity: 1 }}>
               <S.ImageWrapper>
                 <S.TabImage src={ele.img} />
               </S.ImageWrapper>
-              <S.TabText key={ele.id}>{ele.text}</S.TabText>
+              <S.TabText>{ele.text}</S.TabText>
             </S.FooterTab>
           );
         })}
