@@ -1,6 +1,12 @@
 import { createGlobalStyle } from 'styled-components';
 
 const global = createGlobalStyle`
+  @font-face {
+    font-family: 'BMJUA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMJUA.woff')
+      format('woff');
+  }
+
   * {
     margin: 0;
     padding: 0;
