@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { color } from '../../../../style/index';
+import { color } from '../../../style/index';
 
 export const Logo = styled.div`
   display: flex;
