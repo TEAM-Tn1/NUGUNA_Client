@@ -1,21 +1,13 @@
 import React from 'react';
 import * as S from './style';
-import { chickLogo, reportIcon, suggestionIcon } from '../../../assets/defalut';
+import { reportIcon, suggestionIcon } from '../../../assets/defalut';
 import { Link } from 'react-router-dom';
+import Logo from '../../logo';
 
 const Sidebar = () => {
   return (
     <S.Wrapper>
-      <S.Logo>
-        <img src={chickLogo} />
-        <p>
-          <span>누</span>구나
-          <br />
-          <span>구</span>매하고
-          <br />
-          <span>나</span>누자
-        </p>
-      </S.Logo>
+      <Logo />
       <S.Called>
         <Link to='/admin/report'>
           <img src={reportIcon} />
