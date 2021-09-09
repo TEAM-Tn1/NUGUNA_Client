@@ -6,8 +6,10 @@ export const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   background-color: rgba(255, 157, 134, 0.2);
-  width: 400px;
+  width: 380px;
+  min-width: 380px;
   height: 100vh;
+  border-right: solid 1px ${color.subColor};
 `;
 
 export const Called = styled.div`
