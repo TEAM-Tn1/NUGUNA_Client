@@ -24,7 +24,7 @@ export const ModifyForm = styled.form`
   align-items: center;
   gap: 40px;
   opacity: 0;
-  animation: ${fadeIn} 0.25s linear 1.25s;
+  animation: ${fadeIn} 0.25s ease 0.75s;
   animation-fill-mode: forwards;
 
   & button {
