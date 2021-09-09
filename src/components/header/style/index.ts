@@ -16,7 +16,6 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
   gap: 7%;
   max-width: 500px;
   background-color: ${color.mainColor};
