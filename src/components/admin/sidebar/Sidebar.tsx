@@ -9,7 +9,7 @@ const Sidebar = () => {
     <S.Wrapper>
       <Logo />
       <S.Called>
-        <Link to='/admin/report'>
+        <Link to='/admin/report/post'>
           <img src={reportIcon} />
           <p>신고상황</p>
         </Link>
