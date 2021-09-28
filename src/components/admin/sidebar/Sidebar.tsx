@@ -1,10 +1,10 @@
-import React from 'react';
+import { FC } from 'react';
 import * as S from './style';
 import { reportIcon, suggestionIcon } from '../../../assets/defalut';
 import { Link } from 'react-router-dom';
 import Logo from '../../logo';
 
-const Sidebar = () => {
+const Sidebar: FC = () => {
   return (
     <S.Wrapper>
       <Logo />
