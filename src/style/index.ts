@@ -3,4 +3,5 @@ export default GlobalStyle;
 
 export const color = {
   mainColor: '#FF9D86',
+  disabled: '#808080',
 };
