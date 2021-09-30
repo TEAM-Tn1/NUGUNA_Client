@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import * as S from './style';
-import Sidebar from '../sidebar/index';
+import Sidebar from '../../sidebar/index';
 import List from '../list/index';
 
 // api 명세 작성 되면 정리하기

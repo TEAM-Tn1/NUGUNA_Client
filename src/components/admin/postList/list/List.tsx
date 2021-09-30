@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import { checkIcon } from '../../../assets/admin';
+import { checkIcon } from '../../../../assets/admin';
 import * as S from './style/index';
 
 interface listProps {

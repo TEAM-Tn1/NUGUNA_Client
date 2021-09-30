@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import Frame from './frame/index';
-import { suggestionIcon } from '../../assets/defalut';
+import { suggestionIcon } from '../../../assets/defalut';
 
 const Suggestion: FC = () => {
   return (
