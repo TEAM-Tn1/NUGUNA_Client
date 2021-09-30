@@ -24,6 +24,19 @@ const global = createGlobalStyle`
   body {
     margin: 0;
   }
+
+  ::-webkit-scrollbar {
+    width: 5px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track-piece {
+    background-color: white;
+    border-radius: 6px;
+  }
+  ::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background-color: #FF9D86;
+  }
 `;
 
 export default global;
