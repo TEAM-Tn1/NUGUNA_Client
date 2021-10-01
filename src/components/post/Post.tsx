@@ -11,15 +11,18 @@ interface Props {}
 const Post: FC<Props> = () => {
   const [isPostClick, setIsPostClick] = useState({ trade: true, group: false });
   const [isOrderClick, setIsOrderClick] = useState({ newest: true, like: false });
+  const [type, setType] = useState<string>('trade');
 
   const subtitleClickHandler = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const dataId = event.currentTarget.dataset.id;
     switch (dataId) {
       case 'trade':
         setIsPostClick({ trade: true, group: false });
+        setType('trade');
         break;
       case 'group':
         setIsPostClick({ trade: false, group: true });
+        setType('group');
         break;
       case 'newest':
         setIsOrderClick({ newest: true, like: false });
@@ -62,7 +65,7 @@ const Post: FC<Props> = () => {
             );
           })}
         </S.TitleLine>
-        <PostList />
+        <PostList type={type} />
         <S.WriteBtn>
           <S.WriteIcon src={write} />
         </S.WriteBtn>
