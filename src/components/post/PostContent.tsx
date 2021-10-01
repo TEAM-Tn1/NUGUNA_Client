@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import * as S from './style';
-import { emptyLike, pay } from '../../assets/post';
+import { emptyLike, pay, like } from '../../assets/post';
 
 interface Props {
   title: string;

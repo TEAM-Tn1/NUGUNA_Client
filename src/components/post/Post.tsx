@@ -4,6 +4,7 @@ import Header from '../header';
 import Footer from '../footer';
 import { POST_TITLE, SUBTITLE } from '../../constance/post';
 import PostList from './PostList';
+import { write } from '../../assets/post';
 
 interface Props {}
 
@@ -62,6 +63,9 @@ const Post: FC<Props> = () => {
           })}
         </S.TitleLine>
         <PostList />
+        <S.WriteBtn>
+          <S.WriteIcon src={write} />
+        </S.WriteBtn>
       </S.ContentBox>
       <Footer />
     </S.Post>

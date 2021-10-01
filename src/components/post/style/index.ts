@@ -11,8 +11,9 @@ export const ContentBox = styled.div`
   width: 100%;
   min-width: 375px;
   max-width: 500px;
-  height: 740px;
+  height: 760px;
   padding-top: 124px;
+  position: relative;
 `;
 
 export const TitleLine = styled.p`
@@ -116,4 +117,23 @@ export const Hashtag = styled.div`
 export const PostList = styled.div`
   height: 580px;
   overflow: auto;
+`;
+
+export const WriteBtn = styled.div`
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  bottom: 31px;
+  right: 15px;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+`;
+
+export const WriteIcon = styled.img`
+  width: 21px;
+  height: 21px;
 `;
