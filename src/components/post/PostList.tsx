@@ -19,7 +19,7 @@ const PostList: FC<Props> = ({ type }) => {
             type={type}
             date={'8/1'}
             people={'2/4'}
-            hashtag={['#인형', '#인형', '#인형', '#인형']}
+            hashtag={['#인형', '#인형', '#인형']}
           />
         );
       })}

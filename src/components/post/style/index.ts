@@ -101,17 +101,17 @@ export const Icon = styled.img`
 export const HashtagLine = styled.div`
   display: flex;
   gap: 4px;
+  overflow: hidden;
 `;
 
 export const Hashtag = styled.div`
-  width: 39px;
   height: 19px;
   border-radius: 10px;
   background-color: ${color.mainColor};
   display: flex;
   align-items: center;
-  justify-content: center;
   margin-top: 18px;
+  padding: 0px 8px;
   > p {
     color: white;
     font-size: 11px;
