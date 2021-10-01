@@ -75,7 +75,7 @@ export const PostTitle = styled.p`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 `;
 
 export const PayAndLike = styled.div`
@@ -86,6 +86,10 @@ export const PayAndLike = styled.div`
     font-size: 12px;
     margin: 0px 25px 0px 8px;
   }
+`;
+
+export const DateAndPeople = styled(PayAndLike)`
+  margin-top: 10px;
 `;
 
 export const Icon = styled.img`
@@ -107,7 +111,7 @@ export const Hashtag = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 30px;
+  margin-top: 18px;
   > p {
     color: white;
     font-size: 11px;
