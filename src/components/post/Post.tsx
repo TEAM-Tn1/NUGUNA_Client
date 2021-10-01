@@ -1,13 +1,46 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import * as S from './style';
 import Header from '../header';
 import Footer from '../footer';
-import { GROUP, LIKE, NEWEST, POST_TITLE, TRADE } from '../../constance/post';
+import { POST_TITLE, SUBTITLE } from '../../constance/post';
 import PostList from './PostList';
 
-const Post = () => {
+interface Props {}
+
+const Post: FC<Props> = () => {
   const [isPostClick, setIsPostClick] = useState({ trade: true, group: false });
   const [isOrderClick, setIsOrderClick] = useState({ newest: true, like: false });
+
+  const subtitleClickHandler = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    const dataId = event.currentTarget.dataset.id;
+    switch (dataId) {
+      case 'trade':
+        setIsPostClick({ trade: true, group: false });
+        break;
+      case 'group':
+        setIsPostClick({ trade: false, group: true });
+        break;
+      case 'newest':
+        setIsOrderClick({ newest: true, like: false });
+        break;
+      case 'like':
+        setIsOrderClick({ newest: false, like: true });
+        break;
+    }
+  };
+
+  const clickState = (dataId: string) => {
+    switch (dataId) {
+      case 'trade':
+        return isPostClick.trade;
+      case 'group':
+        return isPostClick.group;
+      case 'newest':
+        return isOrderClick.newest;
+      case 'like':
+        return isOrderClick.like;
+    }
+  };
 
   return (
     <S.Post>
@@ -15,38 +48,18 @@ const Post = () => {
       <S.ContentBox>
         <S.TitleLine>
           <p>{POST_TITLE}</p>
-          <S.SubTitle
-            isClick={isPostClick.trade}
-            onClick={() => {
-              setIsPostClick({ trade: true, group: false });
-            }}
-          >
-            {TRADE}
-          </S.SubTitle>
-          <S.SubTitle
-            isClick={isPostClick.group}
-            onClick={() => {
-              setIsPostClick({ trade: false, group: true });
-            }}
-          >
-            {GROUP}
-          </S.SubTitle>
-          <S.SubTitle
-            isClick={isOrderClick.newest}
-            onClick={() => {
-              setIsOrderClick({ newest: true, like: false });
-            }}
-          >
-            {NEWEST}
-          </S.SubTitle>
-          <S.SubTitle
-            isClick={isOrderClick.like}
-            onClick={() => {
-              setIsOrderClick({ newest: false, like: true });
-            }}
-          >
-            {LIKE}
-          </S.SubTitle>
+          {SUBTITLE.map(data => {
+            return (
+              <S.SubTitle
+                key={data.id}
+                data-id={data.id}
+                onClick={subtitleClickHandler}
+                isClick={clickState(data.id)}
+              >
+                {data.content}
+              </S.SubTitle>
+            );
+          })}
         </S.TitleLine>
         <PostList />
       </S.ContentBox>

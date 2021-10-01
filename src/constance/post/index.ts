@@ -1,5 +1,7 @@
 export const POST_TITLE = '게시물';
-export const TRADE = '거래';
-export const GROUP = '공구';
-export const NEWEST = '최신순';
-export const LIKE = '좋아요순';
+export const SUBTITLE = [
+  { id: 'trade', content: '거래' },
+  { id: 'group', content: '공구' },
+  { id: 'newest', content: '최신순' },
+  { id: 'like', content: '좋아요순' },
+];
