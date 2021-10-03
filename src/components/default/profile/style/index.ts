@@ -1,24 +1,29 @@
 import styled, { keyframes } from 'styled-components';
 
-export const moveUp = keyframes`
-  0% {
-    transform: translateY(0);
+interface Props {
+  top: string;
+  isShow: boolean;
+}
+
+export const moveUp = (top: string) => keyframes`
+  from {
+    top: ${top};
   }
-  100% {
-    transform: translateY(-220px);
+  to {
+    top: 100px;
   }
 `;
 
-export const moveDown = keyframes`
-  0% {
-    transform: translateY(0);
+export const moveDown = (top: string) => keyframes`
+  from {
+    top: 100px;
   }
-  100% {
-    transform: translateY(220px);
+  to {
+    top: ${top};
   }
 `;
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.div<Props>`
   max-width: 500px;
   width: 100%;
   height: 60px;
@@ -30,7 +35,8 @@ export const Wrapper = styled.div`
   border-top: 1px solid #ff9d86;
   border-bottom: 1px solid #ff9d86;
   cursor: pointer;
-  animation: ${moveUp} 0.75s;
+  top: ${props => props.top};
+  animation: ${props => (props.isShow ? moveUp(props.top) : moveDown(props.top))} 0.75s;
   animation-fill-mode: forwards;
 
   & p {
