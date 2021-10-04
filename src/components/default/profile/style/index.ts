@@ -1,25 +1,26 @@
 import styled, { keyframes } from 'styled-components';
 
 interface Props {
-  top: string;
+  top: number;
   isShow: boolean;
 }
 
-export const moveUp = (top: string) => keyframes`
+export const moveUp = (top: number) => keyframes`
   from {
-    top: ${top};
+    top: ${top}px;
   }
   to {
     top: 100px;
   }
 `;
 
-export const moveDown = (top: string) => keyframes`
+export const moveDown = (top: number) => keyframes`
   from {
     top: 100px;
   }
   to {
-    top: ${top};
+    top: ${top}px;
+    opacity: 0;
   }
 `;
 

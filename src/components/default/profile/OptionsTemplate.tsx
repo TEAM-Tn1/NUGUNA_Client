@@ -3,7 +3,7 @@ import { useHistory } from 'react-router';
 import * as S from './style';
 
 interface Props {
-  top: string;
+  top: number;
   text: string;
   image: string;
   isShow: boolean;
