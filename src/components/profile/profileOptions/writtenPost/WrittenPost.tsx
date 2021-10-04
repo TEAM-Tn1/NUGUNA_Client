@@ -5,13 +5,13 @@ import Header from '../../../header';
 import { written } from '../../../../assets/profile';
 import * as S from './style';
 
-const LikedPost = () => {
+const WrittenPost = () => {
   const [isShow, setIsShow] = useState(true);
   return (
     <S.Wrapper>
       <Header />
       <OptionsTemplate
-        top={540}
+        top={440}
         image={written}
         text={'작성한 게시물 보기'}
         setIsShow={setIsShow}
@@ -22,4 +22,4 @@ const LikedPost = () => {
   );
 };
 
-export default LikedPost;
+export default WrittenPost;
