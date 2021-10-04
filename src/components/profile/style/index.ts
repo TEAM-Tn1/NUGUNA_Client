@@ -1,5 +1,14 @@
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+export const fadeIn = keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+`;
 
 export const Wrapper = styled.div`
   max-width: 500px;
@@ -12,6 +21,7 @@ export const UserInfoBox = styled.div`
   display: flex;
   flex-direction: column;
   gap: 15px;
+  animation: ${fadeIn} 0.25s;
 `;
 
 export const StudentInfo = styled.div`
@@ -53,6 +63,7 @@ export const DetailPage = styled(Link)`
   gap: 25px;
   padding: 0px 30px;
   border-top: 1px solid #ff9d86;
+  animation: ${fadeIn} 0.25s;
 
   & span {
     color: black;
@@ -68,6 +79,7 @@ export const Logout = styled.div`
   padding: 0px 30px;
   border-top: 1px solid #ff9d86;
   border-bottom: 1px solid #ff9d86;
+  animation: ${fadeIn} 0.25s;
 
   & span {
     color: black;
