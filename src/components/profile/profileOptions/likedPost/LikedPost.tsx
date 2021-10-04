@@ -11,7 +11,7 @@ const LikedPost = () => {
     <S.Wrapper>
       <Header />
       <OptionsTemplate
-        top={'380px'}
+        top={380}
         image={like}
         text={'좋아요 표시한 게시물 보기'}
         setIsShow={setIsShow}

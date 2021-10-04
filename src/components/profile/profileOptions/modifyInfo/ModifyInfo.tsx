@@ -13,7 +13,7 @@ const ModifyInfo = () => {
     <S.Wrapper>
       <Header />
       <OptionsTemplate
-        top={'320px'}
+        top={320}
         image={modify}
         text={'내 정보 수정하기'}
         setIsShow={setIsShow}
