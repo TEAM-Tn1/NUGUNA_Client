@@ -1,12 +1,26 @@
 import { Link } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
+import { color } from '../../../style';
+
+interface Props {
+  isHideAccount: boolean;
+}
 
 export const fadeIn = keyframes`
-  0% {
-    opacity: 0;
+  from {
+    opacity: 0.25;
   }
-  100% {
+  to {
     opacity: 1;
+  }
+`;
+
+export const fadeOut = keyframes`
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.25;
   }
 `;
 
@@ -49,12 +63,50 @@ export const DormitoryInfo = styled.div`
     font-weight: bold;
   }
 
-  & span:last-child {
+  & span:nth-child(2) {
     font-size: 14px;
   }
 `;
 
-export const AccountInfo = styled(DormitoryInfo)``;
+export const AccountBox = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+`;
+
+export const AccountInfo = styled(DormitoryInfo)<Props>`
+  & span:first-child,
+  & span:nth-child(2) {
+    opacity: ${props => (props.isHideAccount ? 0.25 : 1)};
+  }
+
+  & span:nth-child(3) {
+    position: absolute;
+    bottom: -15px;
+    font-size: 10px;
+    color: #ff4c3a;
+  }
+`;
+
+export const AccountCheckbox = styled.div`
+  display: flex;
+  gap: 5px;
+  align-items: center;
+
+  & input {
+    width: 16px;
+    height: 16px;
+  }
+
+  & input:checked {
+    background-color: ${color.mainColor};
+  }
+
+  & label {
+    font-size: 12px;
+  }
+`;
 
 export const DetailPage = styled(Link)`
   height: 60px;

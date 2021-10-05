@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { PROFILE_ELEMENT } from '../../constance/profile';
 import { logout } from '../../assets/profile/index';
 import Footer from '../footer';
@@ -6,6 +6,8 @@ import Header from '../header';
 import * as S from './style';
 
 const Profile = () => {
+  const [isHideAccount, setIsHideAccount] = useState(false);
+
   return (
     <S.Wrapper>
       <Header />
@@ -18,10 +20,24 @@ const Profile = () => {
           <span>호실</span>
           <span>210호</span>
         </S.DormitoryInfo>
-        <S.AccountInfo>
-          <span>계좌번호</span>
-          <span>NH농협 0102736697309</span>
-        </S.AccountInfo>
+        <S.AccountBox>
+          <S.AccountInfo isHideAccount={isHideAccount}>
+            <span>계좌번호</span>
+            <span>NH농협 0102736697309</span>
+            {isHideAccount && <span>* 계좌번호가 다른 사람에게 보이지 않습니다.</span>}
+          </S.AccountInfo>
+          <S.AccountCheckbox>
+            <input
+              id='hide_account'
+              type='checkbox'
+              checked={isHideAccount}
+              onChange={() => {
+                setIsHideAccount(!isHideAccount);
+              }}
+            />
+            <label htmlFor='hide_account'>계좌번호 숨기기</label>
+          </S.AccountCheckbox>
+        </S.AccountBox>
       </S.UserInfoBox>
       {PROFILE_ELEMENT.map(ele => {
         return (
