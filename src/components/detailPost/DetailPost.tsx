@@ -1,15 +1,27 @@
-import React from 'react';
+import React, { useMemo, useState } from 'react';
 import * as S from './style';
 import Header from '../header';
 import { PREV } from '../../constance/detailPost';
 import { prevIcon, modifyIcon, deleteIcon } from '../../assets/detailPost';
 import DetailContent from './DetailContent';
+import PostDeleteModal from './PostDeleteModal';
 
 const DetailPost = () => {
+  const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
+
+  const deleteBtnClickHandler = () => {
+    setIsOpenModal(true);
+  };
+
+  const openPostDeleteModal = useMemo(() => {
+    if (isOpenModal) return <PostDeleteModal setIsOpenModal={setIsOpenModal} />;
+  }, [isOpenModal]);
+
   return (
     <S.DetailPost>
       <Header />
       <S.ContentBox>
+        {openPostDeleteModal}
         <S.TopLine>
           <div>
             <S.Icon src={prevIcon} />
@@ -17,7 +29,7 @@ const DetailPost = () => {
           </div>
           <div>
             <S.Icon src={modifyIcon} />
-            <S.Icon src={deleteIcon} />
+            <S.Icon src={deleteIcon} onClick={deleteBtnClickHandler} />
           </div>
         </S.TopLine>
         <DetailContent

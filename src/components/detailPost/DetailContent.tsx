@@ -1,6 +1,8 @@
 import React, { FC } from 'react';
 import * as S from './style';
 import { reportIcon } from '../../assets/detailPost';
+import PostImgSlider from './PostImgSlider';
+import DetailPostFooter from './DetailPostFooter';
 import { CHAT, REPORT } from '../../constance/detailPost';
 
 interface Props {
@@ -38,6 +40,19 @@ const DetailContent: FC<Props> = props => {
           <p>{CHAT}</p>
         </S.ChattingBtn>
       </S.UserInfoAndChatLine>
+      <PostImgSlider />
+      <S.PostContent>
+        제가 저번주에 샀는데 금방질려서 팔아요 원가 13000인데 10000에 팔게여 다들 많관부~~ 제가
+        저번주에 샀는데 금방질려서 팔아요 원가 13000인데 10000에 팔게여 다들 많관부~~ 제가 저번주에
+        샀는데 금방질려서 팔아요 원가 13000인데 10000에 팔게여 다들 많관부~~ 샀는데 금방질려서
+        팔아요 원가 13000인데 10000에 팔게여 다들 많관부~~ 샀는데 금방질려서 팔아요 원가 13000인데
+        10000에 팔게여 다들 많관부~~제가 저번주에 샀는데 금방질려서 팔아요 원가 13000인데 10000에
+        팔게여 다들 많관부~~ 제가 저번주에 샀는데 금방질려서 팔아요 원가 13000인데 10000에 팔게여
+        다들 많관부~~ 제가 저번주에 샀는데 금방질려서 팔아요 원가 13000인데 10000에 팔게여 다들
+        많관부~~ 샀는데 금방질려서 팔아요 원가 13000인데 10000에 팔게여 다들 많관부~~ 샀는데
+        금방질려서 팔아요 원가 13000인데 10000에 팔게여 다들 많관부~~12345563ㅂ5345134
+      </S.PostContent>
+      <DetailPostFooter type={'trade'} money={'5000'} heart={'5'} date={'8/1'} people={'2/4'} />
     </S.DetailContent>
   );
 };

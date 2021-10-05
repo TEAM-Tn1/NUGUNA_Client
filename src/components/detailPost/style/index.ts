@@ -12,6 +12,7 @@ export const ContentBox = styled.div`
   min-width: 375px;
   max-width: 500px;
   height: 760px;
+  position: relative;
   padding-top: 124px;
 `;
 
@@ -103,6 +104,7 @@ export const UserInfoAndChatLine = styled.div`
   justify-content: space-between;
   align-items: center;
   margin: 0 auto;
+  margin-bottom: 20px;
   > div:first-child > p {
     font-size: 14px;
   }
@@ -125,4 +127,145 @@ export const ChattingBtn = styled.div`
     cursor: pointer;
     color: ${color.mainColor};
   }
+`;
+
+export const PostImgSlider = styled.div`
+  width: 100%;
+  height: 281px;
+  background-color: #f3f3f3;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  /* gap: 3%; */
+  > p {
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: bold;
+  }
+`;
+
+export const PostImg = styled.div`
+  width: 281px;
+  height: 281px;
+  background-color: red;
+`;
+
+export const PostContent = styled.p`
+  width: 86%;
+  font-size: 16px;
+  margin: 0 auto;
+  margin-top: 10px;
+  padding-bottom: 70px;
+`;
+
+export const DetailPostFooter = styled.footer`
+  width: 100%;
+  max-width: 500px;
+  height: 60px;
+  display: flex;
+  position: fixed;
+  box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.1);
+  bottom: calc(constant(safe-area-inset-bottom) + 0px);
+  bottom: calc(env(safe-area-inset-bottom) + 0px);
+  background-color: #f3f3f3;
+  > div {
+    width: 86%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 auto;
+  }
+`;
+
+export const PayAndLikeIcon = styled.img`
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+`;
+
+export const PayContent = styled.div`
+  display: flex;
+  gap: 8px;
+  > p {
+    font-size: 18px;
+  }
+`;
+
+export const LikeContent = styled.div`
+  width: 28px;
+  > p {
+    font-size: 11px;
+    color: ${color.disabled};
+    text-align: center;
+    margin-top: -5px;
+  }
+`;
+
+export const DateAndPeople = styled.div`
+  margin-right: 10px;
+  > div {
+    display: flex;
+    > img {
+      width: 20px;
+      height: 16px;
+      margin-right: 4px;
+    }
+    > p {
+      font-size: 11px;
+    }
+  }
+`;
+
+export const DateAndPeopleIcon = styled.img`
+  width: 20px;
+  height: 16px;
+`;
+
+export const PostDeleteModal = styled.div`
+  width: 250px;
+  height: 150px;
+  background-color: white;
+  position: absolute;
+  right: calc(50% - 125px);
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+`;
+
+export const DeleteTitle = styled.p`
+  font-size: 16px;
+`;
+
+export const DeleteExplain = styled.p`
+  font-size: 12px;
+  font-weight: bold;
+`;
+
+export const CheckBtnLine = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+`;
+
+export const CheckBtn = styled.div`
+  width: 50px;
+  height: 20px;
+  background-color: ${color.mainColor};
+  border-radius: 15px;
+  font-size: 11px;
+  font-weight: bold;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+`;
+
+export const CancleBtn = styled(CheckBtn)`
+  color: #fbfbfb;
+  background-color: #c4c4c4;
 `;
