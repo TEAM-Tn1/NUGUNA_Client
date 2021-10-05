@@ -9,10 +9,10 @@ const MainRouter = () => {
   return (
     <Router>
       <Switch>
-        <Route exact path='/profile' component={Profile}></Route>
-        <Route exact path='/profile/modify' component={ModifyInfo}></Route>
-        <Route exact path='/profile/liked_post' component={LikedPost}></Route>
-        <Route exact path='/profile/written_post' component={WrittenPost}></Route>
+        <Route exact path='/profile' component={Profile} />
+        <Route exact path='/profile/modify' component={ModifyInfo} />
+        <Route exact path='/profile/liked_post' component={LikedPost} />
+        <Route exact path='/profile/written_post' component={WrittenPost} />
       </Switch>
     </Router>
   );
