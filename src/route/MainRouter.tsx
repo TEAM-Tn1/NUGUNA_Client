@@ -6,9 +6,9 @@ const MainRouter = () => {
   return (
     <Router>
       <Switch>
-        <Route exact path='/admin/report/post' component={PostReport} />
+        <Route exact path='/admin/report/feed' component={PostReport} />
         <Route exact path='/admin/report/user' component={UserReport} />
-        <Route exact path='/admin/suggestion' component={Suggestion} />
+        <Route exact path='/admin/question' component={Suggestion} />
       </Switch>
     </Router>
   );

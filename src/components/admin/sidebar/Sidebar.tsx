@@ -9,11 +9,11 @@ const Sidebar: FC = () => {
     <S.Wrapper>
       <Logo />
       <S.Called>
-        <Link to='/admin/report/post'>
+        <Link to='/admin/report/feed'>
           <img src={reportIcon} />
           <p>신고상황</p>
         </Link>
-        <Link to='/admin/suggestion'>
+        <Link to='/admin/question'>
           <img src={suggestionIcon} />
           <p>문의상황</p>
         </Link>
