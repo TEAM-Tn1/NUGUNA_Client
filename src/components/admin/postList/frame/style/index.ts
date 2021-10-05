@@ -3,13 +3,12 @@ import { color } from '../../../../../style/index';
 
 export const Wrapper = styled.div`
   display: flex;
-  width: 400px;
 `;
 
 export const Main = styled.div`
   width: 1054px;
-  min-width: 1054px;
-  margin: 125px 80px;
+  min-width: 864px;
+  margin: 125px 80px 125px 480px;
 `;
 
 export const Top = styled.div`
@@ -65,6 +64,7 @@ export const ChartTitle = styled.article`
     color: #000000;
     font-size: 14px;
     width: 66px;
+    min-width: 66px;
     display: flex;
     justify-content: center;
   }
