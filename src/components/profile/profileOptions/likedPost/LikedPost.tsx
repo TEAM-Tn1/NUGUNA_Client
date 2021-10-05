@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import OptionsTemplate from '../../../default/profile';
+import OptionsTemplate from '../../../default/profile/optionsTemplate';
 import Footer from '../../../footer';
 import Header from '../../../header';
 import { like } from '../../../../assets/profile';
