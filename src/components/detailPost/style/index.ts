@@ -76,10 +76,12 @@ export const ReportIcon = styled.img`
 
 export const HashTageLine = styled.div`
   width: 86%;
+  max-height: 53px;
   display: flex;
+  flex-wrap: wrap;
   gap: 4px;
-  overflow: hidden;
   margin: 0 auto;
+  margin-bottom: 12px;
 `;
 
 export const HashTag = styled.div`
@@ -92,4 +94,35 @@ export const HashTag = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+export const UserInfoAndChatLine = styled.div`
+  width: 86%;
+  height: 36px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  > div:first-child > p {
+    font-size: 14px;
+  }
+  > div:first-child > p:first-child {
+    font-weight: bold;
+  }
+`;
+
+export const ChattingBtn = styled.div`
+  width: 75px;
+  height: 30px;
+  border-radius: 30px;
+  border: 1px solid ${color.mainColor};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  > p {
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    color: ${color.mainColor};
+  }
 `;

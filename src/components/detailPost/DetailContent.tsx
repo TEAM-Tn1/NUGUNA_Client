@@ -1,14 +1,16 @@
 import React, { FC } from 'react';
 import * as S from './style';
 import { reportIcon } from '../../assets/detailPost';
-import { REPORT } from '../../constance/detailPost';
+import { CHAT, REPORT } from '../../constance/detailPost';
 
 interface Props {
   title: string;
   hashtage: Array<string>;
+  userInfo: { writerEmail: string; writerName: string };
 }
 
-const DetailContent: FC<Props> = ({ title, hashtage }) => {
+const DetailContent: FC<Props> = props => {
+  const { title, hashtage, userInfo } = props;
   return (
     <S.DetailContent>
       <S.TitleLine>
@@ -27,6 +29,15 @@ const DetailContent: FC<Props> = ({ title, hashtage }) => {
           );
         })}
       </S.HashTageLine>
+      <S.UserInfoAndChatLine>
+        <div>
+          <p>{userInfo.writerName}</p>
+          <p>{userInfo.writerEmail}</p>
+        </div>
+        <S.ChattingBtn>
+          <p>{CHAT}</p>
+        </S.ChattingBtn>
+      </S.UserInfoAndChatLine>
     </S.DetailContent>
   );
 };

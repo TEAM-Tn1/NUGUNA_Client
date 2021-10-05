@@ -23,6 +23,7 @@ const DetailPost = () => {
         <DetailContent
           title={'일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십'}
           hashtage={['#인형', '#인형팝니다', '#인형', '#인형사세요', '#인형사세요']}
+          userInfo={{ writerEmail: '201107khj@dsm.hs.kr', writerName: '김혜준' }}
         />
       </S.ContentBox>
     </S.DetailPost>
