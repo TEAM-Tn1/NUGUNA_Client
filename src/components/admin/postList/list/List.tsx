@@ -3,21 +3,22 @@ import { checkIcon } from '../../../../assets/admin';
 import * as S from './style/index';
 
 interface listProps {
-  id: number | string;
+  postId: number | string;
   title: string;
   target: string;
-  name: string;
+  writer: string;
   date: string;
+  check: boolean;
 }
 
-const List: FC<listProps> = ({ id, title, target, name, date }) => {
+const List: FC<listProps> = ({ postId, title, target, writer, date, check }) => {
   return (
     <S.List>
-      <p>{id}</p>
+      <p>{postId}</p>
       <h3>{title}</h3>
       <div>
         <p>{target}</p>
-        <p>{name}</p>
+        <p>{writer}</p>
         <p>{date}</p>
         <div>
           <img src={checkIcon} />
