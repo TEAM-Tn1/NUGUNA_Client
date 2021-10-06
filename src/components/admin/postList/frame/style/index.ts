@@ -3,11 +3,14 @@ import { color } from '../../../../../style/index';
 
 export const Wrapper = styled.div`
   display: flex;
+  height: 100vh;
+  overflow-x: scroll;
+  overflow-y: hidden;
 `;
 
 export const Main = styled.div`
   width: 1054px;
-  min-width: 864px;
+  min-width: 870px;
   height: 784px;
   margin: 125px 80px 60px 480px;
 `;

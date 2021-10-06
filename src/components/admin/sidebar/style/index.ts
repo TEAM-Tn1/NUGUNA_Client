@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: rgba(255, 157, 134, 0.2);
+  background-color: #FFEBE7;
   width: 380px;
   min-width: 380px;
   height: 100vh;
