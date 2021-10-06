@@ -8,7 +8,8 @@ export const Wrapper = styled.div`
 export const Main = styled.div`
   width: 1054px;
   min-width: 864px;
-  margin: 125px 80px 125px 480px;
+  height: 784px;
+  margin: 125px 80px 60px 480px;
 `;
 
 export const Top = styled.div`
@@ -43,7 +44,12 @@ export const Top = styled.div`
 
 export const Chart = styled.div`
   width: 100%;
-  margin: 50px 0;
+  margin: 50px 0px 0px;
+
+  & div:nth-child(2) {
+    height: 628px;
+    overflow-y: scroll;
+  }
 
   article:nth-child(odd) {
     background-color: #ffffff;
@@ -59,6 +65,7 @@ export const ChartTitle = styled.article`
   align-items: flex-end;
   justify-content: space-between;
   margin: 0 0 8px 0;
+  padding: 0 5px 0 0;
 
   & p {
     color: #000000;
