@@ -1,16 +1,16 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { Profile, UserInfo } from '../components';
-import { ModifyInfo, LikedPost, WrittenPost } from '../components/profile/profileOptions';
+import { Mypage, UserInfo } from '../components';
+import { ModifyInfo, LikedPost, WrittenPost } from '../components/mypage/mypageOptions';
 
 const MainRouter = () => {
   return (
     <Router>
       <Switch>
-        <Route exact path='/profile' component={Profile} />
-        <Route exact path='/profile/modify' component={ModifyInfo} />
-        <Route exact path='/profile/liked_post' component={LikedPost} />
-        <Route exact path='/profile/written_post' component={WrittenPost} />
+        <Route exact path='/mypage' component={Mypage} />
+        <Route exact path='/mypage/modify' component={ModifyInfo} />
+        <Route exact path='/mypage/liked_post' component={LikedPost} />
+        <Route exact path='/mypage/written_post' component={WrittenPost} />
         <Route exact path='/users/:email' component={UserInfo} />
       </Switch>
     </Router>

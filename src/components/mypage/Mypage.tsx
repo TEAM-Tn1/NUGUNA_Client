@@ -5,7 +5,7 @@ import Footer from '../footer';
 import Header from '../header';
 import * as S from './style';
 
-const Profile = () => {
+const Mypage = () => {
   const [isHideAccount, setIsHideAccount] = useState(false);
 
   return (
@@ -56,4 +56,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default Mypage;
