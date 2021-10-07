@@ -16,7 +16,7 @@ const OptionsTemplate: FC<Props> = ({ top, image, text, isShow, setIsShow }) => 
   const onClick = () => {
     setIsShow(!isShow);
     setTimeout(() => {
-      push('/profile');
+      push('/mypage');
     }, 750);
   };
 
