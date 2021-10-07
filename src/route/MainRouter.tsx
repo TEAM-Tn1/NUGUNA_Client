@@ -1,13 +1,14 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { PostContanier, DetailPostContainer } from '../container';
+import { PostContanier, DetailPostContainer, WritePostContainer } from '../container';
 
 const MainRouter = () => {
   return (
     <Router>
       <Switch>
         <Route exact path='/post' component={PostContanier} />
-        <Route exact path='/view/post' component={DetailPostContainer} />
+        <Route exact path='/view/post/:id' component={DetailPostContainer} />
+        <Route exact path='/write/post/:type' component={WritePostContainer} />
       </Switch>
     </Router>
   );
