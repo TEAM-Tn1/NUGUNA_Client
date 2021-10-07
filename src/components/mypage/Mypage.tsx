@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { PROFILE_ELEMENT } from '../../constance/profile';
-import { logout } from '../../assets/profile/index';
+import { PROFILE_ELEMENT } from '../../constance/mypage';
+import { logout } from '../../assets/mypage/index';
 import Footer from '../footer';
 import Header from '../header';
 import * as S from './style';

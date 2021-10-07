@@ -3,7 +3,7 @@ import OptionsTemplate from '../../../default/profile/optionsTemplate';
 import Footer from '../../../footer';
 import Header from '../../../header';
 import * as S from './style';
-import { modify } from '../../../../assets/profile';
+import { modify } from '../../../../assets/mypage';
 import { INPUT_ELEMENT } from '../../../../constance/modifyInfo';
 
 const ModifyInfo = () => {

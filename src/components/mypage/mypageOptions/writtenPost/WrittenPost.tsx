@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import OptionsTemplate from '../../../default/profile/optionsTemplate';
 import Footer from '../../../footer';
 import Header from '../../../header';
-import { written } from '../../../../assets/profile';
+import { written } from '../../../../assets/mypage';
 import * as S from './style';
 
 const WrittenPost = () => {
