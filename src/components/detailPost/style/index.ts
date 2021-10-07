@@ -11,7 +11,7 @@ export const DetailPost = styled.div`
 export const ContentBox = styled.div`
   width: 100%;
   max-width: 500px;
-  height: 718px;
+  height: 100%;
   overflow-y: auto;
   position: relative;
 `;
