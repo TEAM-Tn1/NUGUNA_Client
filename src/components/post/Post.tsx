@@ -47,31 +47,33 @@ const Post: FC<Props> = () => {
   };
 
   return (
-    <S.Post>
+    <>
       <Header />
-      <S.ContentBox>
-        <S.TitleLine>
-          <p>{POST_TITLE}</p>
-          {SUBTITLE.map(data => {
-            return (
-              <S.SubTitle
-                key={data.id}
-                data-id={data.id}
-                onClick={subtitleClickHandler}
-                isClick={clickState(data.id)}
-              >
-                {data.content}
-              </S.SubTitle>
-            );
-          })}
-        </S.TitleLine>
-        <PostList type={type} />
-        <S.WriteBtn>
-          <S.WriteIcon src={write} />
-        </S.WriteBtn>
-      </S.ContentBox>
+      <S.Post>
+        <S.ContentBox>
+          <S.TitleLine>
+            <p>{POST_TITLE}</p>
+            {SUBTITLE.map(data => {
+              return (
+                <S.SubTitle
+                  key={data.id}
+                  data-id={data.id}
+                  onClick={subtitleClickHandler}
+                  isClick={clickState(data.id)}
+                >
+                  {data.content}
+                </S.SubTitle>
+              );
+            })}
+          </S.TitleLine>
+          <PostList type={type} />
+          <S.WriteBtn>
+            <S.WriteIcon src={write} />
+          </S.WriteBtn>
+        </S.ContentBox>
+      </S.Post>
       <Footer />
-    </S.Post>
+    </>
   );
 };
 
