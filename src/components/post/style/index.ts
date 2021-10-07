@@ -19,7 +19,7 @@ export const TitleLine = styled.p`
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  padding-top: 24px;
+  padding-top: 10px;
   margin-bottom: 20px;
   > p:first-child {
     height: 30px;
@@ -121,9 +121,8 @@ export const Hashtag = styled.div`
 `;
 
 export const PostList = styled.div`
-  height: 100%;
+  height: calc(100% - 50px);
   overflow: auto;
-  padding-bottom: 70px;
 `;
 
 export const WriteBtn = styled.div`
