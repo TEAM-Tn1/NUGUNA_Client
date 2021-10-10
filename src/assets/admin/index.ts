@@ -1,1 +1,1 @@
-export { default as checkIcon } from './check.svg';
+export { default as CheckIcon } from './check';
