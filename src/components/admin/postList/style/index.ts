@@ -18,7 +18,7 @@ export const Chart = styled.div`
   width: 100%;
   margin: 50px 0px 0px;
 
-  & div:nth-child(2) {
+  > div:nth-child(2) {
     height: 628px;
     overflow-y: scroll;
   }
@@ -52,11 +52,13 @@ export const ChartTitle = styled.article`
     font-size: 22px;
     font-weight: normal;
     width: 708px;
+    min-width: 534px;
     padding: 0 18px;
   }
   & div {
     width: 280px;
     display: flex;
     justify-content: space-between;
+    margin-right: 18px;
   }
 `;
