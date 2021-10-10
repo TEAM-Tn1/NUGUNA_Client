@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { color } from '../../../../../style/index';
 
-export const List = styled.article`
+export const MainContest = styled.div`
   display: flex;
   align-items: flex-end;
   margin: 0 0 8px 0;
@@ -26,24 +26,60 @@ export const List = styled.article`
     color: #000000;
     font-weight: normal;
     width: 708px;
+    min-width: 534px;
+    height: 42px;
     padding: 0 18px;
     font-size: 18px;
     border-left: solid 1px ${color.subColor};
+    display: flex;
+    align-items: center;
   }
 
   & div {
     width: 280px;
     display: flex;
     justify-content: space-between;
+    margin-right: 18px;
     & div {
       display: flex;
       align-items: center;
       justify-content: center;
       width: 66px;
+      margin: 0;
       & img {
         width: 17px;
         height: 13px;
       }
     }
+  }
+`;
+
+export const Detail = styled.div`
+  border-top: solid 1px ${color.subColor};
+  margin: 0 18px;
+  & hr {
+    margin-bottom: 20px;
+  }
+`;
+
+export const Content = styled.div`
+  display: flex;
+  padding: 20px 0;
+  & span {
+    width: 48px;
+    min-width: 48px;
+    height: 42px;
+    font-size: 16px;
+    display: flex;
+    //justify-content: center;
+    align-items: center;
+    border-right: solid 1px ${color.subColor};
+  }
+
+  & p {
+    width: 952px;
+    min-width: 763px;
+    margin-left: 18px;
+    font-size: 15px;
   }
 `;

@@ -1,5 +1,5 @@
 import { FC, useState, useEffect } from 'react';
-import { CheckIcon } from '../../../../assets/admin';
+import { CheckIcon, positive, negative } from '../../../../assets/admin';
 import * as S from './style/index';
 
 interface listProps {
@@ -18,18 +18,28 @@ const List: FC<listProps> = ({ postId, title, target, writer, date, check }) => 
   }, []);
 
   return (
-    <S.List>
-      <p>{postId}</p>
-      <h3>{title}</h3>
-      <div>
-        <p>{target}</p>
-        <p>{writer}</p>
-        <p>{date}</p>
+    <article>
+      <S.MainContest>
+        <p>{postId}</p>
+        <h3>{title}</h3>
         <div>
-          <CheckIcon color={color} />
+          <p>{target}</p>
+          <p>{writer}</p>
+          <p>{date}</p>
+          <div>
+            <CheckIcon color={color} />
+          </div>
         </div>
-      </div>
-    </S.List>
+      </S.MainContest>
+      <S.Detail>
+        <S.Content>
+          <span>내용</span>
+          <p>
+            내용내용내용내용내용내용내용
+          </p>
+        </S.Content>
+      </S.Detail>
+    </article>
   );
 };
 
