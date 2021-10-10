@@ -58,5 +58,9 @@ export const TitleAndInput = styled.div`
     width: 100%;
     border: none;
     border-bottom: 1px solid black;
+    ::placeholder {
+      font-size: 14px;
+      color: #808080;
+    }
   }
 `;
