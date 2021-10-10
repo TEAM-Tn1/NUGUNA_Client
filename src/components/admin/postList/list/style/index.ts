@@ -28,7 +28,7 @@ export const List = styled.article`
     width: 708px;
     padding: 0 18px;
     font-size: 18px;
-    border-left: 1px solid rgba(117, 79, 68, 0.5);
+    border-left: solid 1px ${color.subColor};
   }
 
   & div {
