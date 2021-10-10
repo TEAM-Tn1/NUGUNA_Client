@@ -71,7 +71,6 @@ export const Content = styled.div`
     height: 42px;
     font-size: 16px;
     display: flex;
-    //justify-content: center;
     align-items: center;
     border-right: solid 1px ${color.subColor};
   }
