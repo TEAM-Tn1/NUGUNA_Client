@@ -1,5 +1,5 @@
-import React, { FC, useState } from 'react';
-import { checkIcon } from '../../../../assets/admin';
+import { FC, useState, useEffect } from 'react';
+import { CheckIcon } from '../../../../assets/admin';
 import * as S from './style/index';
 
 interface listProps {
@@ -12,6 +12,11 @@ interface listProps {
 }
 
 const List: FC<listProps> = ({ postId, title, target, writer, date, check }) => {
+  const [color, setColor] = useState('');
+  useEffect(() => {
+    check ? setColor('#00C02A') : setColor('#808080');
+  }, []);
+
   return (
     <S.List>
       <p>{postId}</p>
@@ -21,7 +26,7 @@ const List: FC<listProps> = ({ postId, title, target, writer, date, check }) => 
         <p>{writer}</p>
         <p>{date}</p>
         <div>
-          <img src={checkIcon} />
+          <CheckIcon color={color} />
         </div>
       </div>
     </S.List>
