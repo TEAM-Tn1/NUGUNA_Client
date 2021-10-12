@@ -82,3 +82,39 @@ export const Content = styled.div`
     font-size: 15px;
   }
 `;
+
+export const Answer = styled.div`
+  display: flex;
+  flex-direction: column;
+  & div {
+    display: flex;
+    gap: 0px 15px;
+    & p {
+      font-size: 16px;
+    }
+  }
+
+  & div:last-child {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  & textarea {
+    resize: none;
+    border: none;
+    margin: 10px 0;
+    background-color: transparent;
+    height: 76px;
+    font-size: 15px;
+  }
+
+  & button {
+    width: 60px;
+    height: 30px;
+    border-radius: 15px;
+    border: solid 1px ${color.subColor};
+    color: ${color.subColor};
+    background-color: #ffffff;
+    margin-bottom: 20px;
+  }
+`;

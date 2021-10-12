@@ -38,6 +38,18 @@ const List: FC<listProps> = ({ postId, title, target, writer, date, check }) => 
             내용내용내용내용내용내용내용
           </p>
         </S.Content>
+        <hr />
+        <S.Answer>
+          <div>
+            <p>유저 비활성화 여부</p>
+            <img src={positive} alt='' />
+            <input type='date' />
+          </div>
+          <textarea placeholder='답변을 남겨주세요.' />
+          <div>
+            <button>확인</button>
+          </div>
+        </S.Answer>
       </S.Detail>
     </article>
   );
