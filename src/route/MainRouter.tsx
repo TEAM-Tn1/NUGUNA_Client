@@ -5,6 +5,7 @@ import {
   DetailPostContainer,
   WritePostContainer,
   ChatListContainer,
+  DetailChatContainer,
 } from '../container';
 
 const MainRouter = () => {
@@ -15,6 +16,7 @@ const MainRouter = () => {
         <Route exact path='/view/post/:id' component={DetailPostContainer} />
         <Route exact path='/write/post/:type' component={WritePostContainer} />
         <Route exact path='/chatting' component={ChatListContainer} />
+        <Route exact path='/chat/:id' component={DetailChatContainer} />
       </Switch>
     </Router>
   );
