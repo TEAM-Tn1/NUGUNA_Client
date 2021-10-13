@@ -34,9 +34,13 @@ const List: FC<listProps> = ({ postId, title, target, writer, date, check }) => 
       <S.Detail>
         <S.Content>
           <span>내용</span>
-          <p>
-            내용내용내용내용내용내용내용
-          </p>
+          <div>
+            <p>내용내용내용내용내용내용내용</p>
+            <img
+              src='https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png'
+              alt=''
+            />
+          </div>
         </S.Content>
         <hr />
         <S.Answer>

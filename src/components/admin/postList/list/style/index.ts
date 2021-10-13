@@ -75,23 +75,36 @@ export const Content = styled.div`
     border-right: solid 1px ${color.subColor};
   }
 
-  & p {
-    width: 952px;
+  & div {
     min-width: 763px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  & p {
+    width: 100%;
     margin-left: 18px;
+    padding-right: 18px;
     font-size: 15px;
+  }
+
+  & img {
+    max-width: 30%;
+    margin: 18px;
   }
 `;
 
 export const Answer = styled.div`
   display: flex;
   flex-direction: column;
+
   & div {
     display: flex;
     gap: 0px 15px;
-    & p {
-      font-size: 16px;
-    }
+  }
+
+  & p {
+    font-size: 16px;
   }
 
   & div:last-child {
