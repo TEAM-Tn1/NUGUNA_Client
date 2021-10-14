@@ -3,17 +3,17 @@ import { color } from '../../../style';
 
 export const DetailPost = styled.div`
   max-width: 500px;
-  height: 100vh;
+  height: calc(100vh - 100px);
   margin: 0 auto;
+  margin-top: 100px;
 `;
 
 export const ContentBox = styled.div`
   width: 100%;
-  min-width: 375px;
   max-width: 500px;
-  height: 760px;
+  height: 100%;
+  overflow-y: auto;
   position: relative;
-  padding-top: 124px;
 `;
 
 export const TopLine = styled.div`
@@ -21,7 +21,7 @@ export const TopLine = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0 auto;
+  margin: 10px auto;
   > div {
     display: flex;
     align-items: center;
@@ -136,7 +136,6 @@ export const PostImgSlider = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  /* gap: 3%; */
   > p {
     cursor: pointer;
     font-size: 24px;
@@ -153,9 +152,7 @@ export const PostImg = styled.div`
 export const PostContent = styled.p`
   width: 86%;
   font-size: 16px;
-  margin: 0 auto;
-  margin-top: 10px;
-  padding-bottom: 70px;
+  margin: 10px auto;
 `;
 
 export const DetailPostFooter = styled.footer`
@@ -163,7 +160,7 @@ export const DetailPostFooter = styled.footer`
   max-width: 500px;
   height: 60px;
   display: flex;
-  position: fixed;
+  position: sticky;
   box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.1);
   bottom: calc(constant(safe-area-inset-bottom) + 0px);
   bottom: calc(env(safe-area-inset-bottom) + 0px);
