@@ -1,5 +1,5 @@
 import { FC, useState, useEffect } from 'react';
-import { CheckIcon, positive, negative } from '../../../../assets/admin';
+import { CheckIcon } from '../../../../assets/admin';
 import * as S from './style/index';
 
 interface listProps {
