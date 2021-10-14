@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+interface Props {
+  isReport?: boolean;
+}
+
 export const Wrapper = styled.div`
   position: fixed;
   top: 0;
@@ -35,9 +39,12 @@ export const Title = styled.span`
   font-weight: bold;
 `;
 
-export const ContentBox = styled.div`
+export const ContentBox = styled.div<Props>`
   width: 100%;
   height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   padding: 16px;
   border: 1px solid black;
 
@@ -46,15 +53,30 @@ export const ContentBox = styled.div`
     font-size: 16px;
     border: none;
     border-bottom: 1px solid black;
-    margin-bottom: 20px;
   }
 
   & textarea {
     width: 100%;
-    height: calc(100% - 45px);
+    height: ${props => (props.isReport ? 'calc(100% - 120px)' : 'calc(100% - 35px)')};
     font-size: 12px;
     border: none;
     resize: none;
+  }
+`;
+
+export const ImageBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+
+  & span {
+    font-size: 12px;
+  }
+
+  & img {
+    width: 55px;
+    cursor: pointer;
   }
 `;
 
@@ -67,6 +89,7 @@ export const ButtonBox = styled.div`
     font-size: 16px;
     font-weight: bold;
     border: 1px solid #754f44;
+    cursor: pointer;
   }
 
   & button:first-child {
