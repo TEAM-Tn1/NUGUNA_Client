@@ -7,14 +7,7 @@ interface detailProps {
   photo_url: string;
 }
 
-const DetailData = {
-  description: '내용내용내용내용내용내용내용',
-  photo_url: 'https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png',
-};
-
-const { description, photo_url } = DetailData;
-
-const ListDetail = () => {
+const ListDetail: FC<detailProps> = ({ description, photo_url }) => {
   return (
     <S.Detail>
       <S.Content>

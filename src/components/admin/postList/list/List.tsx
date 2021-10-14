@@ -12,6 +12,13 @@ interface listProps {
   check: boolean;
 }
 
+const DetailData = {
+  description: '내용내용내용내용내용내용내용',
+  photo_url: 'https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png',
+};
+
+const { description, photo_url } = DetailData;
+
 const List: FC<listProps> = ({ postId, title, target, writer, date, check }) => {
   const [color, setColor] = useState<string>('');
   useEffect(() => {
@@ -32,7 +39,7 @@ const List: FC<listProps> = ({ postId, title, target, writer, date, check }) => 
           </div>
         </div>
       </S.MainContest>
-      <ListDetail />
+      <ListDetail description={description} photo_url={photo_url} />
     </article>
   );
 };
