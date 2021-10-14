@@ -122,6 +122,7 @@ export const Suggestion = styled.div`
   padding: 0px 30px;
   border-top: 1px solid #ff9d86;
   animation: ${fadeIn} 0.25s;
+  cursor: pointer;
 
   & span {
     color: black;

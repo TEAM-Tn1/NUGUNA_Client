@@ -8,6 +8,15 @@ import Template from '../default/modal/modalTemplate';
 
 const Mypage = () => {
   const [isHideAccount, setIsHideAccount] = useState(false);
+  const [isShowModal, setIsShowModal] = useState(false);
+
+  const openModal = () => {
+    setIsShowModal(true);
+  };
+
+  const closeModal = () => {
+    setIsShowModal(false);
+  };
 
   return (
     <S.Wrapper>
@@ -48,7 +57,7 @@ const Mypage = () => {
           </S.DetailPage>
         );
       })}
-      <S.Suggestion>
+      <S.Suggestion onClick={openModal}>
         <img src={suggestion} alt='' />
         <span>문의사항 작성하기</span>
       </S.Suggestion>
@@ -57,6 +66,7 @@ const Mypage = () => {
         <span>로그아웃하기</span>
       </S.Logout>
       <Footer />
+      <Template title='문의사항' isShowModal={isShowModal} closeModal={closeModal} />
     </S.Wrapper>
   );
 };
