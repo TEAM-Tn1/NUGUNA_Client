@@ -5,6 +5,7 @@ import Frame from './frame/index';
 import List from './list/index';
 import { reportIcon } from '../../../assets/defalut';
 
+//더미데이터
 const testArray: number[] = [];
 for (let i = 0; i < 10; i++) {
   testArray.push(i);

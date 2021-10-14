@@ -12,6 +12,7 @@ interface listProps {
   check: boolean;
 }
 
+//더미데이터
 const DetailData = {
   description: '내용내용내용내용내용내용내용',
   photo_url: 'https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png',
