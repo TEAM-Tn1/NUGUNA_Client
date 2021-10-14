@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { reportIcon } from '../../assets/detailPost';
+import ModalTemplate from '../default/modal/modalTemplate';
 import { Header, Footer } from '../index';
 import * as S from './style';
 
 const UserInfo = () => {
+  const [isShowModal, setIsShowModal] = useState(false);
+
+  const openModal = () => {
+    setIsShowModal(true);
+  };
+
+  const closeModal = () => {
+    setIsShowModal(false);
+  };
+
   return (
     <S.Wrapper>
       <Header />
@@ -13,7 +24,7 @@ const UserInfo = () => {
             <span>야찬코</span>
             <span>2100</span>
           </S.StudentInfo>
-          <S.ReportButton to=''>
+          <S.ReportButton onClick={openModal}>
             <img src={reportIcon} alt='' />
             <span>신고하기</span>
           </S.ReportButton>
@@ -31,6 +42,7 @@ const UserInfo = () => {
         <span>작성한 게시물</span>
       </S.WrittenPostBox>
       <Footer />
+      <ModalTemplate title='신고하기' isShowModal={isShowModal} closeModal={closeModal} isReport />
     </S.Wrapper>
   );
 };

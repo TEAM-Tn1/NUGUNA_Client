@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
@@ -36,10 +35,11 @@ export const StudentInfo = styled.div`
   }
 `;
 
-export const ReportButton = styled(Link)`
+export const ReportButton = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  cursor: pointer;
 
   & img {
     width: 20px;
