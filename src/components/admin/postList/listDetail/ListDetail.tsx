@@ -10,6 +10,18 @@ interface detailProps {
 const ListDetail: FC<detailProps> = ({ description, photo_url }) => {
   const [whether, setWhether] = useState<boolean>(true);
 
+  const [displayOpcity, setDisplayOpcity] = useState<number>(1);
+  const [displayCilck, setDisplayCilck] = useState<string>('auto');
+  /* const styles = {
+    opcity: displayOpcity,
+    'pointer-events': displayCilck,
+  }; */
+
+  useEffect(() => {
+    whether ? setDisplayOpcity(1) : setDisplayOpcity(0.3);
+    whether ? setDisplayCilck('auto') : setDisplayCilck('none');
+  }, [whether]);
+
   return (
     <S.Detail>
       <S.Content>
@@ -24,7 +36,7 @@ const ListDetail: FC<detailProps> = ({ description, photo_url }) => {
         <div>
           <p>유저 비활성화 여부</p>
           <img src={whether ? positive : negative} onClick={() => setWhether(!whether)} />
-          <input type='date' />
+          <input type='date' /*  style={styles} */ />
         </div>
         <textarea placeholder='답변을 남겨주세요.' />
         <div>

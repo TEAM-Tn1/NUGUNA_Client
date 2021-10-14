@@ -1,7 +1,6 @@
 import { FC, useState, useEffect } from 'react';
 import { CheckIcon, positive, negative } from '../../../../assets/admin';
 import * as S from './style/index';
-import { ListDetail } from '../listDetail/index';
 
 interface listProps {
   postId: number | string;
@@ -11,14 +10,6 @@ interface listProps {
   date: string;
   check: boolean;
 }
-
-//더미데이터
-const DetailData = {
-  description: '내용내용내용내용내용내용내용',
-  photo_url: 'https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png',
-};
-
-const { description, photo_url } = DetailData;
 
 const List: FC<listProps> = ({ postId, title, target, writer, date, check }) => {
   const [color, setColor] = useState<string>('');
@@ -40,7 +31,6 @@ const List: FC<listProps> = ({ postId, title, target, writer, date, check }) => 
           </div>
         </div>
       </S.MainContest>
-      <ListDetail description={description} photo_url={photo_url} />
     </article>
   );
 };

@@ -18,17 +18,16 @@ export const Chart = styled.div`
   width: 100%;
   margin: 50px 0px 0px;
 
-  > div:nth-child(2) {
+  > article:nth-child(2) {
     height: 628px;
     overflow-y: scroll;
-  }
+    > article:nth-child(odd) {
+      background-color: #ffffff;
+    }
 
-  article:nth-child(odd) {
-    background-color: #ffffff;
-  }
-
-  article:nth-child(even) {
-    background-color: rgba(117, 79, 68, 0.1);
+    > article:nth-child(even) {
+      background-color: rgba(117, 79, 68, 0.1);
+    }
   }
 `;
 
