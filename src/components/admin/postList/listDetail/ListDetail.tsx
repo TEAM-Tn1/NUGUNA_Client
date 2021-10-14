@@ -8,6 +8,8 @@ interface detailProps {
 }
 
 const ListDetail: FC<detailProps> = ({ description, photo_url }) => {
+  const [whether, setWhether] = useState<boolean>(true);
+
   return (
     <S.Detail>
       <S.Content>
@@ -21,7 +23,7 @@ const ListDetail: FC<detailProps> = ({ description, photo_url }) => {
       <S.Answer>
         <div>
           <p>유저 비활성화 여부</p>
-          <img src={positive} />
+          <img src={whether ? positive : negative} onClick={() => setWhether(!whether)} />
           <input type='date' />
         </div>
         <textarea placeholder='답변을 남겨주세요.' />
