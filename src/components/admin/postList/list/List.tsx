@@ -1,6 +1,7 @@
 import { FC, useState, useEffect } from 'react';
 import { CheckIcon, positive, negative } from '../../../../assets/admin';
 import * as S from './style/index';
+import { ListDetail } from '../listDetail/index';
 
 interface listProps {
   postId: number | string;
@@ -31,30 +32,7 @@ const List: FC<listProps> = ({ postId, title, target, writer, date, check }) => 
           </div>
         </div>
       </S.MainContest>
-      <S.Detail>
-        <S.Content>
-          <span>내용</span>
-          <div>
-            <p>내용내용내용내용내용내용내용</p>
-            <img
-              src='https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png'
-              alt=''
-            />
-          </div>
-        </S.Content>
-        <hr />
-        <S.Answer>
-          <div>
-            <p>유저 비활성화 여부</p>
-            <img src={positive} alt='' />
-            <input type='date' />
-          </div>
-          <textarea placeholder='답변을 남겨주세요.' />
-          <div>
-            <button>확인</button>
-          </div>
-        </S.Answer>
-      </S.Detail>
+      <ListDetail />
     </article>
   );
 };
