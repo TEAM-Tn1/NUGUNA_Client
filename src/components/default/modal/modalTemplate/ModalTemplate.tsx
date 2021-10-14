@@ -1,7 +1,7 @@
 import React from 'react';
 import * as S from './style';
 
-const Template = () => {
+const ModalTemplate = () => {
   return (
     <S.Wrapper>
       <S.ModalContainer>
@@ -19,4 +19,4 @@ const Template = () => {
   );
 };
 
-export default Template;
+export default ModalTemplate;

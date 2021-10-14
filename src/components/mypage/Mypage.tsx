@@ -4,6 +4,7 @@ import { logout, suggestion } from '../../assets/mypage/index';
 import Footer from '../footer';
 import Header from '../header';
 import * as S from './style';
+import Template from '../default/modal/modalTemplate';
 
 const Mypage = () => {
   const [isHideAccount, setIsHideAccount] = useState(false);
