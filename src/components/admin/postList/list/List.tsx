@@ -13,7 +13,7 @@ interface listProps {
 }
 
 const List: FC<listProps> = ({ postId, title, target, writer, date, check }) => {
-  const [color, setColor] = useState('');
+  const [color, setColor] = useState<string>('');
   useEffect(() => {
     check ? setColor('#00C02A') : setColor('#808080');
   }, []);
