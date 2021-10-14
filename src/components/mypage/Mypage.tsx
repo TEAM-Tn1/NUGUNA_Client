@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { PROFILE_ELEMENT } from '../../constance/mypage';
-import { logout } from '../../assets/mypage/index';
+import { logout, suggestion } from '../../assets/mypage/index';
 import Footer from '../footer';
 import Header from '../header';
 import * as S from './style';
@@ -47,6 +47,10 @@ const Mypage = () => {
           </S.DetailPage>
         );
       })}
+      <S.Suggestion>
+        <img src={suggestion} alt='' />
+        <span>문의사항 작성하기</span>
+      </S.Suggestion>
       <S.Logout>
         <img src={logout} alt='' />
         <span>로그아웃하기</span>

@@ -123,18 +123,21 @@ export const DetailPage = styled(Link)`
   }
 `;
 
-export const Logout = styled.div`
+export const Suggestion = styled.div`
   height: 60px;
   display: flex;
   align-items: center;
   gap: 25px;
   padding: 0px 30px;
   border-top: 1px solid #ff9d86;
-  border-bottom: 1px solid #ff9d86;
   animation: ${fadeIn} 0.25s;
 
   & span {
     color: black;
     font-size: 18px;
   }
+`;
+
+export const Logout = styled(Suggestion)`
+  border-bottom: 1px solid #ff9d86;
 `;
