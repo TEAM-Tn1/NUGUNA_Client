@@ -5,7 +5,7 @@ import { chickLogo } from '../../assets/logo';
 const Logo = () => {
   return (
     <S.Logo>
-      <img src={chickLogo} />
+      <img src={chickLogo} alt='' />
       <p>
         <span>누</span>구나
         <br />
