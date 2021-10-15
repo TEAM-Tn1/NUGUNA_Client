@@ -6,13 +6,17 @@ const Logo = () => {
   return (
     <S.Logo>
       <img src={chickLogo} alt='' />
-      <p>
-        <span>누</span>구나
-        <br />
-        <span>구</span>매하고
-        <br />
-        <span>나</span>누자
-      </p>
+      <div>
+        <p>
+          <span>누</span>구나
+        </p>
+        <p>
+          <span>구</span>매하고
+        </p>
+        <p>
+          <span>나</span>누자
+        </p>
+      </div>
     </S.Logo>
   );
 };

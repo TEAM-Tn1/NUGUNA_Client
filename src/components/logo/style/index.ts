@@ -4,7 +4,7 @@ import { color } from '../../../style/index';
 export const Logo = styled.div`
   display: flex;
   align-items: center;
-  padding: 40px 0;
+  gap: 10px;
   & img {
     width: 150px;
     height: 150px;
@@ -12,16 +12,19 @@ export const Logo = styled.div`
 
   & p {
     font-family: 'BMJUA';
-    font-size: 46px;
+    font-size: 32px;
     color: #ffffff;
     -webkit-text-stroke: 1.5px #000;
     font-weight: normal;
+    letter-spacing: -2px;
+    display: flex;
+    align-items: flex-end;
   }
 
   & span {
     font-family: 'BMJUA';
+    font-size: 38px;
     color: ${color.mainColor};
     -webkit-text-stroke: 1.5px #000;
   }
 `;
-
