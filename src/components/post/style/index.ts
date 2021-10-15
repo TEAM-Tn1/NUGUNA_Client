@@ -3,16 +3,15 @@ import { color } from '../../../style';
 
 export const Post = styled.div`
   max-width: 500px;
-  height: 100vh;
+  height: calc(100vh - 160px);
   margin: 0 auto;
+  margin-top: 100px;
 `;
 
 export const ContentBox = styled.div`
   width: 100%;
-  min-width: 375px;
   max-width: 500px;
-  height: 760px;
-  padding-top: 124px;
+  height: 100%;
   position: relative;
 `;
 
@@ -20,6 +19,7 @@ export const TitleLine = styled.p`
   display: flex;
   align-items: flex-end;
   justify-content: center;
+  padding-top: 10px;
   margin-bottom: 20px;
   > p:first-child {
     height: 30px;
@@ -75,17 +75,23 @@ export const PostTitle = styled.p`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 `;
 
 export const PayAndLike = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 10px;
   > p {
     font-size: 12px;
     margin: 0px 25px 0px 8px;
   }
+`;
+
+export const DateAndPeople = styled(PayAndLike)`
+  margin-bottom: 10px;
+  margin-top: -7px;
 `;
 
 export const Icon = styled.img`
@@ -96,18 +102,18 @@ export const Icon = styled.img`
 
 export const HashtagLine = styled.div`
   display: flex;
+  flex-wrap: wrap;
   gap: 4px;
+  overflow: hidden;
 `;
 
 export const Hashtag = styled.div`
-  width: 39px;
   height: 19px;
   border-radius: 10px;
   background-color: ${color.mainColor};
   display: flex;
   align-items: center;
-  justify-content: center;
-  margin-top: 30px;
+  padding: 0px 8px;
   > p {
     color: white;
     font-size: 11px;
@@ -115,7 +121,7 @@ export const Hashtag = styled.div`
 `;
 
 export const PostList = styled.div`
-  height: 580px;
+  height: calc(100% - 50px);
   overflow: auto;
 `;
 

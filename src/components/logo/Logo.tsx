@@ -3,18 +3,22 @@ import * as S from './style';
 import { chickLogo } from '../../assets/logo';
 
 const Logo = () => {
-    return (
-        <S.Logo>
-        <img src={chickLogo} />
+  return (
+    <S.Logo>
+      <img src={chickLogo} alt='' />
+      <div>
         <p>
           <span>누</span>구나
-          <br />
+        </p>
+        <p>
           <span>구</span>매하고
-          <br />
+        </p>
+        <p>
           <span>나</span>누자
         </p>
-      </S.Logo>
-    );
+      </div>
+    </S.Logo>
+  );
 };
 
 export default Logo;
