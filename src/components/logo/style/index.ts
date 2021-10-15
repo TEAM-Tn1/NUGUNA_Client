@@ -4,7 +4,6 @@ import { color } from '../../../style/index';
 export const Logo = styled.div`
   display: flex;
   align-items: center;
-  padding: 40px 0;
   gap: 10px;
   & img {
     width: 150px;
