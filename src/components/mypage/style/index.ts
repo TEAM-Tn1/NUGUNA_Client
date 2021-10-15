@@ -17,7 +17,7 @@ export const fadeIn = keyframes`
 
 export const Wrapper = styled.div`
   max-width: 500px;
-  height: calc(100vh - 160px);
+  height: calc(100vh - 100px);
   margin: 0 auto;
   margin-top: 100px;
 `;
