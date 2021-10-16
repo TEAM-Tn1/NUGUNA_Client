@@ -13,6 +13,9 @@ export const Wrapper = styled.div`
   min-width: 380px;
   height: 100vh;
   border-right: solid 1px ${color.subColor};
+  & div:first-child {
+    padding: 40px 0;
+  }
 `;
 
 export const Called = styled.div`
