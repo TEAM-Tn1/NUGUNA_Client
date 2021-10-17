@@ -53,6 +53,7 @@ export const ContentBox = styled.div`
   height: 100%;
   overflow-y: auto;
   position: relative;
+  padding-top: 15px;
 `;
 
 export const FooterBox = styled.div`
@@ -77,6 +78,7 @@ export const FooterWrapper = styled.div`
     width: 24px;
     height: 24px;
     cursor: pointer;
+    transition: 0.5s all ease;
   }
 `;
 
@@ -97,7 +99,7 @@ export const SettingLine = styled.div`
   justify-content: space-around;
   align-items: center;
   position: absolute;
-  bottom: 6px;
+  bottom: 70px;
   > div {
     width: 29%;
     min-width: 105px;
@@ -117,4 +119,42 @@ export const SettingLine = styled.div`
       font-size: 10px;
     }
   }
+`;
+
+export const Chats = styled.div`
+  width: 86.6%;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-flow: column;
+  .other {
+    align-self: flex-start;
+  }
+  .mine {
+    align-self: flex-end;
+  }
+`;
+
+export const OtherChat = styled.div<{ isLastMessage?: boolean }>`
+  width: fit-content;
+  height: fit-content;
+  max-width: 250px;
+  background-color: #f3f3f3;
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-size: 12px;
+  ${({ isLastMessage }) => css`
+    margin-bottom: ${isLastMessage ? '25px' : '4px'};
+  `}
+`;
+
+export const ChatName = styled.p`
+  font-size: 10px;
+  margin-left: 13px;
+  margin-bottom: 2px;
+`;
+
+export const MyChat = styled(OtherChat)`
+  background-color: rgba(255, 157, 134, 0.26);
+  text-align: right;
 `;

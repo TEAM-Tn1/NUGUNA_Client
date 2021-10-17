@@ -1,28 +1,23 @@
-import React from 'react';
+import React, { useMemo, useState } from 'react';
 import * as S from './style';
+import { useLocation } from 'react-router';
 import Header from './Header';
 import Footer from './Footer';
-import { SETTING } from '../../constance/detailChat';
+import Chats from './Chats';
 
 const DetailChat = () => {
+  const [isClickSettingBtn, setIsClickSettingBtn] = useState(false);
+  const type = useLocation().pathname.slice(6, 11);
+
   return (
     <>
-      <Header />
+      <Header type={type} />
       <S.DetailChat>
         <S.ContentBox>
-          <S.SettingLine>
-            {SETTING.map(data => {
-              return (
-                <div key={data.id}>
-                  <img src={data.img} />
-                  <p>{data.content}</p>
-                </div>
-              );
-            })}
-          </S.SettingLine>
+          <Chats />
         </S.ContentBox>
       </S.DetailChat>
-      <Footer />
+      <Footer isClickSettingBtn={isClickSettingBtn} setIsClickSettingBtn={setIsClickSettingBtn} />
     </>
   );
 };
