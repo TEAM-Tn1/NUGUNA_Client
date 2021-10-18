@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import * as S from './style';
 import Sidebar from '../sidebar/index';
 import Frame from './frame/index';
@@ -29,6 +29,8 @@ const { description } = DetailData;
 const { report_id, title, user_name, created_date, check } = Data;
 
 const Suggestion: FC = () => {
+  const [divDisplayBool, setDivDisplayBool] = useState<boolean>(false);
+
   return (
     <S.Wrapper>
       <Sidebar />
@@ -48,7 +50,11 @@ const Suggestion: FC = () => {
           <div>
             {testArray.map((_, index) => {
               return (
-                <article>
+                <article
+                  onClick={() => {
+                    setDivDisplayBool(!divDisplayBool);
+                  }}
+                >
                   <List
                     key={index}
                     postId={report_id}
@@ -63,6 +69,7 @@ const Suggestion: FC = () => {
                     description={description}
                     photo_url={''}
                     option={3}
+                    styles={divDisplayBool}
                   />
                 </article>
               );

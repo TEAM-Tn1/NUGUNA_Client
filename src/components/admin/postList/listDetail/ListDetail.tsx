@@ -6,34 +6,37 @@ interface detailProps {
   description: string;
   photo_url: string;
   option: number;
+  styles: boolean;
 }
 
-const ListDetail: FC<detailProps> = ({ description, photo_url, option }) => {
+const ListDetail: FC<detailProps> = ({ description, photo_url, option, styles }) => {
   const [whether, setWhether] = useState<boolean>(true);
 
   const [displayOpcity, setDisplayOpcity] = useState<number>(1);
   const [displayCilck, setDisplayCilck] = useState<any>('auto');
 
+  const [divDisplay, setDivDisplay] = useState<string>('');
+
   const [named, setNamed] = useState<string>('');
   const [dateDisplay, setDateDisplay] = useState<string>('');
-  const [divDisplay, setDivDisplay] = useState<string>('');
+  const [divDisplayAnswer, setDivDisplayAnswer] = useState<string>('');
 
   useEffect(() => {
     switch (option) {
       case 1:
         setNamed('유저 비활성화 여부');
         setDateDisplay('block');
-        setDivDisplay('flex');
+        setDivDisplayAnswer('flex');
         break;
       case 2:
         setNamed('게시물 비활성화 여부');
         setDateDisplay('none');
-        setDivDisplay('flex');
+        setDivDisplayAnswer('flex');
         break;
       case 3:
         setNamed('');
         setDateDisplay('none');
-        setDivDisplay('none');
+        setDivDisplayAnswer('none');
         break;
     }
   }, []);
@@ -44,7 +47,7 @@ const ListDetail: FC<detailProps> = ({ description, photo_url, option }) => {
   }, [whether]);
 
   return (
-    <S.Detail>
+    <S.Detail style={{ display: styles ? 'block' : 'none' }}>
       <S.Content>
         <span>내용</span>
         <div>
@@ -54,12 +57,12 @@ const ListDetail: FC<detailProps> = ({ description, photo_url, option }) => {
       </S.Content>
       <hr />
       <S.Answer>
-        <div style={{ display: divDisplay }}>
+        <div style={{ display: divDisplayAnswer }}>
           <p>{named}</p>
           <img
             src={whether ? positive : negative}
             onClick={() => setWhether(!whether)}
-            style={{ display: divDisplay }}
+            style={{ display: divDisplayAnswer }}
           />
           <input
             type='date'

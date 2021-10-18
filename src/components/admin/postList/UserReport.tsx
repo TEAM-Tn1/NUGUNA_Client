@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import * as S from './style';
 import Sidebar from '../sidebar/index';
 import Frame from './frame/index';
@@ -8,7 +8,7 @@ import { ListDetail } from './listDetail/index';
 
 //더미데이터
 const testArray: number[] = [];
-for (let i = 0; i < 10; i++) {
+for (let i = 0; i < 5; i++) {
   testArray.push(i);
 }
 //더미데이터
@@ -32,6 +32,8 @@ const { description, photo_url } = DetailData;
 const { report_id, title, reporter_name, defendant_name, created_date, check } = Data;
 
 const UserReport: FC = () => {
+  const [divDisplayBool, setDivDisplayBool] = useState<boolean>(false);
+
   return (
     <S.Wrapper>
       <Sidebar />
@@ -51,7 +53,11 @@ const UserReport: FC = () => {
           <article>
             {testArray.map((_, index) => {
               return (
-                <article>
+                <article
+                  onClick={() => {
+                    setDivDisplayBool(!divDisplayBool);
+                  }}
+                >
                   <List
                     key={index}
                     postId={report_id}
@@ -62,10 +68,11 @@ const UserReport: FC = () => {
                     check={check}
                   ></List>
                   <ListDetail
-                    key={index}
+                    key={index - index}
                     description={description}
                     photo_url={photo_url}
                     option={1}
+                    styles={divDisplayBool}
                   />
                 </article>
               );

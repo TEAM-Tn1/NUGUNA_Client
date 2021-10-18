@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import * as S from './style';
 import Sidebar from '../sidebar/index';
 import Frame from './frame/index';
@@ -30,6 +30,8 @@ const { description, photo_url } = DetailData;
 const { report_id, title, reporter_name, created_date, check } = Data;
 
 const PostReport: FC = () => {
+  const [divDisplayBool, setDivDisplayBool] = useState<boolean>(false);
+
   return (
     <S.Wrapper>
       <Sidebar />
@@ -49,7 +51,11 @@ const PostReport: FC = () => {
           <article>
             {testArray.map((_, index) => {
               return (
-                <article>
+                <article
+                  onClick={() => {
+                    setDivDisplayBool(!divDisplayBool);
+                  }}
+                >
                   <List
                     key={index}
                     postId={report_id}
@@ -64,6 +70,7 @@ const PostReport: FC = () => {
                     description={description}
                     photo_url={photo_url}
                     option={2}
+                    styles={divDisplayBool}
                   />
                 </article>
               );
