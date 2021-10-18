@@ -4,13 +4,14 @@ import Sidebar from '../sidebar/index';
 import Frame from './frame/index';
 import List from './list/index';
 import { suggestionIcon } from '../../../assets/defalut';
+import { ListDetail } from './listDetail/index';
 
 //더미데이터
 const testArray: number[] = [];
 for (let i = 0; i < 10; i++) {
   testArray.push(i);
 }
-
+//더미데이터
 const Data = {
   report_id: '335',
   title: '문의사항문의사항문의사항문의사항문의사항문의사항문의사항문의',
@@ -18,6 +19,12 @@ const Data = {
   created_date: '10/05',
   check: true,
 };
+//더미데이터
+const DetailData = {
+  description: '내용내용내용내용내용내용내용',
+};
+
+const { description } = DetailData;
 
 const { report_id, title, user_name, created_date, check } = Data;
 
@@ -41,15 +48,23 @@ const Suggestion: FC = () => {
           <div>
             {testArray.map((_, index) => {
               return (
-                <List
-                  key={index}
-                  postId={report_id}
-                  title={title}
-                  target={''}
-                  writer={user_name}
-                  date={created_date}
-                  check={check}
-                />
+                <article>
+                  <List
+                    key={index}
+                    postId={report_id}
+                    title={title}
+                    target={''}
+                    writer={user_name}
+                    date={created_date}
+                    check={check}
+                  />
+                  <ListDetail
+                    key={index}
+                    description={description}
+                    photo_url={''}
+                    option={3}
+                  />
+                </article>
               );
             })}
           </div>

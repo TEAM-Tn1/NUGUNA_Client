@@ -11,7 +11,7 @@ const testArray: number[] = [];
 for (let i = 0; i < 10; i++) {
   testArray.push(i);
 }
-
+//더미데이터
 const Data = {
   report_id: '335',
   title: '유저신고사항유저신고사항유저신고사항유저신고사항유저신고사항',
@@ -65,7 +65,8 @@ const UserReport: FC = () => {
                     key={index}
                     description={description}
                     photo_url={photo_url}
-                  ></ListDetail>
+                    option={1}
+                  />
                 </article>
               );
             })}
