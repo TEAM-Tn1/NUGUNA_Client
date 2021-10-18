@@ -47,7 +47,7 @@ const Suggestion: FC = () => {
               <p>확인 여부</p>
             </div>
           </S.ChartTitle>
-          <div>
+          <article>
             {testArray.map((_, index) => {
               return (
                 <article
@@ -74,7 +74,7 @@ const Suggestion: FC = () => {
                 </article>
               );
             })}
-          </div>
+          </article>
         </S.Chart>
       </S.Main>
     </S.Wrapper>
