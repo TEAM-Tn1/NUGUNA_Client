@@ -27,11 +27,12 @@ export const MainText = styled.span`
   margin-bottom: 20px;
 `;
 
-export const AuthLinkContainer = styled.div`
+export const AuthLinkContainer = styled.a`
   width: 300px;
   border: 1px solid #e3e3e4;
   display: flex;
   align-items: center;
+  color: black;
   cursor: pointer;
 
   & p {
