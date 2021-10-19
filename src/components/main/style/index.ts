@@ -6,7 +6,6 @@ export const Wrapper = styled.div`
   margin-top: 100px;
   display: flex;
   flex-direction: column;
-  //align-items: center;
   margin-bottom: 60px;
 
   > div:nth-child(4) {
