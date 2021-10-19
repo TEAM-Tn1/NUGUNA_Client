@@ -10,6 +10,7 @@ import {
   GROUP_POSTLIST,
   GROUP_POSTLIST_SUCCESS,
   GROUP_POSTLIST_FAILURE,
+  TYPECLICK,
 } from '../../action/post/interface';
 
 const initState: PostState = {
@@ -75,6 +76,11 @@ const postReducer = (state: PostState = initState, action: postActionType): Post
       return {
         ...state,
         page: action.payload,
+      };
+    case TYPECLICK:
+      return {
+        ...state,
+        typeClick: action.payload,
       };
     default:
       return state;

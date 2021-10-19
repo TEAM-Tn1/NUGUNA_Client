@@ -34,4 +34,5 @@ export type postActionType =
   | ReturnType<typeof groupPostListFailure>
   | ReturnType<typeof setPage>
   | ReturnType<typeof setType>
-  | ReturnType<typeof setOrder>;
+  | ReturnType<typeof setOrder>
+  | ReturnType<typeof setTypeClick>;
