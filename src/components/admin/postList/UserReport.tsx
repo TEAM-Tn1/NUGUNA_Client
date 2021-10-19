@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import React, { FC, useState } from 'react';
 import * as S from './style';
 import Sidebar from '../sidebar/index';
 import Frame from './frame/index';

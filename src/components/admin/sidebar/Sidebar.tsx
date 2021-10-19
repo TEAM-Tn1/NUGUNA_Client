@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import * as S from './style';
 import { reportIcon, suggestionIcon } from '../../../assets/defalut';
 import { Link } from 'react-router-dom';
