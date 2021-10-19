@@ -4,15 +4,16 @@ import { emptyLike, pay, like, dateIcon, peopleIcon } from '../../assets/post';
 
 interface Props {
   title: string;
-  money: string;
-  like: string;
+  money: number;
+  like: number;
   hashtag: Array<string>;
   type: string;
   date?: string;
   people?: string;
 }
 
-const PostContent: FC<Props> = ({ title, money, like, hashtag, type, date, people }) => {
+const PostContent: FC<Props> = props => {
+  const { title, money, like, hashtag, type, date, people } = props;
   const isTypeGroup = useMemo(() => {
     if (type === 'group')
       return (

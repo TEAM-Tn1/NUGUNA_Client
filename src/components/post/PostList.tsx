@@ -1,25 +1,30 @@
 import React, { FC } from 'react';
 import * as S from './style';
 import PostContent from './PostContent';
+import { postListType } from '../../models/dto/response/postResponse';
 
 interface Props {
   type: string;
+  postList: Array<postListType>;
 }
 
-const PostList: FC<Props> = ({ type }) => {
-  const array = ['1', '2', '3', '4'];
+const PostList: FC<Props> = props => {
+  const { type, postList } = props;
   return (
     <S.PostList>
-      {array.map(() => {
+      {postList.map(data => {
+        const date = data.last_modify_date;
+        const people = `${data.current_cout}/${data.head_count}`;
+        const hashtag = data.tags.split(',');
         return (
           <PostContent
-            title={'귀여운 인형 팔아요yoy'}
-            money={'5000'}
-            like={'5'}
+            title={data.title}
+            money={data.price}
+            like={data.count}
             type={type}
-            date={'8/1'}
-            people={'2/4'}
-            hashtag={['#인형', '#인형', '#인형']}
+            date={date}
+            people={people}
+            hashtag={hashtag}
           />
         );
       })}
