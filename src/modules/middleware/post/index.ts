@@ -1,5 +1,5 @@
 import { call, put, select, takeLatest } from 'redux-saga/effects';
-import { getCarrotPostList } from '../../../util/api/post';
+import { getCarrotPostList, getGroupPostList } from '../../../util/api/post';
 import { CARROT_POSTLIST, GROUP_POSTLIST } from '../../action/post/interface';
 import { reducerType } from '../../reducer';
 import PostState from '../../reducer/post/interface';
@@ -43,7 +43,7 @@ const groupPostGetSaga = function* (): any {
   const state = yield select(getStateFunc);
   const accessToken = localStorage.getItem('access_token') || '';
   try {
-    const response = yield call(getCarrotPostList, accessToken, state.page);
+    const response = yield call(getGroupPostList, accessToken, state.page);
     yield put({
       type: SUCCESS,
       payload: response ? response.data : null,
