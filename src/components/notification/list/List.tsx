@@ -6,11 +6,16 @@ const List = () => {
   return (
     <S.List>
       <div>
-        <img src={chat_icon} alt='' />
+        <div />
       </div>
       <div>
-        <span>채팅</span>
-        <p>김박박: 내일 삼??</p>
+        <div>
+          <img src={question_icon} alt='' />
+        </div>
+        <div>
+          <span>문의사항</span>
+          <p>이 기능 생겼으면 좋겠당 글에 답변이 달렸습니다.</p>
+        </div>
       </div>
     </S.List>
   );

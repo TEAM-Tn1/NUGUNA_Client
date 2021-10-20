@@ -1,12 +1,27 @@
 import styled from 'styled-components';
 
 export const List = styled.div`
-  margin: 0 30px;
+  margin: 0 30px 0 20px;
   display: flex;
-  gap: 10px;
+  gap: 6px;
 
   > div:first-child {
-    padding-top: 2px;
+    padding-top: 6px;
+    > div {
+      background-color: #3d50ff;
+      width: 6px;
+      height: 6px;
+      border-radius: 25px;
+    }
+  }
+
+  > div:last-child {
+    display: flex;
+    gap: 10px;
+
+    > div:first-child {
+      padding-top: 2px;
+    }
   }
 
   & span {

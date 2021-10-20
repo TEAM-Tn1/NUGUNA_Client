@@ -7,9 +7,14 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
+  position: relative;
+  
+  > div:last-child {
+    margin-bottom: 30px;
+  }
 `;
 
-export const AlarmHeader = styled.div`
+export const AlarmHeader = styled.article`
   width: 100%;
   padding: 16px 30px;
   height: 66px;
@@ -19,6 +24,8 @@ export const AlarmHeader = styled.div`
   align-items: center;
   justify-content: space-between;
   margin-bottom: 10px;
+  position: sticky;
+  top: 0;
 
   > div:first-child {
     width: 75px;
