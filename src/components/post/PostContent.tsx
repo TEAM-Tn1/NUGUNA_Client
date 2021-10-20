@@ -11,10 +11,11 @@ interface Props {
   isLikeClick?: boolean;
   date?: string;
   people?: string;
+  medium: string;
 }
 
 const PostContent: FC<Props> = props => {
-  const { title, money, like, hashtag, type, date, people, isLikeClick } = props;
+  const { title, money, like, hashtag, type, date, people, isLikeClick, medium } = props;
   const isTypeGroup = useMemo(() => {
     if (type === 'group')
       return (
@@ -34,14 +35,18 @@ const PostContent: FC<Props> = props => {
 
   return (
     <S.PostContent>
-      <S.PostImg />
+      <S.PostImg src={medium} />
       <S.PostInfo>
         <S.PostTitle>{title}</S.PostTitle>
         <S.PayAndLike>
-          <S.Icon src={pay} />
-          <p>{money}원</p>
-          {likeIcon}
-          <p>{like}개</p>
+          <div>
+            <S.Icon src={pay} />
+            <p>{money}원</p>
+          </div>
+          <div>
+            {likeIcon}
+            <p>{like}개</p>
+          </div>
         </S.PayAndLike>
         {isTypeGroup}
         <S.HashtagLine>

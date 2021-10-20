@@ -20,6 +20,7 @@ const Main = () => {
         {array.map(() => {
           return (
             <PostContent
+              medium={''}
               title={'귀여운 인형 팔아요yoy'}
               money={5000}
               like={5}
@@ -43,6 +44,7 @@ const Main = () => {
         {array.map(() => {
           return (
             <PostContent
+              medium={''}
               title={'귀여운 인형 팔아요yoy'}
               money={5000}
               like={5}

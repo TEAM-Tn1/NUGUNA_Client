@@ -35,16 +35,16 @@ const PostList: FC<Props> = props => {
         postList.map(data => {
           const date = data.last_modify_date;
           const people = `${data.current_cout}/${data.head_count}`;
-          const hashtag = data.tags.split(',');
           return (
             <PostContent
+              medium={data.medium}
               title={data.title}
               money={data.price}
               like={data.count}
               type={type}
               date={date}
               people={people}
-              hashtag={hashtag}
+              hashtag={data.tags}
               isLikeClick={data.like}
             />
           );
