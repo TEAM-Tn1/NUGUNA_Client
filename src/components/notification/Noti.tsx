@@ -1,6 +1,7 @@
 import React from 'react';
 import * as S from './style';
 import { exit_icon } from '../../assets/alarm/index';
+import { List } from './list/index';
 
 const Noti = () => {
   return (
@@ -12,7 +13,9 @@ const Noti = () => {
         <h2>알람</h2>
         <div>태그등록</div>
       </S.AlarmHeader>
-      
+      <List />
+      <List />
+      <List />
     </S.Wrapper>
   );
 };

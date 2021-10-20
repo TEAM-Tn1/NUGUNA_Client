@@ -6,6 +6,7 @@ export const Wrapper = styled.div`
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+  gap: 20px;
 `;
 
 export const AlarmHeader = styled.div`
@@ -17,6 +18,7 @@ export const AlarmHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 10px;
 
   > div:first-child {
     width: 75px;
