@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import * as S from './style';
 import Header from '../header';
 import Footer from '../footer';
@@ -12,6 +12,7 @@ interface Props {
   type: string;
   typeClick: { trade: boolean; group: boolean };
   order: { newest: boolean; like: boolean };
+  page: number;
   setType: (payload: string) => void;
   setOrder: (payload: { newest: boolean; like: boolean }) => void;
   setPage: (payload: number) => void;
@@ -19,7 +20,17 @@ interface Props {
 }
 
 const Post: FC<Props> = props => {
-  const { postList, type, typeClick, order, setType, setOrder, setPage, setTypeClick } = props;
+  const {
+    postList,
+    type,
+    typeClick,
+    order,
+    page,
+    setType,
+    setOrder,
+    setPage,
+    setTypeClick,
+  } = props;
 
   const subtitleClickHandler = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const dataId = event.currentTarget.dataset.id;
@@ -74,7 +85,7 @@ const Post: FC<Props> = props => {
               );
             })}
           </S.TitleLine>
-          <PostList type={type} postList={postList} />
+          <PostList type={type} postList={postList} setPage={setPage} page={page} />
           <S.WriteBtn>
             <S.WriteIcon src={write} />
           </S.WriteBtn>
