@@ -10,6 +10,8 @@ import {
   DetailChatContainer,
   SearchContainer,
 } from '../container';
+import { PostReport, UserReport, Suggestion } from '../components/admin/index';
+import Main from '../components/main/index';
 
 const MainRouter = () => {
   return (
@@ -24,11 +26,15 @@ const MainRouter = () => {
         <Route exact path='/view/post/:id' component={DetailPostContainer} />
         <Route exact path='/write/post/:type' component={WritePostContainer} />
         <Route exact path='/chatting' component={ChatListContainer} />
+        <Route exact path='/admin/report/feed' component={PostReport} />
+        <Route exact path='/admin/report/user' component={UserReport} />
+        <Route exact path='/admin/question' component={Suggestion} />
         <Route exact path='/auth' component={Auth} />
         <Route exact path='/callback' component={Callback} />
         <Route exact path='/auth/information' component={Information} />
         <Route exact path='/chat/:type/:id' component={DetailChatContainer} />
         <Route exact path='/search' component={SearchContainer} />
+        <Route exact path='/main' component={Main} />
       </Switch>
     </Router>
   );
