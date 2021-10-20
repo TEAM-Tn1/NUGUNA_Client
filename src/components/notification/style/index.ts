@@ -40,5 +40,7 @@ export const AlarmHeader = styled.article`
     color: ${color.mainColor};
     border: solid 1px ${color.mainColor};
     border-radius: 25px;
+    font-size: 14px;
+    font-weight: bold;
   }
 `;

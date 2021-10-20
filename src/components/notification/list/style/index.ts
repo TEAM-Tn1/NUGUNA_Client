@@ -8,7 +8,6 @@ export const List = styled.div`
   > div:first-child {
     padding-top: 6px;
     > div {
-      background-color: #3d50ff;
       width: 6px;
       height: 6px;
       border-radius: 25px;
