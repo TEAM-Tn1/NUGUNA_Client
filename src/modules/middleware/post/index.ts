@@ -11,9 +11,8 @@ const carrotPostGetSaga = function* (): any {
   const SUCCESS = `${actionType}_SUCCESS`;
   const FAILURE = `${actionType}_FAILURE;`;
   const state = yield select(getStateFunc);
-  const accessToken = localStorage.getItem('access_token') || '';
   try {
-    const response = yield call(getCarrotPostList, accessToken, state.page);
+    const response = yield call(getCarrotPostList, state.page);
     yield put({
       type: SUCCESS,
       payload: response ? response.data : null,
@@ -41,9 +40,8 @@ const groupPostGetSaga = function* (): any {
   const SUCCESS = `${actionType}_SUCCESS`;
   const FAILURE = `${actionType}_FAILURE;`;
   const state = yield select(getStateFunc);
-  const accessToken = localStorage.getItem('access_token') || '';
   try {
-    const response = yield call(getGroupPostList, accessToken, state.page);
+    const response = yield call(getGroupPostList, state.page);
     yield put({
       type: SUCCESS,
       payload: response ? response.data : null,

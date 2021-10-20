@@ -1,13 +1,11 @@
-export interface postResponse {
-  postList: Array<postListType>;
-}
+export type postResponse = Array<postListType>;
 
 export type postListType = {
   feed_id: number;
   title: string;
   description: string;
   price: number;
-  tags: string;
+  tags: Array<string>;
   medium: string;
   last_modify_date: string;
   count: number;

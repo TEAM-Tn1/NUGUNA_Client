@@ -53,17 +53,16 @@ export const PostContent = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 7px;
+  gap: 10px;
   margin: 0 auto;
   cursor: pointer;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
   margin-bottom: 10px;
 `;
 
-export const PostImg = styled.div`
+export const PostImg = styled.img`
   width: 130px;
   height: 130px;
-  background-color: ${color.mainColor};
 `;
 
 export const PostInfo = styled.div`
@@ -79,13 +78,19 @@ export const PostTitle = styled.p`
 `;
 
 export const PayAndLike = styled.div`
+  width: 160px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   margin-bottom: 10px;
-  > p {
+  > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  > div > p {
     font-size: 12px;
-    margin: 0px 25px 0px 8px;
+    margin-left: 8px;
   }
 `;
 

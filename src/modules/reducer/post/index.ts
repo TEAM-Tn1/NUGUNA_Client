@@ -37,7 +37,7 @@ const postReducer = (state: PostState = initState, action: postActionType): Post
     case CARROT_POSTLIST_SUCCESS:
       return {
         ...state,
-        postList: action.payload.postList,
+        postList: action.payload,
         isSuccessGetPostList: true,
       };
     case CARROT_POSTLIST_FAILURE:
@@ -54,7 +54,7 @@ const postReducer = (state: PostState = initState, action: postActionType): Post
     case GROUP_POSTLIST_SUCCESS:
       return {
         ...state,
-        postList: action.payload.postList,
+        postList: action.payload,
         isSuccessGetPostList: true,
       };
     case GROUP_POSTLIST_FAILURE:
