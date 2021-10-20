@@ -1,11 +1,24 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 import { Footer, Header } from '..';
 import { authLogo } from '../../assets/auth';
 import { Logo } from '../logo';
 import * as S from './style';
+import auth from '../../util/api/auth';
 
 const Auth = () => {
+  const [authLink, setAuthLink] = useState('');
+
+  useEffect(() => {
+    auth
+      .getAuthLink()
+      .then(res => {
+        setAuthLink(res.data.link);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, []);
+
   return (
     <S.Wrapper>
       <Header />
@@ -13,7 +26,7 @@ const Auth = () => {
         <Logo />
       </S.LogoContainer>
       <S.MainText>누구나 가입하기</S.MainText>
-      <S.AuthLinkContainer>
+      <S.AuthLinkContainer href={authLink}>
         <S.Logo>
           <img src={authLogo} alt='' />
         </S.Logo>
@@ -22,7 +35,11 @@ const Auth = () => {
       <S.BottomTextContainer>
         <p>계속하면 DSM Auth의 개인정보 수집 이용에 동의하고</p>
         <p>
-          DSM Auth의 <Link to=''>개인정보 처리방침</Link>을(를) 읽었음을 확인하는 것입니다.
+          DSM Auth의{' '}
+          <a target='_blank' rel='noreferrer' href='https://semicolondsm.github.io/imformation/'>
+            개인정보 처리방침
+          </a>
+          을(를) 읽었음을 확인하는 것입니다.
         </p>
       </S.BottomTextContainer>
       <Footer />
