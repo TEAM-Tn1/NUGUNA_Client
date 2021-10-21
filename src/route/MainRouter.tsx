@@ -12,6 +12,7 @@ import {
 } from '../container';
 import { PostReport, UserReport, Suggestion } from '../components/admin/index';
 import Main from '../components/main/index';
+import { Noti } from '../components/notification/index';
 
 const MainRouter = () => {
   return (
@@ -34,6 +35,7 @@ const MainRouter = () => {
         <Route exact path='/chat/:type/:id' component={DetailChatContainer} />
         <Route exact path='/search' component={SearchContainer} />
         <Route exact path='/main' component={Main} />
+        <Route exact path='/noti/list' component={Noti} />  
       </Switch>
     </Router>
   );
