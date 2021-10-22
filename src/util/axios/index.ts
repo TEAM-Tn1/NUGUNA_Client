@@ -11,12 +11,15 @@ instance.interceptors.request.use(
     return Promise.reject(error);
   },
 );
-instance.interceptors.response.use(
-  function (response: AxiosResponse) {
+
+axios.interceptors.response.use(
+  response => {
     return response;
   },
-
-  function (error: AxiosError) {
+  error => {
+    if (error.response.status === '401') {
+      console.log('21391');
+    }
     return Promise.reject(error);
   },
 );
