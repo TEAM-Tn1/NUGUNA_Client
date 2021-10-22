@@ -28,14 +28,17 @@ const TagRegister = () => {
         <button>등록하기</button>
       </S.Register>
       <h1>등록된 태그</h1>
-      {testArray.map((_, index) => {
-        return (
-          <S.TagList>
-            <Tag tag={tag} />
-            <img src={delete_icon} alt='' />
-          </S.TagList>
-        );
-      })}
+      <article>
+        {testArray.map((_, index) => {
+          return (
+            <S.TagList key={index}>
+              <Tag tag={tag} />
+              <img src={delete_icon} alt='' />
+            </S.TagList>
+          );
+        })}
+      </article>
+      <button>완료</button>
     </S.Wrapper>
   );
 };

@@ -14,8 +14,15 @@ export const Wrapper = styled.div`
     font-weight: 500;
   }
 
-  > div:last-child {
+  > button {
+    margin: 30px;
+    height: 40px;
+    font-size: 16px;
+    font-weight: 500;
+    background-color: ${color.subColor};
+    color: #ffffff;
     border: none;
+    border-radius: 4px;
   }
 `;
 
@@ -68,4 +75,7 @@ export const TagList = styled.div`
   align-items: center;
   padding: 8px 0;
   border-bottom: solid 1px ${color.subColor};
+  &:nth-last-child(1) {
+    border: none;
+  }
 `;
