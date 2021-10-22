@@ -13,6 +13,7 @@ import {
 import { PostReport, UserReport, Suggestion } from '../components/admin/index';
 import Main from '../components/main/index';
 import { Noti } from '../components/notification/index';
+import { TagRegister } from '../components/notification/tagRegister';
 
 const MainRouter = () => {
   return (
@@ -36,6 +37,7 @@ const MainRouter = () => {
         <Route exact path='/search' component={SearchContainer} />
         <Route exact path='/main' component={Main} />
         <Route exact path='/noti/list' component={Noti} />  
+        <Route exact path='/noti/tag' component={TagRegister} /> 
       </Switch>
     </Router>
   );
