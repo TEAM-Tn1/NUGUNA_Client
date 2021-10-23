@@ -11,8 +11,9 @@ const carrotPostGetSaga = function* (): any {
   const SUCCESS = `${actionType}_SUCCESS`;
   const FAILURE = `${actionType}_FAILURE;`;
   const state = yield select(getStateFunc);
+  const sort = state.order.newest ? 'time' : 'like';
   try {
-    const response = yield call(getCarrotPostList, state.page);
+    const response = yield call(getCarrotPostList, state.page, sort);
     yield put({
       type: SUCCESS,
       payload: response ? response.data : null,
@@ -40,8 +41,9 @@ const groupPostGetSaga = function* (): any {
   const SUCCESS = `${actionType}_SUCCESS`;
   const FAILURE = `${actionType}_FAILURE;`;
   const state = yield select(getStateFunc);
+  const sort = state.order.newest ? 'time' : 'like';
   try {
-    const response = yield call(getGroupPostList, state.page);
+    const response = yield call(getGroupPostList, state.page, sort);
     yield put({
       type: SUCCESS,
       payload: response ? response.data : null,
