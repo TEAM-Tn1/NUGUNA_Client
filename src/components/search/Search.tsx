@@ -62,7 +62,7 @@ const Search = () => {
               );
             })}
           </S.TitleLine>
-          <PostList type={type} setPage={() => {}} page={1} postList={[]} />
+          <PostList type={type} setPage={() => {}} page={1} postList={[]} isHaveNextPage={false} />
         </S.ContentBox>
       </S.Search>
       <Footer />

@@ -13,6 +13,7 @@ interface Props {
   typeClick: { trade: boolean; group: boolean };
   order: { newest: boolean; like: boolean };
   page: number;
+  isHaveNextPage: boolean;
   setType: (payload: string) => void;
   setOrder: (payload: { newest: boolean; like: boolean }) => void;
   setPage: (payload: number) => void;
@@ -26,6 +27,7 @@ const Post: FC<Props> = props => {
     typeClick,
     order,
     page,
+    isHaveNextPage,
     setType,
     setOrder,
     setPage,
@@ -85,7 +87,13 @@ const Post: FC<Props> = props => {
               );
             })}
           </S.TitleLine>
-          <PostList type={type} postList={postList} setPage={setPage} page={page} />
+          <PostList
+            type={type}
+            postList={postList}
+            setPage={setPage}
+            page={page}
+            isHaveNextPage={isHaveNextPage}
+          />
           <S.WriteBtn>
             <S.WriteIcon src={write} />
           </S.WriteBtn>
