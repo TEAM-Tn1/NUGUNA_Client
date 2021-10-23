@@ -36,7 +36,7 @@ export const InfoContainer = styled.form<Props>`
     font-weight: bold;
     background-color: ${props => (props.isFillAll ? '#754f44' : '#ffffff')};
     color: ${props => (props.isFillAll ? '#ffffff' : '#754f44')};
-    transition-duration: 1s;
+    transition-duration: 0.5s;
   }
 `;
 
