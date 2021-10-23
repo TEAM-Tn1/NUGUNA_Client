@@ -7,10 +7,11 @@ export type postListType = {
   price: number;
   tags: Array<string>;
   medium: string;
-  last_modify_date: string;
   count: number;
   like: boolean;
   head_count: number;
-  current_cout: number;
-  recruitment_date: string;
+  current_head_count: number;
+  date: string;
+  // last_modify_date: string;
+  // recruitment_date: string;
 };
