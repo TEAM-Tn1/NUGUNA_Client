@@ -18,8 +18,9 @@ const initState: PostState = {
   type: 'trade',
   order: { newest: true, like: false },
   typeClick: { trade: true, group: false },
-  page: 1,
+  page: 0,
   isSuccessGetPostList: undefined,
+  isHaveNextPage: false,
   error: {
     status: 0,
     message: '',
@@ -35,11 +36,18 @@ const postReducer = (state: PostState = initState, action: postActionType): Post
         isSuccessGetPostList: undefined,
       };
     case CARROT_POSTLIST_SUCCESS:
-      return {
-        ...state,
-        postList: action.payload,
-        isSuccessGetPostList: true,
-      };
+      if (action.payload.length !== 0)
+        return {
+          ...state,
+          postList: state.postList.concat(action.payload),
+          isSuccessGetPostList: true,
+          isHaveNextPage: true,
+        };
+      else
+        return {
+          ...state,
+          isHaveNextPage: false,
+        };
     case CARROT_POSTLIST_FAILURE:
       return {
         ...state,
@@ -54,7 +62,7 @@ const postReducer = (state: PostState = initState, action: postActionType): Post
     case GROUP_POSTLIST_SUCCESS:
       return {
         ...state,
-        postList: action.payload,
+        postList: state.postList.concat(action.payload),
         isSuccessGetPostList: true,
       };
     case GROUP_POSTLIST_FAILURE:

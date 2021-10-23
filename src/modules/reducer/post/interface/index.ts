@@ -9,6 +9,7 @@ interface PostState {
   page: number;
   isSuccessGetPostList: boolean | undefined;
   error: error;
+  isHaveNextPage: boolean;
 }
 
 export default PostState;
