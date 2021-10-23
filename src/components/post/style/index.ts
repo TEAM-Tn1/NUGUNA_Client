@@ -67,6 +67,18 @@ export const PostImg = styled.img`
 
 export const PostInfo = styled.div`
   width: 177px;
+  height: 130px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  > div:last-child {
+    justify-self: end;
+  }
+  > div:first-child {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
 `;
 
 export const PostTitle = styled.p`
@@ -74,7 +86,6 @@ export const PostTitle = styled.p`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  margin-bottom: 10px;
 `;
 
 export const PayAndLike = styled.div`
@@ -82,7 +93,6 @@ export const PayAndLike = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 10px;
   > div {
     display: flex;
     justify-content: center;
@@ -94,10 +104,7 @@ export const PayAndLike = styled.div`
   }
 `;
 
-export const DateAndPeople = styled(PayAndLike)`
-  margin-bottom: 10px;
-  margin-top: -7px;
-`;
+export const DateAndPeople = styled(PayAndLike)``;
 
 export const Icon = styled.img`
   width: 18px;
@@ -147,4 +154,14 @@ export const WriteBtn = styled.div`
 export const WriteIcon = styled.img`
   width: 21px;
   height: 21px;
+`;
+
+export const Loading = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  > img {
+    width: 20px;
+    height: 20px;
+  }
 `;

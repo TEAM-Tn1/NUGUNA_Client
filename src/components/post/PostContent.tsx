@@ -20,13 +20,17 @@ const PostContent: FC<Props> = props => {
     if (type === 'group')
       return (
         <S.DateAndPeople>
-          <S.Icon src={dateIcon} />
-          <p>~ {date}</p>
-          <S.Icon src={peopleIcon} />
-          <p>{people}명</p>
+          <div>
+            <S.Icon src={dateIcon} />
+            <p>~ {date}</p>
+          </div>
+          <div>
+            <S.Icon src={peopleIcon} />
+            <p>{people}명</p>
+          </div>
         </S.DateAndPeople>
       );
-  }, [type]);
+  }, [type, people]);
 
   const likeIcon = useMemo(() => {
     if (isLikeClick) return <S.Icon src={fillLike} />;
@@ -37,18 +41,20 @@ const PostContent: FC<Props> = props => {
     <S.PostContent>
       <S.PostImg src={medium} />
       <S.PostInfo>
-        <S.PostTitle>{title}</S.PostTitle>
-        <S.PayAndLike>
-          <div>
-            <S.Icon src={pay} />
-            <p>{money}원</p>
-          </div>
-          <div>
-            {likeIcon}
-            <p>{like}개</p>
-          </div>
-        </S.PayAndLike>
-        {isTypeGroup}
+        <div>
+          <S.PostTitle>{title}</S.PostTitle>
+          <S.PayAndLike>
+            <div>
+              <S.Icon src={pay} />
+              <p>{money}원</p>
+            </div>
+            <div>
+              {likeIcon}
+              <p>{like}개</p>
+            </div>
+          </S.PayAndLike>
+          {isTypeGroup}
+        </div>
         <S.HashtagLine>
           {hashtag.map((data: string, i: number) => {
             return (
