@@ -60,11 +60,18 @@ const postReducer = (state: PostState = initState, action: postActionType): Post
         isSuccessGetPostList: undefined,
       };
     case GROUP_POSTLIST_SUCCESS:
-      return {
-        ...state,
-        postList: state.postList.concat(action.payload),
-        isSuccessGetPostList: true,
-      };
+      if (action.payload.length !== 0)
+        return {
+          ...state,
+          postList: state.postList.concat(action.payload),
+          isSuccessGetPostList: true,
+          isHaveNextPage: true,
+        };
+      else
+        return {
+          ...state,
+          isHaveNextPage: false,
+        };
     case GROUP_POSTLIST_FAILURE:
       return {
         ...state,
@@ -74,11 +81,13 @@ const postReducer = (state: PostState = initState, action: postActionType): Post
       return {
         ...state,
         type: action.payload,
+        postList: [],
       };
     case ORDER:
       return {
         ...state,
         order: action.payload,
+        postList: [],
       };
     case PAGE:
       return {
