@@ -20,9 +20,10 @@ const Main = () => {
         {array.map(() => {
           return (
             <PostContent
+              medium={''}
               title={'귀여운 인형 팔아요yoy'}
-              money={'5000'}
-              like={'5'}
+              money={5000}
+              like={5}
               type={'trade'}
               date={'8/1'}
               people={'2/4'}
@@ -43,9 +44,10 @@ const Main = () => {
         {array.map(() => {
           return (
             <PostContent
+              medium={''}
               title={'귀여운 인형 팔아요yoy'}
-              money={'5000'}
-              like={'5'}
+              money={5000}
+              like={5}
               type={'group'}
               date={'8/1'}
               people={'2/4'}

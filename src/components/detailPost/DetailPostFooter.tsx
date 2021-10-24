@@ -1,6 +1,6 @@
 import React, { FC, useMemo } from 'react';
 import * as S from './style';
-import { like, pay, write, dateIcon, peopleIcon } from '../../assets/post';
+import { fillLike, pay, write, dateIcon, peopleIcon } from '../../assets/post';
 import { grayLike } from '../../assets/detailPost';
 
 interface Props {

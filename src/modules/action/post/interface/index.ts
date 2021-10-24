@@ -1,0 +1,10 @@
+export const TYPE = 'POST/TYPE' as const;
+export const TYPECLICK = 'POST/TYPECLICK' as const;
+export const ORDER = 'POST/ORDER' as const;
+export const PAGE = 'POST/PAGE' as const;
+export const CARROT_POSTLIST = 'POST/CARROT_POSTLIST' as const;
+export const CARROT_POSTLIST_SUCCESS = 'POST/CARROT_POSTLIST_SUCCESS' as const;
+export const CARROT_POSTLIST_FAILURE = 'POST/CARROT_POSTLIST_FAILURE' as const;
+export const GROUP_POSTLIST = 'POST/GROUPTPOSTLIST' as const;
+export const GROUP_POSTLIST_SUCCESS = 'POST/GROUP_POSTLIST_SUCCESS' as const;
+export const GROUP_POSTLIST_FAILURE = 'POST/GROUP_POSTLIST_FAILURE' as const;

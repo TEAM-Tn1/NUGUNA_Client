@@ -1,34 +1,55 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import * as S from './style';
 import Header from '../header';
 import Footer from '../footer';
 import { POST_TITLE, SUBTITLE } from '../../constance/post';
 import PostList from './PostList';
 import { write } from '../../assets/post';
+import { postListType } from '../../models/dto/response/postResponse';
 
-interface Props {}
+interface Props {
+  postList: Array<postListType>;
+  type: string;
+  typeClick: { trade: boolean; group: boolean };
+  order: { newest: boolean; like: boolean };
+  page: number;
+  isHaveNextPage: boolean;
+  setType: (payload: string) => void;
+  setOrder: (payload: { newest: boolean; like: boolean }) => void;
+  setPage: (payload: number) => void;
+  setTypeClick: (payload: { trade: boolean; group: boolean }) => void;
+}
 
-const Post: FC<Props> = () => {
-  const [isPostClick, setIsPostClick] = useState({ trade: true, group: false });
-  const [isOrderClick, setIsOrderClick] = useState({ newest: true, like: false });
-  const [type, setType] = useState<string>('trade');
+const Post: FC<Props> = props => {
+  const {
+    postList,
+    type,
+    typeClick,
+    order,
+    page,
+    isHaveNextPage,
+    setType,
+    setOrder,
+    setPage,
+    setTypeClick,
+  } = props;
 
   const subtitleClickHandler = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const dataId = event.currentTarget.dataset.id;
     switch (dataId) {
       case 'trade':
-        setIsPostClick({ trade: true, group: false });
+        setTypeClick({ trade: true, group: false });
         setType('trade');
         break;
       case 'group':
-        setIsPostClick({ trade: false, group: true });
+        setTypeClick({ trade: false, group: true });
         setType('group');
         break;
       case 'newest':
-        setIsOrderClick({ newest: true, like: false });
+        setOrder({ newest: true, like: false });
         break;
       case 'like':
-        setIsOrderClick({ newest: false, like: true });
+        setOrder({ newest: false, like: true });
         break;
     }
   };
@@ -36,13 +57,13 @@ const Post: FC<Props> = () => {
   const clickState = (dataId: string) => {
     switch (dataId) {
       case 'trade':
-        return isPostClick.trade;
+        return typeClick.trade;
       case 'group':
-        return isPostClick.group;
+        return typeClick.group;
       case 'newest':
-        return isOrderClick.newest;
+        return order.newest;
       case 'like':
-        return isOrderClick.like;
+        return order.like;
     }
   };
 
@@ -66,7 +87,13 @@ const Post: FC<Props> = () => {
               );
             })}
           </S.TitleLine>
-          <PostList type={type} />
+          <PostList
+            type={type}
+            postList={postList}
+            setPage={setPage}
+            page={page}
+            isHaveNextPage={isHaveNextPage}
+          />
           <S.WriteBtn>
             <S.WriteIcon src={write} />
           </S.WriteBtn>

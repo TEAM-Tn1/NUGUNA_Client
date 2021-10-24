@@ -1,4 +1,4 @@
-import { FC, useState, useEffect } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import { CheckIcon } from '../../../../assets/admin';
 import * as S from './style/index';
 
