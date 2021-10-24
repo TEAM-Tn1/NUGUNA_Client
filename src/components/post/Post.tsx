@@ -40,16 +40,20 @@ const Post: FC<Props> = props => {
       case 'trade':
         setTypeClick({ trade: true, group: false });
         setType('trade');
+        setPage(0);
         break;
       case 'group':
         setTypeClick({ trade: false, group: true });
         setType('group');
+        setPage(0);
         break;
       case 'newest':
         setOrder({ newest: true, like: false });
+        setPage(0);
         break;
       case 'like':
         setOrder({ newest: false, like: true });
+        setPage(0);
         break;
     }
   };
@@ -92,6 +96,7 @@ const Post: FC<Props> = props => {
             postList={postList}
             setPage={setPage}
             page={page}
+            order={order}
             isHaveNextPage={isHaveNextPage}
           />
           <S.WriteBtn>

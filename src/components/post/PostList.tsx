@@ -7,6 +7,7 @@ import { chickLogo } from '../../assets/logo';
 
 interface Props {
   type: string;
+  order: { newest: boolean; like: boolean };
   page: number;
   postList: Array<postListType>;
   isHaveNextPage: boolean;
@@ -14,9 +15,13 @@ interface Props {
 }
 
 const PostList: FC<Props> = props => {
-  const { type, postList, page, setPage, isHaveNextPage } = props;
+  const { type, postList, page, setPage, isHaveNextPage, order } = props;
   const [loading, setLoading] = useState<boolean>(false);
   const { ref, inView } = useInView();
+
+  useEffect(() => {
+    setLoading(false);
+  }, [type, order]);
 
   useEffect(() => {
     if (postList.length !== 0) {
