@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { Auth, Information, Mypage, UserInfo } from '../components';
+import { Auth, Callback, Information, Mypage, UserInfo } from '../components';
 import { ModifyInfo, LikedPost, WrittenPost } from '../components/mypage/mypageOptions';
 import {
   PostContanier,
@@ -10,6 +10,10 @@ import {
   DetailChatContainer,
   SearchContainer,
 } from '../container';
+import { PostReport, UserReport, Suggestion } from '../components/admin/index';
+import Main from '../components/main/index';
+import { Noti } from '../components/notification/index';
+import { TagRegister } from '../components/notification/tagRegister';
 
 const MainRouter = () => {
   return (
@@ -24,10 +28,17 @@ const MainRouter = () => {
         <Route exact path='/view/post/:id' component={DetailPostContainer} />
         <Route exact path='/write/post/:type' component={WritePostContainer} />
         <Route exact path='/chatting' component={ChatListContainer} />
+        <Route exact path='/admin/report/feed' component={PostReport} />
+        <Route exact path='/admin/report/user' component={UserReport} />
+        <Route exact path='/admin/question' component={Suggestion} />
         <Route exact path='/auth' component={Auth} />
+        <Route exact path='/callback' component={Callback} />
         <Route exact path='/auth/information' component={Information} />
         <Route exact path='/chat/:type/:id' component={DetailChatContainer} />
         <Route exact path='/search' component={SearchContainer} />
+        <Route exact path='/main' component={Main} />
+        <Route exact path='/noti/list' component={Noti} />  
+        <Route exact path='/noti/tag' component={TagRegister} /> 
       </Switch>
     </Router>
   );

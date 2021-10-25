@@ -53,21 +53,32 @@ export const PostContent = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 7px;
+  gap: 10px;
   margin: 0 auto;
   cursor: pointer;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
   margin-bottom: 10px;
 `;
 
-export const PostImg = styled.div`
+export const PostImg = styled.img`
   width: 130px;
   height: 130px;
-  background-color: ${color.mainColor};
 `;
 
 export const PostInfo = styled.div`
   width: 177px;
+  height: 130px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  > div:last-child {
+    justify-self: end;
+  }
+  > div:first-child {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
 `;
 
 export const PostTitle = styled.p`
@@ -75,24 +86,25 @@ export const PostTitle = styled.p`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  margin-bottom: 10px;
 `;
 
 export const PayAndLike = styled.div`
+  width: 160px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  margin-bottom: 10px;
-  > p {
+  justify-content: space-between;
+  > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  > div > p {
     font-size: 12px;
-    margin: 0px 25px 0px 8px;
+    margin-left: 8px;
   }
 `;
 
-export const DateAndPeople = styled(PayAndLike)`
-  margin-bottom: 10px;
-  margin-top: -7px;
-`;
+export const DateAndPeople = styled(PayAndLike)``;
 
 export const Icon = styled.img`
   width: 18px;
@@ -142,4 +154,14 @@ export const WriteBtn = styled.div`
 export const WriteIcon = styled.img`
   width: 21px;
   height: 21px;
+`;
+
+export const Loading = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  > img {
+    width: 20px;
+    height: 20px;
+  }
 `;
