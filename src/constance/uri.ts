@@ -3,6 +3,7 @@ enum uri {
   signin = '/users/auth',
   info = '/users/info',
   alarm = '/users/template',
+  feed = '/feed',
   carrot = '/feed/carrot',
   group = '/feed/group',
   photo = '/feed/photo',
