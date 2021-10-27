@@ -15,7 +15,6 @@ const Callback = ({ location }: any) => {
       callback
         .auth(code)
         .then(res => {
-          console.log(res.data);
           localStorage.setItem('access_token', res.data['access_token']);
           localStorage.setItem('refresh_token', res.data['refresh_token']);
           localStorage.setItem('email', res.data['email']);
