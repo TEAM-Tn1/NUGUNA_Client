@@ -3,6 +3,7 @@ import { CheckIcon } from '../../../../assets/admin';
 import * as S from './style/index';
 
 interface listProps {
+  openDetail: () => void;
   postId: number | string;
   title: string;
   target: string;
@@ -11,14 +12,14 @@ interface listProps {
   check: boolean;
 }
 
-const List: FC<listProps> = ({ postId, title, target, writer, date, check }) => {
+const List: FC<listProps> = ({ openDetail, postId, title, target, writer, date, check }) => {
   const [color, setColor] = useState<string>('');
   useEffect(() => {
     check ? setColor('#00C02A') : setColor('#808080');
   }, []);
 
   return (
-    <article>
+    <article onClick={openDetail}>
       <S.MainContest>
         <p>{postId}</p>
         <h3>{title}</h3>
