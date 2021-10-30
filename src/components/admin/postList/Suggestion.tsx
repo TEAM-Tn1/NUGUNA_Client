@@ -31,6 +31,10 @@ const { report_id, title, user_name, created_date, check } = Data;
 const Suggestion: FC = () => {
   const [divDisplayBool, setDivDisplayBool] = useState<boolean>(false);
 
+  const showDetail = () => {
+    setDivDisplayBool(!divDisplayBool);
+  };
+
   return (
     <S.Wrapper>
       <Sidebar />
@@ -50,12 +54,9 @@ const Suggestion: FC = () => {
           <article>
             {testArray.map((_, index) => {
               return (
-                <article
-                  onClick={() => {
-                    setDivDisplayBool(!divDisplayBool);
-                  }}
-                >
+                <article>
                   <List
+                    openDetail={showDetail}
                     key={index}
                     postId={report_id}
                     title={title}
@@ -65,6 +66,7 @@ const Suggestion: FC = () => {
                     check={check}
                   />
                   <ListDetail
+                    closeDetail={showDetail}
                     key={index}
                     description={description}
                     photo_url={''}

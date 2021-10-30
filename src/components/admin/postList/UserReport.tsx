@@ -34,6 +34,10 @@ const { report_id, title, reporter_name, defendant_name, created_date, check } =
 const UserReport: FC = () => {
   const [divDisplayBool, setDivDisplayBool] = useState<boolean>(false);
 
+  const showDetail = () => {
+    setDivDisplayBool(!divDisplayBool);
+  };
+
   return (
     <S.Wrapper>
       <Sidebar />
@@ -53,12 +57,9 @@ const UserReport: FC = () => {
           <article>
             {testArray.map((_, index) => {
               return (
-                <article
-                  onClick={() => {
-                    setDivDisplayBool(!divDisplayBool);
-                  }}
-                >
+                <article>
                   <List
+                    openDetail={showDetail}
                     key={index}
                     postId={report_id}
                     title={title}
@@ -68,6 +69,7 @@ const UserReport: FC = () => {
                     check={check}
                   ></List>
                   <ListDetail
+                    closeDetail={showDetail}
                     key={index - index}
                     description={description}
                     photo_url={photo_url}

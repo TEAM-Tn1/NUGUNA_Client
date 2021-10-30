@@ -29,10 +29,7 @@ export const Modal = styled.div`
       padding: 10px;
       flex: 1;
       overflow-y: scroll;
-    }
-
-    > h5 {
-      margin: 10px 0 20px;
+      margin: 10px 0;
     }
 
     > button {
@@ -42,7 +39,6 @@ export const Modal = styled.div`
       border: none;
       background-color: ${color.subColor};
       color: #fff;
-      margin-top: 10px;
     }
   }
 `;
