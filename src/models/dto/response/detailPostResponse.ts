@@ -15,5 +15,5 @@ export type detailPostResponse = {
     writer_email: string;
     writer_name: string;
   };
-  is_used_item: boolean;
+  used_item: boolean;
 };
