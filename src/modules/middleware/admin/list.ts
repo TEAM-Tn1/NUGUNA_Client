@@ -14,8 +14,9 @@ const questionListGetSaga = function* (): any {
   const SUCCESS = `${QUESTION_LIST}_SUCCESS`;
   const FAILURE = `${QUESTION_LIST}_FAILURE`;
   const state = yield select(getStateFunc);
+  const accessToekn = localStorage.getItem('access_token') || '';
   try {
-    const response = yield call(getAdminQuestionList, state.page);
+    const response = yield call(getAdminQuestionList, accessToekn, state.page);
     yield put({
       type: SUCCESS,
       payload: response ? response.data : null,
@@ -43,8 +44,9 @@ const reportUserListGetSaga = function* (): any {
   const SUCCESS = `${actionType}_SUCCESS`;
   const FAILURE = `${actionType}_FAILURE;`;
   const state = yield select(getStateFunc);
+  const accessToekn = localStorage.getItem('access_token') || '';
   try {
-    const response = yield call(getAdminReportUserList, state.page);
+    const response = yield call(getAdminReportUserList, accessToekn, state.page);
     yield put({
       type: SUCCESS,
       payload: response ? response.data : null,
@@ -72,8 +74,9 @@ const reportPostListGetSaga = function* (): any {
   const SUCCESS = `${actionType}_SUCCESS`;
   const FAILURE = `${actionType}_FAILURE;`;
   const state = yield select(getStateFunc);
+  const accessToekn = localStorage.getItem('access_token') || '';
   try {
-    const response = yield call(getAdminReportPostList, state.page);
+    const response = yield call(getAdminReportPostList, accessToekn, state.page);
     yield put({
       type: SUCCESS,
       payload: response ? response.data : null,
