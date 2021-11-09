@@ -1,10 +1,14 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import * as S from './style';
 import Sidebar from '../sidebar/index';
 import Frame from './frame/index';
 import List from './list/index';
 import { reportIcon } from '../../../assets/defalut';
 import { ListDetail } from './listDetail/index';
+import { listResponse } from '../../../models/dto/response/adminResponse';
+import { useInView } from 'react-intersection-observer';
+import { useDispatch } from 'react-redux';
+import { REPORT_POST_LIST } from '../../../modules/action/admin/interface';
 
 //더미데이터
 const testArray: number[] = [];
@@ -29,7 +33,39 @@ const { description, photo_url } = DetailData;
 
 const { report_id, title, reporter_name, created_date, check } = Data;
 
-const PostReport: FC = () => {
+interface Props {
+  setPage: (payload: number) => void;
+  page: number;
+  isHaveNextPage: boolean;
+  list: listResponse;
+}
+
+const PostReport: FC<Props> = props => {
+  const { setPage, page, isHaveNextPage, list } = props;
+  const [loading, setLoading] = useState<boolean>(false);
+  const { inView } = useInView();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    setLoading(false);
+  }, []);
+
+  useEffect(() => {
+    dispatch({ type: REPORT_POST_LIST });
+  });
+
+  // useEffect(() => {
+  //   console.log(list);
+  //   if (list.length !== 0) {
+  //     if (inView && !loading) {
+  //       setLoading(true);
+  //       if (list !== []) {
+  //         setPage(page + 1);
+  //       }
+  //     }
+  //   }
+  // }, [inView]);
+
   const [divDisplayBool, setDivDisplayBool] = useState<boolean>(false);
 
   const showDetail = () => {
