@@ -89,34 +89,35 @@ const PostReport: FC<Props> = props => {
             </div>
           </S.ChartTitle>
           <article>
-            {testArray.map((_, index) => {
-              return (
-                <article
-                  onClick={() => {
-                    setDivDisplayBool(!divDisplayBool);
-                  }}
-                >
-                  <List
-                    openDetail={showDetail}
-                    key={index}
-                    postId={report_id}
-                    title={title}
-                    target={''}
-                    writer={reporter_name}
-                    date={created_date}
-                    check={check}
-                  />
-                  <ListDetail
-                    closeDetail={showDetail}
-                    key={index}
-                    description={description}
-                    photo_url={photo_url}
-                    option={2}
-                    styles={divDisplayBool}
-                  />
-                </article>
-              );
-            })}
+            {list &&
+              list.map((_, index) => {
+                return (
+                  <article
+                    onClick={() => {
+                      setDivDisplayBool(!divDisplayBool);
+                    }}
+                  >
+                    <List
+                      openDetail={showDetail}
+                      key={index}
+                      postId={report_id}
+                      title={title}
+                      target={''}
+                      writer={reporter_name}
+                      date={created_date}
+                      check={check}
+                    />
+                    <ListDetail
+                      closeDetail={showDetail}
+                      key={index}
+                      description={description}
+                      photo_url={photo_url}
+                      option={2}
+                      styles={divDisplayBool}
+                    />
+                  </article>
+                );
+              })}
           </article>
         </S.Chart>
       </S.Main>

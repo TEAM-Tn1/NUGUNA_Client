@@ -91,30 +91,31 @@ const UserReport: FC<Props> = props => {
             </div>
           </S.ChartTitle>
           <article>
-            {testArray.map((_, index) => {
-              return (
-                <article>
-                  <List
-                    openDetail={showDetail}
-                    key={index}
-                    postId={report_id}
-                    title={title}
-                    target={defendant_name}
-                    writer={reporter_name}
-                    date={created_date}
-                    check={check}
-                  ></List>
-                  <ListDetail
-                    closeDetail={showDetail}
-                    key={index - index}
-                    description={description}
-                    photo_url={photo_url}
-                    option={1}
-                    styles={divDisplayBool}
-                  />
-                </article>
-              );
-            })}
+            {list &&
+              list.map((_, index) => {
+                return (
+                  <article>
+                    <List
+                      openDetail={showDetail}
+                      key={index}
+                      postId={report_id}
+                      title={title}
+                      target={defendant_name}
+                      writer={reporter_name}
+                      date={created_date}
+                      check={check}
+                    ></List>
+                    <ListDetail
+                      closeDetail={showDetail}
+                      key={index - index}
+                      description={description}
+                      photo_url={photo_url}
+                      option={1}
+                      styles={divDisplayBool}
+                    />
+                  </article>
+                );
+              })}
           </article>
         </S.Chart>
       </S.Main>
