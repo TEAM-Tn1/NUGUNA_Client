@@ -4,7 +4,7 @@ import useSelectState from '../default';
 
 const useAdminList = () => {
   const dispatch = useDispatch();
-  const state = useSelectState().post;
+  const state = useSelectState().adminList;
   const setState = {
     setPage: (payload: number) => {
       dispatch(setPage(payload));

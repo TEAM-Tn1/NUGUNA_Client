@@ -10,10 +10,9 @@ import AdminListState from '../../reducer/admin/interface';
 
 const getStateFunc = (state: reducerType): AdminListState => state.adminList;
 
-const questionListGetSata = function* (): any {
-  const actionType = 'ADMIN/QUESTION_LIST';
-  const SUCCESS = `${actionType}_SUCCESS`;
-  const FAILURE = `${actionType}_FAILURE;`;
+const questionListGetSaga = function* (): any {
+  const SUCCESS = `${QUESTION_LIST}_SUCCESS`;
+  const FAILURE = `${QUESTION_LIST}_FAILURE`;
   const state = yield select(getStateFunc);
   try {
     const response = yield call(getAdminQuestionList, state.page);
@@ -25,7 +24,7 @@ const questionListGetSata = function* (): any {
     if (error.response?.data) {
       yield put({
         type: FAILURE,
-        payload: { ...error.response.data, type: actionType },
+        payload: { ...error.response.data, type: QUESTION_LIST },
       });
     } else {
       yield put({
@@ -39,13 +38,13 @@ const questionListGetSata = function* (): any {
   }
 };
 
-const reportUserListGetSata = function* (): any {
+const reportUserListGetSaga = function* (): any {
   const actionType = 'ADMIN/REPORT_USER_LIST';
   const SUCCESS = `${actionType}_SUCCESS`;
   const FAILURE = `${actionType}_FAILURE;`;
   const state = yield select(getStateFunc);
   try {
-    const response = yield call(getAdminQuestionList, state.page);
+    const response = yield call(getAdminReportUserList, state.page);
     yield put({
       type: SUCCESS,
       payload: response ? response.data : null,
@@ -68,13 +67,13 @@ const reportUserListGetSata = function* (): any {
   }
 };
 
-const reportPostListGetSata = function* (): any {
+const reportPostListGetSaga = function* (): any {
   const actionType = 'ADMIN/REPORT_POST_LIST';
   const SUCCESS = `${actionType}_SUCCESS`;
   const FAILURE = `${actionType}_FAILURE;`;
   const state = yield select(getStateFunc);
   try {
-    const response = yield call(getAdminQuestionList, state.page);
+    const response = yield call(getAdminReportPostList, state.page);
     yield put({
       type: SUCCESS,
       payload: response ? response.data : null,
@@ -98,9 +97,9 @@ const reportPostListGetSata = function* (): any {
 };
 
 function* adminListSaga() {
-  yield takeLatest(QUESTION_LIST, questionListGetSata);
-  yield takeLatest(REPORT_USER_LIST, reportUserListGetSata);
-  yield takeLatest(REPORT_POST_LIST, reportPostListGetSata);
+  yield takeLatest(QUESTION_LIST, questionListGetSaga);
+  yield takeLatest(REPORT_USER_LIST, reportUserListGetSaga);
+  yield takeLatest(REPORT_POST_LIST, reportPostListGetSaga);
 }
 
 export default adminListSaga;

@@ -1,10 +1,14 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import * as S from './style';
 import Sidebar from '../sidebar/index';
 import Frame from './frame/index';
 import List from './list/index';
 import { suggestionIcon } from '../../../assets/defalut';
 import { ListDetail } from './listDetail/index';
+import { useInView } from 'react-intersection-observer';
+import { listResponse } from '../../../models/dto/response/adminResponse';
+import { useDispatch } from 'react-redux';
+import { QUESTION_LIST } from '../../../modules/action/admin/interface';
 
 //더미데이터
 const testArray: number[] = [];
@@ -28,9 +32,45 @@ const { description } = DetailData;
 
 const { report_id, title, user_name, created_date, check } = Data;
 
-const Suggestion: FC = () => {
-  const [divDisplayBool, setDivDisplayBool] = useState<boolean>(false);
+interface Props {
+  setPage: (payload: number) => void;
+  page: number;
+  isHaveNextPage: boolean;
+  list: listResponse;
+}
 
+const Suggestion: FC<Props> = props => {
+  const { setPage, page, isHaveNextPage, list } = props;
+  const [loading, setLoading] = useState<boolean>(false);
+  const { inView } = useInView();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    setLoading(false);
+  }, []);
+
+  useEffect(() => {
+    dispatch({ type: QUESTION_LIST });
+  });
+
+  // useEffect(() => {
+  //   console.log(list);
+  //   if (list.length !== 0) {
+  //     if (inView && !loading) {
+  //       setLoading(true);
+  //       if (list !== []) {
+  //         setPage(page + 1);
+  //       }
+  //     }
+  //   }
+  // }, [inView]);
+
+  useEffect(() => {
+    if (isHaveNextPage) setLoading(false);
+    else setLoading(true);
+  }, [isHaveNextPage]);
+
+  const [divDisplayBool, setDivDisplayBool] = useState<boolean>(false);
   const showDetail = () => {
     setDivDisplayBool(!divDisplayBool);
   };
@@ -52,30 +92,31 @@ const Suggestion: FC = () => {
             </div>
           </S.ChartTitle>
           <article>
-            {testArray.map((_, index) => {
-              return (
-                <article>
-                  <List
-                    openDetail={showDetail}
-                    key={index}
-                    postId={report_id}
-                    title={title}
-                    target={''}
-                    writer={user_name}
-                    date={created_date}
-                    check={check}
-                  />
-                  <ListDetail
-                    closeDetail={showDetail}
-                    key={index}
-                    description={description}
-                    photo_url={''}
-                    option={3}
-                    styles={divDisplayBool}
-                  />
-                </article>
-              );
-            })}
+            {list &&
+              list.map((_, index) => {
+                return (
+                  <article>
+                    <List
+                      openDetail={showDetail}
+                      key={index}
+                      postId={report_id}
+                      title={title}
+                      target={''}
+                      writer={user_name}
+                      date={created_date}
+                      check={check}
+                    />
+                    <ListDetail
+                      closeDetail={showDetail}
+                      key={index}
+                      description={description}
+                      photo_url={''}
+                      option={3}
+                      styles={divDisplayBool}
+                    />
+                  </article>
+                );
+              })}
           </article>
         </S.Chart>
       </S.Main>
