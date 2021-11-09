@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { FC, useEffect, useState } from 'react';
 import { positive, negative } from '../../../../assets/admin';
 import * as S from './style/index';
@@ -15,8 +16,6 @@ const ListDetail: FC<detailProps> = ({ closeDetail, description, photo_url, opti
 
   const [displayOpcity, setDisplayOpcity] = useState<number>(1);
   const [displayCilck, setDisplayCilck] = useState<any>('auto');
-
-  const [divDisplay, setDivDisplay] = useState<string>('');
 
   const [named, setNamed] = useState<string>('');
   const [dateDisplay, setDateDisplay] = useState<string>('');
@@ -53,7 +52,7 @@ const ListDetail: FC<detailProps> = ({ closeDetail, description, photo_url, opti
         <span>내용</span>
         <div>
           <p>{description}</p>
-          <img src={photo_url} />
+          <img src={photo_url} alt='' />
         </div>
       </S.Content>
       <hr />
@@ -64,6 +63,7 @@ const ListDetail: FC<detailProps> = ({ closeDetail, description, photo_url, opti
             src={whether ? positive : negative}
             onClick={() => setWhether(!whether)}
             style={{ display: divDisplayAnswer }}
+            alt=''
           />
           <input
             type='date'

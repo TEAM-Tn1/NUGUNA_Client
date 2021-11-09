@@ -1,4 +1,4 @@
-import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios, { AxiosError, AxiosRequestConfig } from 'axios';
 
 const instance = axios.create({
   baseURL: process.env.REACT_APP_BASE_URL,

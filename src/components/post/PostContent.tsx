@@ -30,7 +30,7 @@ const PostContent: FC<Props> = props => {
           </div>
         </S.DateAndPeople>
       );
-  }, [type, people]);
+  }, [type, people, date]);
 
   const likeIcon = useMemo(() => {
     if (isLikeClick) return <S.Icon src={fillLike} />;

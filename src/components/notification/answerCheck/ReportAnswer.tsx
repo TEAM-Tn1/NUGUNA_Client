@@ -2,16 +2,14 @@ import React, { FC } from 'react';
 import * as S from './style/index';
 
 interface modalProps {
-  name: string;
   content: string;
 }
 
-const ReportAnswer: FC<modalProps> = ({ name, content }) => {
+const ReportAnswer: FC<modalProps> = ({ content }) => {
   return (
     <S.Modal>
       <div>
         <h2>신고결과</h2>
-        <h5>{name}</h5>
         <div>{content}</div>
         <button>확인</button>
       </div>

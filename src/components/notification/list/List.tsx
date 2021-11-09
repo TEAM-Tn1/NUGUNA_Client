@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { FC, useEffect, useState } from 'react';
 import * as S from './style';
 import { chat_icon, question_icon, report_icon, tag_icon } from '../../../assets/alarm/index';
@@ -10,7 +11,7 @@ interface listProps {
   is_watch: boolean;
 }
 
-const List: FC<listProps> = ({ notification_id, title, message, content, is_watch }) => {
+const List: FC<listProps> = ({ title, message, content, is_watch }) => {
   const [icon, setIcon] = useState<string>('report_icon');
 
   useEffect(() => {
@@ -28,7 +29,7 @@ const List: FC<listProps> = ({ notification_id, title, message, content, is_watc
         setIcon(tag_icon);
         break;
     }
-  });
+  }, []);
   return (
     <S.List>
       <div>
