@@ -1,6 +1,6 @@
-import React, { FC, useEffect } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect } from 'react';
 import queryString from 'query-string';
-import { Footer, Header } from '..';
 import * as S from './style';
 import callback from '../../util/api/callback';
 import { useHistory } from 'react-router';
