@@ -9,6 +9,9 @@ enum uri {
   report = '/feed/report',
   like = '/feed/like',
   tag = '/feed/tag',
+  reportUserList = '/admin/report/user',
+  reportPostList = '/admin/report/post',
+  questionList = '/admin/question',
 }
 
 export default uri;

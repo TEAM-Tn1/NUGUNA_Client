@@ -3,7 +3,7 @@ import axios from 'axios';
 export const getRequest = () => {
   const request = axios.create({
     timeout: 10000,
-    baseURL: 'http://13.125.161.204:8080',
+    baseURL: 'https://server.tn1-dsm.com',
   });
   return request;
 };
@@ -14,7 +14,7 @@ export const getRequestWithAccessToken = (
 ) => {
   const request = axios.create({
     timeout: 10000,
-    baseURL: 'http://13.125.161.204:8080',
+    baseURL: 'https://server.tn1-dsm.com',
     responseType: type,
     headers: {
       Authorization: `Bearer ${token}`,
