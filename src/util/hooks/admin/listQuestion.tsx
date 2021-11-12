@@ -1,10 +1,10 @@
 import { useDispatch } from 'react-redux';
-import { setPage } from '../../../modules/action/post';
+import { setPage } from '../../../modules/action/admin';
 import useSelectState from '../default';
 
-const useAdminList = () => {
+const useAdminQuestionList = () => {
   const dispatch = useDispatch();
-  const state = useSelectState().adminList;
+  const state = useSelectState().adminQuestionList;
   const setState = {
     setPage: (payload: number) => {
       dispatch(setPage(payload));
@@ -13,4 +13,4 @@ const useAdminList = () => {
   return { state, setState };
 };
 
-export default useAdminList;
+export default useAdminQuestionList;
