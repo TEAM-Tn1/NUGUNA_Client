@@ -17,9 +17,9 @@ import {
   AdminReportUserListState,
 } from '../../../reducer/admin/interface';
 
-const getQuestionStateFunc = (state: reducerType): AdminQuestionListState => state.adminList;
-const getReportPostStateFunc = (state: reducerType): AdminReportPostListState => state.adminList;
-const getReportUserStateFunc = (state: reducerType): AdminReportUserListState => state.adminList;
+const getQuestionStateFunc = (state: reducerType): AdminQuestionListState => state.adminQuestionList;
+const getReportPostStateFunc = (state: reducerType): AdminReportPostListState => state.adminReportPostList;
+const getReportUserStateFunc = (state: reducerType): AdminReportUserListState => state.adminReportUserList;
 
 const questionListGetSaga = function* (): any {
   const actionType = 'ADMIN/QUESTION_LIST';
@@ -58,7 +58,7 @@ const reportPostListGetSaga = function* (): any {
   const state = yield select(getReportPostStateFunc);
   const accessToekn = localStorage.getItem('access_token') || '';
   try {
-    const response = yield call(getAdminReportUserList, accessToekn, state.page);
+    const response = yield call(getAdminReportPostList, accessToekn, state.page);
     yield put({
       type: SUCCESS,
       payload: response ? response.data : null,
