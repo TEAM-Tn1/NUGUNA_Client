@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { FC, Suspense, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Post } from '../../components';

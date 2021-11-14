@@ -1,6 +1,6 @@
 import React, { FC, useMemo } from 'react';
 import * as S from './style';
-import { fillLike, pay, write, dateIcon, peopleIcon } from '../../assets/post';
+import { pay, dateIcon, peopleIcon } from '../../assets/post';
 import { grayLike } from '../../assets/detailPost';
 
 interface Props {
@@ -27,7 +27,7 @@ const DetailPostFooter: FC<Props> = props => {
           </div>
         </S.DateAndPeople>
       );
-  }, [type]);
+  }, [type, date, people]);
 
   return (
     <S.DetailPostFooter>

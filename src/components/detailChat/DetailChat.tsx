@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useState } from 'react';
 import * as S from './style';
 import { useLocation } from 'react-router';
 import Header from './Header';

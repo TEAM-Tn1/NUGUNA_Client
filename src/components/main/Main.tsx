@@ -1,6 +1,6 @@
 import React from 'react';
 import * as S from './style';
-import { Header, Post, Footer } from '..';
+import { Header, Footer } from '..';
 import { Logo } from '../logo';
 import PostContent from '../post/PostContent';
 import { Link } from 'react-router-dom';
