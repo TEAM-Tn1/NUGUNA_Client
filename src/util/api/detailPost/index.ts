@@ -27,3 +27,12 @@ export const postLikeDelete = async (accessToken: string, feedId: number) => {
     throw error;
   }
 };
+
+export const postDelete = async (accessToken: string, feedId: number) => {
+  try {
+    const request = getRequestWithAccessToken(accessToken);
+    return await request.delete(`${uri.feed}/${feedId}`);
+  } catch (error) {
+    throw error;
+  }
+};
