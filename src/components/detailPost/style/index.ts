@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { color } from '../../../style';
 
 export const DetailPost = styled.div`
@@ -142,11 +142,6 @@ export const PostImgSlider = styled.div`
   }
 `;
 
-export const PostImg = styled.img`
-  width: 281px;
-  height: 281px;
-`;
-
 export const PostContent = styled.p`
   width: 86%;
   font-size: 16px;
@@ -263,4 +258,33 @@ export const CheckBtn = styled.div`
 export const CancleBtn = styled(CheckBtn)`
   color: #fbfbfb;
   background-color: #c4c4c4;
+`;
+
+export const Container = styled.div`
+  width: 281px;
+  height: 281px;
+  overflow: hidden;
+  position: relative;
+`;
+
+export const SliderBox = styled.div<{ length: number }>`
+  ${({ length }) => css`
+    width: calc(100% * ${length});
+  `}
+  height: 100%;
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 1000ms;
+`;
+
+export const SliderItem = styled.div<{ length: number }>`
+  width: calc(100% / length);
+  height: 100%;
+  > img {
+    width: 100%;
+    height: 100%;
+  }
 `;
