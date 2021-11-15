@@ -12,6 +12,9 @@ import {
   POST_LIKE_DELETE_SUCCESS,
   POST_LIKE_FAILURE,
   POST_LIKE_SUCCESS,
+  POST_DELETE,
+  POST_DELETE_SUCCESS,
+  POST_DELETE_FAILURE,
 } from './interface';
 
 export const saveFeedId = createAction(FEED_ID)<number>();
@@ -24,6 +27,9 @@ export const postLikeFailure = createAction(POST_LIKE_FAILURE)<error>();
 export const postLikeDelete = createAction(POST_LIKE_DELETE)();
 export const postLikeDeleteSuccess = createAction(POST_LIKE_DELETE_SUCCESS)();
 export const postLikeDeleteFailure = createAction(POST_LIKE_DELETE_FAILURE)<error>();
+export const postDelete = createAction(POST_DELETE)();
+export const postDeleteSuccess = createAction(POST_DELETE_SUCCESS)();
+export const postDeleteFailure = createAction(POST_DELETE_FAILURE)<error>();
 
 export type detailPostActionType =
   | ReturnType<typeof saveFeedId>
@@ -35,4 +41,7 @@ export type detailPostActionType =
   | ReturnType<typeof postLikeFailure>
   | ReturnType<typeof postLikeDelete>
   | ReturnType<typeof postLikeDeleteSuccess>
-  | ReturnType<typeof postLikeDeleteFailure>;
+  | ReturnType<typeof postLikeDeleteFailure>
+  | ReturnType<typeof postDelete>
+  | ReturnType<typeof postDeleteSuccess>
+  | ReturnType<typeof postDeleteFailure>;

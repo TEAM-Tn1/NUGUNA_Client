@@ -21,6 +21,7 @@ interface DetailPostState {
   isSuccessGetDetailPost: boolean | undefined;
   isSuccessLikePost: boolean | undefined;
   isSuccessDeleteLikePost: boolean | undefined;
+  isSuccessDeletePost: boolean | undefined;
   error: error;
 }
 

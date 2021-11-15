@@ -24,18 +24,37 @@ interface Props {
   };
   isUsedItem: boolean;
   setFeedId: (payload: number) => void;
+  isSuccessDeletePost: boolean | undefined;
 }
 
 const DetailPost: FC<Props> = props => {
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
+  const { isSuccessDeletePost, userInfo } = props;
+  const userEmail = localStorage.getItem('email') as string;
 
   const deleteBtnClickHandler = () => {
     setIsOpenModal(true);
   };
 
   const openPostDeleteModal = useMemo(() => {
-    if (isOpenModal) return <PostDeleteModal setIsOpenModal={setIsOpenModal} />;
-  }, [isOpenModal]);
+    if (isOpenModal)
+      return (
+        <PostDeleteModal
+          setIsOpenModal={setIsOpenModal}
+          isSuccessDeletePost={isSuccessDeletePost}
+        />
+      );
+  }, [isOpenModal, isSuccessDeletePost]);
+
+  const writerBtn = useMemo(() => {
+    if (userEmail === userInfo.writerEmail)
+      return (
+        <div>
+          <S.Icon src={modifyIcon} />
+          <S.Icon src={deleteIcon} onClick={deleteBtnClickHandler} />
+        </div>
+      );
+  }, [userEmail, userInfo]);
 
   return (
     <>
@@ -48,10 +67,7 @@ const DetailPost: FC<Props> = props => {
               <S.Icon src={prevIcon} />
               <S.PrevComment>{PREV}</S.PrevComment>
             </div>
-            <div>
-              <S.Icon src={modifyIcon} />
-              <S.Icon src={deleteIcon} onClick={deleteBtnClickHandler} />
-            </div>
+            {writerBtn}
           </S.TopLine>
           <DetailContent {...props} />
         </S.ContentBox>

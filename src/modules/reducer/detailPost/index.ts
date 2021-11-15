@@ -4,6 +4,9 @@ import {
   GET_POST,
   GET_POST_FAILURE,
   GET_POST_SUCCESS,
+  POST_DELETE,
+  POST_DELETE_FAILURE,
+  POST_DELETE_SUCCESS,
   POST_LIKE,
   POST_LIKE_DELETE,
   POST_LIKE_DELETE_FAILURE,
@@ -34,6 +37,7 @@ const initState: DetailPostState = {
   isSuccessGetDetailPost: undefined,
   isSuccessLikePost: undefined,
   isSuccessDeleteLikePost: undefined,
+  isSuccessDeletePost: undefined,
   error: {
     status: 0,
     message: '',
@@ -118,6 +122,22 @@ const detailPostReducer = (
       return {
         ...state,
         isSuccessDeleteLikePost: false,
+        error: action.payload,
+      };
+    case POST_DELETE:
+      return {
+        ...state,
+        isSuccessDeletePost: undefined,
+      };
+    case POST_DELETE_SUCCESS:
+      return {
+        ...state,
+        isSuccessDeletePost: true,
+      };
+    case POST_DELETE_FAILURE:
+      return {
+        ...state,
+        isSuccessDeletePost: false,
         error: action.payload,
       };
     default:
