@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useMemo } from 'react';
 import * as S from './style';
 import { reportIcon } from '../../assets/detailPost';
 import PostImgSlider from './PostImgSlider';
@@ -7,12 +7,46 @@ import { CHAT, REPORT } from '../../constance/detailPost';
 
 interface Props {
   title: string;
-  hashtage: Array<string>;
+  tag: Array<string>;
+  description: string;
+  price: number;
+  count: number;
+  headCount: number;
+  currentHeadCount: number;
+  date: string;
+  isUsedItem: boolean;
+  like: boolean;
+  medium: string;
   userInfo: { writerEmail: string; writerName: string };
 }
 
 const DetailContent: FC<Props> = props => {
-  const { title, hashtage, userInfo } = props;
+  const {
+    title,
+    tag,
+    userInfo,
+    description,
+    price,
+    count,
+    headCount,
+    currentHeadCount,
+    date,
+    like,
+    medium,
+    isUsedItem,
+  } = props;
+
+  const makeDates = useMemo(() => {
+    const month = date && date.slice(5, 7);
+    const dates = date && date.slice(8);
+    return `${month}/${dates}`;
+  }, [date]);
+
+  const type = useMemo(() => {
+    if (isUsedItem) return 'trade';
+    else return 'group';
+  }, [isUsedItem]);
+
   return (
     <>
       <S.DetailContent>
@@ -24,13 +58,14 @@ const DetailContent: FC<Props> = props => {
           </S.Report>
         </S.TitleLine>
         <S.HashTageLine>
-          {hashtage.map((data: string, i: number) => {
-            return (
-              <S.HashTag key={i}>
-                <p>{data}</p>
-              </S.HashTag>
-            );
-          })}
+          {tag &&
+            tag.map((data: string, i: number) => {
+              return (
+                <S.HashTag key={i}>
+                  <p>{data}</p>
+                </S.HashTag>
+              );
+            })}
         </S.HashTageLine>
         <S.UserInfoAndChatLine>
           <div>
@@ -41,21 +76,17 @@ const DetailContent: FC<Props> = props => {
             <p>{CHAT}</p>
           </S.ChattingBtn>
         </S.UserInfoAndChatLine>
-        <PostImgSlider />
-        <S.PostContent>
-          제가 저번주에 샀는데 금방질려서 팔아요 원가 13000인데 10000에 팔게여 다들 많관부~~ 제가
-          저번주에 샀는데 금방질려서 팔아요 원가 13000인데 10000에 팔게여 다들 많관부~~ 제가
-          저번주에 샀는데 금방질려서 팔아요 원가 13000인데 10000에 팔게여 다들 많관부~~ 샀는데
-          금방질려서 팔아요 원가 13000인데 10000에 팔게여 다들 많관부~~ 샀는데 금방질려서 팔아요
-          원가 13000인데 10000에 팔게여 다들 많관부~~제가 저번주에 샀는데 금방질려서 팔아요 원가
-          13000인데 10000에 팔게여 다들 많관부~~ 제가 저번주에 샀는데 금방질려서 팔아요 원가
-          13000인데 10000에 팔게여 다들 많관부~~ 제가 저번주에 샀는데 금방질려서 팔아요 원가
-          13000인데 10000에 팔게여 다들 많관부~~ 샀는데 금방질려서 팔아요 원가 13000인데 10000에
-          팔게여 다들 많관부~~ 샀는데 금방질려서 팔아요 원가 13000인데 10000에 팔게여 다들
-          많관부~~12345563ㅂ5345134
-        </S.PostContent>
+        <PostImgSlider img={medium} />
+        <S.PostContent>{description}</S.PostContent>
       </S.DetailContent>
-      <DetailPostFooter type={'trade'} money={'5000'} heart={'5'} date={'8/1'} people={'2/4'} />
+      <DetailPostFooter
+        type={type}
+        money={price}
+        heart={count}
+        date={makeDates}
+        like={like}
+        people={`${currentHeadCount}/${headCount}`}
+      />
     </>
   );
 };
