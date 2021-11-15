@@ -4,6 +4,12 @@ import {
   GET_POST,
   GET_POST_FAILURE,
   GET_POST_SUCCESS,
+  POST_LIKE,
+  POST_LIKE_DELETE,
+  POST_LIKE_DELETE_FAILURE,
+  POST_LIKE_DELETE_SUCCESS,
+  POST_LIKE_FAILURE,
+  POST_LIKE_SUCCESS,
 } from '../../action/detailPost/interface';
 import DetailPostState from './interface';
 
@@ -26,6 +32,8 @@ const initState: DetailPostState = {
   },
   isUsedItem: false,
   isSuccessGetDetailPost: undefined,
+  isSuccessLikePost: undefined,
+  isSuccessDeleteLikePost: undefined,
   error: {
     status: 0,
     message: '',
@@ -56,7 +64,7 @@ const detailPostReducer = (
         title: action.payload.title,
         description: action.payload.description,
         price: action.payload.price,
-        tag: action.payload.tag,
+        tag: action.payload.tags,
         medium: action.payload.medium,
         lastModifyDate: action.payload.lastModifyDate,
         like: action.payload.like,
@@ -68,12 +76,48 @@ const detailPostReducer = (
           writerEmail: action.payload.user_info.writer_email,
           writerName: action.payload.user_info.writer_name,
         },
-        isUsedItem: action.payload.is_used_item,
+        isUsedItem: action.payload.used_item,
       };
     case GET_POST_FAILURE:
       return {
         ...state,
         isSuccessGetDetailPost: false,
+        error: action.payload,
+      };
+    case POST_LIKE:
+      return {
+        ...state,
+        isSuccessLikePost: undefined,
+      };
+    case POST_LIKE_SUCCESS:
+      return {
+        ...state,
+        like: true,
+        count: state.count + 1,
+        isSuccessLikePost: true,
+      };
+    case POST_LIKE_FAILURE:
+      return {
+        ...state,
+        isSuccessLikePost: false,
+        error: action.payload,
+      };
+    case POST_LIKE_DELETE:
+      return {
+        ...state,
+        isSuccessDeleteLikePost: undefined,
+      };
+    case POST_LIKE_DELETE_SUCCESS:
+      return {
+        ...state,
+        like: false,
+        count: state.count - 1,
+        isSuccessDeleteLikePost: true,
+      };
+    case POST_LIKE_DELETE_FAILURE:
+      return {
+        ...state,
+        isSuccessDeleteLikePost: false,
         error: action.payload,
       };
     default:
