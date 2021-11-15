@@ -3,7 +3,7 @@ export type detailPostResponse = {
   title: string;
   description: string;
   price: number;
-  tag: Array<string>;
+  tags: Array<string>;
   medium: string;
   lastModifyDate: string;
   like: boolean;
