@@ -27,10 +27,6 @@ const Suggestion: FC<Props> = props => {
     setLoading(false);
   }, []);
 
-  useEffect(() => {
-    dispatch({ type: QUESTION_LIST });
-  });
-
   /*   useEffect(() => {
     console.log(list);
     if (list.length !== 0) {
@@ -42,6 +38,12 @@ const Suggestion: FC<Props> = props => {
       }
     }
   }, [inView]); */
+  // useEffect(() => {
+  //   if (list.length == 0) {
+  //     console.log('데이터가 없쪄용');
+  //   }
+  // }, []);
+  // console.log(list);
 
   useEffect(() => {
     if (isHaveNextPage) setLoading(false);

@@ -33,7 +33,7 @@ const adminQuestionListReducer = (
       if (action.payload.length !== 0)
         return {
           ...state,
-          list: state.list.concat(action.payload),
+          list: action.payload,
           isSuccessGetList: true,
           isHaveNextPage: true,
         };

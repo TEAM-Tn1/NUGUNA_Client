@@ -10,7 +10,7 @@ const QuestionContainer: FC = () => {
 
   useEffect(() => {
     dispatch({ type: QUESTION_LIST });
-  });
+  }, [state.page]);
 
   return (
     <Suspense fallback={<div>Loading...</div>}>

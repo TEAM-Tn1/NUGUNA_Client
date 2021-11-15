@@ -1,8 +1,3 @@
-/* export { default as adminQuestionListSaga } from './Question';
-export { default as adminReportUserListSaga } from './ReportUser';
-export { default as adminReportPostListSaga } from './ReportPost';
- */
-
 import { call, put, select, takeLatest } from 'redux-saga/effects';
 import { reducerType } from '../../../reducer';
 import { QUESTION_LIST, REPORT_POST_LIST, REPORT_USER_LIST } from '../../../action/admin/interface';
@@ -17,9 +12,12 @@ import {
   AdminReportUserListState,
 } from '../../../reducer/admin/interface';
 
-const getQuestionStateFunc = (state: reducerType): AdminQuestionListState => state.adminQuestionList;
-const getReportPostStateFunc = (state: reducerType): AdminReportPostListState => state.adminReportPostList;
-const getReportUserStateFunc = (state: reducerType): AdminReportUserListState => state.adminReportUserList;
+const getQuestionStateFunc = (state: reducerType): AdminQuestionListState =>
+  state.adminQuestionList;
+const getReportPostStateFunc = (state: reducerType): AdminReportPostListState =>
+  state.adminReportPostList;
+const getReportUserStateFunc = (state: reducerType): AdminReportUserListState =>
+  state.adminReportUserList;
 
 const questionListGetSaga = function* (): any {
   const actionType = 'ADMIN/QUESTION_LIST';
