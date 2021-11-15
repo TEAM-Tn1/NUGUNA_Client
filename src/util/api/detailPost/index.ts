@@ -9,3 +9,21 @@ export const getDetailPost = async (accessToken: string, feedId: number) => {
     throw error;
   }
 };
+
+export const postLike = async (accessToken: string, feedId: number) => {
+  try {
+    const request = getRequestWithAccessToken(accessToken);
+    return await request.post(`/feed/${feedId}${uri.like}`);
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const postLikeDelete = async (accessToken: string, feedId: number) => {
+  try {
+    const request = getRequestWithAccessToken(accessToken);
+    return await request.delete(`/feed/${feedId}${uri.like}`);
+  } catch (error) {
+    throw error;
+  }
+};
