@@ -3,7 +3,7 @@ import { color } from '../../../style';
 
 export const DetailPost = styled.div`
   max-width: 500px;
-  height: calc(100vh - 100px);
+  height: calc(100vh - 160px);
   margin: 0 auto;
   margin-top: 100px;
 `;
@@ -45,7 +45,6 @@ export const DetailContent = styled.div`
 
 export const TitleLine = styled.div`
   width: 86%;
-  height: 54px;
   margin: 10px auto;
   display: flex;
   justify-content: space-between;
@@ -143,10 +142,9 @@ export const PostImgSlider = styled.div`
   }
 `;
 
-export const PostImg = styled.div`
+export const PostImg = styled.img`
   width: 281px;
   height: 281px;
-  background-color: red;
 `;
 
 export const PostContent = styled.p`
@@ -160,7 +158,7 @@ export const DetailPostFooter = styled.footer`
   max-width: 500px;
   height: 60px;
   display: flex;
-  position: sticky;
+  position: fixed;
   box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.1);
   bottom: calc(constant(safe-area-inset-bottom) + 0px);
   bottom: calc(env(safe-area-inset-bottom) + 0px);
