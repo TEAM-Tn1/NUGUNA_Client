@@ -8,7 +8,7 @@ enum uri {
   group = '/feed/group',
   photo = '/feed/photo',
   report = '/feed/report',
-  like = '/feed/like',
+  like = '/like',
   tag = '/feed/tag',
 }
 
