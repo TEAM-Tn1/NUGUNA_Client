@@ -1,1 +1,5 @@
-export { default as adminListSaga } from './list';
+import adminList from './list';
+
+export default function* adminListSaga() {
+  yield [adminList()];
+}
