@@ -18,7 +18,7 @@ const initState: AdminReportUserListState = {
     },
   };
   
-  const adminReportUserListRducer = (
+  const adminReportUserListReducer = (
     state: AdminReportUserListState = initState,
     action: adminActionType,
   ): AdminReportUserListState => {
@@ -57,4 +57,4 @@ const initState: AdminReportUserListState = {
     }
   };
   
-  export default adminReportUserListRducer;
+  export default adminReportUserListReducer;

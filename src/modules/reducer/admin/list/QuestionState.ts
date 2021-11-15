@@ -19,7 +19,7 @@ const initState: AdminQuestionListState = {
   },
 };
 
-const adminQuestionListRducer = (
+const adminQuestionListReducer = (
   state: AdminQuestionListState = initState,
   action: adminActionType,
 ): AdminQuestionListState => {
@@ -58,4 +58,4 @@ const adminQuestionListRducer = (
   }
 };
 
-export default adminQuestionListRducer;
+export default adminQuestionListReducer;

@@ -19,7 +19,7 @@ const initState: AdminReportPostListState = {
   },
 };
 
-const adminReportPostListRducer = (
+const adminReportPostListReducer = (
   state: AdminReportPostListState = initState,
   action: adminActionType,
 ): AdminReportPostListState => {
@@ -58,4 +58,4 @@ const adminReportPostListRducer = (
   }
 };
 
-export default adminReportPostListRducer;
+export default adminReportPostListReducer;
