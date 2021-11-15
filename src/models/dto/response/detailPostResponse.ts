@@ -4,7 +4,7 @@ export type detailPostResponse = {
   description: string;
   price: number;
   tags: Array<string>;
-  medium: string;
+  photo: Array<string>;
   lastModifyDate: string;
   like: boolean;
   count: number;

@@ -10,8 +10,8 @@ interface Props {
   title: string;
   description: string;
   price: number;
-  tag: Array<string>;
-  medium: string;
+  tags: Array<string>;
+  photo: Array<string>;
   lastModifyDate: string;
   like: boolean;
   count: number;
@@ -27,22 +27,6 @@ interface Props {
 }
 
 const DetailPost: FC<Props> = props => {
-  const {
-    title,
-    description,
-    price,
-    tag,
-    medium,
-    lastModifyDate,
-    like,
-    count,
-    headCount,
-    currentHeadCount,
-    date,
-    userInfo,
-    isUsedItem,
-    setFeedId,
-  } = props;
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
 
   const deleteBtnClickHandler = () => {

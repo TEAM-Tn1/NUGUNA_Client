@@ -5,8 +5,8 @@ interface DetailPostState {
   title: string;
   description: string;
   price: number;
-  tag: Array<string>;
-  medium: string;
+  tags: Array<string>;
+  photo: Array<string>;
   lastModifyDate: string;
   like: boolean;
   count: number;

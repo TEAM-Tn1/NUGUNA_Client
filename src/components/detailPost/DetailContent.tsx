@@ -7,7 +7,7 @@ import { CHAT, REPORT } from '../../constance/detailPost';
 
 interface Props {
   title: string;
-  tag: Array<string>;
+  tags: Array<string>;
   description: string;
   price: number;
   count: number;
@@ -16,14 +16,14 @@ interface Props {
   date: string;
   isUsedItem: boolean;
   like: boolean;
-  medium: string;
+  photo: Array<string>;
   userInfo: { writerEmail: string; writerName: string };
 }
 
 const DetailContent: FC<Props> = props => {
   const {
     title,
-    tag,
+    tags,
     userInfo,
     description,
     price,
@@ -32,7 +32,7 @@ const DetailContent: FC<Props> = props => {
     currentHeadCount,
     date,
     like,
-    medium,
+    photo,
     isUsedItem,
   } = props;
 
@@ -58,8 +58,8 @@ const DetailContent: FC<Props> = props => {
           </S.Report>
         </S.TitleLine>
         <S.HashTageLine>
-          {tag &&
-            tag.map((data: string, i: number) => {
+          {tags &&
+            tags.map((data: string, i: number) => {
               return (
                 <S.HashTag key={i}>
                   <p>{data}</p>
@@ -76,7 +76,7 @@ const DetailContent: FC<Props> = props => {
             <p>{CHAT}</p>
           </S.ChattingBtn>
         </S.UserInfoAndChatLine>
-        <PostImgSlider img={medium} />
+        <PostImgSlider photo={photo} />
         <S.PostContent>{description}</S.PostContent>
       </S.DetailContent>
       <DetailPostFooter
