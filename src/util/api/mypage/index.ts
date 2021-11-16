@@ -38,4 +38,17 @@ export default {
       },
     });
   },
+  registerSuggestion(title: string, content: string) {
+    return request({
+      url: `/question`,
+      method: 'post',
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+      },
+      data: {
+        title,
+        description: content,
+      },
+    });
+  },
 };
