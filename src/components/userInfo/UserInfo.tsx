@@ -42,7 +42,12 @@ const UserInfo = () => {
         <span>작성한 게시물</span>
       </S.WrittenPostBox>
       <Footer />
-      <ModalTemplate title='신고하기' isShowModal={isShowModal} closeModal={closeModal} isReport />
+      <ModalTemplate
+        subject='신고하기'
+        isShowModal={isShowModal}
+        closeModal={closeModal}
+        isReport
+      />
     </S.Wrapper>
   );
 };
