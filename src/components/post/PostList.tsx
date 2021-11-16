@@ -5,6 +5,7 @@ import PostContent from './PostContent';
 import { postListType } from '../../models/dto/response/postResponse';
 import { useInView } from 'react-intersection-observer';
 import { chickLogo } from '../../assets/logo';
+import { useHistory } from 'react-router-dom';
 
 interface Props {
   type: string;
@@ -57,6 +58,7 @@ const PostList: FC<Props> = props => {
           const showPeople = `${data.current_head_count}/${data.head_count}`;
           return (
             <PostContent
+              feedId={data.feed_id}
               medium={data.medium}
               title={data.title}
               money={data.price}
