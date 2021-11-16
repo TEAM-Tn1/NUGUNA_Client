@@ -1,11 +1,11 @@
 import React, { FC, Suspense, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { UserReport } from '../../../components/admin';
+import { PostReport } from '../../../components/admin';
 import { REPORT_POST_LIST } from '../../../modules/action/admin/interface';
-import { useAdminList } from '../../../util/hooks/admin';
+import { useAdminReportPostList } from '../../../util/hooks/admin';
 
 const ReportPostContainer = () => {
-  const { state, setState } = useAdminList();
+  const { state, setState } = useAdminReportPostList();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -14,7 +14,7 @@ const ReportPostContainer = () => {
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <UserReport {...state} {...setState} />
+      <PostReport {...state} {...setState} />
     </Suspense>
   );
 };

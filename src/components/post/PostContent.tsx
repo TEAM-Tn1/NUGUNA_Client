@@ -1,8 +1,10 @@
 import React, { FC, useMemo } from 'react';
 import * as S from './style';
 import { emptyLike, pay, fillLike, dateIcon, peopleIcon } from '../../assets/post';
+import { useHistory } from 'react-router';
 
 interface Props {
+  feedId: number;
   title: string;
   money: number;
   like: number;
@@ -15,7 +17,8 @@ interface Props {
 }
 
 const PostContent: FC<Props> = props => {
-  const { title, money, like, hashtag, type, date, people, isLikeClick, medium } = props;
+  const { title, money, like, hashtag, type, date, people, isLikeClick, medium, feedId } = props;
+  const history = useHistory();
   const isTypeGroup = useMemo(() => {
     if (type === 'group')
       return (
@@ -37,8 +40,12 @@ const PostContent: FC<Props> = props => {
     else return <S.Icon src={emptyLike} />;
   }, [isLikeClick]);
 
+  const postContentClickHandler = () => {
+    history.push(`/view/post/${feedId}`);
+  };
+
   return (
-    <S.PostContent>
+    <S.PostContent onClick={postContentClickHandler}>
       <S.PostImg src={medium} />
       <S.PostInfo>
         <div>

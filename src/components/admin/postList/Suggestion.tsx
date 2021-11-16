@@ -6,37 +6,15 @@ import List from './list/index';
 import { suggestionIcon } from '../../../assets/defalut';
 import { ListDetail } from './listDetail/index';
 import { useInView } from 'react-intersection-observer';
-import { listResponse } from '../../../models/dto/response/adminResponse';
+import { questionResponse } from '../../../models/dto/response/questionResponse';
 import { useDispatch } from 'react-redux';
 import { QUESTION_LIST } from '../../../modules/action/admin/interface';
-
-//더미데이터
-const testArray: number[] = [];
-for (let i = 0; i < 10; i++) {
-  testArray.push(i);
-}
-//더미데이터
-const Data = {
-  report_id: '335',
-  title: '문의사항문의사항문의사항문의사항문의사항문의사항문의사항문의',
-  user_name: '문의씨',
-  created_date: '10/05',
-  check: true,
-};
-//더미데이터
-const DetailData = {
-  description: '내용내용내용내용내용내용내용',
-};
-
-const { description } = DetailData;
-
-const { report_id, title, user_name, created_date, check } = Data;
 
 interface Props {
   setPage: (payload: number) => void;
   page: number;
   isHaveNextPage: boolean;
-  list: listResponse;
+  list: questionResponse;
 }
 
 const Suggestion: FC<Props> = props => {
@@ -49,21 +27,23 @@ const Suggestion: FC<Props> = props => {
     setLoading(false);
   }, []);
 
-  useEffect(() => {
-    dispatch({ type: QUESTION_LIST });
-  });
-
+  /*   useEffect(() => {
+    console.log(list);
+    if (list.length !== 0) {
+      if (inView && !loading) {
+        setLoading(true);
+        if (list !== []) {
+          setPage(page + 1);
+        }
+      }
+    }
+  }, [inView]); */
   // useEffect(() => {
-  //   console.log(list);
-  //   if (list.length !== 0) {
-  //     if (inView && !loading) {
-  //       setLoading(true);
-  //       if (list !== []) {
-  //         setPage(page + 1);
-  //       }
-  //     }
+  //   if (list.length == 0) {
+  //     console.log('데이터가 없쪄용');
   //   }
-  // }, [inView]);
+  // }, []);
+  // console.log(list);
 
   useEffect(() => {
     if (isHaveNextPage) setLoading(false);
@@ -93,23 +73,23 @@ const Suggestion: FC<Props> = props => {
           </S.ChartTitle>
           <article>
             {list &&
-              list.map((_, index) => {
+              list.map((data, index) => {
                 return (
                   <article>
                     <List
                       openDetail={showDetail}
                       key={index}
-                      postId={report_id}
-                      title={title}
+                      postId={data.question_id}
+                      title={data.title}
                       target={''}
-                      writer={user_name}
-                      date={created_date}
-                      check={check}
+                      writer={data.user_name}
+                      date={data.created_date}
+                      check={data.check}
                     />
                     <ListDetail
                       closeDetail={showDetail}
                       key={index}
-                      description={description}
+                      description={''}
                       photo_url={''}
                       option={3}
                       styles={divDisplayBool}
