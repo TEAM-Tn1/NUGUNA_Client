@@ -1,36 +1,56 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import * as S from './style';
 import Sidebar from '../sidebar/index';
 import Frame from './frame/index';
 import List from './list/index';
 import { suggestionIcon } from '../../../assets/defalut';
 import { ListDetail } from './listDetail/index';
+import { useInView } from 'react-intersection-observer';
+import { questionResponse } from '../../../models/dto/response/questionResponse';
+import { useDispatch } from 'react-redux';
+import { QUESTION_LIST } from '../../../modules/action/admin/interface';
 
-//더미데이터
-const testArray: number[] = [];
-for (let i = 0; i < 10; i++) {
-  testArray.push(i);
+interface Props {
+  setPage: (payload: number) => void;
+  page: number;
+  isHaveNextPage: boolean;
+  list: questionResponse;
 }
-//더미데이터
-const Data = {
-  report_id: '335',
-  title: '문의사항문의사항문의사항문의사항문의사항문의사항문의사항문의',
-  user_name: '문의씨',
-  created_date: '10/05',
-  check: true,
-};
-//더미데이터
-const DetailData = {
-  description: '내용내용내용내용내용내용내용',
-};
 
-const { description } = DetailData;
+const Suggestion: FC<Props> = props => {
+  const { setPage, page, isHaveNextPage, list } = props;
+  const [loading, setLoading] = useState<boolean>(false);
+  const { inView } = useInView();
+  const dispatch = useDispatch();
 
-const { report_id, title, user_name, created_date, check } = Data;
+  useEffect(() => {
+    setLoading(false);
+  }, []);
 
-const Suggestion: FC = () => {
+  /*   useEffect(() => {
+    console.log(list);
+    if (list.length !== 0) {
+      if (inView && !loading) {
+        setLoading(true);
+        if (list !== []) {
+          setPage(page + 1);
+        }
+      }
+    }
+  }, [inView]); */
+  // useEffect(() => {
+  //   if (list.length == 0) {
+  //     console.log('데이터가 없쪄용');
+  //   }
+  // }, []);
+  // console.log(list);
+
+  useEffect(() => {
+    if (isHaveNextPage) setLoading(false);
+    else setLoading(true);
+  }, [isHaveNextPage]);
+
   const [divDisplayBool, setDivDisplayBool] = useState<boolean>(false);
-
   const showDetail = () => {
     setDivDisplayBool(!divDisplayBool);
   };
@@ -52,30 +72,31 @@ const Suggestion: FC = () => {
             </div>
           </S.ChartTitle>
           <article>
-            {testArray.map((_, index) => {
-              return (
-                <article>
-                  <List
-                    openDetail={showDetail}
-                    key={index}
-                    postId={report_id}
-                    title={title}
-                    target={''}
-                    writer={user_name}
-                    date={created_date}
-                    check={check}
-                  />
-                  <ListDetail
-                    closeDetail={showDetail}
-                    key={index}
-                    description={description}
-                    photo_url={''}
-                    option={3}
-                    styles={divDisplayBool}
-                  />
-                </article>
-              );
-            })}
+            {list &&
+              list.map((data, index) => {
+                return (
+                  <article>
+                    <List
+                      openDetail={showDetail}
+                      key={index}
+                      postId={data.question_id}
+                      title={data.title}
+                      target={''}
+                      writer={data.user_name}
+                      date={data.created_date}
+                      check={data.check}
+                    />
+                    <ListDetail
+                      closeDetail={showDetail}
+                      key={index}
+                      description={''}
+                      photo_url={''}
+                      option={3}
+                      styles={divDisplayBool}
+                    />
+                  </article>
+                );
+              })}
           </article>
         </S.Chart>
       </S.Main>
