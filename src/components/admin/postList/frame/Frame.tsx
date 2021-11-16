@@ -14,7 +14,7 @@ const Frame: FC<frameProps> = ({ listTitle, imgSrc, divType, postOp, userOp }) =
   return (
     <S.Top>
       <div>
-        <img src={imgSrc} />
+        <img src={imgSrc} alt='icon' />
         <h1>{listTitle}</h1>
       </div>
       <div style={{ display: divType }}>

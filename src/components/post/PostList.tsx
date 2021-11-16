@@ -1,9 +1,11 @@
-import React, { FC, useEffect, useState } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { FC, useEffect, useMemo, useState } from 'react';
 import * as S from './style';
 import PostContent from './PostContent';
 import { postListType } from '../../models/dto/response/postResponse';
 import { useInView } from 'react-intersection-observer';
 import { chickLogo } from '../../assets/logo';
+import { useHistory } from 'react-router-dom';
 
 interface Props {
   type: string;
@@ -39,6 +41,13 @@ const PostList: FC<Props> = props => {
     else setLoading(true);
   }, [isHaveNextPage]);
 
+  const noContent = useMemo(() => {
+    if (postList.length === 0) {
+      setLoading(true);
+      return <S.NoContent>게시물이 존재하지 않습니다.</S.NoContent>;
+    }
+  }, [postList]);
+
   return (
     <S.PostList>
       {postList &&
@@ -49,6 +58,7 @@ const PostList: FC<Props> = props => {
           const showPeople = `${data.current_head_count}/${data.head_count}`;
           return (
             <PostContent
+              feedId={data.feed_id}
               medium={data.medium}
               title={data.title}
               money={data.price}
@@ -61,6 +71,7 @@ const PostList: FC<Props> = props => {
             />
           );
         })}
+      {noContent}
       {!loading && (
         <S.Loading ref={ref}>
           <img src={chickLogo} alt='loading' />

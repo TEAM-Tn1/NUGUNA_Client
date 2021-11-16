@@ -1,0 +1,1 @@
+export {adminQuestionListReducer, adminReportPostListReducer, adminReportUserListReducer} from './list'

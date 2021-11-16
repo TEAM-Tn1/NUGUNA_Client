@@ -4,12 +4,9 @@ import {
   ORDER,
   TYPE,
   PAGE,
-  CARROT_POSTLIST,
-  CARROT_POSTLIST_SUCCESS,
-  CARROT_POSTLIST_FAILURE,
-  GROUP_POSTLIST,
-  GROUP_POSTLIST_SUCCESS,
-  GROUP_POSTLIST_FAILURE,
+  GET_POST,
+  GET_POST_SUCCESS,
+  GET_POST_FAILURE,
   TYPECLICK,
 } from '../../action/post/interface';
 
@@ -30,12 +27,12 @@ const initState: PostState = {
 
 const postReducer = (state: PostState = initState, action: postActionType): PostState => {
   switch (action.type) {
-    case CARROT_POSTLIST:
+    case GET_POST:
       return {
         ...state,
         isSuccessGetPostList: undefined,
       };
-    case CARROT_POSTLIST_SUCCESS:
+    case GET_POST_SUCCESS:
       if (action.payload.length !== 0)
         return {
           ...state,
@@ -48,33 +45,10 @@ const postReducer = (state: PostState = initState, action: postActionType): Post
           ...state,
           isHaveNextPage: false,
         };
-    case CARROT_POSTLIST_FAILURE:
+    case GET_POST_FAILURE:
       return {
         ...state,
         error: action.payload,
-        isSuccessGetPostList: false,
-      };
-    case GROUP_POSTLIST:
-      return {
-        ...state,
-        isSuccessGetPostList: undefined,
-      };
-    case GROUP_POSTLIST_SUCCESS:
-      if (action.payload.length !== 0)
-        return {
-          ...state,
-          postList: state.postList.concat(action.payload),
-          isSuccessGetPostList: true,
-          isHaveNextPage: true,
-        };
-      else
-        return {
-          ...state,
-          isHaveNextPage: false,
-        };
-    case GROUP_POSTLIST_FAILURE:
-      return {
-        ...state,
         isSuccessGetPostList: false,
       };
     case TYPE:

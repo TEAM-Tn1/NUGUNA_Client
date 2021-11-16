@@ -3,12 +3,16 @@ enum uri {
   signin = '/users/auth',
   info = '/users/info',
   alarm = '/users/template',
+  feed = '/feed',
   carrot = '/feed/carrot',
   group = '/feed/group',
   photo = '/feed/photo',
   report = '/feed/report',
-  like = '/feed/like',
+  like = '/like',
   tag = '/feed/tag',
+  reportUserList = '/admin/report/user',
+  reportPostList = '/admin/report/post',
+  questionList = '/admin/question',
 }
 
 export default uri;

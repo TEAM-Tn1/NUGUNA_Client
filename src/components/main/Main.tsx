@@ -1,6 +1,6 @@
 import React from 'react';
 import * as S from './style';
-import { Header, Post, Footer } from '..';
+import { Header, Footer } from '..';
 import { Logo } from '../logo';
 import PostContent from '../post/PostContent';
 import { Link } from 'react-router-dom';
@@ -20,6 +20,7 @@ const Main = () => {
         {array.map(() => {
           return (
             <PostContent
+              feedId={1}
               medium={''}
               title={'귀여운 인형 팔아요yoy'}
               money={5000}
@@ -44,6 +45,7 @@ const Main = () => {
         {array.map(() => {
           return (
             <PostContent
+              feedId={1}
               medium={''}
               title={'귀여운 인형 팔아요yoy'}
               money={5000}
