@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect, useMemo, useState } from 'react';
 import * as S from './style';
 import PostContent from './PostContent';
 import { postListType } from '../../models/dto/response/postResponse';
@@ -40,6 +40,13 @@ const PostList: FC<Props> = props => {
     else setLoading(true);
   }, [isHaveNextPage]);
 
+  const noContent = useMemo(() => {
+    if (postList.length === 0) {
+      setLoading(true);
+      return <S.NoContent>게시물이 존재하지 않습니다.</S.NoContent>;
+    }
+  }, [postList]);
+
   return (
     <S.PostList>
       {postList &&
@@ -62,6 +69,7 @@ const PostList: FC<Props> = props => {
             />
           );
         })}
+      {noContent}
       {!loading && (
         <S.Loading ref={ref}>
           <img src={chickLogo} alt='loading' />
