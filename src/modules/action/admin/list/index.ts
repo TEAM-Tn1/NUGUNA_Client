@@ -1,8 +1,8 @@
 import { createAction } from 'typesafe-actions';
-import { questionResponse } from '../../../models/dto/response/questionResponse';
-import { reportUserResponse } from '../../../models/dto/response/reportUserResponse';
-import { reportPostResponse } from '../../../models/dto/response/reportPostResponse';
-import { error } from '../../../models/error';
+import { questionResponse } from '../../../../models/dto/response/questionResponse';
+import { reportUserResponse } from '../../../../models/dto/response/reportUserResponse';
+import { reportPostResponse } from '../../../../models/dto/response/reportPostResponse';
+import { error } from '../../../../models/error';
 import {
   REPORT_USER_LIST,
   REPORT_USER_LIST_SUCCESS,
@@ -14,10 +14,7 @@ import {
   QUESTION_LIST_SUCCESS,
   QUESTION_LIST_FAILURE,
   PAGE,
-  QUESTION_LIST_DETAIL,
-  QUESTION_LIST_DETAIL_SUCCESS,
-  QUESTION_LIST_DETAIL_FAILURE,
-} from './interface';
+} from '../interface';
 
 export const reportUserList = createAction(REPORT_USER_LIST)();
 export const reportUserListSuccess = createAction(REPORT_USER_LIST_SUCCESS)<reportUserResponse>();
@@ -29,9 +26,6 @@ export const questionList = createAction(QUESTION_LIST)();
 export const questionListSuccess = createAction(QUESTION_LIST_SUCCESS)<questionResponse>();
 export const questionListFailure = createAction(QUESTION_LIST_FAILURE)<error>();
 export const setPage = createAction(PAGE)<number>();
-export const questionListDetail = createAction(QUESTION_LIST_DETAIL)();
-export const questionListDetailSuccess = createAction(QUESTION_LIST_DETAIL_SUCCESS)<string>();
-export const questionListDetailFailure = createAction(QUESTION_LIST_DETAIL_FAILURE)<error>();
 
 export type adminActionType =
   | ReturnType<typeof reportUserList>
@@ -44,8 +38,3 @@ export type adminActionType =
   | ReturnType<typeof questionListSuccess>
   | ReturnType<typeof questionListFailure>
   | ReturnType<typeof setPage>;
-
-export type adminListDetailType =
-  | ReturnType<typeof questionListDetail>
-  | ReturnType<typeof questionListDetailSuccess>
-  | ReturnType<typeof questionListDetailFailure>;
