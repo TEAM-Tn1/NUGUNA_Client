@@ -7,8 +7,6 @@ import { suggestionIcon } from '../../../assets/defalut';
 import { ListDetail } from './listDetail/index';
 import { useInView } from 'react-intersection-observer';
 import { questionResponse } from '../../../models/dto/response/questionResponse';
-import { useDispatch } from 'react-redux';
-import { QUESTION_LIST } from '../../../modules/action/admin/interface';
 
 interface Props {
   setPage: (payload: number) => void;
@@ -21,14 +19,12 @@ const Suggestion: FC<Props> = props => {
   const { setPage, page, isHaveNextPage, list } = props;
   const [loading, setLoading] = useState<boolean>(false);
   const { inView } = useInView();
-  const dispatch = useDispatch();
 
   useEffect(() => {
     setLoading(false);
   }, []);
 
-  /*   useEffect(() => {
-    console.log(list);
+  useEffect(() => {
     if (list.length !== 0) {
       if (inView && !loading) {
         setLoading(true);
@@ -37,13 +33,7 @@ const Suggestion: FC<Props> = props => {
         }
       }
     }
-  }, [inView]); */
-  // useEffect(() => {
-  //   if (list.length == 0) {
-  //     console.log('데이터가 없쪄용');
-  //   }
-  // }, []);
-  // console.log(list);
+  }, [inView]);
 
   useEffect(() => {
     if (isHaveNextPage) setLoading(false);

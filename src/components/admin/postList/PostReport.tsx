@@ -7,8 +7,6 @@ import { reportIcon } from '../../../assets/defalut';
 import { ListDetail } from './listDetail/index';
 import { reportPostResponse } from '../../../models/dto/response/reportPostResponse';
 import { useInView } from 'react-intersection-observer';
-import { useDispatch } from 'react-redux';
-import { REPORT_POST_LIST } from '../../../modules/action/admin/interface';
 
 interface Props {
   setPage: (payload: number) => void;
@@ -21,18 +19,12 @@ const PostReport: FC<Props> = props => {
   const { setPage, page, isHaveNextPage, list } = props;
   const [loading, setLoading] = useState<boolean>(false);
   const { inView } = useInView();
-  const dispatch = useDispatch();
 
   useEffect(() => {
     setLoading(false);
   }, []);
 
   useEffect(() => {
-    dispatch({ type: REPORT_POST_LIST });
-  });
-
-  /*   useEffect(() => {
-    console.log(list);
     if (list.length !== 0) {
       if (inView && !loading) {
         setLoading(true);
@@ -41,7 +33,12 @@ const PostReport: FC<Props> = props => {
         }
       }
     }
-  }, [inView]); */
+  }, [inView]);
+
+  useEffect(() => {
+    if (isHaveNextPage) setLoading(false);
+    else setLoading(true);
+  }, [isHaveNextPage]);
 
   const [divDisplayBool, setDivDisplayBool] = useState<boolean>(false);
 

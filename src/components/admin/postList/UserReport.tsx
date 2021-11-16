@@ -7,9 +7,6 @@ import { reportIcon } from '../../../assets/defalut';
 import { ListDetail } from './listDetail/index';
 import { reportUserResponse } from '../../../models/dto/response/reportUserResponse';
 import { useInView } from 'react-intersection-observer';
-import { REPORT_USER_LIST } from '../../../modules/action/admin/interface';
-import { useDispatch } from 'react-redux';
-
 interface Props {
   setPage: (payload: number) => void;
   page: number;
@@ -21,18 +18,12 @@ const UserReport: FC<Props> = props => {
   const { setPage, page, isHaveNextPage, list } = props;
   const [loading, setLoading] = useState<boolean>(false);
   const { inView } = useInView();
-  const dispatch = useDispatch();
 
   useEffect(() => {
     setLoading(false);
   }, []);
 
   useEffect(() => {
-    dispatch({ type: REPORT_USER_LIST });
-  });
-
-  /*   useEffect(() => {
-    console.log(list);
     if (list.length !== 0) {
       if (inView && !loading) {
         setLoading(true);
@@ -41,10 +32,14 @@ const UserReport: FC<Props> = props => {
         }
       }
     }
-  }, [inView]); */
+  }, [inView]);
+
+  useEffect(() => {
+    if (isHaveNextPage) setLoading(false);
+    else setLoading(true);
+  }, [isHaveNextPage]);
 
   const [divDisplayBool, setDivDisplayBool] = useState<boolean>(false);
-
   const showDetail = () => {
     setDivDisplayBool(!divDisplayBool);
   };
