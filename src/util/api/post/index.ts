@@ -1,19 +1,22 @@
 import uri from '../../../constance/uri';
-import { getRequest } from '../default';
+import { getRequestWithAccessToken } from '../default';
 
-export const getCarrotPostList = async (page: number, sort: string) => {
-  try {
-    const request = getRequest();
-    return await request.get(`${uri.carrot}?page=${page}&range=4&sort=${sort}`);
-  } catch (error) {
-    throw error;
-  }
+const isUsedItem = (type: string) => {
+  if (type === 'trade') return true;
+  else return false;
 };
 
-export const getGroupPostList = async (page: number, sort: string) => {
+export const getPostList = async (
+  accessToken: string,
+  page: number,
+  sort: string,
+  type: string,
+) => {
   try {
-    const request = getRequest();
-    return await request.get(`${uri.group}?page=${page}&range=4&sort=${sort}`);
+    const request = getRequestWithAccessToken(accessToken);
+    return await request.get(
+      `${uri.feed}?page=${page}&range=4&is_used_item=${isUsedItem(type)}&sort=${sort}`,
+    );
   } catch (error) {
     throw error;
   }

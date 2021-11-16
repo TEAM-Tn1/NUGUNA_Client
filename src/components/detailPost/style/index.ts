@@ -1,9 +1,9 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { color } from '../../../style';
 
 export const DetailPost = styled.div`
   max-width: 500px;
-  height: calc(100vh - 100px);
+  height: calc(100vh - 160px);
   margin: 0 auto;
   margin-top: 100px;
 `;
@@ -45,7 +45,6 @@ export const DetailContent = styled.div`
 
 export const TitleLine = styled.div`
   width: 86%;
-  height: 54px;
   margin: 10px auto;
   display: flex;
   justify-content: space-between;
@@ -143,12 +142,6 @@ export const PostImgSlider = styled.div`
   }
 `;
 
-export const PostImg = styled.div`
-  width: 281px;
-  height: 281px;
-  background-color: red;
-`;
-
 export const PostContent = styled.p`
   width: 86%;
   font-size: 16px;
@@ -160,7 +153,7 @@ export const DetailPostFooter = styled.footer`
   max-width: 500px;
   height: 60px;
   display: flex;
-  position: sticky;
+  position: fixed;
   box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.1);
   bottom: calc(constant(safe-area-inset-bottom) + 0px);
   bottom: calc(env(safe-area-inset-bottom) + 0px);
@@ -265,4 +258,33 @@ export const CheckBtn = styled.div`
 export const CancleBtn = styled(CheckBtn)`
   color: #fbfbfb;
   background-color: #c4c4c4;
+`;
+
+export const Container = styled.div`
+  width: 281px;
+  height: 281px;
+  overflow: hidden;
+  position: relative;
+`;
+
+export const SliderBox = styled.div<{ length: number }>`
+  ${({ length }) => css`
+    width: calc(100% * ${length});
+  `}
+  height: 100%;
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 1000ms;
+`;
+
+export const SliderItem = styled.div<{ length: number }>`
+  width: calc(100% / length);
+  height: 100%;
+  > img {
+    width: 100%;
+    height: 100%;
+  }
 `;
