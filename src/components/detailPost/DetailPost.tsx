@@ -5,6 +5,7 @@ import { PREV } from '../../constance/detailPost';
 import { prevIcon, modifyIcon, deleteIcon } from '../../assets/detailPost';
 import DetailContent from './DetailContent';
 import PostDeleteModal from './PostDeleteModal';
+import { useHistory } from 'react-router';
 
 interface Props {
   title: string;
@@ -31,6 +32,7 @@ const DetailPost: FC<Props> = props => {
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
   const { isSuccessDeletePost, userInfo } = props;
   const userEmail = localStorage.getItem('email') as string;
+  const history = useHistory();
 
   const deleteBtnClickHandler = () => {
     setIsOpenModal(true);
@@ -56,6 +58,10 @@ const DetailPost: FC<Props> = props => {
       );
   }, [userEmail, userInfo]);
 
+  const prevBtnClickHandler = () => {
+    history.push('/post');
+  };
+
   return (
     <>
       <Header />
@@ -64,7 +70,7 @@ const DetailPost: FC<Props> = props => {
           {openPostDeleteModal}
           <S.TopLine>
             <div>
-              <S.Icon src={prevIcon} />
+              <S.Icon src={prevIcon} onClick={prevBtnClickHandler} />
               <S.PrevComment>{PREV}</S.PrevComment>
             </div>
             {writerBtn}
