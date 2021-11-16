@@ -1,18 +1,23 @@
 import React, { FC, useMemo } from 'react';
 import * as S from './style';
-import { pay, dateIcon, peopleIcon } from '../../assets/post';
+import { fillLike, pay, dateIcon, peopleIcon } from '../../assets/post';
 import { grayLike } from '../../assets/detailPost';
+import { useDispatch } from 'react-redux';
+import { POST_LIKE, POST_LIKE_DELETE } from '../../modules/action/detailPost/interface';
 
 interface Props {
   type: string;
-  money: string;
-  heart: string;
+  money: number;
+  heart: number;
   date: string;
   people: string;
+  like: boolean;
 }
 
 const DetailPostFooter: FC<Props> = props => {
-  const { type, money, heart, date, people } = props;
+  const { type, money, heart, date, people, like } = props;
+  const dispatch = useDispatch();
+
   const groupType = useMemo(() => {
     if (type === 'group')
       return (
@@ -29,6 +34,19 @@ const DetailPostFooter: FC<Props> = props => {
       );
   }, [type, date, people]);
 
+  const heartIconClickHandler = (event: React.MouseEvent<HTMLImageElement, MouseEvent>) => {
+    console.log(event.currentTarget.dataset.id);
+    if (event.currentTarget.dataset.id === 'false') dispatch({ type: POST_LIKE });
+    else if (event.currentTarget.dataset.id === 'true') dispatch({ type: POST_LIKE_DELETE });
+  };
+
+  const heartIcon = useMemo(() => {
+    if (like)
+      return <S.PayAndLikeIcon src={fillLike} data-id={'true'} onClick={heartIconClickHandler} />;
+    else
+      return <S.PayAndLikeIcon src={grayLike} data-id={'false'} onClick={heartIconClickHandler} />;
+  }, [like]);
+
   return (
     <S.DetailPostFooter>
       <div>
@@ -38,7 +56,7 @@ const DetailPostFooter: FC<Props> = props => {
           <p>{money}원</p>
         </S.PayContent>
         <S.LikeContent>
-          <S.PayAndLikeIcon src={grayLike} />
+          {heartIcon}
           <p>{heart}개</p>
         </S.LikeContent>
       </div>
