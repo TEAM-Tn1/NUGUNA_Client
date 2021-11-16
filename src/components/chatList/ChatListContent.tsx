@@ -10,7 +10,7 @@ interface Props {
 }
 
 const ChatListContent: FC<Props> = props => {
-  const { roomName, lastMessage, photoUrl, count } = props;
+  const { roomName, lastMessage, count } = props;
 
   const showPeople = useMemo(() => {
     if (count)

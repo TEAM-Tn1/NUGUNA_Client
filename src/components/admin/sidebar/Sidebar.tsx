@@ -10,11 +10,11 @@ const Sidebar: FC = () => {
       <Logo />
       <S.Called>
         <Link to='/admin/report/feed'>
-          <img src={reportIcon} />
+          <img src={reportIcon} alt='' />
           <p>신고상황</p>
         </Link>
         <Link to='/admin/question'>
-          <img src={suggestionIcon} />
+          <img src={suggestionIcon} alt='' />
           <p>문의상황</p>
         </Link>
       </S.Called>

@@ -1,21 +1,21 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { FC, useEffect, useState } from 'react';
 import { positive, negative } from '../../../../assets/admin';
 import * as S from './style/index';
 
 interface detailProps {
+  closeDetail: () => void;
   description: string;
   photo_url: string;
   option: number;
   styles: boolean;
 }
 
-const ListDetail: FC<detailProps> = ({ description, photo_url, option, styles }) => {
+const ListDetail: FC<detailProps> = ({ closeDetail, description, photo_url, option, styles }) => {
   const [whether, setWhether] = useState<boolean>(true);
 
   const [displayOpcity, setDisplayOpcity] = useState<number>(1);
   const [displayCilck, setDisplayCilck] = useState<any>('auto');
-
-  const [divDisplay, setDivDisplay] = useState<string>('');
 
   const [named, setNamed] = useState<string>('');
   const [dateDisplay, setDateDisplay] = useState<string>('');
@@ -52,7 +52,7 @@ const ListDetail: FC<detailProps> = ({ description, photo_url, option, styles })
         <span>내용</span>
         <div>
           <p>{description}</p>
-          <img src={photo_url} />
+          <img src={photo_url} alt='' />
         </div>
       </S.Content>
       <hr />
@@ -63,6 +63,7 @@ const ListDetail: FC<detailProps> = ({ description, photo_url, option, styles })
             src={whether ? positive : negative}
             onClick={() => setWhether(!whether)}
             style={{ display: divDisplayAnswer }}
+            alt=''
           />
           <input
             type='date'
@@ -71,7 +72,7 @@ const ListDetail: FC<detailProps> = ({ description, photo_url, option, styles })
         </div>
         <textarea placeholder='답변을 남겨주세요.' />
         <div>
-          <button>확인</button>
+          <button onClick={closeDetail}>확인</button>
         </div>
       </S.Answer>
     </S.Detail>

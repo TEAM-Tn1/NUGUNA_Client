@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from 'react';
+import React, { FC } from 'react';
 import * as S from './style';
 import OtherChat from './OtherChat';
 import MyChat from './MyChat';
@@ -6,8 +6,6 @@ import MyChat from './MyChat';
 interface Props {}
 
 const Chats: FC<Props> = props => {
-  const {} = props;
-
   return (
     <S.Chats>
       <OtherChat isLastMessage message='인형 상태 어때요??' />

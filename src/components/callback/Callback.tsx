@@ -1,6 +1,6 @@
-import React, { FC, useEffect } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect } from 'react';
 import queryString from 'query-string';
-import { Footer, Header } from '..';
 import * as S from './style';
 import callback from '../../util/api/callback';
 import { useHistory } from 'react-router';
@@ -15,7 +15,6 @@ const Callback = ({ location }: any) => {
       callback
         .auth(code)
         .then(res => {
-          console.log(res.data);
           localStorage.setItem('access_token', res.data['access_token']);
           localStorage.setItem('refresh_token', res.data['refresh_token']);
           localStorage.setItem('email', res.data['email']);

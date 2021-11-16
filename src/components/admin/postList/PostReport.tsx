@@ -32,6 +32,10 @@ const { report_id, title, reporter_name, created_date, check } = Data;
 const PostReport: FC = () => {
   const [divDisplayBool, setDivDisplayBool] = useState<boolean>(false);
 
+  const showDetail = () => {
+    setDivDisplayBool(!divDisplayBool);
+  };
+
   return (
     <S.Wrapper>
       <Sidebar />
@@ -57,6 +61,7 @@ const PostReport: FC = () => {
                   }}
                 >
                   <List
+                    openDetail={showDetail}
                     key={index}
                     postId={report_id}
                     title={title}
@@ -66,6 +71,7 @@ const PostReport: FC = () => {
                     check={check}
                   />
                   <ListDetail
+                    closeDetail={showDetail}
                     key={index}
                     description={description}
                     photo_url={photo_url}
