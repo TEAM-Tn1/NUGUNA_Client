@@ -81,6 +81,9 @@ export const PictureContent = styled.div`
   width: 86.1%;
   margin: 0 auto;
   margin-bottom: 30px;
+  > div:nth-child(3) {
+    display: flex;
+  }
 `;
 
 export const PictureExplain = styled.p`
@@ -89,7 +92,7 @@ export const PictureExplain = styled.p`
   margin-bottom: 10px;
 `;
 
-export const PicturePlusBtn = styled.div`
+export const PicturePlusBtn = styled.label`
   width: 58px;
   height: 58px;
   border: 1px solid black;
@@ -142,12 +145,12 @@ export const CheckBtn = styled.div<{ isClick: boolean }>`
   width: 86.1%;
   height: 68px;
   margin: 0 auto;
-  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
   ${({ isClick }) => css`
     background-color: ${isClick ? '#754f44' : 'white'};
+    cursor: ${isClick ? 'pointer' : 'default'};
   `}
   border: 1px solid #754f44;
   margin-bottom: 47px;
@@ -158,4 +161,9 @@ export const CheckBtn = styled.div<{ isClick: boolean }>`
       color: ${isClick ? 'white' : '#754f44'};
     `}
   }
+`;
+
+export const PreviewImg = styled.img`
+  width: 58px;
+  height: 58px;
 `;
