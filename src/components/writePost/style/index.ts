@@ -142,12 +142,12 @@ export const CheckBtn = styled.div<{ isClick: boolean }>`
   width: 86.1%;
   height: 68px;
   margin: 0 auto;
-  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
   ${({ isClick }) => css`
     background-color: ${isClick ? '#754f44' : 'white'};
+    cursor: ${isClick ? 'pointer' : 'default'};
   `}
   border: 1px solid #754f44;
   margin-bottom: 47px;
