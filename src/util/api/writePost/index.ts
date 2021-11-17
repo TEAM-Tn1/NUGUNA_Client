@@ -32,9 +32,22 @@ export const writeGroupPost = async (
       description,
       price,
       tags,
-      date,
+      date: new Date(date),
       head_count: headCount,
     });
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const postImg = async (accessToken: string, feedId: number, img: Array<File>) => {
+  try {
+    const request = getRequestWithAccessToken(accessToken);
+    const formData = new FormData();
+    img.map(data => {
+      formData.append('files', data);
+    });
+    return await request.post(`${uri.feed}/${feedId}/photo`, formData);
   } catch (error) {
     throw error;
   }
