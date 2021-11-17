@@ -19,7 +19,11 @@ const ExplainPost: FC<Props> = props => {
         {EXPLAINPOSTTITLE}
         <span>*</span>
       </S.SubTitle>
-      <S.ExplainPostTextarea placeholder={EXPLAINPOSTTEXTAREA} onChange={textareaChangeHandler} />
+      <S.ExplainPostTextarea
+        placeholder={EXPLAINPOSTTEXTAREA}
+        onChange={textareaChangeHandler}
+        maxLength={1000}
+      />
     </S.ExplainPostContent>
   );
 };
