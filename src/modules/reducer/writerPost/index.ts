@@ -13,6 +13,11 @@ import {
   GROUP,
   GROUP_SUCCESS,
   GROUP_FAILURE,
+  IMG,
+  FEEDID,
+  PICTURE,
+  PICTURE_SUCCESS,
+  PICTURE_FAILURE,
 } from '../../action/writePost/interface';
 
 const initState: WritePostState = {
@@ -22,12 +27,15 @@ const initState: WritePostState = {
   tags: [],
   date: '',
   headCount: 0,
+  img: [],
+  feedId: 0,
   error: {
     status: 0,
     type: '',
     message: '',
   },
   isSuccessSavePost: undefined,
+  isSuccessSavePicture: undefined,
 };
 
 const writePostReducer = (
@@ -65,6 +73,16 @@ const writePostReducer = (
         ...state,
         headCount: action.payload,
       };
+    case IMG:
+      return {
+        ...state,
+        img: action.payload,
+      };
+    case FEEDID:
+      return {
+        ...state,
+        feedId: action.payload,
+      };
     case CARROT:
       return {
         ...state,
@@ -73,6 +91,7 @@ const writePostReducer = (
     case CARROT_SUCCESS:
       return {
         ...state,
+        feedId: action.payload.feed_id,
         isSuccessSavePost: true,
       };
     case CARROT_FAILURE:
@@ -88,12 +107,28 @@ const writePostReducer = (
     case GROUP_SUCCESS:
       return {
         ...state,
+        feedId: action.payload.feed_id,
         isSuccessSavePost: true,
       };
     case GROUP_FAILURE:
       return {
         ...state,
         isSuccessSavePost: false,
+      };
+    case PICTURE:
+      return {
+        ...state,
+        isSuccessSavePicture: undefined,
+      };
+    case PICTURE_SUCCESS:
+      return {
+        ...state,
+        isSuccessSavePicture: true,
+      };
+    case PICTURE_FAILURE:
+      return {
+        ...state,
+        isSuccessSavePicture: false,
       };
     default:
       return state;
