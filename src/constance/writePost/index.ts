@@ -26,7 +26,7 @@ export const GROUPINFO = [
   {
     id: 'date',
     content: '기간',
-    placeholder: '공동구매 기간을 입력해 주세요 (ex 6월 30일 → 6/30)',
+    placeholder: '공동구매 기간을 입력해 주세요 (ex: 2021-11-18)',
   },
 ];
 
