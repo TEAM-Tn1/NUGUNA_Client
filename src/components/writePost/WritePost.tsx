@@ -15,7 +15,7 @@ import PostInfo from './PostInfo';
 import { useLocation } from 'react-router';
 import { CHECKBTN } from '../../constance/writePost';
 import { useDispatch } from 'react-redux';
-import { CARROT, GROUP } from '../../modules/action/writePost/interface';
+import { CARROT, GROUP, PICTURE } from '../../modules/action/writePost/interface';
 
 interface Props {
   title: string;
@@ -24,6 +24,7 @@ interface Props {
   tags: Array<string>;
   date: string;
   headCount: number;
+  img: Array<File>;
   isSuccessSavePost: boolean | undefined;
   setTitle: (payload: string) => void;
   setDescription: (payload: string) => void;
@@ -31,6 +32,7 @@ interface Props {
   setTags: (payload: Array<string>) => void;
   setDate: (payload: string) => void;
   setHeadCount: (payload: number) => void;
+  setImg: (payload: Array<File>) => void;
 }
 
 const WritePost: FC<Props> = props => {
@@ -40,6 +42,7 @@ const WritePost: FC<Props> = props => {
     price,
     tags,
     date,
+    img,
     headCount,
     isSuccessSavePost,
     setTitle,
@@ -48,6 +51,7 @@ const WritePost: FC<Props> = props => {
     setTags,
     setDate,
     setHeadCount,
+    setImg,
   } = props;
   const type = useLocation().pathname.slice(12);
   const dispatch = useDispatch();
@@ -55,13 +59,14 @@ const WritePost: FC<Props> = props => {
 
   useEffect(() => {
     if (type === 'trade') {
-      if (title !== '' && description !== '') setDisabled(true);
+      if (title !== '' && description !== '' && img.length !== 0) setDisabled(true);
       else setDisabled(false);
     } else {
-      if (title !== '' && description !== '' && date !== '' && headCount !== 0) setDisabled(true);
+      if (title !== '' && description !== '' && date !== '' && headCount !== 0 && img.length !== 0)
+        setDisabled(true);
       else setDisabled(false);
     }
-  }, [title, description, date, headCount]);
+  }, [title, description, date, headCount, img]);
 
   const postInfo = useMemo(() => {
     if (type === 'trade')
@@ -89,6 +94,10 @@ const WritePost: FC<Props> = props => {
   const hashtagInputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setTags(event.currentTarget.value.split(','));
   };
+
+  useEffect(() => {
+    if (isSuccessSavePost) dispatch({ type: PICTURE });
+  }, [isSuccessSavePost]);
 
   const checkBtnClickHandler = () => {
     if (type === 'trade') dispatch({ type: CARROT });
@@ -121,7 +130,7 @@ const WritePost: FC<Props> = props => {
               </S.TitleAndInput>
             );
           })}
-          <Picture />
+          <Picture img={img} setImg={setImg} />
           <ExplainPost setDescription={setDescription} />
           {postInfo}
           <S.CheckBtn isClick={disabled} onClick={!disabled ? () => {} : checkBtnClickHandler}>
