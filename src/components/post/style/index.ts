@@ -60,6 +60,12 @@ export const PostContent = styled.div`
   margin-bottom: 10px;
 `;
 
+export const NoContent = styled.p`
+  font-size: 15px;
+  text-align: center;
+  margin: 30px 0px;
+`;
+
 export const PostImg = styled.img`
   width: 130px;
   height: 130px;

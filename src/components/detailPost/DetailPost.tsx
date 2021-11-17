@@ -1,21 +1,66 @@
-import React, { useMemo, useState } from 'react';
+import React, { FC, useMemo, useState } from 'react';
 import * as S from './style';
 import Header from '../header';
 import { PREV } from '../../constance/detailPost';
 import { prevIcon, modifyIcon, deleteIcon } from '../../assets/detailPost';
 import DetailContent from './DetailContent';
 import PostDeleteModal from './PostDeleteModal';
+import { useHistory } from 'react-router';
 
-const DetailPost = () => {
+interface Props {
+  title: string;
+  description: string;
+  price: number;
+  tags: Array<string>;
+  photo: Array<string>;
+  lastModifyDate: string;
+  like: boolean;
+  count: number;
+  headCount: number;
+  currentHeadCount: number;
+  date: string;
+  userInfo: {
+    writerEmail: string;
+    writerName: string;
+  };
+  isUsedItem: boolean;
+  setFeedId: (payload: number) => void;
+  isSuccessDeletePost: boolean | undefined;
+}
+
+const DetailPost: FC<Props> = props => {
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
+  const { isSuccessDeletePost, userInfo } = props;
+  const userEmail = localStorage.getItem('email') as string;
+  const history = useHistory();
 
   const deleteBtnClickHandler = () => {
     setIsOpenModal(true);
   };
 
   const openPostDeleteModal = useMemo(() => {
-    if (isOpenModal) return <PostDeleteModal setIsOpenModal={setIsOpenModal} />;
-  }, [isOpenModal]);
+    if (isOpenModal)
+      return (
+        <PostDeleteModal
+          setIsOpenModal={setIsOpenModal}
+          isSuccessDeletePost={isSuccessDeletePost}
+        />
+      );
+  }, [isOpenModal, isSuccessDeletePost]);
+
+  const writerBtn = useMemo(() => {
+    if (userEmail === userInfo.writerEmail)
+      return (
+        <div>
+          <S.Icon src={modifyIcon} />
+          <S.Icon src={deleteIcon} onClick={deleteBtnClickHandler} />
+        </div>
+      );
+  }, [userEmail, userInfo]);
+
+  const prevBtnClickHandler = () => {
+    history.push('/post');
+  };
 
   return (
     <>
@@ -25,19 +70,12 @@ const DetailPost = () => {
           {openPostDeleteModal}
           <S.TopLine>
             <div>
-              <S.Icon src={prevIcon} />
+              <S.Icon src={prevIcon} onClick={prevBtnClickHandler} />
               <S.PrevComment>{PREV}</S.PrevComment>
             </div>
-            <div>
-              <S.Icon src={modifyIcon} />
-              <S.Icon src={deleteIcon} onClick={deleteBtnClickHandler} />
-            </div>
+            {writerBtn}
           </S.TopLine>
-          <DetailContent
-            title={'일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십'}
-            hashtage={['#인형', '#인형팝니다', '#인형', '#인형사세요', '#인형사세요']}
-            userInfo={{ writerEmail: '201107khj@dsm.hs.kr', writerName: '김혜준' }}
-          />
+          <DetailContent {...props} />
         </S.ContentBox>
       </S.DetailPost>
     </>

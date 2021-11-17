@@ -20,6 +20,7 @@ const Main = () => {
         {array.map(() => {
           return (
             <PostContent
+              feedId={1}
               medium={''}
               title={'귀여운 인형 팔아요yoy'}
               money={5000}
@@ -44,6 +45,7 @@ const Main = () => {
         {array.map(() => {
           return (
             <PostContent
+              feedId={1}
               medium={''}
               title={'귀여운 인형 팔아요yoy'}
               money={5000}
