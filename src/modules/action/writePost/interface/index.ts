@@ -1,0 +1,12 @@
+export const TITLE = 'WRITE/TITLE' as const;
+export const DESCRIPTION = 'WRITE/DESCRIPTION' as const;
+export const PRICE = 'WRITE/PRICE' as const;
+export const TAGS = 'WRITE/TAGS' as const;
+export const DATE = 'WRITE/DATE' as const;
+export const HEADCOUNT = 'WRITE/HEADCOUNT' as const;
+export const CARROT = 'WRITE/CARROT' as const;
+export const CARROT_SUCCESS = 'WRITE/CARROT_SUCCESS' as const;
+export const CARROT_FAILURE = 'WRITE/CARROTE_FAILURE' as const;
+export const GROUP = 'WRITE/GROUP' as const;
+export const GROUP_SUCCESS = 'WRITE/GROUP_SUCCESS' as const;
+export const GROUP_FAILURE = 'WRITE/GROUP_FAILURE' as const;
