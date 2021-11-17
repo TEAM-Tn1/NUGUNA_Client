@@ -2,6 +2,7 @@ import { useDispatch } from 'react-redux';
 import {
   setDate,
   setDescription,
+  setFeedId,
   setHeadCount,
   setPrice,
   setTags,
@@ -30,6 +31,9 @@ const useWritePost = () => {
     },
     setHeadCount: (payload: number) => {
       dispatch(setHeadCount(payload));
+    },
+    setFeedId: (payload: number) => {
+      dispatch(setFeedId(payload));
     },
   };
   return { state, setState };
