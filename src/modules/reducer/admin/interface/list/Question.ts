@@ -7,5 +7,4 @@ export interface AdminQuestionListState {
   isHaveNextPage: boolean;
   isSuccessGetList: boolean | undefined;
   error: error;
-  description: string;
 }

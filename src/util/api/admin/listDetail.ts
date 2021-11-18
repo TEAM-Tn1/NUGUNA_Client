@@ -1,7 +1,7 @@
 import uri from '../../../constance/uri';
 import { getRequestWithAccessToken } from '../default';
 
-export const getAdminQuestionListDetail = async (accessToken: string, question_id: number) => {
+export const getAdminQuestionDetail = async (accessToken: string, question_id: number) => {
   try {
     const request = getRequestWithAccessToken(accessToken);
     const response = await request.get(`${uri.questionList}/${question_id}`);

@@ -4,7 +4,6 @@ import Sidebar from '../sidebar/index';
 import Frame from './frame/index';
 import List from './list/index';
 import { suggestionIcon } from '../../../assets/defalut';
-import { ListDetail } from './listDetail/index';
 import { useInView } from 'react-intersection-observer';
 import { questionResponse } from '../../../models/dto/response/questionResponse';
 
@@ -65,9 +64,10 @@ const Suggestion: FC<Props> = props => {
             {list &&
               list.map((data, index) => {
                 return (
-                  <article>
+                  <article onClick={() => setDivDisplayBool(!divDisplayBool)}>
                     <List
                       openDetail={showDetail}
+                      displayBool={divDisplayBool}
                       key={index}
                       postId={data.question_id}
                       title={data.title}
@@ -75,14 +75,7 @@ const Suggestion: FC<Props> = props => {
                       writer={data.user_name}
                       date={data.created_date}
                       check={data.check}
-                    />
-                    <ListDetail
-                      closeDetail={showDetail}
-                      key={index}
-                      description={''}
-                      photo_url={''}
                       option={3}
-                      styles={divDisplayBool}
                     />
                   </article>
                 );

@@ -43,9 +43,13 @@ export type adminActionType =
   | ReturnType<typeof questionList>
   | ReturnType<typeof questionListSuccess>
   | ReturnType<typeof questionListFailure>
-  | ReturnType<typeof setPage>;
-
-export type adminListDetailType =
+  | ReturnType<typeof setPage>
   | ReturnType<typeof questionListDetail>
   | ReturnType<typeof questionListDetailSuccess>
   | ReturnType<typeof questionListDetailFailure>;
+  /* ;
+
+export type adminDetailActionType =
+  | ReturnType<typeof questionListDetail>
+  | ReturnType<typeof questionListDetailSuccess>
+  | ReturnType<typeof questionListDetailFailure>; */

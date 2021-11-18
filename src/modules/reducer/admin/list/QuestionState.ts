@@ -17,7 +17,6 @@ const initState: AdminQuestionListState = {
     message: '',
     type: '',
   },
-  description: '',
 };
 
 const adminQuestionListReducer = (
@@ -37,7 +36,6 @@ const adminQuestionListReducer = (
           list: action.payload,
           isSuccessGetList: true,
           isHaveNextPage: true,
-          description: ''
         };
       else
         return {
