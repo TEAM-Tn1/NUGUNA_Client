@@ -154,6 +154,7 @@ export const WriteBtn = styled.div`
   justify-content: center;
   align-items: center;
   background-color: white;
+  cursor: pointer;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
 `;
 
@@ -169,5 +170,66 @@ export const Loading = styled.div`
   > img {
     width: 20px;
     height: 20px;
+  }
+`;
+
+export const PostWriteModal = styled.div`
+  width: 270px;
+  height: 300px;
+  position: absolute;
+  background-color: white;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+`;
+
+export const Modal = styled.div`
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
+  position: absolute;
+  top: 0;
+  left: 0;
+`;
+
+export const ModalTitle = styled.div`
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  > p {
+    font-size: 17px;
+    font-weight: bold;
+  }
+`;
+
+export const Carrot = styled.div`
+  width: 100%;
+  height: 100px;
+  background-color: ${color.mainColor};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  > p {
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+  }
+`;
+
+export const Group = styled.div`
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  > p {
+    color: ${color.mainColor};
+    font-size: 16px;
+    font-weight: bold;
   }
 `;

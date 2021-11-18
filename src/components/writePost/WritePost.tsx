@@ -104,7 +104,7 @@ const WritePost: FC<Props> = props => {
         <PostInfo
           id={'pay'}
           title={'가격'}
-          price={price}
+          content={price}
           placeholder={'상품 구입할 가격을 입력해 주세요 (숫자만)'}
           setPrice={setPrice}
         />
@@ -115,7 +115,7 @@ const WritePost: FC<Props> = props => {
           <PostInfo
             id={'pay'}
             title={'가격'}
-            price={price}
+            content={price}
             placeholder={'상품 구입할 가격을 입력해 주세요 (숫자만)'}
             setPrice={setPrice}
             setHeadCount={setHeadCount}
@@ -125,7 +125,7 @@ const WritePost: FC<Props> = props => {
             id={'people'}
             title={'인원'}
             placeholder={'공동구매할 인원수를 입력해 주세요 (숫자만)'}
-            headCount={headCount}
+            content={headCount}
             setPrice={setPrice}
             setHeadCount={setHeadCount}
             setDate={setDate}
@@ -134,7 +134,7 @@ const WritePost: FC<Props> = props => {
             id={'date'}
             title={'기간'}
             placeholder={'공동구매 기간을 입력해 주세요 (ex: 2021-11-18)'}
-            date={date}
+            content={date}
             setPrice={setPrice}
             setHeadCount={setHeadCount}
             setDate={setDate}
