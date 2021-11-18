@@ -3,11 +3,12 @@ import * as S from './style';
 import { EXPLAINPOSTTEXTAREA, EXPLAINPOSTTITLE } from '../../constance/writePost';
 
 interface Props {
+  description: string;
   setDescription: (payload: string) => void;
 }
 
 const ExplainPost: FC<Props> = props => {
-  const { setDescription } = props;
+  const { description, setDescription } = props;
 
   const textareaChangeHandler = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setDescription(event.currentTarget.value);
@@ -23,6 +24,7 @@ const ExplainPost: FC<Props> = props => {
         placeholder={EXPLAINPOSTTEXTAREA}
         onChange={textareaChangeHandler}
         maxLength={1000}
+        defaultValue={description}
       />
     </S.ExplainPostContent>
   );

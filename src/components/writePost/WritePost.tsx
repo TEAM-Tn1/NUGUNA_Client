@@ -3,7 +3,8 @@ import * as S from './style';
 import Header from '../header';
 import { prevBtn } from '../../assets/writePost';
 import {
-  GROUPINFO,
+  GROUPTITLE,
+  MODIFYBTN,
   PAYINPUT,
   PAYTITLE,
   POSTTITLEANDHASHTAG,
@@ -12,10 +13,17 @@ import {
 import Picture from './Picture';
 import ExplainPost from './ExplainPost';
 import PostInfo from './PostInfo';
-import { useLocation } from 'react-router';
+import { useHistory, useLocation } from 'react-router';
 import { CHECKBTN } from '../../constance/writePost';
 import { useDispatch } from 'react-redux';
-import { CARROT, GROUP, PICTURE } from '../../modules/action/writePost/interface';
+import {
+  CARROT,
+  GROUP,
+  MODIFY_CARROT,
+  MODIFY_GROUP,
+  MODIFY_HASHTAG,
+  PICTURE,
+} from '../../modules/action/writePost/interface';
 
 interface Props {
   title: string;
@@ -25,7 +33,11 @@ interface Props {
   date: string;
   headCount: number;
   img: Array<File>;
+  postImg: Array<string>;
   isSuccessSavePost: boolean | undefined;
+  isSuccessSavePicture: boolean | undefined;
+  isSuccessModifyPost: boolean | undefined;
+  isSuccessModifyHashtag: boolean | undefined;
   setTitle: (payload: string) => void;
   setDescription: (payload: string) => void;
   setPrice: (payload: number) => void;
@@ -40,11 +52,15 @@ const WritePost: FC<Props> = props => {
     title,
     description,
     price,
+    postImg,
     tags,
     date,
     img,
     headCount,
     isSuccessSavePost,
+    isSuccessModifyPost,
+    isSuccessSavePicture,
+    isSuccessModifyHashtag,
     setTitle,
     setDescription,
     setPrice,
@@ -55,37 +71,78 @@ const WritePost: FC<Props> = props => {
   } = props;
   const type = useLocation().pathname.slice(12);
   const dispatch = useDispatch();
+  const history = useHistory();
   const [disabled, setDisabled] = useState<boolean>(true);
+  const [isModify, setIsModify] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (postImg.length !== 0) setIsModify(true);
+    else setIsModify(false);
+  }, [postImg]);
 
   useEffect(() => {
     if (type === 'trade') {
-      if (title !== '' && description !== '' && img.length !== 0) setDisabled(true);
+      if (title !== '' && description !== '' && (img.length !== 0 || postImg.length !== 0))
+        setDisabled(true);
       else setDisabled(false);
     } else {
-      if (title !== '' && description !== '' && date !== '' && headCount !== 0 && img.length !== 0)
+      if (
+        title !== '' &&
+        description !== '' &&
+        date !== '' &&
+        headCount !== 0 &&
+        (img.length !== 0 || postImg.length !== 0)
+      )
         setDisabled(true);
       else setDisabled(false);
     }
-  }, [title, description, date, headCount, img]);
+  }, [title, description, date, headCount, img, postImg]);
 
   const postInfo = useMemo(() => {
     if (type === 'trade')
-      return <PostInfo id={'pay'} title={PAYTITLE} placeholder={PAYINPUT} setPrice={setPrice} />;
-    else if (type === 'group')
-      return GROUPINFO.map(data => {
-        return (
+      return (
+        <PostInfo
+          id={'pay'}
+          title={'가격'}
+          price={price}
+          placeholder={'상품 구입할 가격을 입력해 주세요 (숫자만)'}
+          setPrice={setPrice}
+        />
+      );
+    else if (type === 'group') {
+      return (
+        <>
           <PostInfo
-            key={data.id}
-            id={data.id}
-            title={data.content}
-            placeholder={data.placeholder}
+            id={'pay'}
+            title={'가격'}
+            price={price}
+            placeholder={'상품 구입할 가격을 입력해 주세요 (숫자만)'}
             setPrice={setPrice}
             setHeadCount={setHeadCount}
             setDate={setDate}
           />
-        );
-      });
-  }, [type]);
+          <PostInfo
+            id={'people'}
+            title={'인원'}
+            placeholder={'공동구매할 인원수를 입력해 주세요 (숫자만)'}
+            headCount={headCount}
+            setPrice={setPrice}
+            setHeadCount={setHeadCount}
+            setDate={setDate}
+          />
+          <PostInfo
+            id={'date'}
+            title={'기간'}
+            placeholder={'공동구매 기간을 입력해 주세요 (ex: 2021-11-18)'}
+            date={date}
+            setPrice={setPrice}
+            setHeadCount={setHeadCount}
+            setDate={setDate}
+          />
+        </>
+      );
+    }
+  }, [type, price, date, headCount]);
 
   const titleInputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(event.currentTarget.value);
@@ -99,9 +156,38 @@ const WritePost: FC<Props> = props => {
     if (isSuccessSavePost) dispatch({ type: PICTURE });
   }, [isSuccessSavePost]);
 
+  useEffect(() => {
+    if (isSuccessSavePicture) {
+      alert('게시글 작성을 성공하였습니다!');
+      history.push('/post');
+      window.location.reload();
+    } else if (isSuccessSavePost === false) alert('게시글 작성을 실패하였습니다.');
+  }, [isSuccessSavePicture]);
+
+  useEffect(() => {
+    if (isSuccessModifyPost) dispatch({ type: MODIFY_HASHTAG });
+  }, [isSuccessModifyPost]);
+
+  useEffect(() => {
+    if (isSuccessModifyHashtag) {
+      alert('게시글 수정을 성공하였습니다!');
+      history.push('/post');
+      window.location.reload();
+    } else if (isSuccessModifyHashtag === false) alert('게시글 수정을 실패하였습니다.');
+  }, [isSuccessModifyHashtag]);
+
   const checkBtnClickHandler = () => {
-    if (type === 'trade') dispatch({ type: CARROT });
-    else if (type === 'group') dispatch({ type: GROUP });
+    if (isModify) {
+      if (type === 'trade') dispatch({ type: MODIFY_CARROT });
+      else if (type === 'group') dispatch({ type: MODIFY_GROUP });
+    } else {
+      if (type === 'trade') dispatch({ type: CARROT });
+      else if (type === 'group') dispatch({ type: GROUP });
+    }
+  };
+
+  const prevBtnClickHandler = () => {
+    history.push('/post');
   };
 
   return (
@@ -110,10 +196,10 @@ const WritePost: FC<Props> = props => {
       <S.WritePost>
         <S.ContentBox>
           <S.PrevLine>
-            <img src={prevBtn} alt='prev' />
+            <img src={prevBtn} alt='prev' onClick={prevBtnClickHandler} />
             <p>돌아가기</p>
           </S.PrevLine>
-          <S.Title>{TRADETITLE}</S.Title>
+          <S.Title>{type === 'trade' ? TRADETITLE : GROUPTITLE}</S.Title>
           {POSTTITLEANDHASHTAG.map(data => {
             return (
               <S.TitleAndInput isHashtag={data.id === 'hashtag' ? true : false}>
@@ -126,15 +212,16 @@ const WritePost: FC<Props> = props => {
                   onChange={
                     data.id === 'hashtag' ? hashtagInputChangeHandler : titleInputChangeHandler
                   }
+                  defaultValue={data.id === 'hashtag' ? tags : title}
                 />
               </S.TitleAndInput>
             );
           })}
-          <Picture img={img} setImg={setImg} />
-          <ExplainPost setDescription={setDescription} />
+          <Picture img={img} setImg={setImg} postImg={postImg} />
+          <ExplainPost description={description} setDescription={setDescription} />
           {postInfo}
           <S.CheckBtn isClick={disabled} onClick={!disabled ? () => {} : checkBtnClickHandler}>
-            <p>{CHECKBTN}</p>
+            <p>{isModify ? MODIFYBTN : CHECKBTN}</p>
           </S.CheckBtn>
         </S.ContentBox>
       </S.WritePost>
