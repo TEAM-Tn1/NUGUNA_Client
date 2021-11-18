@@ -1,15 +1,16 @@
 import React, { FC, useState } from 'react';
 import * as S from './style';
-import { PCITUREEXPLAIN, PICTURETITLE } from '../../constance/writePost';
+import { NOMODIFYPICTURE, PCITUREEXPLAIN, PICTURETITLE } from '../../constance/writePost';
 import { plus } from '../../assets/writePost';
 
 interface Props {
   img: Array<File>;
+  postImg: Array<string>;
   setImg: (payload: Array<File>) => void;
 }
 
 const Picture: FC<Props> = props => {
-  const { img, setImg } = props;
+  const { img, setImg, postImg } = props;
   const [imgUrl, setImgUrl] = useState<Array<string>>([]);
 
   const imgChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,11 +28,13 @@ const Picture: FC<Props> = props => {
         {PICTURETITLE}
         <span>*</span>
       </S.SubTitle>
-      <S.PictureExplain>{PCITUREEXPLAIN}</S.PictureExplain>
+      <S.PictureExplain>{postImg.length === 0 ? PCITUREEXPLAIN : NOMODIFYPICTURE}</S.PictureExplain>
       <div>
-        <S.PicturePlusBtn htmlFor='imgs'>
-          <img src={plus} alt='plus' />
-        </S.PicturePlusBtn>
+        {postImg.length === 0 && (
+          <S.PicturePlusBtn htmlFor='imgs'>
+            <img src={plus} alt='plus' />
+          </S.PicturePlusBtn>
+        )}
         <input
           type='file'
           id='imgs'
@@ -39,8 +42,11 @@ const Picture: FC<Props> = props => {
           style={{ display: 'none' }}
           onChange={imgChangeHandler}
         />
-        {imgUrl.map(data => {
-          return <S.PreviewImg src={data} />;
+        {postImg.map((data, i) => {
+          return <S.PreviewImg src={data} key={i} />;
+        })}
+        {imgUrl.map((data, i) => {
+          return <S.PreviewImg src={data} key={i} />;
         })}
       </div>
     </S.PictureContent>

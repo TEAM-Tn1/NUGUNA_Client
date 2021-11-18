@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import * as S from './style';
 import Header from '../header';
 import Footer from '../footer';
@@ -6,6 +6,7 @@ import { POST_TITLE, SUBTITLE } from '../../constance/post';
 import PostList from './PostList';
 import { write } from '../../assets/post';
 import { postListType } from '../../models/dto/response/postResponse';
+import PostWriteModal from './PostWriteModal';
 
 interface Props {
   postList: Array<postListType>;
@@ -33,6 +34,7 @@ const Post: FC<Props> = props => {
     setPage,
     setTypeClick,
   } = props;
+  const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
 
   const subtitleClickHandler = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const dataId = event.currentTarget.dataset.id;
@@ -71,11 +73,16 @@ const Post: FC<Props> = props => {
     }
   };
 
+  const writeBtnClickHandler = () => {
+    setIsOpenModal(true);
+  };
+
   return (
     <>
       <Header />
       <S.Post>
         <S.ContentBox>
+          {isOpenModal && <PostWriteModal />}
           <S.TitleLine>
             <p>{POST_TITLE}</p>
             {SUBTITLE.map(data => {
@@ -99,7 +106,7 @@ const Post: FC<Props> = props => {
             order={order}
             isHaveNextPage={isHaveNextPage}
           />
-          <S.WriteBtn>
+          <S.WriteBtn onClick={writeBtnClickHandler}>
             <S.WriteIcon src={write} />
           </S.WriteBtn>
         </S.ContentBox>

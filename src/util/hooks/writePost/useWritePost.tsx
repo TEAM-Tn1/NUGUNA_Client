@@ -2,6 +2,7 @@ import { useDispatch } from 'react-redux';
 import {
   setDate,
   setDescription,
+  setFeedId,
   setHeadCount,
   setImg,
   setPrice,
@@ -34,6 +35,9 @@ const useWritePost = () => {
     },
     setImg: (payload: Array<File>) => {
       dispatch(setImg(payload));
+    },
+    setFeedId: (payload: number) => {
+      dispatch(setFeedId(payload));
     },
   };
   return { state, setState };

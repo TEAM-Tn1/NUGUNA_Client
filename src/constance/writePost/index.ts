@@ -16,6 +16,7 @@ export const POSTTITLEANDHASHTAG = [
 ];
 export const PICTURETITLE = '사진';
 export const PCITUREEXPLAIN = '상품 사진을 등록해 주세요 (최대 5장)';
+export const NOMODIFYPICTURE = '상품 사진은 수정할 수 없습니다.';
 export const EXPLAINPOSTTITLE = '설명';
 export const EXPLAINPOSTTEXTAREA = '상품 소개글을 써주세요! (최대 1000자)';
 export const PAYTITLE = '가격';
@@ -31,3 +32,4 @@ export const GROUPINFO = [
 ];
 
 export const CHECKBTN = '게시물 등록하기';
+export const MODIFYBTN = '게시물 수정하기';
