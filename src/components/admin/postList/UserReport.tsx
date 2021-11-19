@@ -4,9 +4,9 @@ import Sidebar from '../sidebar/index';
 import Frame from './frame/index';
 import List from './list/index';
 import { reportIcon } from '../../../assets/defalut';
-import { ListDetail } from './listDetail/index';
 import { reportUserResponse } from '../../../models/dto/response/reportUserResponse';
 import { useInView } from 'react-intersection-observer';
+
 interface Props {
   setPage: (payload: number) => void;
   page: number;
@@ -39,11 +39,6 @@ const UserReport: FC<Props> = props => {
     else setLoading(true);
   }, [isHaveNextPage]);
 
-  const [divDisplayBool, setDivDisplayBool] = useState<boolean>(false);
-  const showDetail = () => {
-    setDivDisplayBool(!divDisplayBool);
-  };
-
   return (
     <S.Wrapper>
       <Sidebar />
@@ -66,7 +61,6 @@ const UserReport: FC<Props> = props => {
                 return (
                   <article>
                     <List
-                      openDetail={showDetail}
                       key={index}
                       postId={data.report_id}
                       title={data.title}
@@ -74,14 +68,7 @@ const UserReport: FC<Props> = props => {
                       writer={data.reporter_name}
                       date={data.created_date}
                       check={data.check}
-                    ></List>
-                    <ListDetail
-                      closeDetail={showDetail}
-                      key={index - index}
-                      description={'description'}
-                      photo_url={'photo_url'}
                       option={1}
-                      styles={divDisplayBool}
                     />
                   </article>
                 );

@@ -23,7 +23,7 @@ const reportPostListGetSaga = function* (): any {
     if (error.response?.data) {
       yield put({
         type: FAILURE,
-        payload: { ...error.response.data, type: actionType },
+        payload: { ...error.response.data, type: REPORT_POST_LIST },
       });
     } else {
       yield put({

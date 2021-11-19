@@ -5,8 +5,6 @@ import { ListDetail } from '../listDetail';
 import * as S from './style/index';
 
 interface listProps {
-  openDetail: () => void;
-  displayBool: boolean;
   postId: number | string;
   title: string;
   target: string;
@@ -16,24 +14,14 @@ interface listProps {
   option: number;
 }
 
-const List = ({
-  openDetail,
-  displayBool,
-  postId,
-  title,
-  target,
-  writer,
-  date,
-  check,
-  option,
-}: listProps) => {
+const List = ({ postId, title, target, writer, date, check, option }: listProps) => {
   const [color, setColor] = useState<string>('');
   useEffect(() => {
     check ? setColor('#00C02A') : setColor('#808080');
   }, []);
 
   const [divDisplayBool, setDivDisplayBool] = useState<boolean>(false);
-  const showDetail = () => {
+  const openDetail = () => {
     setDivDisplayBool(!divDisplayBool);
   };
   const dateMonth = date.slice(5, 7);
@@ -58,11 +46,12 @@ const List = ({
         </S.MainContest>
       </article>
       <ListDetail
-        closeDetail={showDetail}
+        id={postId}
+        closeDetail={() => setDivDisplayBool}
         description={''}
         photo_url={''}
         option={option}
-        styles={displayBool}
+        styles={divDisplayBool}
       />
     </>
   );

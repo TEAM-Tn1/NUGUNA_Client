@@ -10,7 +10,7 @@ enum uri {
   report = '/feed/report',
   like = '/like',
   tag = '/feed/tag',
-  reportUserList = '/admin/report/user',
+  reportUserList = '/admin/report/users',
   reportPostList = '/admin/report/post',
   questionList = '/admin/question',
 }

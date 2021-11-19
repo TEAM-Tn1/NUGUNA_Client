@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { FC, useEffect, useState } from 'react';
 import { positive, negative } from '../../../../assets/admin';
 import * as S from './style/index';
@@ -9,9 +8,17 @@ interface detailProps {
   photo_url: string;
   option: number;
   styles: boolean;
+  id: number | string;
 }
 
-const ListDetail: FC<detailProps> = ({ closeDetail, description, photo_url, option, styles }) => {
+const ListDetail: FC<detailProps> = ({
+  closeDetail,
+  description,
+  photo_url,
+  option,
+  styles,
+  id,
+}) => {
   const [whether, setWhether] = useState<boolean>(true);
 
   const [displayOpcity, setDisplayOpcity] = useState<number>(1);
@@ -20,6 +27,7 @@ const ListDetail: FC<detailProps> = ({ closeDetail, description, photo_url, opti
   const [named, setNamed] = useState<string>('');
   const [dateDisplay, setDateDisplay] = useState<string>('');
   const [divDisplayAnswer, setDivDisplayAnswer] = useState<string>('');
+  console.log(id);
 
   useEffect(() => {
     switch (option) {
@@ -45,6 +53,8 @@ const ListDetail: FC<detailProps> = ({ closeDetail, description, photo_url, opti
     whether ? setDisplayOpcity(1) : setDisplayOpcity(0.3);
     whether ? setDisplayCilck('auto') : setDisplayCilck('none');
   }, [whether]);
+
+  useEffect(() => {}, []);
 
   return (
     <S.Detail style={{ display: styles ? 'block' : 'none' }}>

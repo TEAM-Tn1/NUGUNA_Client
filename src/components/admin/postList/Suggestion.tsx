@@ -39,11 +39,6 @@ const Suggestion: FC<Props> = props => {
     else setLoading(true);
   }, [isHaveNextPage]);
 
-  const [divDisplayBool, setDivDisplayBool] = useState<boolean>(false);
-  const showDetail = () => {
-    setDivDisplayBool(!divDisplayBool);
-  };
-
   return (
     <S.Wrapper>
       <Sidebar />
@@ -55,8 +50,8 @@ const Suggestion: FC<Props> = props => {
             <h3>제목</h3>
             <div>
               <p></p>
-              <p>신고자</p>
-              <p>신고일</p>
+              <p>작성자</p>
+              <p>작성일</p>
               <p>확인 여부</p>
             </div>
           </S.ChartTitle>
@@ -64,10 +59,8 @@ const Suggestion: FC<Props> = props => {
             {list &&
               list.map((data, index) => {
                 return (
-                  <article onClick={() => setDivDisplayBool(!divDisplayBool)}>
+                  <article>
                     <List
-                      openDetail={showDetail}
-                      displayBool={divDisplayBool}
                       key={index}
                       postId={data.question_id}
                       title={data.title}
