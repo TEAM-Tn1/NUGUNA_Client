@@ -11,7 +11,7 @@ enum uri {
   like = '/like',
   tag = '/feed/tag',
   reportUserList = '/admin/report/users',
-  reportPostList = '/admin/report/post',
+  reportPostList = '/admin/report/feed',
   questionList = '/admin/question',
 }
 
