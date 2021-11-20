@@ -41,7 +41,7 @@ const Information = () => {
           push('/main');
         })
         .catch(err => {
-          console.log(err, '12312');
+          throw err;
         });
     }
   };
