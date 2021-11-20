@@ -4,6 +4,7 @@ import postReducer from './post';
 import { adminReportPostListReducer, adminReportUserListReducer } from './admin';
 import adminQuestionListReducer from './admin/list/QuestionState';
 import writePostReducer from './writerPost';
+import chatListReducer from './chatList';
 
 const rootReducer = combineReducers({
   post: postReducer,
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   adminReportPostList: adminReportPostListReducer,
   adminReportUserList: adminReportUserListReducer,
   writePost: writePostReducer,
+  chatList: chatListReducer,
 });
 
 export type reducerType = ReturnType<typeof rootReducer>;
