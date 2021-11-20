@@ -10,6 +10,7 @@ enum uri {
   report = '/feed/report',
   like = '/like',
   tag = '/feed/tags',
+  chatCarrot = '/chat/carrot',
   reportUserList = '/admin/report/user',
   reportPostList = '/admin/report/post',
   questionList = '/admin/question',
