@@ -7,7 +7,7 @@ import { bellRing } from '../../assets/chat';
 import TradeChatList from './TradeChatList';
 import GroupChatList from './GroupChatList';
 import { useDispatch } from 'react-redux';
-import { CARROT_CHAT } from '../../modules/action/chatList/interface';
+import { CARROT_CHAT, GROUP_CHAT } from '../../modules/action/chatList/interface';
 import { chatListResponseType } from '../../models/dto/response/chatListResponse';
 
 interface Props {
@@ -30,12 +30,13 @@ const ChatList: FC<Props> = props => {
 
   const groupBtnClickEvent = () => {
     setIsClick({ trade: false, group: true });
+    dispatch({ type: GROUP_CHAT });
   };
 
   const chatLists = useMemo(() => {
     if (isClick.trade) return <TradeChatList chatList={chatList} />;
-    else if (isClick.group) return <GroupChatList />;
-  }, [isClick]);
+    else if (isClick.group) return <GroupChatList chatList={chatList} />;
+  }, [isClick, chatList]);
 
   return (
     <>
