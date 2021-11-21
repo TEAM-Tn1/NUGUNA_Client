@@ -9,3 +9,12 @@ export const carrotChatList = async (accessToken: string) => {
     throw error;
   }
 };
+
+export const groupChatList = async (accessToken: string) => {
+  try {
+    const request = getRequestWithAccessToken(accessToken);
+    return await request.get(uri.chatGroup);
+  } catch (error) {
+    throw error;
+  }
+};
