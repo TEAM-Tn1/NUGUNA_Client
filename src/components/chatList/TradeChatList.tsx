@@ -21,6 +21,8 @@ const TradeChatList: FC<Props> = props => {
               lastMessage={data.last_message}
               photoUrl={data.photo_url}
               key={data.room_id}
+              roomId={data.room_id}
+              type={'trade'}
             />
           );
         })}

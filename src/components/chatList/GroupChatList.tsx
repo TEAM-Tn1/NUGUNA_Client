@@ -1,22 +1,32 @@
-import React from 'react';
+import React, { FC, useEffect } from 'react';
 import * as S from './style';
-import { GROUPDUMMY } from '../../constance/chatList';
 import ChatListContent from './ChatListContent';
+import { chatListResponseType } from '../../models/dto/response/chatListResponse';
 
-const GroupChatList = () => {
+interface Props {
+  chatList: Array<chatListResponseType>;
+}
+
+const GroupChatList: FC<Props> = props => {
+  const { chatList } = props;
+
   return (
     <S.ListContent>
-      {GROUPDUMMY.map(data => {
-        return (
-          <ChatListContent
-            roomName={data.roomName}
-            lastMessage={data.lastMessage}
-            photoUrl={data.photoUrl}
-            key={data.roomId}
-            count={data.count}
-          />
-        );
-      })}
+      {chatList.length === 0 && <S.NoChatList>채팅이 없습니다.</S.NoChatList>}
+      {chatList &&
+        chatList.map(data => {
+          return (
+            <ChatListContent
+              roomName={data.room_name}
+              lastMessage={data.last_message}
+              photoUrl={data.photo_url}
+              key={data.room_id}
+              roomId={data.room_id}
+              count={data.count}
+              type={'group'}
+            />
+          );
+        })}
     </S.ListContent>
   );
 };
