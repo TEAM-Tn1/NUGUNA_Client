@@ -91,10 +91,9 @@ export const ChatContent = styled.p`
   font-size: 10px;
 `;
 
-export const ChatImg = styled.div`
+export const ChatImg = styled.img`
   width: 60px;
   height: 60px;
-  background-color: ${color.mainColor};
   border-radius: 35px;
 `;
 
@@ -117,4 +116,10 @@ export const ListContent = styled.div`
   width: 100%;
   height: calc(100% - 102px);
   overflow-y: auto;
+`;
+
+export const NoChatList = styled.p`
+  font-size: 15px;
+  text-align: center;
+  margin-top: 60px;
 `;
