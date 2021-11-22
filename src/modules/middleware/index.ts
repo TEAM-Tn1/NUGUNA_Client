@@ -8,5 +8,13 @@ import adminReportPostSaga from './admin/list/ReportPost';
 import adminReportUserSaga from './admin/list/ReportUser';
 
 export default function* rootSaga() {
-  yield all([post(), detailPost(), adminListSaga(), writePostSaga(), chatListSaga()]);
+  yield all([
+    post(),
+    detailPost(),
+    writePostSaga(),
+    chatListSaga(),
+    adminQuestionSaga(),
+    adminReportPostSaga(),
+    adminReportUserSaga(),
+  ]);
 }
