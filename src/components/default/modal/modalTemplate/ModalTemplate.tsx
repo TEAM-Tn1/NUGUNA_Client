@@ -1,22 +1,23 @@
+import axios from 'axios';
 import React, { FC, useState } from 'react';
 import { imageUpload } from '../../../../assets/modal';
 import mypage from '../../../../util/api/mypage';
+import userInfo from '../../../../util/api/userInfo';
 import * as S from './style';
 
 interface Props {
   subject: string;
   isShowModal: boolean;
   closeModal: () => void;
-  isReport?: boolean;
+  email?: string;
 }
 
-const ModalTemplate: FC<Props> = ({ subject, isShowModal, closeModal, isReport }) => {
+const ModalTemplate: FC<Props> = ({ subject, isShowModal, closeModal, email }) => {
   const [inputs, setInputs] = useState({
     title: '',
     content: '',
   });
   const { title, content } = inputs;
-  const { registerSuggestion } = mypage;
 
   const onChange = (e: any) => {
     const { value, name } = e.target;
@@ -31,11 +32,26 @@ const ModalTemplate: FC<Props> = ({ subject, isShowModal, closeModal, isReport }
       alert('빈칸이 있는지 확인해주세요.');
       return;
     }
-    if (isReport) {
-    } else {
-      registerSuggestion(title, content)
+    if (email) {
+      userInfo
+        .reportUser(title, content, email)
         .then(res => {
-          alert('문의 사항이 등록되었습니다.');
+          console.log(res);
+          alert('신고 내용이 접수되었습니다.');
+          setInputs({
+            title: '',
+            content: '',
+          });
+          closeModal();
+        })
+        .catch(err => {
+          throw err;
+        });
+    } else {
+      mypage
+        .registerSuggestion(title, content)
+        .then(res => {
+          alert('문의 사항이 접수되었습니다.');
           setInputs({
             title: '',
             content: '',
@@ -53,7 +69,7 @@ const ModalTemplate: FC<Props> = ({ subject, isShowModal, closeModal, isReport }
         <S.Wrapper>
           <S.ModalContainer>
             <S.Title>{subject}</S.Title>
-            <S.ContentBox isReport={isReport}>
+            <S.ContentBox email={email}>
               <input
                 name='title'
                 value={title}
@@ -68,10 +84,13 @@ const ModalTemplate: FC<Props> = ({ subject, isShowModal, closeModal, isReport }
                 placeholder='내용을 1000자 이하로 작성해주세요'
                 maxLength={1000}
               />
-              {isReport && (
+              {email && (
                 <S.ImageBox>
                   <span>사진은 최대 1장만 가능합니다.</span>
-                  <img src={imageUpload} alt='' />
+                  <label htmlFor='upload'>
+                    <img src={imageUpload} alt='' />
+                  </label>
+                  <input id='upload' type='file' />
                 </S.ImageBox>
               )}
             </S.ContentBox>
