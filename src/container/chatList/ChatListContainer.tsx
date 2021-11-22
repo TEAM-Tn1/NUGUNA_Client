@@ -1,4 +1,4 @@
-import React, { FC, Suspense, useEffect, useRef } from 'react';
+import React, { FC, Suspense, useEffect } from 'react';
 import ChatList from '../../components/chatList';
 import socketIO from 'socket.io-client';
 import useChatList from '../../util/hooks/chatList';
