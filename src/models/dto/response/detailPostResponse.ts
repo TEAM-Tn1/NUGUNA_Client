@@ -17,3 +17,14 @@ export type detailPostResponse = {
   };
   used_item: boolean;
 };
+
+export type writeDetailPostResponse = {
+  feed_id: number;
+  title: string;
+  tags: Array<string>;
+  photo: Array<string>;
+  description: string;
+  price: number;
+  date: string;
+  head_count: number;
+};

@@ -12,6 +12,7 @@ const DetailPostContainer: FC = () => {
 
   useEffect(() => {
     setState.setFeedId(feedId);
+    localStorage.setItem('feed_id', String(feedId));
     dispatch({ type: GET_POST });
   }, [feedId]);
 

@@ -1,4 +1,5 @@
 import React, { FC, useMemo } from 'react';
+import { useHistory } from 'react-router';
 import { people } from '../../assets/chat';
 import * as S from './style';
 
@@ -6,11 +7,14 @@ interface Props {
   roomName: string;
   lastMessage: string;
   photoUrl: string;
+  roomId: number;
   count?: number;
+  type: string;
 }
 
 const ChatListContent: FC<Props> = props => {
-  const { roomName, lastMessage, count } = props;
+  const { roomName, lastMessage, count, photoUrl, roomId, type } = props;
+  const history = useHistory();
 
   const showPeople = useMemo(() => {
     if (count)
@@ -22,9 +26,14 @@ const ChatListContent: FC<Props> = props => {
       );
   }, [count]);
 
+  const chatListClickHandler = () => {
+    if (type === 'trade') history.push(`/chat/trade/${roomId}`);
+    else if (type === 'group') history.push(`/chat/group/${roomId}`);
+  };
+
   return (
-    <S.ChatListContent>
-      <S.ChatImg />
+    <S.ChatListContent onClick={chatListClickHandler}>
+      <S.ChatImg src={photoUrl} />
       <div>
         {showPeople}
         <S.ChatTitle>{roomName}</S.ChatTitle>

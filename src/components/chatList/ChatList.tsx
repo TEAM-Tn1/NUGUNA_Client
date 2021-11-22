@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { FC, useEffect, useMemo, useState } from 'react';
 import * as S from './style';
 import Header from '../header';
 import Footer from '../footer';
@@ -6,22 +6,37 @@ import { ALRAMTITLE, GROUPTOGGLE, TRADETOGGLE } from '../../constance/chatList';
 import { bellRing } from '../../assets/chat';
 import TradeChatList from './TradeChatList';
 import GroupChatList from './GroupChatList';
+import { useDispatch } from 'react-redux';
+import { CARROT_CHAT, GROUP_CHAT } from '../../modules/action/chatList/interface';
+import { chatListResponseType } from '../../models/dto/response/chatListResponse';
 
-const ChatList = () => {
+interface Props {
+  chatList: Array<chatListResponseType>;
+}
+
+const ChatList: FC<Props> = props => {
   const [isClick, setIsClick] = useState({ trade: true, group: false });
+  const { chatList } = props;
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch({ type: CARROT_CHAT });
+  }, []);
 
   const tradeBtnClickEvent = () => {
     setIsClick({ trade: true, group: false });
+    dispatch({ type: CARROT_CHAT });
   };
 
   const groupBtnClickEvent = () => {
     setIsClick({ trade: false, group: true });
+    dispatch({ type: GROUP_CHAT });
   };
 
   const chatLists = useMemo(() => {
-    if (isClick.trade) return <TradeChatList />;
-    else if (isClick.group) return <GroupChatList />;
-  }, [isClick]);
+    if (isClick.trade) return <TradeChatList chatList={chatList} />;
+    else if (isClick.group) return <GroupChatList chatList={chatList} />;
+  }, [isClick, chatList]);
 
   return (
     <>

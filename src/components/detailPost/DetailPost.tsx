@@ -30,7 +30,7 @@ interface Props {
 
 const DetailPost: FC<Props> = props => {
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
-  const { isSuccessDeletePost, userInfo } = props;
+  const { isSuccessDeletePost, userInfo, date, headCount } = props;
   const userEmail = localStorage.getItem('email') as string;
   const history = useHistory();
 
@@ -48,11 +48,16 @@ const DetailPost: FC<Props> = props => {
       );
   }, [isOpenModal, isSuccessDeletePost]);
 
+  const modifyBtnClickHandler = () => {
+    if (!headCount && !date) history.push('/write/post/trade');
+    else if (headCount && date) history.push('/write/post/group');
+  };
+
   const writerBtn = useMemo(() => {
     if (userEmail === userInfo.writerEmail)
       return (
         <div>
-          <S.Icon src={modifyIcon} />
+          <S.Icon src={modifyIcon} onClick={modifyBtnClickHandler} />
           <S.Icon src={deleteIcon} onClick={deleteBtnClickHandler} />
         </div>
       );

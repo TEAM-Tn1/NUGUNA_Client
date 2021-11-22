@@ -1,21 +1,31 @@
-import React from 'react';
+import React, { FC } from 'react';
 import * as S from './style';
-import { TRADEDUMMY } from '../../constance/chatList';
 import ChatListContent from './ChatListContent';
+import { chatListResponseType } from '../../models/dto/response/chatListResponse';
 
-const TradeChatList = () => {
+interface Props {
+  chatList: Array<chatListResponseType>;
+}
+
+const TradeChatList: FC<Props> = props => {
+  const { chatList } = props;
+
   return (
     <S.ListContent>
-      {TRADEDUMMY.map(data => {
-        return (
-          <ChatListContent
-            roomName={data.roomName}
-            lastMessage={data.lastMessage}
-            photoUrl={data.photoUrl}
-            key={data.roomId}
-          />
-        );
-      })}
+      {chatList.length === 0 && <S.NoChatList>채팅이 없습니다.</S.NoChatList>}
+      {chatList &&
+        chatList.map(data => {
+          return (
+            <ChatListContent
+              roomName={data.room_name}
+              lastMessage={data.last_message}
+              photoUrl={data.photo_url}
+              key={data.room_id}
+              roomId={data.room_id}
+              type={'trade'}
+            />
+          );
+        })}
     </S.ListContent>
   );
 };
