@@ -48,8 +48,6 @@ const List = ({ postId, title, target, writer, date, check, option }: listProps)
       <ListDetail
         id={postId}
         closeDetail={() => setDivDisplayBool}
-        description={''}
-        photo_url={''}
         option={option}
         styles={divDisplayBool}
       />
