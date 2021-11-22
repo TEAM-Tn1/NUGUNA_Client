@@ -4,11 +4,8 @@ import Sidebar from '../sidebar/index';
 import Frame from './frame/index';
 import List from './list/index';
 import { reportIcon } from '../../../assets/defalut';
-import { ListDetail } from './listDetail/index';
 import { reportUserResponse } from '../../../models/dto/response/reportUserResponse';
 import { useInView } from 'react-intersection-observer';
-import { REPORT_USER_LIST } from '../../../modules/action/admin/interface';
-import { useDispatch } from 'react-redux';
 
 interface Props {
   setPage: (payload: number) => void;
@@ -21,18 +18,12 @@ const UserReport: FC<Props> = props => {
   const { setPage, page, isHaveNextPage, list } = props;
   const [loading, setLoading] = useState<boolean>(false);
   const { inView } = useInView();
-  const dispatch = useDispatch();
 
   useEffect(() => {
     setLoading(false);
   }, []);
 
   useEffect(() => {
-    dispatch({ type: REPORT_USER_LIST });
-  });
-
-  /*   useEffect(() => {
-    console.log(list);
     if (list.length !== 0) {
       if (inView && !loading) {
         setLoading(true);
@@ -41,13 +32,12 @@ const UserReport: FC<Props> = props => {
         }
       }
     }
-  }, [inView]); */
+  }, [inView]);
 
-  const [divDisplayBool, setDivDisplayBool] = useState<boolean>(false);
-
-  const showDetail = () => {
-    setDivDisplayBool(!divDisplayBool);
-  };
+  useEffect(() => {
+    if (isHaveNextPage) setLoading(false);
+    else setLoading(true);
+  }, [isHaveNextPage]);
 
   return (
     <S.Wrapper>
@@ -71,7 +61,6 @@ const UserReport: FC<Props> = props => {
                 return (
                   <article>
                     <List
-                      openDetail={showDetail}
                       key={index}
                       postId={data.report_id}
                       title={data.title}
@@ -79,14 +68,7 @@ const UserReport: FC<Props> = props => {
                       writer={data.reporter_name}
                       date={data.created_date}
                       check={data.check}
-                    ></List>
-                    <ListDetail
-                      closeDetail={showDetail}
-                      key={index - index}
-                      description={'description'}
-                      photo_url={'photo_url'}
                       option={1}
-                      styles={divDisplayBool}
                     />
                   </article>
                 );

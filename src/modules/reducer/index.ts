@@ -1,10 +1,13 @@
 import { combineReducers } from 'redux';
 import detailPostReducer from './detailPost';
 import postReducer from './post';
-import { adminReportPostListReducer, adminReportUserListReducer } from './admin';
-import adminQuestionListReducer from './admin/list/QuestionState';
 import writePostReducer from './writerPost';
 import chatListReducer from './chatList';
+import {
+  adminQuestionListReducer,
+  adminReportPostListReducer,
+  adminReportUserListReducer,
+} from './admin';
 
 const rootReducer = combineReducers({
   post: postReducer,

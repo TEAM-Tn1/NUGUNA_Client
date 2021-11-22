@@ -4,11 +4,8 @@ import Sidebar from '../sidebar/index';
 import Frame from './frame/index';
 import List from './list/index';
 import { reportIcon } from '../../../assets/defalut';
-import { ListDetail } from './listDetail/index';
 import { reportPostResponse } from '../../../models/dto/response/reportPostResponse';
 import { useInView } from 'react-intersection-observer';
-import { useDispatch } from 'react-redux';
-import { REPORT_POST_LIST } from '../../../modules/action/admin/interface';
 
 interface Props {
   setPage: (payload: number) => void;
@@ -21,18 +18,12 @@ const PostReport: FC<Props> = props => {
   const { setPage, page, isHaveNextPage, list } = props;
   const [loading, setLoading] = useState<boolean>(false);
   const { inView } = useInView();
-  const dispatch = useDispatch();
 
   useEffect(() => {
     setLoading(false);
   }, []);
 
   useEffect(() => {
-    dispatch({ type: REPORT_POST_LIST });
-  });
-
-  /*   useEffect(() => {
-    console.log(list);
     if (list.length !== 0) {
       if (inView && !loading) {
         setLoading(true);
@@ -41,13 +32,12 @@ const PostReport: FC<Props> = props => {
         }
       }
     }
-  }, [inView]); */
+  }, [inView]);
 
-  const [divDisplayBool, setDivDisplayBool] = useState<boolean>(false);
-
-  const showDetail = () => {
-    setDivDisplayBool(!divDisplayBool);
-  };
+  useEffect(() => {
+    if (isHaveNextPage) setLoading(false);
+    else setLoading(true);
+  }, [isHaveNextPage]);
 
   return (
     <S.Wrapper>
@@ -69,13 +59,8 @@ const PostReport: FC<Props> = props => {
             {list &&
               list.map((data, index) => {
                 return (
-                  <article
-                    onClick={() => {
-                      setDivDisplayBool(!divDisplayBool);
-                    }}
-                  >
+                  <article>
                     <List
-                      openDetail={showDetail}
                       key={index}
                       postId={data.report_id}
                       title={data.title}
@@ -83,14 +68,7 @@ const PostReport: FC<Props> = props => {
                       writer={data.reporter_name}
                       date={data.created_date}
                       check={data.check}
-                    />
-                    <ListDetail
-                      closeDetail={showDetail}
-                      key={index}
-                      description={'description'}
-                      photo_url={'photo_url'}
                       option={2}
-                      styles={divDisplayBool}
                     />
                   </article>
                 );

@@ -10,7 +10,7 @@ const ReportPostContainer = () => {
 
   useEffect(() => {
     dispatch({ type: REPORT_POST_LIST });
-  });
+  }, [state.page]);
 
   return (
     <Suspense fallback={<div>Loading...</div>}>

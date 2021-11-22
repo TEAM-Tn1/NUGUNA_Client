@@ -10,7 +10,7 @@ const ReportUserContainer = () => {
 
   useEffect(() => {
     dispatch({ type: REPORT_USER_LIST });
-  });
+  }, [state.page]);
 
   return (
     <Suspense fallback={<div>Loading...</div>}>

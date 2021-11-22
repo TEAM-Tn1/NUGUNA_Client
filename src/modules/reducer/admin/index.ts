@@ -1,1 +1,5 @@
-export {adminQuestionListReducer, adminReportPostListReducer, adminReportUserListReducer} from './list'
+export {
+  adminQuestionListReducer,
+  adminReportPostListReducer,
+  adminReportUserListReducer,
+} from '../admin/list';
