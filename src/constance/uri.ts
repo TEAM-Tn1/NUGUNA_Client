@@ -8,6 +8,7 @@ enum uri {
   group = '/feed/group',
   photo = '/feed/photo',
   report = '/feed/report',
+  search = '/feed/search',
   like = '/like',
   tag = '/feed/tags',
   chatCarrot = '/chat/carrot',
