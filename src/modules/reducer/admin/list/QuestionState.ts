@@ -1,5 +1,5 @@
 import { AdminQuestionListState } from '../interface';
-import { adminActionType } from '../../../action/admin';
+import { adminActionType } from '../../../action/admin/list';
 import {
   QUESTION_LIST,
   QUESTION_LIST_SUCCESS,
