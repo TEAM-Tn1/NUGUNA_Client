@@ -9,6 +9,7 @@ import GroupChatList from './GroupChatList';
 import { useDispatch } from 'react-redux';
 import { CARROT_CHAT, GROUP_CHAT } from '../../modules/action/chatList/interface';
 import { chatListResponseType } from '../../models/dto/response/chatListResponse';
+import useSocket from '../../util/hooks/socket/useSocket';
 
 interface Props {
   chatList: Array<chatListResponseType>;
@@ -18,19 +19,26 @@ const ChatList: FC<Props> = props => {
   const [isClick, setIsClick] = useState({ trade: true, group: false });
   const { chatList } = props;
   const dispatch = useDispatch();
+  const { socket } = useSocket();
 
   useEffect(() => {
     dispatch({ type: CARROT_CHAT });
   }, []);
 
+  useEffect(() => {
+    socket.current?.emit('subscribe-all', 'CARROT');
+  }, []);
+
   const tradeBtnClickEvent = () => {
     setIsClick({ trade: true, group: false });
     dispatch({ type: CARROT_CHAT });
+    socket.current?.emit('subscribe-all', 'carrot');
   };
 
   const groupBtnClickEvent = () => {
     setIsClick({ trade: false, group: true });
     dispatch({ type: GROUP_CHAT });
+    socket.current?.emit('subscribe-all', 'GROUP');
   };
 
   const chatLists = useMemo(() => {
