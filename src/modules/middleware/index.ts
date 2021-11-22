@@ -16,7 +16,9 @@ export default function* rootSaga() {
     chatListSaga(),
     adminQuestionSaga(),
     adminReportPostSaga(),
+    writePostSaga(),
+    chatListSaga(),
+    searchSaga(),
     adminReportUserSaga(),
   ]);
-  yield all([post(), detailPost(), adminListSaga(), writePostSaga(), chatListSaga(), searchSaga()]);
 }
