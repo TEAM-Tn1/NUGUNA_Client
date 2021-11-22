@@ -4,11 +4,8 @@ import Sidebar from '../sidebar/index';
 import Frame from './frame/index';
 import List from './list/index';
 import { suggestionIcon } from '../../../assets/defalut';
-import { ListDetail } from './listDetail/index';
 import { useInView } from 'react-intersection-observer';
 import { questionResponse } from '../../../models/dto/response/questionResponse';
-import { useDispatch } from 'react-redux';
-import { QUESTION_LIST } from '../../../modules/action/admin/interface';
 
 interface Props {
   setPage: (payload: number) => void;
@@ -21,14 +18,12 @@ const Suggestion: FC<Props> = props => {
   const { setPage, page, isHaveNextPage, list } = props;
   const [loading, setLoading] = useState<boolean>(false);
   const { inView } = useInView();
-  const dispatch = useDispatch();
 
   useEffect(() => {
     setLoading(false);
   }, []);
 
-  /*   useEffect(() => {
-    console.log(list);
+  useEffect(() => {
     if (list.length !== 0) {
       if (inView && !loading) {
         setLoading(true);
@@ -37,23 +32,12 @@ const Suggestion: FC<Props> = props => {
         }
       }
     }
-  }, [inView]); */
-  // useEffect(() => {
-  //   if (list.length == 0) {
-  //     console.log('데이터가 없쪄용');
-  //   }
-  // }, []);
-  // console.log(list);
+  }, [inView]);
 
   useEffect(() => {
     if (isHaveNextPage) setLoading(false);
     else setLoading(true);
   }, [isHaveNextPage]);
-
-  const [divDisplayBool, setDivDisplayBool] = useState<boolean>(false);
-  const showDetail = () => {
-    setDivDisplayBool(!divDisplayBool);
-  };
 
   return (
     <S.Wrapper>
@@ -66,8 +50,8 @@ const Suggestion: FC<Props> = props => {
             <h3>제목</h3>
             <div>
               <p></p>
-              <p>신고자</p>
-              <p>신고일</p>
+              <p>작성자</p>
+              <p>작성일</p>
               <p>확인 여부</p>
             </div>
           </S.ChartTitle>
@@ -77,7 +61,6 @@ const Suggestion: FC<Props> = props => {
                 return (
                   <article>
                     <List
-                      openDetail={showDetail}
                       key={index}
                       postId={data.question_id}
                       title={data.title}
@@ -85,14 +68,7 @@ const Suggestion: FC<Props> = props => {
                       writer={data.user_name}
                       date={data.created_date}
                       check={data.check}
-                    />
-                    <ListDetail
-                      closeDetail={showDetail}
-                      key={index}
-                      description={''}
-                      photo_url={''}
                       option={3}
-                      styles={divDisplayBool}
                     />
                   </article>
                 );

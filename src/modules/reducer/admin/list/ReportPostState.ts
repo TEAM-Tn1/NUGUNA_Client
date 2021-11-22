@@ -1,12 +1,11 @@
 import { AdminReportPostListState } from '../interface';
-import { adminActionType } from '../../../action/admin';
+import { adminActionType } from '../../../action/admin/list';
 import {
   REPORT_POST_LIST,
   REPORT_POST_LIST_SUCCESS,
   REPORT_POST_LIST_FAILURE,
   PAGE,
 } from '../../../action/admin/interface';
-
 const initState: AdminReportPostListState = {
   list: [],
   page: 0,
@@ -33,7 +32,7 @@ const adminReportPostListReducer = (
       if (action.payload.length !== 0)
         return {
           ...state,
-          list: state.list.concat(action.payload),
+          list: action.payload,
           isSuccessGetList: true,
           isHaveNextPage: true,
         };

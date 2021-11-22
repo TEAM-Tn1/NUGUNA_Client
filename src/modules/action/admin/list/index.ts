@@ -1,8 +1,8 @@
 import { createAction } from 'typesafe-actions';
-import { questionResponse } from '../../../models/dto/response/questionResponse';
-import { reportUserResponse } from '../../../models/dto/response/reportUserResponse';
-import { reportPostResponse } from '../../../models/dto/response/reportPostResponse';
-import { error } from '../../../models/error';
+import { questionResponse } from '../../../../models/dto/response/questionResponse';
+import { reportUserResponse } from '../../../../models/dto/response/reportUserResponse';
+import { reportPostResponse } from '../../../../models/dto/response/reportPostResponse';
+import { error } from '../../../../models/error';
 import {
   REPORT_USER_LIST,
   REPORT_USER_LIST_SUCCESS,
@@ -14,7 +14,7 @@ import {
   QUESTION_LIST_SUCCESS,
   QUESTION_LIST_FAILURE,
   PAGE,
-} from './interface';
+} from '../interface';
 
 export const reportUserList = createAction(REPORT_USER_LIST)();
 export const reportUserListSuccess = createAction(REPORT_USER_LIST_SUCCESS)<reportUserResponse>();
