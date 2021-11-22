@@ -12,8 +12,8 @@ enum uri {
   tag = '/feed/tags',
   chatCarrot = '/chat/carrot',
   chatGroup = '/chat/group',
-  reportUserList = '/admin/report/user',
-  reportPostList = '/admin/report/post',
+  reportUserList = '/admin/report/users',
+  reportPostList = '/admin/report/feed',
   questionList = '/admin/question',
 }
 
