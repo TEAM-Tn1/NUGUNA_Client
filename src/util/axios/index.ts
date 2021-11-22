@@ -3,8 +3,6 @@ import { useHistory } from 'react-router';
 
 const baseURL = process.env.REACT_APP_BASE_URL;
 
-const baseURL = process.env.REACT_APP_BASE_URL;
-
 const instance = axios.create({
   baseURL,
   timeout: 100000,
