@@ -16,8 +16,10 @@ import {
 import Main from '../components/main/index';
 import { Noti } from '../components/notification/index';
 import { TagRegister } from '../components/notification/tagRegister';
+import { useSocket } from '../util/hooks/socket/useSocket';
 
 const MainRouter = () => {
+  const { socket } = useSocket();
   return (
     <Router>
       <Switch>
@@ -29,7 +31,7 @@ const MainRouter = () => {
         <Route exact path='/post' component={PostContanier} />
         <Route exact path='/view/post/:id' component={DetailPostContainer} />
         <Route exact path='/write/post/:type' component={WritePostContainer} />
-        <Route exact path='/chatting' component={ChatListContainer} />
+        <Route exact path='/chatting' render={() => <ChatListContainer socket={socket} />} />
         <Route exact path='/admin/report/feed' component={ReportPostContainer} />
         <Route exact path='/admin/report/user' component={ReportUserContainer} />
         <Route exact path='/admin/question' component={QuestionContainer} />
