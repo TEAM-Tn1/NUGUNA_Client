@@ -20,6 +20,7 @@ import { useSocket } from '../util/hooks/socket/useSocket';
 
 const MainRouter = () => {
   const { socket } = useSocket();
+
   return (
     <Router>
       <Switch>
@@ -38,7 +39,11 @@ const MainRouter = () => {
         <Route exact path='/auth' component={Auth} />
         <Route exact path='/callback' component={Callback} />
         <Route exact path='/auth/information' component={Information} />
-        <Route exact path='/chat/:type/:id' component={DetailChatContainer} />
+        <Route
+          exact
+          path='/chat/:type/:id'
+          render={() => <DetailChatContainer socket={socket} />}
+        />
         <Route exact path='/search' component={SearchContainer} />
         <Route exact path='/main' component={Main} />
         <Route exact path='/noti/list' component={Noti} />
