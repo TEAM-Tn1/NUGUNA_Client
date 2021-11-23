@@ -1,10 +1,10 @@
 import React, { FC, useMemo } from 'react';
 import { useHistory } from 'react-router';
 import { people } from '../../assets/chat';
-import { useSocket } from '../../util/hooks/socket/useSocket';
 import * as S from './style';
 
 interface Props {
+  socket: React.MutableRefObject<SocketIOClient.Socket | undefined>;
   roomName: string;
   lastMessage: string;
   photoUrl: string;
@@ -14,9 +14,8 @@ interface Props {
 }
 
 const ChatListContent: FC<Props> = props => {
-  const { roomName, lastMessage, count, photoUrl, roomId, type } = props;
+  const { roomName, lastMessage, count, photoUrl, roomId, type, socket } = props;
   const history = useHistory();
-  const { socket } = useSocket();
 
   const showPeople = useMemo(() => {
     if (count)
@@ -29,9 +28,9 @@ const ChatListContent: FC<Props> = props => {
   }, [count]);
 
   const chatListClickHandler = () => {
+    socket.current?.emit('unsubscribe-all');
     if (type === 'trade') history.push(`/chat/trade/${roomId}`);
     else if (type === 'group') history.push(`/chat/group/${roomId}`);
-    socket.current.emit('unsubscribe-all');
   };
 
   return (
