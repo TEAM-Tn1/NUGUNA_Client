@@ -1,28 +1,19 @@
 import { useEffect, useRef } from 'react';
 import socketIO from 'socket.io-client';
 
-const useSocket = () => {
+export const useSocket = () => {
   const socket = useRef<SocketIOClient.Socket>();
-  const SOCKET_SEVER_URL = 'https://server.tn1-dsm.com/';
+  const SOCKET_SEVER_URL = `https://server.tn1-dsm.com?Authorization=${localStorage.getItem(
+    'access_token',
+  )}`;
 
   useEffect(() => {
-    let socketConnectCount = 0;
-
+    console.log('test2');
     socket.current = socketIO.connect(SOCKET_SEVER_URL, {
       transports: ['websocket'],
-      forceNew: true,
     });
+    return () => console.log('test');
+  }, [SOCKET_SEVER_URL, socket]);
 
-    socket.current.on('connect_error', () => {
-      socketConnectCount > 3 ? socket.current?.disconnect() : socketConnectCount++;
-    });
-
-    return () => {
-      socket.current?.disconnect();
-    };
-  }, []);
-
-  return { socket };
+  return { socket } as const;
 };
-
-export default useSocket;

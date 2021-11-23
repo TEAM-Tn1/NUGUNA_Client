@@ -5,10 +5,11 @@ import { chatListResponseType } from '../../models/dto/response/chatListResponse
 
 interface Props {
   chatList: Array<chatListResponseType>;
+  socket: React.MutableRefObject<SocketIOClient.Socket | undefined>;
 }
 
 const TradeChatList: FC<Props> = props => {
-  const { chatList } = props;
+  const { chatList, socket } = props;
 
   return (
     <S.ListContent>
@@ -17,6 +18,7 @@ const TradeChatList: FC<Props> = props => {
         chatList.map(data => {
           return (
             <ChatListContent
+              socket={socket}
               roomName={data.room_name}
               lastMessage={data.last_message}
               photoUrl={data.photo_url}
