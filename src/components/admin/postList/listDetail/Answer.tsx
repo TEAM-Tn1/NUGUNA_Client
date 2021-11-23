@@ -3,6 +3,7 @@ import { positive, negative } from '../../../../assets/admin';
 import * as S from './style/index';
 import questionAnswer from '../../../../util/api/admin/answer';
 import reportPostAnswer from '../../../../util/api/admin/answer';
+import reportUserAnswer from '../../../../util/api/admin/answer';
 import { useHistory } from 'react-router';
 
 interface detailProps {
@@ -19,6 +20,7 @@ const Answer = ({ close, id, named, dateDisplay, divDisplayAnswer, option }: det
   const [displayOpcity, setDisplayOpcity] = useState<number>(1);
   const [displayCilck, setDisplayCilck] = useState<any>('auto');
   const [reason, setReason] = useState<string>('');
+  const [date, setDate] = useState<any>();
   const history = useHistory();
 
   const accessToken = localStorage.getItem('access_token');
@@ -29,6 +31,15 @@ const Answer = ({ close, id, named, dateDisplay, divDisplayAnswer, option }: det
     } else {
       switch (option) {
         case 1:
+          reportUserAnswer
+            .setReportPostAnswer(accessToken, id, reason, date)
+            .then(res => {
+              console.log(res);
+              history.go(0);
+            })
+            .catch(err => {
+              console.log(err);
+            });
           close(false);
           break;
         case 2:
@@ -64,6 +75,8 @@ const Answer = ({ close, id, named, dateDisplay, divDisplayAnswer, option }: det
     whether ? setDisplayCilck('auto') : setDisplayCilck('none');
   }, [whether]);
 
+  const today = new Date().toISOString().substring(0, 10);
+
   return (
     <S.Answer>
       <div style={{ display: divDisplayAnswer }}>
@@ -76,7 +89,9 @@ const Answer = ({ close, id, named, dateDisplay, divDisplayAnswer, option }: det
         />
         <input
           type='date'
+          min={today}
           style={{ opacity: displayOpcity, pointerEvents: displayCilck, display: dateDisplay }}
+          onChange={e => setDate(e.target.value)}
         />
       </div>
       <textarea
