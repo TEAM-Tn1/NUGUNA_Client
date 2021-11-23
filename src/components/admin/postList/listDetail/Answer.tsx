@@ -2,6 +2,7 @@ import React, { FC, useEffect, useState } from 'react';
 import { positive, negative } from '../../../../assets/admin';
 import * as S from './style/index';
 import questionAnswer from '../../../../util/api/admin/answer';
+import reportPostAnswer from '../../../../util/api/admin/answer';
 import { useHistory } from 'react-router';
 
 interface detailProps {
@@ -23,7 +24,6 @@ const Answer = ({ close, id, named, dateDisplay, divDisplayAnswer, option }: det
   const accessToken = localStorage.getItem('access_token');
 
   const onSubmit = (option: number | string) => {
-      console.log(reason);      
     if (reason.replace(/ /g, '') == '') {
       alert('답변을 적어주세요');
     } else {
@@ -32,21 +32,28 @@ const Answer = ({ close, id, named, dateDisplay, divDisplayAnswer, option }: det
           close(false);
           break;
         case 2:
-          close(false);
-          break;
-        case 3:
-          questionAnswer
-            .setQuestionAnswer(id, accessToken, reason)
+          reportPostAnswer
+            .setReportPostAnswer(accessToken, id, reason, whether)
             .then(res => {
               console.log(res);
-              console.log(reason);
               history.go(0);
             })
             .catch(err => {
               console.log(err);
             });
           close(false);
-
+          break;
+        case 3:
+          questionAnswer
+            .setQuestionAnswer(accessToken, id, reason)
+            .then(res => {
+              console.log(res);
+              history.go(0);
+            })
+            .catch(err => {
+              console.log(err);
+            });
+          close(false);
           break;
       }
     }
