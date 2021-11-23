@@ -1,21 +1,18 @@
 import React, { FC, useEffect, useState } from 'react';
-import { positive, negative } from '../../../../assets/admin';
 import * as S from './style/index';
 import question from '../../../../util/api/admin/listDescription';
 import reportPost from '../../../../util/api/admin/listDescription';
 import reportUser from '../../../../util/api/admin/listDescription';
+import Answer from './Answer';
 
 interface detailProps {
-  closeDetail: () => void;
+  closeDetail: (e: any) => void;
   option: number;
   styles: boolean;
   id: number | string;
 }
 
 const ListDetail = ({ closeDetail, option, styles, id }: detailProps) => {
-  const [whether, setWhether] = useState<boolean>(true);
-  const [displayOpcity, setDisplayOpcity] = useState<number>(1);
-  const [displayCilck, setDisplayCilck] = useState<any>('auto');
   const [named, setNamed] = useState<string>('');
   const [dateDisplay, setDateDisplay] = useState<string>('');
   const [divDisplayAnswer, setDivDisplayAnswer] = useState<string>('');
@@ -70,13 +67,6 @@ const ListDetail = ({ closeDetail, option, styles, id }: detailProps) => {
     }
   }, []);
 
-  useEffect(() => {
-    whether ? setDisplayOpcity(1) : setDisplayOpcity(0.3);
-    whether ? setDisplayCilck('auto') : setDisplayCilck('none');
-  }, [whether]);
-
-  useEffect(() => {}, []);
-
   return (
     <S.Detail style={{ display: styles ? 'block' : 'none' }}>
       <S.Content>
@@ -87,25 +77,14 @@ const ListDetail = ({ closeDetail, option, styles, id }: detailProps) => {
         </div>
       </S.Content>
       <hr />
-      <S.Answer>
-        <div style={{ display: divDisplayAnswer }}>
-          <p>{named}</p>
-          <img
-            src={whether ? positive : negative}
-            onClick={() => setWhether(!whether)}
-            style={{ display: divDisplayAnswer }}
-            alt=''
-          />
-          <input
-            type='date'
-            style={{ opacity: displayOpcity, pointerEvents: displayCilck, display: dateDisplay }}
-          />
-        </div>
-        <textarea placeholder='답변을 남겨주세요.' />
-        <div>
-          <button onClick={closeDetail}>확인</button>
-        </div>
-      </S.Answer>
+      <Answer
+        close={(e: any)=>closeDetail(e)}
+        id={id}
+        named={named}
+        dateDisplay={dateDisplay}
+        divDisplayAnswer={divDisplayAnswer}
+        option={option}
+      />
     </S.Detail>
   );
 };
