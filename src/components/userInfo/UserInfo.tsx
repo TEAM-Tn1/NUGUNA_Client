@@ -28,7 +28,6 @@ const UserInfo = ({ match }: any) => {
   useEffect(() => {
     getUserInfo(match.params.email)
       .then(res => {
-        console.log(res.data);
         const { name, gcn, email, room_number, account_number } = res.data;
         setUserInfos({
           name,

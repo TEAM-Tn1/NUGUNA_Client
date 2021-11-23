@@ -11,9 +11,12 @@ export default {
       },
     });
   },
-  reportUser(title: string, content: string, email: string) {
+  report(title: string, content: string, id: string) {
+    const url = id.includes('@') ? 'users' : 'feed';
+    const key = id.includes('@') ? 'email' : 'feed_id';
+
     return requset({
-      url: `report/users`,
+      url: `report/${url}`,
       method: 'post',
       headers: {
         Authorization: `Bearer ${localStorage.getItem('access_token')}`,
@@ -21,8 +24,21 @@ export default {
       data: {
         title,
         content,
-        email,
+        [key]: id,
       },
+    });
+  },
+  imageUpload(report_id: number, file: any) {
+    const formData = new FormData();
+    formData.append('file', file);
+
+    return requset({
+      url: `report/${report_id}/medium`,
+      method: 'post',
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+      },
+      data: formData,
     });
   },
 };
