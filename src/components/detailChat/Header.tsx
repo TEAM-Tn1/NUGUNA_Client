@@ -4,12 +4,13 @@ import { prev } from '../../assets/chat';
 import { useHistory } from 'react-router';
 
 interface Props {
+  id: string;
   type: string;
   socket: React.MutableRefObject<SocketIOClient.Socket | undefined>;
 }
 
 const Header: FC<Props> = props => {
-  const { type, socket } = props;
+  const { type, socket, id } = props;
   const history = useHistory();
 
   const people = useMemo(() => {
@@ -19,6 +20,7 @@ const Header: FC<Props> = props => {
 
   const prevBtnClickHandler = () => {
     history.push('/chatting');
+    socket.current?.emit('unsubscribe', id);
   };
 
   return (

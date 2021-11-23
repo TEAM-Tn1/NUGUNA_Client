@@ -21,7 +21,7 @@ const DetailChat: FC<Props> = props => {
 
   return (
     <>
-      <Header socket={socket} type={type} />
+      <Header socket={socket} type={type} id={id} />
       <S.DetailChat>
         <S.ContentBox>
           <Chats />
