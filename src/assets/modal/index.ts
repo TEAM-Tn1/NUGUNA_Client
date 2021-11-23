@@ -1,1 +1,1 @@
-export { default as upload } from './image_upload.svg';
+export { default as uploadIcon } from './upload_icon.svg';
