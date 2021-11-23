@@ -26,4 +26,19 @@ export default {
       data: { report_id: id, reason: reason, remove: removeCheck },
     });
   },
+  setReportUserAnswer(
+    accessToken: string | null,
+    id: string | number,
+    reason: string,
+    date: string,
+  ) {
+    return request({
+      url: `/admin/report/users`,
+      method: 'post',
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+      data: { report_id: id, reason: reason, black_date: date },
+    });
+  },
 };
