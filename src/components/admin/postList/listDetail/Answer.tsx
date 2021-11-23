@@ -35,6 +35,16 @@ const Answer = ({ close, id, named, dateDisplay, divDisplayAnswer, option }: det
           close(false);
           break;
         case 3:
+          questionAnswer
+            .setQuestionAnswer(id, accessToken, reason)
+            .then(res => {
+              console.log(res);
+              console.log(reason);
+              history.go(0);
+            })
+            .catch(err => {
+              console.log(err);
+            });
           close(false);
 
           break;
