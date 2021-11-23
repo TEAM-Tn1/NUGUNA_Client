@@ -6,6 +6,7 @@ import {
   REPORT_POST_LIST_FAILURE,
   PAGE,
 } from '../../../action/admin/interface';
+
 const initState: AdminReportPostListState = {
   list: [],
   page: 0,
