@@ -4,6 +4,7 @@ import { people } from '../../assets/chat';
 import * as S from './style';
 
 interface Props {
+  socket: React.MutableRefObject<SocketIOClient.Socket | undefined>;
   roomName: string;
   lastMessage: string;
   photoUrl: string;
@@ -13,7 +14,7 @@ interface Props {
 }
 
 const ChatListContent: FC<Props> = props => {
-  const { roomName, lastMessage, count, photoUrl, roomId, type } = props;
+  const { roomName, lastMessage, count, photoUrl, roomId, type, socket } = props;
   const history = useHistory();
 
   const showPeople = useMemo(() => {
@@ -27,6 +28,7 @@ const ChatListContent: FC<Props> = props => {
   }, [count]);
 
   const chatListClickHandler = () => {
+    socket.current?.emit('unsubscribe-all');
     if (type === 'trade') history.push(`/chat/trade/${roomId}`);
     else if (type === 'group') history.push(`/chat/group/${roomId}`);
   };

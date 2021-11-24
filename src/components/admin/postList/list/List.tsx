@@ -47,7 +47,7 @@ const List = ({ postId, title, target, writer, date, check, option }: listProps)
       </article>
       <ListDetail
         id={postId}
-        closeDetail={() => setDivDisplayBool}
+        closeDetail={(e: any) => setDivDisplayBool(e)}
         option={option}
         styles={divDisplayBool}
       />

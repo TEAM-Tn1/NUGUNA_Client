@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 interface Props {
-  isReport?: boolean;
+  id?: string;
 }
 
 export const Wrapper = styled.div`
@@ -44,7 +44,6 @@ export const ContentBox = styled.div<Props>`
   height: 80%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   padding: 16px;
   border: 1px solid black;
 
@@ -57,8 +56,9 @@ export const ContentBox = styled.div<Props>`
 
   & textarea {
     width: 100%;
-    height: ${props => (props.isReport ? 'calc(100% - 120px)' : 'calc(100% - 35px)')};
+    height: ${props => (props.id ? 'calc(100% - 130px)' : 'calc(100% - 35px)')};
     font-size: 12px;
+    padding-top: 16px;
     border: none;
     resize: none;
   }
@@ -77,6 +77,14 @@ export const ImageBox = styled.div`
   & img {
     width: 55px;
     cursor: pointer;
+  }
+
+  & label {
+    height: 55px;
+  }
+
+  & input {
+    display: none;
   }
 `;
 

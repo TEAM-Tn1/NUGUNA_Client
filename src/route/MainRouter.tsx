@@ -16,8 +16,11 @@ import {
 import Main from '../components/main/index';
 import { Noti } from '../components/notification/index';
 import { TagRegister } from '../components/notification/tagRegister';
+import { useSocket } from '../util/hooks/socket/useSocket';
 
 const MainRouter = () => {
+  const { socket } = useSocket();
+
   return (
     <Router>
       <Switch>
@@ -27,16 +30,20 @@ const MainRouter = () => {
         <Route exact path='/mypage/written_post' component={WrittenPost} />
         <Route exact path='/profile/:email' component={UserInfo} />
         <Route exact path='/post' component={PostContanier} />
-        <Route exact path='/view/post/:id' component={DetailPostContainer} />
+        <Route exact path='/view/post/:id' render={() => <DetailPostContainer socket={socket} />} />
         <Route exact path='/write/post/:type' component={WritePostContainer} />
-        <Route exact path='/chatting' component={ChatListContainer} />
+        <Route exact path='/chatting' render={() => <ChatListContainer socket={socket} />} />
         <Route exact path='/admin/report/feed' component={ReportPostContainer} />
         <Route exact path='/admin/report/user' component={ReportUserContainer} />
         <Route exact path='/admin/question' component={QuestionContainer} />
         <Route exact path='/auth' component={Auth} />
         <Route exact path='/callback' component={Callback} />
         <Route exact path='/auth/information' component={Information} />
-        <Route exact path='/chat/:type/:id' component={DetailChatContainer} />
+        <Route
+          exact
+          path='/chat/:type/:id'
+          render={() => <DetailChatContainer socket={socket} />}
+        />
         <Route exact path='/search' component={SearchContainer} />
         <Route exact path='/main' component={Main} />
         <Route exact path='/noti/list' component={Noti} />

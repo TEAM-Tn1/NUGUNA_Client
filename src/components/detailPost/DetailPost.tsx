@@ -5,7 +5,8 @@ import { PREV } from '../../constance/detailPost';
 import { prevIcon, modifyIcon, deleteIcon } from '../../assets/detailPost';
 import DetailContent from './DetailContent';
 import PostDeleteModal from './PostDeleteModal';
-import { useHistory } from 'react-router';
+import { useHistory, useParams } from 'react-router';
+import ModalTemplate from '../default/modal/modalTemplate';
 
 interface Props {
   title: string;
@@ -25,14 +26,18 @@ interface Props {
   };
   isUsedItem: boolean;
   setFeedId: (payload: number) => void;
+  setRoomId: (payload: string) => void;
   isSuccessDeletePost: boolean | undefined;
+  socket: React.MutableRefObject<SocketIOClient.Socket | undefined>;
 }
 
 const DetailPost: FC<Props> = props => {
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
+  const [isReportModal, setIsReportModal] = useState(false);
   const { isSuccessDeletePost, userInfo, date, headCount } = props;
   const userEmail = localStorage.getItem('email') as string;
   const history = useHistory();
+  const { id } = useParams<{ id: string }>();
 
   const deleteBtnClickHandler = () => {
     setIsOpenModal(true);
@@ -47,6 +52,10 @@ const DetailPost: FC<Props> = props => {
         />
       );
   }, [isOpenModal, isSuccessDeletePost]);
+
+  const closeReportModal = () => {
+    setIsReportModal(false);
+  };
 
   const modifyBtnClickHandler = () => {
     if (!headCount && !date) history.push('/write/post/trade');
@@ -80,9 +89,15 @@ const DetailPost: FC<Props> = props => {
             </div>
             {writerBtn}
           </S.TopLine>
-          <DetailContent {...props} />
+          <DetailContent setIsReportModal={setIsReportModal} {...props} />
         </S.ContentBox>
       </S.DetailPost>
+      <ModalTemplate
+        subject='신고하기'
+        isShowModal={isReportModal}
+        closeModal={closeReportModal}
+        id={id}
+      />
     </>
   );
 };

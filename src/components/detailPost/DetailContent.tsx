@@ -4,6 +4,7 @@ import { reportIcon } from '../../assets/detailPost';
 import PostImgSlider from './PostImgSlider';
 import DetailPostFooter from './DetailPostFooter';
 import { CHAT, REPORT } from '../../constance/detailPost';
+import { useHistory, useParams } from 'react-router';
 
 interface Props {
   title: string;
@@ -18,6 +19,9 @@ interface Props {
   like: boolean;
   photo: Array<string>;
   userInfo: { writerEmail: string; writerName: string };
+  socket: React.MutableRefObject<SocketIOClient.Socket | undefined>;
+  setRoomId: (payload: string) => void;
+  setIsReportModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const DetailContent: FC<Props> = props => {
@@ -34,7 +38,12 @@ const DetailContent: FC<Props> = props => {
     like,
     photo,
     isUsedItem,
+    socket,
+    setRoomId,
+    setIsReportModal,
   } = props;
+  const { id } = useParams<{ id: string }>();
+  const history = useHistory();
 
   const makeDates = useMemo(() => {
     const month = date && date.slice(5, 7);
@@ -47,12 +56,30 @@ const DetailContent: FC<Props> = props => {
     else return 'group';
   }, [isUsedItem]);
 
+  const chattingBtnClickHandler = () => {
+    socket.current?.emit('join', id);
+    socket.current?.on('room', (room_id: string) => {
+      setRoomId(room_id);
+      history.push(`/chat/${type}/${room_id}`);
+    });
+    socket.current?.on('error', (response: { status: number; message: string }) => {
+      if (response.status === 400 && response.message === 'Its your feed.')
+        alert('게시글의 작성자입니다!');
+      else if (response.status === 409 && response.message === 'Already join room.')
+        alert('이미 해당 게시글의 채팅에 참여하였습니다.');
+    });
+  };
+
+  const openReportModal = () => {
+    setIsReportModal(true);
+  };
+
   return (
     <>
       <S.DetailContent>
         <S.TitleLine>
           <S.PostTitle>{title}</S.PostTitle>
-          <S.Report>
+          <S.Report onClick={openReportModal}>
             <S.ReportIcon src={reportIcon} />
             <p>{REPORT}</p>
           </S.Report>
@@ -72,7 +99,7 @@ const DetailContent: FC<Props> = props => {
             <p>{userInfo.writerName}</p>
             <p>{userInfo.writerEmail}</p>
           </div>
-          <S.ChattingBtn>
+          <S.ChattingBtn onClick={chattingBtnClickHandler}>
             <p>{CHAT}</p>
           </S.ChattingBtn>
         </S.UserInfoAndChatLine>

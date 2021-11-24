@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { saveFeedId } from '../../../modules/action/detailPost';
+import { saveFeedId, saveRoomId } from '../../../modules/action/detailPost';
 import useSelectState from '../default';
 
 const useDetailPost = () => {
@@ -8,6 +8,9 @@ const useDetailPost = () => {
   const setState = {
     setFeedId: (payload: number) => {
       dispatch(saveFeedId(payload));
+    },
+    setRoomId: (payload: string) => {
+      dispatch(saveRoomId(payload));
     },
   };
   return { state, setState };

@@ -5,7 +5,12 @@ import DetailPost from '../../components/detailPost';
 import { GET_POST } from '../../modules/action/detailPost/interface';
 import useDetailPost from '../../util/hooks/detailPost';
 
-const DetailPostContainer: FC = () => {
+interface Props {
+  socket: React.MutableRefObject<SocketIOClient.Socket | undefined>;
+}
+
+const DetailPostContainer: FC<Props> = props => {
+  const { socket } = props;
   const { state, setState } = useDetailPost();
   const feedId = Number(useLocation().pathname.slice(11));
   const dispatch = useDispatch();
@@ -18,7 +23,7 @@ const DetailPostContainer: FC = () => {
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <DetailPost {...state} {...setState} />
+      <DetailPost {...state} {...setState} socket={socket} />
     </Suspense>
   );
 };

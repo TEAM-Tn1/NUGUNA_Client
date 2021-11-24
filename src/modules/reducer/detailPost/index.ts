@@ -1,6 +1,7 @@
 import { detailPostActionType } from '../../action/detailPost';
 import {
   FEED_ID,
+  ROOM_ID,
   GET_POST,
   GET_POST_FAILURE,
   GET_POST_SUCCESS,
@@ -18,6 +19,7 @@ import DetailPostState from './interface';
 
 const initState: DetailPostState = {
   feedId: 0,
+  roomId: '0',
   title: '',
   description: '',
   price: 0,
@@ -54,6 +56,11 @@ const detailPostReducer = (
       return {
         ...state,
         feedId: action.payload,
+      };
+    case ROOM_ID:
+      return {
+        ...state,
+        roomId: action.payload,
       };
     case GET_POST:
       return {
