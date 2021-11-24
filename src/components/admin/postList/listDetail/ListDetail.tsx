@@ -10,9 +10,10 @@ interface detailProps {
   option: number;
   styles: boolean;
   id: number | string;
+  check: boolean;
 }
 
-const ListDetail = ({ closeDetail, option, styles, id }: detailProps) => {
+const ListDetail = ({ closeDetail, option, styles, id, check }: detailProps) => {
   const [named, setNamed] = useState<string>('');
   const [dateDisplay, setDateDisplay] = useState<string>('');
   const [divDisplayAnswer, setDivDisplayAnswer] = useState<string>('');
@@ -78,12 +79,13 @@ const ListDetail = ({ closeDetail, option, styles, id }: detailProps) => {
       </S.Content>
       <hr />
       <Answer
-        close={(e: any)=>closeDetail(e)}
+        close={(e: any) => closeDetail(e)}
         id={id}
         named={named}
         dateDisplay={dateDisplay}
         divDisplayAnswer={divDisplayAnswer}
         option={option}
+        check={check}
       />
     </S.Detail>
   );

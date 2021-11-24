@@ -50,6 +50,7 @@ const List = ({ postId, title, target, writer, date, check, option }: listProps)
         closeDetail={(e: any) => setDivDisplayBool(e)}
         option={option}
         styles={divDisplayBool}
+        check={check}
       />
     </>
   );

@@ -4,6 +4,7 @@ import * as S from './style/index';
 import questionAnswer from '../../../../util/api/admin/answer';
 import reportPostAnswer from '../../../../util/api/admin/answer';
 import reportUserAnswer from '../../../../util/api/admin/answer';
+import userBlack from '../../../../util/api/admin/answer';
 import { useHistory } from 'react-router';
 
 interface detailProps {
@@ -13,9 +14,18 @@ interface detailProps {
   dateDisplay: string;
   divDisplayAnswer: string;
   option: number | string;
+  check: boolean;
 }
 
-const Answer = ({ close, id, named, dateDisplay, divDisplayAnswer, option }: detailProps) => {
+const Answer = ({
+  close,
+  id,
+  named,
+  dateDisplay,
+  divDisplayAnswer,
+  option,
+  check,
+}: detailProps) => {
   const [whether, setWhether] = useState<boolean>(true);
   const [displayOpcity, setDisplayOpcity] = useState<number>(1);
   const [displayCilck, setDisplayCilck] = useState<any>('auto');
@@ -58,7 +68,6 @@ const Answer = ({ close, id, named, dateDisplay, divDisplayAnswer, option }: det
             alert('성공');
             close(false);
           }
-          /*    */
           break;
         case 2:
           reportPostAnswer
