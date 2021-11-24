@@ -1,8 +1,8 @@
 export interface detailChatResponse {
-  message_id: string;
+  message_id: number;
   message: string;
   type: string;
   email: string;
-  anem: string;
+  name: string;
   sent_at: string;
 }
