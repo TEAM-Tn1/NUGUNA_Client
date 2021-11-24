@@ -7,6 +7,7 @@ interface DetailChatState {
   chatContent: Array<detailChatResponse>;
   error: error;
   isSuccessGetDetailChat: boolean | undefined;
+  isHaveNextPage: boolean;
 }
 
 export default DetailChatState;
