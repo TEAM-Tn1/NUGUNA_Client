@@ -16,6 +16,7 @@ enum uri {
   reportUserList = '/admin/report/users',
   reportPostList = '/admin/report/feed',
   questionList = '/admin/question',
+  content = '/chat/content',
 }
 
 export default uri;
