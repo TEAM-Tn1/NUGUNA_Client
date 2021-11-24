@@ -2,14 +2,25 @@ import React, { FC, useMemo } from 'react';
 import * as S from './style';
 import { setting, send } from '../../assets/chat';
 import { SETTING } from '../../constance/detailChat';
+import { useHistory } from 'react-router';
 
 interface Props {
+  id: string;
   isClickSettingBtn: boolean;
   setIsClickSettingBtn: React.Dispatch<React.SetStateAction<boolean>>;
+  socket: React.MutableRefObject<SocketIOClient.Socket | undefined>;
 }
 
 const Footer: FC<Props> = props => {
-  const { setIsClickSettingBtn, isClickSettingBtn } = props;
+  const { setIsClickSettingBtn, isClickSettingBtn, socket, id } = props;
+  const history = useHistory();
+
+  const outBtnClickHandler = () => {
+    socket.current?.emit('leave', id);
+    socket.current?.on('room', () => {
+      history.push('/chatting');
+    });
+  };
 
   const showSetting = useMemo(() => {
     if (isClickSettingBtn)
@@ -17,7 +28,7 @@ const Footer: FC<Props> = props => {
         <S.SettingLine>
           {SETTING.map(data => {
             return (
-              <div key={data.id}>
+              <div key={data.id} onClick={data.id === 'out' ? outBtnClickHandler : () => {}}>
                 <img src={data.img} alt={data.id} />
                 <p>{data.content}</p>
               </div>
