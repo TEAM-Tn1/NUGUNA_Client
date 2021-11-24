@@ -5,7 +5,6 @@ interface SearchState {
   title: string;
   type: string;
   page: number;
-  order: { newest: boolean; like: boolean };
   typeClick: { trade: boolean; group: boolean };
   searchList: Array<searchListType>;
   isHaveNextPage: boolean;

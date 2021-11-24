@@ -5,7 +5,6 @@ import {
   SEARCH_SUCCESS,
   TYPE,
   TYPECLICK,
-  ORDER,
   PAGE,
   TITLE,
 } from '../../action/search/interface';
@@ -15,7 +14,6 @@ const initState: SearchState = {
   searchList: [],
   title: '',
   type: 'trade',
-  order: { newest: true, like: false },
   typeClick: { trade: true, group: false },
   page: 0,
   isSuccessGetSearchList: undefined,
@@ -64,12 +62,6 @@ const searchReducer = (state: SearchState = initState, action: searchActionType)
       return {
         ...state,
         typeClick: action.payload,
-      };
-    case ORDER:
-      return {
-        ...state,
-        order: action.payload,
-        searchList: [],
       };
     case PAGE:
       return {

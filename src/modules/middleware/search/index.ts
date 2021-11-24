@@ -11,10 +11,9 @@ const searchGetSaga = function* (): any {
   const SUCCESS = `${actionType}_SUCCESS`;
   const FAILURE = `${actionType}_FAILURE;`;
   const state = yield select(getStateFunc);
-  const sort = state.order.newest ? 'time' : 'like';
   const accessToken = localStorage.getItem('access_token') || '';
   try {
-    const response = yield call(getSearchList, accessToken, state.page, sort, state.type);
+    const response = yield call(getSearchList, accessToken, state.page, state.type, state.title);
     yield put({
       type: SUCCESS,
       payload: response ? response.data : null,
