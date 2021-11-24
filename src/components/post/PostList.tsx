@@ -58,6 +58,7 @@ const PostList: FC<Props> = props => {
           const showPeople = `${data.current_head_count}/${data.head_count}`;
           return (
             <PostContent
+              key={data.feed_id}
               feedId={data.feed_id}
               medium={data.medium}
               title={data.title}
