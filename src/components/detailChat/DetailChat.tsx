@@ -27,7 +27,12 @@ const DetailChat: FC<Props> = props => {
           <Chats />
         </S.ContentBox>
       </S.DetailChat>
-      <Footer isClickSettingBtn={isClickSettingBtn} setIsClickSettingBtn={setIsClickSettingBtn} />
+      <Footer
+        id={id}
+        isClickSettingBtn={isClickSettingBtn}
+        setIsClickSettingBtn={setIsClickSettingBtn}
+        socket={socket}
+      />
     </>
   );
 };
