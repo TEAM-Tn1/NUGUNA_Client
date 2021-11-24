@@ -5,6 +5,7 @@ import questionAnswer from '../../../../util/api/admin/answer';
 import reportPostAnswer from '../../../../util/api/admin/answer';
 import reportUserAnswer from '../../../../util/api/admin/answer';
 import userBlack from '../../../../util/api/admin/answer';
+import userBlackChange from '../../../../util/api/admin/answer';
 import { useHistory } from 'react-router';
 
 interface detailProps {
@@ -56,7 +57,19 @@ const Answer = ({
   }, []);
 
   const onSubmit = (option: number | string) => {
-    if (reason.replace(/ /g, '') == '') {
+    if (check && option == 1 && whether) {
+      if (date) {
+        userBlackChange
+          .setUserBlackChange(accessToken, id, date)
+          .then(res => {
+            alert('tlvkfkvfkvkfvkfkv');
+            close(false);
+          })
+          .catch(err => {
+            console.log(err);
+          });
+      }
+    } else if (reason.replace(/ /g, '') == '') {
       alert('답변을 적어주세요');
     } else {
       switch (option) {
@@ -71,9 +84,9 @@ const Answer = ({
                   history.go(0);
                 })
                 .catch(err => {
+                  alert('이미 답변을 남겼습니다.');
                   console.log(err);
                 });
-              alert('성공');
               close(false);
             }
           } else {
@@ -85,7 +98,6 @@ const Answer = ({
               .catch(err => {
                 console.log(err);
               });
-            alert('성공');
             close(false);
           }
           break;
