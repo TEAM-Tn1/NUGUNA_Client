@@ -20,7 +20,7 @@ const Answer = ({ close, id, named, dateDisplay, divDisplayAnswer, option }: det
   const [displayOpcity, setDisplayOpcity] = useState<number>(1);
   const [displayCilck, setDisplayCilck] = useState<any>('auto');
   const [reason, setReason] = useState<string>('');
-  const [date, setDate] = useState<any>();
+  const [date, setDate] = useState<string | undefined>();
   const history = useHistory();
 
   const accessToken = localStorage.getItem('access_token');
@@ -31,16 +31,42 @@ const Answer = ({ close, id, named, dateDisplay, divDisplayAnswer, option }: det
     } else {
       switch (option) {
         case 1:
-          reportUserAnswer
-            .setReportPostAnswer(accessToken, id, reason, date)
-            .then(res => {
-              console.log(res);
-              history.go(0);
-            })
-            .catch(err => {
-              console.log(err);
-            });
-          close(false);
+          if (whether) {
+            if (date == undefined) {
+              alert('정지할 날짜까지 선택하세요.');
+            } else {
+              console.log(whether);
+              console.log(reason);
+              console.log(date);
+              reportUserAnswer
+                .setReportUserAnswer(accessToken, id, reason, date)
+                .then(res => {
+                  console.log(res);
+                  history.go(0);
+                })
+                .catch(err => {
+                  console.log(err);
+                });
+              alert('성공');
+              close(false);
+            }
+          } else {
+            console.log(whether);
+            console.log(reason);
+            console.log(date);
+            reportUserAnswer
+              .setReportUserAnswer(accessToken, id, reason, date)
+              .then(res => {
+                console.log(res);
+                history.go(0);
+              })
+              .catch(err => {
+                console.log(err);
+              });
+            alert('성공');
+            close(false);
+          }
+          /*    */
           break;
         case 2:
           reportPostAnswer

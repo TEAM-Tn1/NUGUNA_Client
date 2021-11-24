@@ -30,7 +30,7 @@ export default {
     accessToken: string | null,
     id: string | number,
     reason: string,
-    date: string,
+    date: string | undefined,
   ) {
     return request({
       url: `/admin/report/users`,
