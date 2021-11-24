@@ -91,7 +91,7 @@ const Mypage = () => {
         </S.StudentInfo>
         <S.DormitoryInfo>
           <span>호실</span>
-          <span>{room_number}</span>
+          <span>{`${room_number}호`}</span>
         </S.DormitoryInfo>
         <S.AccountBox>
           <S.AccountInfo isHideAccount={isHideAccount}>
