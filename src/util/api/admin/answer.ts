@@ -41,4 +41,17 @@ export default {
       data: { report_id: id, reason: reason, black_date: date },
     });
   },
+  setUserBlack(
+    accessToken: string | null,
+    id: string | number,
+  ) {
+    return request({
+      url: `/admin/report/${id}/date`,
+      method: 'get',
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+      data: { report_id: id },
+    });
+  },
 };

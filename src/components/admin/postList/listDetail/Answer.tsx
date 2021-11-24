@@ -31,9 +31,29 @@ const Answer = ({
   const [displayCilck, setDisplayCilck] = useState<any>('auto');
   const [reason, setReason] = useState<string>('');
   const [date, setDate] = useState<string | undefined>();
+  const [blackDate, setBlackDate] = useState<string>('');
   const history = useHistory();
 
   const accessToken = localStorage.getItem('access_token');
+
+  const getBlackDate = (check: boolean) => {
+    if (check) {
+      userBlack
+        .setUserBlack(accessToken, id)
+        .then(res => {
+          res.data.black_date == null
+            ? setBlackDate('')
+            : setBlackDate('정지일: ' + res.data.black_date);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
+  };
+
+  useEffect(() => {
+    getBlackDate(check);
+  }, []);
 
   const onSubmit = (option: number | string) => {
     if (reason.replace(/ /g, '') == '') {
@@ -118,6 +138,7 @@ const Answer = ({
           style={{ opacity: displayOpcity, pointerEvents: displayCilck, display: dateDisplay }}
           onChange={e => setDate(e.target.value)}
         />
+        <p>{blackDate}</p>
       </div>
       <textarea
         placeholder='답변을 남겨주세요.'
