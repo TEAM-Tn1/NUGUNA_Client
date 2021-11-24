@@ -8,10 +8,10 @@ interface Props {
   subject: string;
   isShowModal: boolean;
   closeModal: () => void;
-  email?: string;
+  id?: string;
 }
 
-const ModalTemplate: FC<Props> = ({ subject, isShowModal, closeModal, email }) => {
+const ModalTemplate: FC<Props> = ({ subject, isShowModal, closeModal, id }) => {
   const [inputs, setInputs] = useState({
     title: '',
     content: '',
@@ -42,9 +42,9 @@ const ModalTemplate: FC<Props> = ({ subject, isShowModal, closeModal, email }) =
       return;
     }
 
-    if (email) {
+    if (id) {
       // 유저, 게시물 신고
-      report(title, content, email)
+      report(title, content, id)
         .then(async res => {
           if (imageFile) {
             await imageUpload(res.data['report_id'], imageFile)
@@ -88,7 +88,7 @@ const ModalTemplate: FC<Props> = ({ subject, isShowModal, closeModal, email }) =
         <S.Wrapper>
           <S.ModalContainer>
             <S.Title>{subject}</S.Title>
-            <S.ContentBox email={email}>
+            <S.ContentBox id={id}>
               <input
                 name='title'
                 value={title}
@@ -103,7 +103,7 @@ const ModalTemplate: FC<Props> = ({ subject, isShowModal, closeModal, email }) =
                 placeholder='내용을 1000자 이하로 작성해주세요'
                 maxLength={1000}
               />
-              {email && (
+              {id && (
                 <S.ImageBox>
                   <span>사진은 최대 1장만 가능합니다.</span>
                   <label htmlFor='upload'>

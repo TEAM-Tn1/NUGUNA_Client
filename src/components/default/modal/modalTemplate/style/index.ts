@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 interface Props {
-  email?: string;
+  id?: string;
 }
 
 export const Wrapper = styled.div`
@@ -56,7 +56,7 @@ export const ContentBox = styled.div<Props>`
 
   & textarea {
     width: 100%;
-    height: ${props => (props.email ? 'calc(100% - 130px)' : 'calc(100% - 35px)')};
+    height: ${props => (props.id ? 'calc(100% - 130px)' : 'calc(100% - 35px)')};
     font-size: 12px;
     padding-top: 16px;
     border: none;

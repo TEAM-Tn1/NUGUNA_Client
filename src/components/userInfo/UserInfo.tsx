@@ -75,7 +75,7 @@ const UserInfo = ({ match }: any) => {
         subject='신고하기'
         isShowModal={isShowModal}
         closeModal={closeModal}
-        email={email}
+        id={email}
       />
     </S.Wrapper>
   );
