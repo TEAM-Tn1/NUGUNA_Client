@@ -74,6 +74,10 @@ const DetailContent: FC<Props> = props => {
     setIsReportModal(true);
   };
 
+  const profileLinkHandler = () => {
+    history.push(`/profile/${userInfo.writerEmail}`);
+  };
+
   return (
     <>
       <S.DetailContent>
@@ -95,7 +99,7 @@ const DetailContent: FC<Props> = props => {
             })}
         </S.HashTageLine>
         <S.UserInfoAndChatLine>
-          <div>
+          <div onClick={profileLinkHandler}>
             <p>{userInfo.writerName}</p>
             <p>{userInfo.writerEmail}</p>
           </div>

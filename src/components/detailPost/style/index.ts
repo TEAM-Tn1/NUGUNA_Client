@@ -104,6 +104,9 @@ export const UserInfoAndChatLine = styled.div`
   align-items: center;
   margin: 0 auto;
   margin-bottom: 20px;
+  > div:first-child {
+    cursor: pointer;
+  }
   > div:first-child > p {
     font-size: 14px;
   }
