@@ -21,6 +21,7 @@ interface Props {
   userInfo: { writerEmail: string; writerName: string };
   socket: React.MutableRefObject<SocketIOClient.Socket | undefined>;
   setRoomId: (payload: string) => void;
+  setIsReportModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const DetailContent: FC<Props> = props => {
@@ -39,6 +40,7 @@ const DetailContent: FC<Props> = props => {
     isUsedItem,
     socket,
     setRoomId,
+    setIsReportModal,
   } = props;
   const { id } = useParams<{ id: string }>();
   const history = useHistory();
@@ -62,12 +64,17 @@ const DetailContent: FC<Props> = props => {
     });
   };
 
+  const openReportModal = () => {
+    console.log(1);
+    setIsReportModal(true);
+  };
+
   return (
     <>
       <S.DetailContent>
         <S.TitleLine>
           <S.PostTitle>{title}</S.PostTitle>
-          <S.Report>
+          <S.Report onClick={openReportModal}>
             <S.ReportIcon src={reportIcon} />
             <p>{REPORT}</p>
           </S.Report>
