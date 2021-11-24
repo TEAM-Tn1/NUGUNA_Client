@@ -65,7 +65,6 @@ const DetailContent: FC<Props> = props => {
   };
 
   const openReportModal = () => {
-    console.log(1);
     setIsReportModal(true);
   };
 
