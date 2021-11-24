@@ -63,6 +63,14 @@ const ModalTemplate: FC<Props> = ({ subject, isShowModal, closeModal, id }) => {
           closeModal();
         })
         .catch(err => {
+          if (err.response.status === 400) {
+            alert('자기 자신은 신고할 수 없습니다.');
+            setInputs({
+              title: '',
+              content: '',
+            });
+            closeModal();
+          }
           throw err;
         });
     } else {
