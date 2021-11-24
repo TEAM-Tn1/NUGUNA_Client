@@ -35,13 +35,9 @@ const Answer = ({ close, id, named, dateDisplay, divDisplayAnswer, option }: det
             if (date == undefined) {
               alert('정지할 날짜까지 선택하세요.');
             } else {
-              console.log(whether);
-              console.log(reason);
-              console.log(date);
               reportUserAnswer
                 .setReportUserAnswer(accessToken, id, reason, date)
                 .then(res => {
-                  console.log(res);
                   history.go(0);
                 })
                 .catch(err => {
@@ -51,13 +47,9 @@ const Answer = ({ close, id, named, dateDisplay, divDisplayAnswer, option }: det
               close(false);
             }
           } else {
-            console.log(whether);
-            console.log(reason);
-            console.log(date);
             reportUserAnswer
               .setReportUserAnswer(accessToken, id, reason, date)
               .then(res => {
-                console.log(res);
                 history.go(0);
               })
               .catch(err => {
@@ -72,7 +64,6 @@ const Answer = ({ close, id, named, dateDisplay, divDisplayAnswer, option }: det
           reportPostAnswer
             .setReportPostAnswer(accessToken, id, reason, whether)
             .then(res => {
-              console.log(res);
               history.go(0);
             })
             .catch(err => {
@@ -84,7 +75,6 @@ const Answer = ({ close, id, named, dateDisplay, divDisplayAnswer, option }: det
           questionAnswer
             .setQuestionAnswer(accessToken, id, reason)
             .then(res => {
-              console.log(res);
               history.go(0);
             })
             .catch(err => {
