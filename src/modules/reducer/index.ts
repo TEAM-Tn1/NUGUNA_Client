@@ -8,6 +8,7 @@ import {
   adminReportPostListReducer,
   adminReportUserListReducer,
 } from './admin';
+import searchReducer from './search';
 
 const rootReducer = combineReducers({
   post: postReducer,
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   adminReportUserList: adminReportUserListReducer,
   writePost: writePostReducer,
   chatList: chatListReducer,
+  search: searchReducer,
 });
 
 export type reducerType = ReturnType<typeof rootReducer>;

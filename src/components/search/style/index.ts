@@ -30,10 +30,7 @@ export const TitleLine = styled.p`
     margin: 0px 2.7%;
   }
   > p:nth-child(3) {
-    margin-right: 30%;
-  }
-  > p:nth-child(4) {
-    margin-right: 5.4%;
+    margin-right: 35.4%;
   }
 `;
 
