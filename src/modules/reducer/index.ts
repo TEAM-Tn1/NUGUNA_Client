@@ -9,6 +9,7 @@ import {
   adminReportUserListReducer,
 } from './admin';
 import searchReducer from './search';
+import detailChatReducer from './detailChat';
 
 const rootReducer = combineReducers({
   post: postReducer,
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   writePost: writePostReducer,
   chatList: chatListReducer,
   search: searchReducer,
+  detailChat: detailChatReducer,
 });
 
 export type reducerType = ReturnType<typeof rootReducer>;

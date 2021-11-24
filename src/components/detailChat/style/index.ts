@@ -159,3 +159,17 @@ export const MyChat = styled(OtherChat)`
   background-color: rgba(255, 157, 134, 0.26);
   text-align: right;
 `;
+
+export const JoinMessage = styled.p`
+  font-size: 12px;
+  text-align: center;
+`;
+
+export const MoreBtn = styled.p`
+  font-size: 11px;
+  font-weight: bold;
+  color: ${color.mainColor};
+  text-align: center;
+  margin-bottom: 5px;
+  cursor: pointer;
+`;

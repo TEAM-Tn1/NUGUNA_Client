@@ -7,6 +7,7 @@ import adminQuestionSaga from './admin/list/Question';
 import adminReportPostSaga from './admin/list/ReportPost';
 import adminReportUserSaga from './admin/list/ReportUser';
 import searchSaga from './search';
+import detailChatSaga from './detailChat';
 
 export default function* rootSaga() {
   yield all([
@@ -20,5 +21,6 @@ export default function* rootSaga() {
     chatListSaga(),
     searchSaga(),
     adminReportUserSaga(),
+    detailChatSaga(),
   ]);
 }
