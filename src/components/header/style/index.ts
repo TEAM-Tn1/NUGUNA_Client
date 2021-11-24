@@ -39,6 +39,7 @@ export const SearchInputBox = styled.div`
 export const SearchImg = styled.img`
   width: 24px;
   height: 24px;
+  cursor: pointer;
 `;
 
 export const SearchInput = styled.input`
