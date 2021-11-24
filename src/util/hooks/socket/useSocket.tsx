@@ -8,11 +8,9 @@ export const useSocket = () => {
   )}`;
 
   useEffect(() => {
-    console.log('test2');
     socket.current = socketIO.connect(SOCKET_SEVER_URL, {
       transports: ['websocket'],
     });
-    return () => console.log('test');
   }, [SOCKET_SEVER_URL, socket]);
 
   return { socket } as const;

@@ -30,7 +30,7 @@ const MainRouter = () => {
         <Route exact path='/mypage/written_post' component={WrittenPost} />
         <Route exact path='/profile/:email' component={UserInfo} />
         <Route exact path='/post' component={PostContanier} />
-        <Route exact path='/view/post/:id' component={DetailPostContainer} />
+        <Route exact path='/view/post/:id' render={() => <DetailPostContainer socket={socket} />} />
         <Route exact path='/write/post/:type' component={WritePostContainer} />
         <Route exact path='/chatting' render={() => <ChatListContainer socket={socket} />} />
         <Route exact path='/admin/report/feed' component={ReportPostContainer} />

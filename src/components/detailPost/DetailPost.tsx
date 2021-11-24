@@ -25,7 +25,9 @@ interface Props {
   };
   isUsedItem: boolean;
   setFeedId: (payload: number) => void;
+  setRoomId: (payload: string) => void;
   isSuccessDeletePost: boolean | undefined;
+  socket: React.MutableRefObject<SocketIOClient.Socket | undefined>;
 }
 
 const DetailPost: FC<Props> = props => {
