@@ -4,9 +4,14 @@ import { useLocation, useParams } from 'react-router';
 import Header from './Header';
 import Footer from './Footer';
 import Chats from './Chats';
+import { detailChatResponse } from '../../models/dto/response/detailChatResponse';
 
 interface Props {
+  page: number;
+  chatContent: Array<detailChatResponse>;
+  isHaveNextPage: boolean;
   socket: React.MutableRefObject<SocketIOClient.Socket | undefined>;
+  setPage: (payload: number) => void;
 }
 
 const DetailChat: FC<Props> = props => {
@@ -24,7 +29,7 @@ const DetailChat: FC<Props> = props => {
       <Header socket={socket} type={type} id={id} />
       <S.DetailChat>
         <S.ContentBox>
-          <Chats />
+          <Chats {...props} />
         </S.ContentBox>
       </S.DetailChat>
       <Footer
