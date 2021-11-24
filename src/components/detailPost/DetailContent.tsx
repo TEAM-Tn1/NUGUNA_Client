@@ -60,6 +60,12 @@ const DetailContent: FC<Props> = props => {
       setRoomId(room_id);
       history.push(`/chat/${type}/${room_id}`);
     });
+    socket.current?.on('error', (response: { status: number; message: string }) => {
+      if (response.status === 400 && response.message === 'Its your feed.')
+        alert('게시글의 작성자입니다!');
+      else if (response.status === 409 && response.message === 'Already join room.')
+        alert('이미 해당 게시글의 채팅에 참여하였습니다.');
+    });
   };
 
   return (
