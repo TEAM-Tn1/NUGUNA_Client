@@ -2,6 +2,7 @@ import { error } from '../../../../models/error';
 
 interface DetailPostState {
   feedId: number;
+  roomId: string;
   title: string;
   description: string;
   price: number;
