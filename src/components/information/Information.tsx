@@ -35,6 +35,10 @@ const Information = () => {
     e.preventDefault();
     if (isFillAll) {
       const account = bank_name + ' ' + account_number;
+      if (account.length > 20) {
+        alert('계좌번호가 너무 깁니다.');
+        return;
+      }
       information
         .setInformation(dormitory, account)
         .then(res => {
@@ -60,7 +64,9 @@ const Information = () => {
               name='dormitory'
               value={dormitory}
               onChange={onChange}
-              type='text'
+              pattern='[0-9]+'
+              title='숫자만 입력할 수 있습니다.'
+              maxLength={3}
               id='dormitory'
               required
             />
@@ -85,6 +91,8 @@ const Information = () => {
               name='account_number'
               value={account_number}
               onChange={onChange}
+              pattern='[0-9]+'
+              title='숫자만 입력할 수 있습니다.'
               type='text'
               id='account_number'
               required

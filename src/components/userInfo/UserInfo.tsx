@@ -60,7 +60,7 @@ const UserInfo = ({ match }: any) => {
         </S.StudentInfoBox>
         <S.DormitoryInfo>
           <span>{name && '호실'}</span>
-          <span>{room_number}</span>
+          <span>{`${room_number}호`}</span>
         </S.DormitoryInfo>
         <S.AccountInfo>
           <span>{name && '계좌번호'}</span>
