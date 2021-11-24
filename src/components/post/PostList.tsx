@@ -5,11 +5,10 @@ import PostContent from './PostContent';
 import { postListType } from '../../models/dto/response/postResponse';
 import { useInView } from 'react-intersection-observer';
 import { chickLogo } from '../../assets/logo';
-import { useHistory } from 'react-router-dom';
 
 interface Props {
   type: string;
-  order: { newest: boolean; like: boolean };
+  order?: { newest: boolean; like: boolean };
   page: number;
   postList: Array<postListType>;
   isHaveNextPage: boolean;

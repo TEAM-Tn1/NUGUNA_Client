@@ -15,6 +15,7 @@ const Header = () => {
   };
 
   const inputIconClickHandler = () => {
+    setState.setSearchList();
     history.push('/search');
     dispatch({ type: SEARCH });
   };

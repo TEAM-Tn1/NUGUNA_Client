@@ -1,31 +1,46 @@
-import React, { useState } from 'react';
+import React, { FC } from 'react';
 import * as S from './style';
 import Header from '../header';
 import Footer from '../footer';
-import { SEARCH_TITLE, SUBTITLE } from '../../constance/search';
+import { SEARCH_TITLE, TRADEANDGROUP } from '../../constance/search';
 import PostList from '../post/PostList';
+import { searchListType } from '../../models/dto/response/searchResponse';
 
-const Search = () => {
-  const [isPostClick, setIsPostClick] = useState({ trade: true, group: false });
-  const [isOrderClick, setIsOrderClick] = useState({ newest: true, like: false });
-  const [type, setType] = useState<string>('trade');
+interface Props {
+  type: string;
+  typeClick: { trade: boolean; group: boolean };
+  page: number;
+  searchList: Array<searchListType>;
+  isHaveNextPage: boolean;
+  setPage: (payload: number) => void;
+  setType: (payload: string) => void;
+  setTypeClick: (payload: { trade: boolean; group: boolean }) => void;
+}
+
+const Search: FC<Props> = props => {
+  const {
+    type,
+    typeClick,
+    page,
+    searchList,
+    isHaveNextPage,
+    setPage,
+    setType,
+    setTypeClick,
+  } = props;
 
   const subtitleClickHandler = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const dataId = event.currentTarget.dataset.id;
     switch (dataId) {
       case 'trade':
-        setIsPostClick({ trade: true, group: false });
+        setTypeClick({ trade: true, group: false });
         setType('trade');
+        setPage(0);
         break;
       case 'group':
-        setIsPostClick({ trade: false, group: true });
+        setTypeClick({ trade: false, group: true });
         setType('group');
-        break;
-      case 'newest':
-        setIsOrderClick({ newest: true, like: false });
-        break;
-      case 'like':
-        setIsOrderClick({ newest: false, like: true });
+        setPage(0);
         break;
     }
   };
@@ -33,15 +48,12 @@ const Search = () => {
   const clickState = (dataId: string) => {
     switch (dataId) {
       case 'trade':
-        return isPostClick.trade;
+        return typeClick.trade;
       case 'group':
-        return isPostClick.group;
-      case 'newest':
-        return isOrderClick.newest;
-      case 'like':
-        return isOrderClick.like;
+        return typeClick.group;
     }
   };
+
   return (
     <>
       <Header />
@@ -49,7 +61,7 @@ const Search = () => {
         <S.ContentBox>
           <S.TitleLine>
             <p>{SEARCH_TITLE}</p>
-            {SUBTITLE.map(data => {
+            {TRADEANDGROUP.map(data => {
               return (
                 <S.SubTitle
                   key={data.id}
@@ -64,11 +76,10 @@ const Search = () => {
           </S.TitleLine>
           <PostList
             type={type}
-            setPage={() => {}}
-            page={1}
-            postList={[]}
-            isHaveNextPage={false}
-            order={{ newest: true, like: false }}
+            setPage={setPage}
+            page={page}
+            postList={searchList}
+            isHaveNextPage={isHaveNextPage}
           />
         </S.ContentBox>
       </S.Search>
