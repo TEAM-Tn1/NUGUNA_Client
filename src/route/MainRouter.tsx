@@ -1,6 +1,15 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { Auth, Callback, Information, Mypage, UserInfo } from '../components';
+import {
+  Auth,
+  Callback,
+  Information,
+  Mypage,
+  UserInfo,
+  Main,
+  Noti,
+  TagRegister,
+} from '../components';
 import { ModifyInfo, LikedPost, WrittenPost } from '../components/mypage/mypageOptions';
 import {
   PostContanier,
@@ -13,9 +22,6 @@ import {
   ReportPostContainer,
   ReportUserContainer,
 } from '../container';
-import Main from '../components/main/index';
-import { Noti } from '../components/notification/index';
-import { TagRegister } from '../components/notification/tagRegister';
 import { useSocket } from '../util/hooks/socket/useSocket';
 
 const MainRouter = () => {
@@ -45,7 +51,7 @@ const MainRouter = () => {
           render={() => <DetailChatContainer socket={socket} />}
         />
         <Route exact path='/search' component={SearchContainer} />
-        <Route exact path='/main' component={Main} />
+        <Route exact path='/' component={Main} />
         <Route exact path='/noti/list' component={Noti} />
         <Route exact path='/noti/tag' component={TagRegister} />
       </Switch>
