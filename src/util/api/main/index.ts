@@ -11,4 +11,14 @@ export default {
       data: {},
     });
   },
+  setGroupGet(accessToken: string | null) {
+    return request({
+      url: `/feed?page=0&range=2&is_used_item=false&sort=time`,
+      method: 'get',
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+      data: {},
+    });
+  },
 };
