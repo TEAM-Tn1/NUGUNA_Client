@@ -18,6 +18,7 @@ const initState: DetailChatState = {
     message: '',
   },
   isSuccessGetDetailChat: undefined,
+  isHaveNextPage: true,
 };
 
 const detailChatReducer = (
@@ -31,11 +32,17 @@ const detailChatReducer = (
         isSuccessGetDetailChat: undefined,
       };
     case CHAT_CONTENT_SUCCESS:
-      return {
-        ...state,
-        chatContent: action.payload,
-        isSuccessGetDetailChat: true,
-      };
+      if (action.payload.length !== 0)
+        return {
+          ...state,
+          chatContent: action.payload.concat(state.chatContent),
+          isSuccessGetDetailChat: true,
+        };
+      else
+        return {
+          ...state,
+          isHaveNextPage: false,
+        };
     case CHAT_CONTENT_FAILURE:
       return {
         ...state,
