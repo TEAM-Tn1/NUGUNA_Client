@@ -7,7 +7,7 @@ import DetailChatState from '../../reducer/detailChat/interface';
 const getStateFunc = (state: reducerType): DetailChatState => state.detailChat;
 
 const detailChatGetSaga = function* (): any {
-  const actionType = 'DETAILPOST/GET_POST';
+  const actionType = 'DETAILCHAT/CHAT_CONTENT';
   const SUCCESS = `${actionType}_SUCCESS`;
   const FAILURE = `${actionType}_FAILURE`;
   const state = yield select(getStateFunc);
