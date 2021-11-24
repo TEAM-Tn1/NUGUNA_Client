@@ -1,6 +1,12 @@
 import { useDispatch } from 'react-redux';
 import useSelectState from '../default';
-import { setType, setPage, setTypeClick, setTitle } from '../../../modules/action/search';
+import {
+  setType,
+  setPage,
+  setTypeClick,
+  setTitle,
+  setSearchList,
+} from '../../../modules/action/search';
 
 const useSearch = () => {
   const dispatch = useDispatch();
@@ -17,6 +23,9 @@ const useSearch = () => {
     },
     setTitle: (payload: string) => {
       dispatch(setTitle(payload));
+    },
+    setSearchList: () => {
+      dispatch(setSearchList());
     },
   };
   return { state, setState };

@@ -7,6 +7,7 @@ import {
   TYPECLICK,
   PAGE,
   TITLE,
+  SEARCHLIST,
 } from '../../action/search/interface';
 import SearchState from './interface';
 
@@ -72,6 +73,11 @@ const searchReducer = (state: SearchState = initState, action: searchActionType)
       return {
         ...state,
         title: action.payload,
+      };
+    case SEARCHLIST:
+      return {
+        ...state,
+        searchList: [],
       };
     default:
       return state;
