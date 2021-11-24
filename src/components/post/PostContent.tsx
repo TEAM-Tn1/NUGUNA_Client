@@ -63,13 +63,14 @@ const PostContent: FC<Props> = props => {
           {isTypeGroup}
         </div>
         <S.HashtagLine>
-          {hashtag.map((data: string, i: number) => {
-            return (
-              <S.Hashtag key={i}>
-                <p>{data}</p>
-              </S.Hashtag>
-            );
-          })}
+          {hashtag &&
+            hashtag.map((data: string, i: number) => {
+              return (
+                <S.Hashtag key={i}>
+                  <p>{data}</p>
+                </S.Hashtag>
+              );
+            })}
         </S.HashtagLine>
       </S.PostInfo>
     </S.PostContent>
