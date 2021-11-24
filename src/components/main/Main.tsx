@@ -9,7 +9,6 @@ import grouptGet from '../../util/api/main';
 
 const Main = () => {
   const accessToken = localStorage.getItem('access_token');
-  const array = ['1', '2'];
   const [carrot, setCarrot] = useState<any>();
   const [group, setGroup] = useState<any>();
 
@@ -18,27 +17,23 @@ const Main = () => {
       carrotGet
         .setCarrotGet(accessToken)
         .then(res => {
-          console.log(res.data);
           setCarrot(res.data);
         })
         .catch(err => {
-          console.log(err);
+          throw (err);
         });
     }
     {
       grouptGet
         .setGroupGet(accessToken)
         .then(res => {
-          console.log(res.data);
           setGroup(res.data);
         })
         .catch(err => {
-          console.log(err);
+          throw (err);
         });
     }
   }, []);
-
-  console.log(group);
   return (
     <S.Wrapper>
       <Header />
