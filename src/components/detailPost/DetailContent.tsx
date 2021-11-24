@@ -4,6 +4,7 @@ import { reportIcon } from '../../assets/detailPost';
 import PostImgSlider from './PostImgSlider';
 import DetailPostFooter from './DetailPostFooter';
 import { CHAT, REPORT } from '../../constance/detailPost';
+import { useHistory, useParams } from 'react-router';
 
 interface Props {
   title: string;
@@ -18,6 +19,8 @@ interface Props {
   like: boolean;
   photo: Array<string>;
   userInfo: { writerEmail: string; writerName: string };
+  socket: React.MutableRefObject<SocketIOClient.Socket | undefined>;
+  setRoomId: (payload: string) => void;
 }
 
 const DetailContent: FC<Props> = props => {
@@ -34,7 +37,11 @@ const DetailContent: FC<Props> = props => {
     like,
     photo,
     isUsedItem,
+    socket,
+    setRoomId,
   } = props;
+  const { id } = useParams<{ id: string }>();
+  const history = useHistory();
 
   const makeDates = useMemo(() => {
     const month = date && date.slice(5, 7);
@@ -46,6 +53,14 @@ const DetailContent: FC<Props> = props => {
     if (isUsedItem) return 'trade';
     else return 'group';
   }, [isUsedItem]);
+
+  const chattingBtnClickHandler = () => {
+    socket.current?.emit('join', id);
+    socket.current?.on('room', (room_id: string) => {
+      setRoomId(room_id);
+      history.push(`/chat/${type}/${room_id}`);
+    });
+  };
 
   return (
     <>
@@ -72,7 +87,7 @@ const DetailContent: FC<Props> = props => {
             <p>{userInfo.writerName}</p>
             <p>{userInfo.writerEmail}</p>
           </div>
-          <S.ChattingBtn>
+          <S.ChattingBtn onClick={chattingBtnClickHandler}>
             <p>{CHAT}</p>
           </S.ChattingBtn>
         </S.UserInfoAndChatLine>
