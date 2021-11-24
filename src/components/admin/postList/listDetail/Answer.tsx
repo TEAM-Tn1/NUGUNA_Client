@@ -4,6 +4,7 @@ import * as S from './style/index';
 import questionAnswer from '../../../../util/api/admin/answer';
 import reportPostAnswer from '../../../../util/api/admin/answer';
 import reportUserAnswer from '../../../../util/api/admin/answer';
+import userBlack from '../../../../util/api/admin/answer';
 import { useHistory } from 'react-router';
 
 interface detailProps {
@@ -13,17 +14,46 @@ interface detailProps {
   dateDisplay: string;
   divDisplayAnswer: string;
   option: number | string;
+  check: boolean;
 }
 
-const Answer = ({ close, id, named, dateDisplay, divDisplayAnswer, option }: detailProps) => {
+const Answer = ({
+  close,
+  id,
+  named,
+  dateDisplay,
+  divDisplayAnswer,
+  option,
+  check,
+}: detailProps) => {
   const [whether, setWhether] = useState<boolean>(true);
   const [displayOpcity, setDisplayOpcity] = useState<number>(1);
   const [displayCilck, setDisplayCilck] = useState<any>('auto');
   const [reason, setReason] = useState<string>('');
   const [date, setDate] = useState<string | undefined>();
+  const [blackDate, setBlackDate] = useState<string>('');
   const history = useHistory();
 
   const accessToken = localStorage.getItem('access_token');
+
+  const getBlackDate = (check: boolean) => {
+    if (check) {
+      userBlack
+        .setUserBlack(accessToken, id)
+        .then(res => {
+          res.data.black_date == null
+            ? setBlackDate('')
+            : setBlackDate('정지일: ' + res.data.black_date);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
+  };
+
+  useEffect(() => {
+    getBlackDate(check);
+  }, []);
 
   const onSubmit = (option: number | string) => {
     if (reason.replace(/ /g, '') == '') {
@@ -58,7 +88,6 @@ const Answer = ({ close, id, named, dateDisplay, divDisplayAnswer, option }: det
             alert('성공');
             close(false);
           }
-          /*    */
           break;
         case 2:
           reportPostAnswer
@@ -109,6 +138,7 @@ const Answer = ({ close, id, named, dateDisplay, divDisplayAnswer, option }: det
           style={{ opacity: displayOpcity, pointerEvents: displayCilck, display: dateDisplay }}
           onChange={e => setDate(e.target.value)}
         />
+        <p>{blackDate}</p>
       </div>
       <textarea
         placeholder='답변을 남겨주세요.'
