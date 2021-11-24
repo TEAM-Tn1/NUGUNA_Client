@@ -5,11 +5,13 @@ import { Logo } from '../logo';
 import PostContent from '../post/PostContent';
 import { Link } from 'react-router-dom';
 import carrotGet from '../../util/api/main';
+import grouptGet from '../../util/api/main';
 
 const Main = () => {
   const accessToken = localStorage.getItem('access_token');
   const array = ['1', '2'];
   const [carrot, setCarrot] = useState<any>();
+  const [group, setGroup] = useState<any>();
 
   useEffect(() => {
     {
@@ -23,9 +25,20 @@ const Main = () => {
           console.log(err);
         });
     }
+    {
+      grouptGet
+        .setGroupGet(accessToken)
+        .then(res => {
+          console.log(res.data);
+          setGroup(res.data);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
   }, []);
 
-  console.log(carrot);
+  console.log(group);
   return (
     <S.Wrapper>
       <Header />
@@ -40,17 +53,16 @@ const Main = () => {
           carrot.map((carrot: any) => {
             return (
               <PostContent
-                //, , , , , , , isLikeClick, ,
                 feedId={carrot.feed_id}
                 medium={carrot.medium}
                 title={carrot.title}
                 money={carrot.price}
-                like={carrot.like}
+                like={carrot.count}
                 type={''}
                 date={''}
                 people={''}
                 hashtag={carrot.tags}
-                isLikeClick={undefined}
+                isLikeClick={carrot.like}
               />
             );
           })}
@@ -64,21 +76,23 @@ const Main = () => {
         <div>
           <h1>공구게시물</h1>
         </div>
-        {array.map(() => {
-          return (
-            <PostContent
-              feedId={1}
-              medium={''}
-              title={'귀여운 인형 팔아요yoy'}
-              money={5000}
-              like={5}
-              type={'group'}
-              date={'8/1'}
-              people={'2/4'}
-              hashtag={['#인형', '#인형', '#인형']}
-            />
-          );
-        })}
+        {group &&
+          group.map((group: any) => {
+            return (
+              <PostContent
+                feedId={group.feed_id}
+                medium={group.medium}
+                title={group.title}
+                money={group.price}
+                like={group.count}
+                type={''}
+                date={''}
+                people={''}
+                hashtag={group.tags}
+                isLikeClick={group.like}
+              />
+            );
+          })}
         <div>
           <Link to={'/post'}>
             <span>게시물 더보기 ＞</span>
