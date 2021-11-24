@@ -2,6 +2,8 @@ import React, { FC, useEffect, useState } from 'react';
 import { positive, negative } from '../../../../assets/admin';
 import * as S from './style/index';
 import questionAnswer from '../../../../util/api/admin/answer';
+import reportPostAnswer from '../../../../util/api/admin/answer';
+import reportUserAnswer from '../../../../util/api/admin/answer';
 import { useHistory } from 'react-router';
 
 interface detailProps {
@@ -18,35 +20,67 @@ const Answer = ({ close, id, named, dateDisplay, divDisplayAnswer, option }: det
   const [displayOpcity, setDisplayOpcity] = useState<number>(1);
   const [displayCilck, setDisplayCilck] = useState<any>('auto');
   const [reason, setReason] = useState<string>('');
+  const [date, setDate] = useState<string | undefined>();
   const history = useHistory();
 
   const accessToken = localStorage.getItem('access_token');
 
   const onSubmit = (option: number | string) => {
-      console.log(reason);      
     if (reason.replace(/ /g, '') == '') {
       alert('답변을 적어주세요');
     } else {
       switch (option) {
         case 1:
-          close(false);
+          if (whether) {
+            if (date == undefined) {
+              alert('정지할 날짜까지 선택하세요.');
+            } else {
+              reportUserAnswer
+                .setReportUserAnswer(accessToken, id, reason, date)
+                .then(res => {
+                  history.go(0);
+                })
+                .catch(err => {
+                  console.log(err);
+                });
+              alert('성공');
+              close(false);
+            }
+          } else {
+            reportUserAnswer
+              .setReportUserAnswer(accessToken, id, reason, date)
+              .then(res => {
+                history.go(0);
+              })
+              .catch(err => {
+                console.log(err);
+              });
+            alert('성공');
+            close(false);
+          }
+          /*    */
           break;
         case 2:
-          close(false);
-          break;
-        case 3:
-          questionAnswer
-            .setQuestionAnswer(id, accessToken, reason)
+          reportPostAnswer
+            .setReportPostAnswer(accessToken, id, reason, whether)
             .then(res => {
-              console.log(res);
-              console.log(reason);
               history.go(0);
             })
             .catch(err => {
               console.log(err);
             });
           close(false);
-
+          break;
+        case 3:
+          questionAnswer
+            .setQuestionAnswer(accessToken, id, reason)
+            .then(res => {
+              history.go(0);
+            })
+            .catch(err => {
+              console.log(err);
+            });
+          close(false);
           break;
       }
     }
@@ -56,6 +90,8 @@ const Answer = ({ close, id, named, dateDisplay, divDisplayAnswer, option }: det
     whether ? setDisplayOpcity(1) : setDisplayOpcity(0.3);
     whether ? setDisplayCilck('auto') : setDisplayCilck('none');
   }, [whether]);
+
+  const today = new Date().toISOString().substring(0, 10);
 
   return (
     <S.Answer>
@@ -69,7 +105,9 @@ const Answer = ({ close, id, named, dateDisplay, divDisplayAnswer, option }: det
         />
         <input
           type='date'
+          min={today}
           style={{ opacity: displayOpcity, pointerEvents: displayCilck, display: dateDisplay }}
+          onChange={e => setDate(e.target.value)}
         />
       </div>
       <textarea
