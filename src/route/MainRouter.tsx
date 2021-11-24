@@ -51,7 +51,7 @@ const MainRouter = () => {
           render={() => <DetailChatContainer socket={socket} />}
         />
         <Route exact path='/search' component={SearchContainer} />
-        <Route exact path='/' component={Main} />
+        <Route exact path='/main' component={Main} />
         <Route exact path='/noti/list' component={Noti} />
         <Route exact path='/noti/tag' component={TagRegister} />
       </Switch>
