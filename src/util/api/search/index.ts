@@ -9,13 +9,13 @@ const isUsedItem = (type: string) => {
 export const getSearchList = async (
   accessToken: string,
   page: number,
-  sort: string,
   type: string,
+  title: string,
 ) => {
   try {
     const request = getRequestWithAccessToken(accessToken);
     return await request.get(
-      `${uri.search}?page=${page}&range=4&is_used_item=${isUsedItem(type)}&sort=${sort}`,
+      `${uri.search}?page=${page}&range=4&is_used_item=${isUsedItem(type)}&title=${title}`,
     );
   } catch (error) {
     throw error;
