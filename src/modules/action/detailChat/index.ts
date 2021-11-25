@@ -5,6 +5,7 @@ import {
   CHAT_CONTENT,
   CHAT_CONTENT_FAILURE,
   CHAT_CONTENT_SUCCESS,
+  MESSAGE,
   PAGE,
   ROOM_ID,
   GET_INFO,
@@ -17,6 +18,7 @@ export const chatContentSuccess = createAction(CHAT_CONTENT_SUCCESS)<Array<detai
 export const chatContentFailure = createAction(CHAT_CONTENT_FAILURE)<error>();
 export const setPage = createAction(PAGE)<number>();
 export const setRoomId = createAction(ROOM_ID)<string>();
+export const setMessage = createAction(MESSAGE)<detailChatResponse>();
 export const getInfo = createAction(GET_INFO)();
 export const getInfoSuccess = createAction(GET_INFO_SUCCESS)<infoResponse>();
 export const getInfoFailure = createAction(GET_INFO_FAILURE)<error>();
@@ -27,6 +29,7 @@ export type detailChatActionType =
   | ReturnType<typeof chatContentFailure>
   | ReturnType<typeof setPage>
   | ReturnType<typeof setRoomId>
+  | ReturnType<typeof setMessage>;
   | ReturnType<typeof getInfo>
   | ReturnType<typeof getInfoSuccess>
   | ReturnType<typeof getInfoFailure>;

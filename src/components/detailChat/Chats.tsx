@@ -28,28 +28,25 @@ const Chats: FC<Props> = props => {
           if (data.email === myEmail) {
             return (
               <MyChat
+                key={data.message_id}
                 message={data.message}
                 isLastMessage={
-                  chatContent[data.message_id + 1] &&
-                  chatContent[data.message_id + 1].email === myEmail
-                    ? false
-                    : true
+                  chatContent[i + 1] && chatContent[i + 1].email === myEmail ? false : true
                 }
               />
             );
           } else
             return (
               <OtherChat
+                key={data.message_id}
                 message={data.message}
                 isLastMessage={
-                  chatContent[data.message_id + 1] &&
-                  chatContent[data.message_id + 1].email === data.email
-                    ? false
-                    : true
+                  chatContent[i + 1] && chatContent[i + 1].email === data.email ? false : true
                 }
                 name={
-                  chatContent[data.message_id - 1] &&
-                  chatContent[data.message_id - 1].email === data.email
+                  chatContent[i - 1] &&
+                  chatContent[i - 1].type === 'SEND' &&
+                  chatContent[i - 1].email === data.email
                     ? undefined
                     : data.name
                 }

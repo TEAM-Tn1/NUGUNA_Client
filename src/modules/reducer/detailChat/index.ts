@@ -5,6 +5,7 @@ import {
   CHAT_CONTENT_SUCCESS,
   ROOM_ID,
   PAGE,
+  MESSAGE,
   GET_INFO,
   GET_INFO_SUCCESS,
   GET_INFO_FAILURE,
@@ -63,6 +64,11 @@ const detailChatReducer = (
       return {
         ...state,
         page: action.payload,
+      };
+    case MESSAGE:
+      return {
+        ...state,
+        chatContent: state.chatContent.concat([action.payload]),
       };
     case GET_INFO_SUCCESS:
       return {
