@@ -6,7 +6,6 @@ import {
   ROOM_ID,
   PAGE,
   MESSAGE,
-  GET_INFO,
   GET_INFO_SUCCESS,
   GET_INFO_FAILURE,
 } from '../../action/detailChat/interface';
