@@ -5,6 +5,8 @@ interface DetailChatState {
   page: number;
   roomId: string;
   chatContent: Array<detailChatResponse>;
+  roomNumber: string;
+  accountNumber: string;
   error: error;
   isSuccessGetDetailChat: boolean | undefined;
   isHaveNextPage: boolean;

@@ -5,6 +5,9 @@ import {
   CHAT_CONTENT_SUCCESS,
   ROOM_ID,
   PAGE,
+  GET_INFO,
+  GET_INFO_SUCCESS,
+  GET_INFO_FAILURE,
 } from '../../action/detailChat/interface';
 import DetailChatState from './interface';
 
@@ -12,6 +15,8 @@ const initState: DetailChatState = {
   chatContent: [],
   page: 0,
   roomId: '',
+  roomNumber: '',
+  accountNumber: '',
   error: {
     status: 0,
     type: '',
@@ -58,6 +63,17 @@ const detailChatReducer = (
       return {
         ...state,
         page: action.payload,
+      };
+    case GET_INFO_SUCCESS:
+      return {
+        ...state,
+        roomNumber: action.payload.room_number,
+        accountNumber: action.payload.account_number,
+      };
+    case GET_INFO_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
       };
     default:
       return state;
