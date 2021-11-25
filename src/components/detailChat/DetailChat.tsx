@@ -9,6 +9,7 @@ import { detailChatResponse } from '../../models/dto/response/detailChatResponse
 interface Props {
   page: number;
   chatContent: Array<detailChatResponse>;
+  accountNumber: string;
   isHaveNextPage: boolean;
   socket: React.MutableRefObject<SocketIOClient.Socket | undefined>;
   setPage: (payload: number) => void;
@@ -16,7 +17,7 @@ interface Props {
 }
 
 const DetailChat: FC<Props> = props => {
-  const { socket, setMessage } = props;
+  const { socket, setMessage, accountNumber } = props;
   const [isClickSettingBtn, setIsClickSettingBtn] = useState(false);
   const type = useLocation().pathname.slice(6, 11);
   const { id } = useParams<{ id: string }>();
@@ -35,6 +36,7 @@ const DetailChat: FC<Props> = props => {
       </S.DetailChat>
       <Footer
         id={id}
+        accountNumber={accountNumber}
         isClickSettingBtn={isClickSettingBtn}
         setIsClickSettingBtn={setIsClickSettingBtn}
         socket={socket}

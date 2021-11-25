@@ -6,6 +6,8 @@ import {
   ROOM_ID,
   PAGE,
   MESSAGE,
+  GET_INFO_SUCCESS,
+  GET_INFO_FAILURE,
 } from '../../action/detailChat/interface';
 import DetailChatState from './interface';
 
@@ -13,6 +15,8 @@ const initState: DetailChatState = {
   chatContent: [],
   page: 0,
   roomId: '',
+  roomNumber: '',
+  accountNumber: '',
   error: {
     status: 0,
     type: '',
@@ -36,7 +40,7 @@ const detailChatReducer = (
       if (action.payload.length !== 0)
         return {
           ...state,
-          chatContent: action.payload.concat(state.chatContent),
+          chatContent: action.payload.reverse().concat(state.chatContent),
           isSuccessGetDetailChat: true,
         };
       else
@@ -64,6 +68,17 @@ const detailChatReducer = (
       return {
         ...state,
         chatContent: state.chatContent.concat([action.payload]),
+      };
+    case GET_INFO_SUCCESS:
+      return {
+        ...state,
+        roomNumber: action.payload.room_number,
+        accountNumber: action.payload.account_number,
+      };
+    case GET_INFO_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
       };
     default:
       return state;

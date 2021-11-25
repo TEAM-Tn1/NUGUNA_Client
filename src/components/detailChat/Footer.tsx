@@ -1,12 +1,15 @@
-import React, { FC, useMemo, useState } from 'react';
+import React, { FC, useEffect, useMemo, useState } from 'react';
 import * as S from './style';
 import { setting, send } from '../../assets/chat';
 import { SETTING } from '../../constance/detailChat';
 import { useHistory } from 'react-router';
 import { detailChatResponse, socketResponse } from '../../models/dto/response/detailChatResponse';
+import { useDispatch } from 'react-redux';
+import { GET_INFO } from '../../modules/action/detailChat/interface';
 
 interface Props {
   id: string;
+  accountNumber: string;
   isClickSettingBtn: boolean;
   setIsClickSettingBtn: React.Dispatch<React.SetStateAction<boolean>>;
   socket: React.MutableRefObject<SocketIOClient.Socket | undefined>;
@@ -14,8 +17,9 @@ interface Props {
 }
 
 const Footer: FC<Props> = props => {
-  const { setIsClickSettingBtn, isClickSettingBtn, socket, id, setMessage } = props;
+  const { setIsClickSettingBtn, isClickSettingBtn, socket, id, setMessage, accountNumber } = props;
   const history = useHistory();
+  const dispatch = useDispatch();
   const [chat, setChat] = useState<string>('');
   const input = document.getElementById('input') as HTMLInputElement;
 
@@ -59,6 +63,26 @@ const Footer: FC<Props> = props => {
     });
   };
 
+  const accountBtnClickHandler = () => {
+    dispatch({ type: GET_INFO });
+  };
+
+  useEffect(() => {
+    if (accountNumber !== '') {
+      socket.current?.emit('message', { message: accountNumber, room_id: id });
+      socket.current?.on('message', (response: socketResponse) => {
+        setMessage({
+          message_id: response.message_id,
+          message: response.content,
+          type: response.type,
+          email: response.email,
+          name: response.name,
+          sent_at: response.sent_at,
+        });
+      });
+    }
+  }, [accountNumber]);
+
   const showSetting = useMemo(() => {
     if (isClickSettingBtn)
       return (
@@ -72,7 +96,7 @@ const Footer: FC<Props> = props => {
                     ? outBtnClickHandler
                     : data.id === 'arrive'
                     ? arriveBtnClickHandler
-                    : () => {}
+                    : accountBtnClickHandler
                 }
               >
                 <img src={data.img} alt={data.id} />

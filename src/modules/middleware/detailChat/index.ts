@@ -1,6 +1,6 @@
 import { call, put, select, takeLatest } from 'redux-saga/effects';
-import { getDetailChat } from '../../../util/api/detailChat';
-import { CHAT_CONTENT } from '../../action/detailChat/interface';
+import { getDetailChat, getInfo } from '../../../util/api/detailChat';
+import { CHAT_CONTENT, GET_INFO } from '../../action/detailChat/interface';
 import { reducerType } from '../../reducer';
 import DetailChatState from '../../reducer/detailChat/interface';
 
@@ -37,8 +37,39 @@ const detailChatGetSaga = function* (): any {
   }
 };
 
+const infoGetSaga = function* (): any {
+  const actionType = 'DETAILCHAT/GET_INFO';
+  const SUCCESS = `${actionType}_SUCCESS`;
+  const FAILURE = `${actionType}_FAILURE`;
+  const accessToken = localStorage.getItem('access_token') || '';
+  try {
+    const response = yield call(getInfo, accessToken);
+    yield put({
+      type: SUCCESS,
+      payload: response ? response.data : null,
+    });
+  } catch (error) {
+    if (error.response?.data) {
+      yield put({
+        type: FAILURE,
+        payload: { ...error.response.data, type: actionType },
+      });
+    } else {
+      console.log(error);
+      yield put({
+        type: FAILURE,
+        payload: {
+          message: 'Network Error',
+          status: 500,
+        },
+      });
+    }
+  }
+};
+
 function* detailChatSaga() {
   yield takeLatest(CHAT_CONTENT, detailChatGetSaga);
+  yield takeLatest(GET_INFO, infoGetSaga);
 }
 
 export default detailChatSaga;

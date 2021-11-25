@@ -1,7 +1,7 @@
 enum uri {
   oauth = '/users/oauth',
   signin = '/users/auth',
-  info = '/users/info',
+  info = '/users/information',
   alarm = '/users/template',
   feed = '/feed',
   carrot = '/feed/carrot',
