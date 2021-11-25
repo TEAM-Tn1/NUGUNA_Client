@@ -5,6 +5,7 @@ import {
   CHAT_CONTENT_SUCCESS,
   ROOM_ID,
   PAGE,
+  MESSAGE,
 } from '../../action/detailChat/interface';
 import DetailChatState from './interface';
 
@@ -58,6 +59,11 @@ const detailChatReducer = (
       return {
         ...state,
         page: action.payload,
+      };
+    case MESSAGE:
+      return {
+        ...state,
+        chatContent: state.chatContent.concat([action.payload]),
       };
     default:
       return state;

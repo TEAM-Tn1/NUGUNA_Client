@@ -12,10 +12,11 @@ interface Props {
   isHaveNextPage: boolean;
   socket: React.MutableRefObject<SocketIOClient.Socket | undefined>;
   setPage: (payload: number) => void;
+  setMessage: (payload: detailChatResponse) => void;
 }
 
 const DetailChat: FC<Props> = props => {
-  const { socket } = props;
+  const { socket, setMessage } = props;
   const [isClickSettingBtn, setIsClickSettingBtn] = useState(false);
   const type = useLocation().pathname.slice(6, 11);
   const { id } = useParams<{ id: string }>();
@@ -37,6 +38,7 @@ const DetailChat: FC<Props> = props => {
         isClickSettingBtn={isClickSettingBtn}
         setIsClickSettingBtn={setIsClickSettingBtn}
         socket={socket}
+        setMessage={setMessage}
       />
     </>
   );

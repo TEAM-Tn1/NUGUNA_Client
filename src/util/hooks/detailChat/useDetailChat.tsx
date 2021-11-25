@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux';
-import { setPage, setRoomId } from '../../../modules/action/detailChat';
+import { detailChatResponse } from '../../../models/dto/response/detailChatResponse';
+import { setMessage, setPage, setRoomId } from '../../../modules/action/detailChat';
 import useSelectState from '../default';
 
 const useDetailChat = () => {
@@ -11,6 +12,9 @@ const useDetailChat = () => {
     },
     setRoomId: (payload: string) => {
       dispatch(setRoomId(payload));
+    },
+    setMessage: (payload: detailChatResponse) => {
+      dispatch(setMessage(payload));
     },
   };
   return { state, setState };
