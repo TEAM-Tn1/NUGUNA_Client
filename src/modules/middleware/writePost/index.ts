@@ -1,4 +1,4 @@
-import { call, put, select, take, takeLatest } from 'redux-saga/effects';
+import { call, put, select, takeLatest } from 'redux-saga/effects';
 import { getDetailPost } from '../../../util/api/detailPost';
 import {
   writeCarrotPost,
