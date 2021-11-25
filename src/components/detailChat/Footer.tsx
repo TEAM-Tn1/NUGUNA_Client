@@ -22,6 +22,11 @@ const Footer: FC<Props> = props => {
     });
   };
 
+  const arriveBtnClickHandler = () => {
+    socket.current?.emit('message', { message: '택배왔어요!', roomId: id });
+    socket.current?.on('message', () => {});
+  };
+
   const showSetting = useMemo(() => {
     if (isClickSettingBtn)
       return (
