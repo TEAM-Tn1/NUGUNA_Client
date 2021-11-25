@@ -41,7 +41,7 @@ const detailChatReducer = (
       if (action.payload.length !== 0)
         return {
           ...state,
-          chatContent: action.payload.concat(state.chatContent),
+          chatContent: action.payload.reverse().concat(state.chatContent),
           isSuccessGetDetailChat: true,
         };
       else

@@ -1,5 +1,5 @@
 import { call, put, select, takeLatest } from 'redux-saga/effects';
-import { getDetailChat } from '../../../util/api/detailChat';
+import { getDetailChat, getInfo } from '../../../util/api/detailChat';
 import { CHAT_CONTENT, GET_INFO } from '../../action/detailChat/interface';
 import { reducerType } from '../../reducer';
 import DetailChatState from '../../reducer/detailChat/interface';
@@ -41,10 +41,9 @@ const infoGetSaga = function* (): any {
   const actionType = 'DETAILCHAT/GET_INFO';
   const SUCCESS = `${actionType}_SUCCESS`;
   const FAILURE = `${actionType}_FAILURE`;
-  const state = yield select(getStateFunc);
   const accessToken = localStorage.getItem('access_token') || '';
   try {
-    const response = yield call(getDetailChat, accessToken, state.roomId, state.page);
+    const response = yield call(getInfo, accessToken);
     yield put({
       type: SUCCESS,
       payload: response ? response.data : null,

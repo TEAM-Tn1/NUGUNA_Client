@@ -29,7 +29,7 @@ export type detailChatActionType =
   | ReturnType<typeof chatContentFailure>
   | ReturnType<typeof setPage>
   | ReturnType<typeof setRoomId>
-  | ReturnType<typeof setMessage>;
+  | ReturnType<typeof setMessage>
   | ReturnType<typeof getInfo>
   | ReturnType<typeof getInfoSuccess>
   | ReturnType<typeof getInfoFailure>;
