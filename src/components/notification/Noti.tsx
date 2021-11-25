@@ -1,31 +1,51 @@
-import React from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import * as S from './style';
 import { exit_icon } from '../../assets/alarm/index';
 import { List } from './list/index';
-import { QuestionAnswer } from './answerCheck';
-
-//더미데이터
-const testArray: number[] = [];
-for (let i = 0; i < 10; i++) {
-  testArray.push(i);
-}
-const Data = {
-  notification_id: 1,
-  title: '문의',
-  content: 'question',
-  message: '이 기능 생겼으면 좋겠당 글에 답변이 달렸습니다.',
-  is_watch: true,
-};
-const { notification_id, title, content, message, is_watch } = Data;
+import listGet from '../../util/api/notificate';
+import { useInView } from 'react-intersection-observer';
+import { useHistory } from 'react-router';
 
 const Noti = () => {
+  const accessToken = localStorage.getItem('access_token');
+  const history = useHistory();
+
+  const [list, setList] = useState<Array<any>>([]);
+  const [page, setPage] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const maxPage = 1;
+  const [ref, inView] = useInView();
+
+  const getList = useCallback(async () => {
+    setLoading(true);
+    await listGet
+      .setListGet(accessToken, page)
+      .then(res => {
+        setList(prevState => [...prevState, ...res.data]);
+      })
+      .catch(err => {
+        /* history.push('/auth');
+        alert('로그인을 해주세요.'); */
+        throw err;
+      });
+    setLoading(false);
+  }, [page]);
+
+  useEffect(() => {
+    getList();
+  }, [page]);
+
+  useEffect(() => {
+    if (inView && !loading) {
+      if (page <= maxPage) {
+        console.log('asda');
+        setPage(prevState => prevState + 1);
+      }
+    }
+  }, [inView, loading]);
+
   return (
     <S.Wrapper>
-      <QuestionAnswer
-        content={
-          '문의하신 계좌변경 관련해서는 마이페이지로 들어가 내 정보 수정하기를 누르면 목록 아래 쪽에 생기는 정보수정란으로 수정이 가능합니다. 감사합니다.'
-        }
-      />
       <S.AlarmHeader>
         <div>
           <img src={exit_icon} alt='' />
@@ -33,15 +53,23 @@ const Noti = () => {
         <h2>알람</h2>
         <div>태그등록</div>
       </S.AlarmHeader>
-      {testArray.map((_, index) => {
-        return (
+      {list.map((lists: any, idx: number) => {
+        return list.length - 1 == idx ? (
           <List
-            key={index}
-            notification_id={notification_id}
-            title={title}
-            content={content}
-            message={message}
-            is_watch={is_watch}
+            notification_id={lists.notification_id}
+            title={lists.title}
+            message={lists.message}
+            content={lists.content}
+            is_watch={lists.is_watch}
+            ref={ref}
+          />
+        ) : (
+          <List
+            notification_id={lists.notification_id}
+            title={lists.title}
+            message={lists.message}
+            content={lists.content}
+            is_watch={lists.is_watch}
           />
         );
       })}

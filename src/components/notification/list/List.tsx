@@ -2,6 +2,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import * as S from './style';
 import { chat_icon, question_icon, report_icon, tag_icon } from '../../../assets/alarm/index';
+import { JsxAttribute } from 'typescript';
 
 interface listProps {
   notification_id: number;
@@ -9,9 +10,11 @@ interface listProps {
   message: string;
   content: string | number;
   is_watch: boolean;
+  ref?: any;
 }
 
-const List: FC<listProps> = ({ title, message, content, is_watch }) => {
+const List = React.forwardRef((props: listProps, ref: any) => {
+  const { notification_id, title, message, content, is_watch } = props;
   const [icon, setIcon] = useState<string>('');
 
   useEffect(() => {
@@ -30,8 +33,9 @@ const List: FC<listProps> = ({ title, message, content, is_watch }) => {
         break;
     }
   }, []);
+
   return (
-    <S.List>
+    <S.List ref={ref}>
       <div>
         <div style={{ backgroundColor: is_watch ? '#3D50FF' : 'transparent' }} />
       </div>
@@ -46,6 +50,6 @@ const List: FC<listProps> = ({ title, message, content, is_watch }) => {
       </div>
     </S.List>
   );
-};
+});
 
 export default List;
