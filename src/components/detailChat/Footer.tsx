@@ -46,8 +46,17 @@ const Footer: FC<Props> = props => {
   };
 
   const arriveBtnClickHandler = () => {
-    socket.current?.emit('message', { message: '택배왔어요!', roomId: id });
-    socket.current?.on('message', () => {});
+    socket.current?.emit('message', { message: '택배 도착했습니다!', room_id: id });
+    socket.current?.on('message', (response: socketResponse) => {
+      setMessage({
+        message_id: response.message_id,
+        message: response.content,
+        type: response.type,
+        email: response.email,
+        name: response.name,
+        sent_at: response.sent_at,
+      });
+    });
   };
 
   const showSetting = useMemo(() => {
