@@ -31,6 +31,7 @@ const postReducer = (state: PostState = initState, action: postActionType): Post
       return {
         ...state,
         isSuccessGetPostList: undefined,
+        isHaveNextPage: false,
       };
     case GET_POST_SUCCESS:
       if (action.payload.length !== 0)
