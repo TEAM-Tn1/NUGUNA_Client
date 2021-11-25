@@ -24,6 +24,7 @@ const Chats: FC<Props> = props => {
       {isHaveNextPage && <S.MoreBtn onClick={moreBtnClickHandler}>더보기</S.MoreBtn>}
       {chatContent.map((data: detailChatResponse, i) => {
         if (data.type === 'JOIN') return <S.JoinMessage>{data.message}</S.JoinMessage>;
+        else if (data.type === 'LEAVE') return <S.JoinMessage>{data.message}</S.JoinMessage>;
         else {
           if (data.email === myEmail) {
             return (

@@ -162,6 +162,7 @@ export const MyChat = styled(OtherChat)`
 export const JoinMessage = styled.p`
   font-size: 12px;
   text-align: center;
+  margin-bottom: 10px;
 `;
 
 export const MoreBtn = styled.p`
