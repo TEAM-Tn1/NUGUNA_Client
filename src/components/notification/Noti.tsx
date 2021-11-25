@@ -11,9 +11,9 @@ const Noti = () => {
   const history = useHistory();
 
   const [list, setList] = useState<Array<any>>([]);
+  const [lastCheck, setLastCheck] = useState<boolean>();
   const [page, setPage] = useState(0);
   const [loading, setLoading] = useState(false);
-  const maxPage = 1;
   const [ref, inView] = useInView();
 
   const getList = useCallback(async () => {
@@ -21,11 +21,14 @@ const Noti = () => {
     await listGet
       .setListGet(accessToken, page)
       .then(res => {
+        if (res.data.length === 0) {
+          setLastCheck(true);
+        }
         setList(prevState => [...prevState, ...res.data]);
       })
       .catch(err => {
-        /* history.push('/auth');
-        alert('로그인을 해주세요.'); */
+        history.push('/auth');
+        alert('로그인을 해주세요.');
         throw err;
       });
     setLoading(false);
@@ -36,11 +39,8 @@ const Noti = () => {
   }, [page]);
 
   useEffect(() => {
-    if (inView && !loading) {
-      if (page <= maxPage) {
-        console.log('asda');
-        setPage(prevState => prevState + 1);
-      }
+    if (inView && !loading && !lastCheck) {
+      setPage(prevState => prevState + 1);
     }
   }, [inView, loading]);
 
@@ -53,23 +53,23 @@ const Noti = () => {
         <h2>알람</h2>
         <div>태그등록</div>
       </S.AlarmHeader>
-      {list.map((lists: any, idx: number) => {
+      {list.map((listItem: any, idx: number) => {
         return list.length - 1 == idx ? (
           <List
-            notification_id={lists.notification_id}
-            title={lists.title}
-            message={lists.message}
-            content={lists.content}
-            is_watch={lists.is_watch}
+            notification_id={listItem.notification_id}
+            title={listItem.title}
+            message={listItem.message}
+            content={listItem.content}
+            is_watch={listItem.is_watch}
             ref={ref}
           />
         ) : (
           <List
-            notification_id={lists.notification_id}
-            title={lists.title}
-            message={lists.message}
-            content={lists.content}
-            is_watch={lists.is_watch}
+            notification_id={listItem.notification_id}
+            title={listItem.title}
+            message={listItem.message}
+            content={listItem.content}
+            is_watch={listItem.is_watch}
           />
         );
       })}
