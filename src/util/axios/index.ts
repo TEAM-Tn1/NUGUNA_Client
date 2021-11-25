@@ -39,7 +39,7 @@ instance.interceptors.response.use(
 
         return axios(config);
       } catch (err: any) {
-        if (err.response.status) {
+        if (err.response.status === 401) {
           window.location.href = '/auth';
         }
       }
