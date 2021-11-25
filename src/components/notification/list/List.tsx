@@ -7,25 +7,25 @@ interface listProps {
   notification_id: number;
   title: string;
   message: string;
-  content: string;
+  content: string | number;
   is_watch: boolean;
 }
 
 const List: FC<listProps> = ({ title, message, content, is_watch }) => {
-  const [icon, setIcon] = useState<string>('report_icon');
+  const [icon, setIcon] = useState<string>('');
 
   useEffect(() => {
-    switch (content) {
-      case 'report':
+    switch (title) {
+      case '신고':
         setIcon(report_icon);
         break;
-      case 'chat':
+      case '채팅':
         setIcon(chat_icon);
         break;
-      case 'question':
+      case '문의':
         setIcon(question_icon);
         break;
-      case 'tag':
+      case '태그':
         setIcon(tag_icon);
         break;
     }
