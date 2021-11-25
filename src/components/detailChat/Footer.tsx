@@ -33,7 +33,16 @@ const Footer: FC<Props> = props => {
         <S.SettingLine>
           {SETTING.map(data => {
             return (
-              <div key={data.id} onClick={data.id === 'out' ? outBtnClickHandler : () => {}}>
+              <div
+                key={data.id}
+                onClick={
+                  data.id === 'out'
+                    ? outBtnClickHandler
+                    : data.id === 'arrive'
+                    ? arriveBtnClickHandler
+                    : () => {}
+                }
+              >
                 <img src={data.img} alt={data.id} />
                 <p>{data.content}</p>
               </div>
