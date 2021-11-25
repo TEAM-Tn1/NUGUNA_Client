@@ -3,6 +3,8 @@ import * as S from './style';
 import { setting, send } from '../../assets/chat';
 import { SETTING } from '../../constance/detailChat';
 import { useHistory } from 'react-router';
+import { useDispatch } from 'react-redux';
+import { GET_INFO } from '../../modules/action/detailChat/interface';
 
 interface Props {
   id: string;
@@ -14,12 +16,17 @@ interface Props {
 const Footer: FC<Props> = props => {
   const { setIsClickSettingBtn, isClickSettingBtn, socket, id } = props;
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const outBtnClickHandler = () => {
     socket.current?.emit('leave', id);
     socket.current?.on('room', () => {
       history.push('/chatting');
     });
+  };
+
+  const accountBtnClickHandler = () => {
+    dispatch({ type: GET_INFO });
   };
 
   const showSetting = useMemo(() => {
