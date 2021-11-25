@@ -29,8 +29,13 @@ const ChatListContent: FC<Props> = props => {
 
   const chatListClickHandler = () => {
     socket.current?.emit('unsubscribe-all');
-    if (type === 'trade') history.push(`/chat/trade/${roomId}`);
-    else if (type === 'group') history.push(`/chat/group/${roomId}`);
+    if (type === 'trade') {
+      history.push(`/chat/trade/${roomId}`);
+      window.location.reload();
+    } else if (type === 'group') {
+      history.push(`/chat/group/${roomId}`);
+      window.location.reload();
+    }
   };
 
   return (

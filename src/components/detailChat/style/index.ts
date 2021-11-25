@@ -157,7 +157,6 @@ export const ChatName = styled.p`
 
 export const MyChat = styled(OtherChat)`
   background-color: rgba(255, 157, 134, 0.26);
-  text-align: right;
 `;
 
 export const JoinMessage = styled.p`
