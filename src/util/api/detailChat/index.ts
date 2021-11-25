@@ -9,3 +9,12 @@ export const getDetailChat = async (accessToken: string, roomId: string, page: n
     throw error;
   }
 };
+
+export const getInfo = async (accessToken: string) => {
+  try {
+    const request = getRequestWithAccessToken(accessToken);
+    return await request.get(uri.info);
+  } catch (error) {
+    throw error;
+  }
+};
