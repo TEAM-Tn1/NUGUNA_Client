@@ -11,4 +11,14 @@ export default {
       data: {},
     });
   },
+  setTagGet(accessToken: string | null) {
+    return request({
+      url: `/notification/tags`,
+      method: 'get',
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+      data: {},
+    });
+  },
 };

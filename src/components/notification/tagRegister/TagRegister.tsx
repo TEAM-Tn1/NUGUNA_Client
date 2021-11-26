@@ -1,19 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './style';
 import { Tag } from './tag/index';
 import { delete_icon, exit_icon } from '../../../assets/alarm';
-
-//더미데이터
-const testArray: number[] = [];
-for (let i = 0; i < 10; i++) {
-  testArray.push(i);
-}
-const Data = {
-  tag: '인강',
-};
-const { tag } = Data;
+import tagGet from '../../../util/api/notificate';
 
 const TagRegister = () => {
+  const accessToken = localStorage.getItem('access_token');
+
+  const [tag, setTag] = useState<any>();
+
+  const getTag = () => {
+    tagGet
+      .setTagGet(accessToken)
+      .then(res => {
+        setTag(res.data);
+      })
+      .catch(err => {
+        throw err;
+      });
+  };
+
+  useEffect(() => {
+    getTag();
+  }, []);
+
   return (
     <S.Wrapper>
       <S.AlarmHeader>
@@ -29,10 +39,10 @@ const TagRegister = () => {
       </S.Register>
       <h1>등록된 태그</h1>
       <article>
-        {testArray.map((_, index) => {
+        {tag?.map((tagItem: any, index: number) => {
           return (
             <S.TagList key={index}>
-              <Tag tag={tag} />
+              <Tag tag={tagItem.tag} />
               <img src={delete_icon} alt='' />
             </S.TagList>
           );
