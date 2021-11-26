@@ -13,11 +13,10 @@ const TagRegister = () => {
     tagGet
       .setTagGet(accessToken)
       .then(res => {
-        console.log(res.data);
         setTag(res.data);
       })
       .catch(err => {
-        console.log(err);
+        throw err;
       });
   };
 
