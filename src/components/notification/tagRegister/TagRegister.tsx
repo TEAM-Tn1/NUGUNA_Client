@@ -3,11 +3,16 @@ import * as S from './style';
 import { Tag } from './tag/index';
 import { delete_icon, exit_icon } from '../../../assets/alarm';
 import tagGet from '../../../util/api/notificate';
+import tagPost from '../../../util/api/notificate';
+import { useHistory } from 'react-router';
 
 const TagRegister = () => {
+  const history = useHistory();
+
   const accessToken = localStorage.getItem('access_token');
 
   const [tag, setTag] = useState<any>();
+  const [tagName, setTagName] = useState<string>('');
 
   const getTag = () => {
     tagGet
@@ -18,6 +23,25 @@ const TagRegister = () => {
       .catch(err => {
         throw err;
       });
+  };
+
+  const postTag = () => {
+    tagPost
+      .setTagPost(accessToken, tagName)
+      .then(res => {})
+      .catch(err => {
+        throw err;
+      });
+  };
+
+  const onSubmit = () => {
+    if (tagName.replace(/ /g, '') == '') {
+      alert('설정할 태그를 입력하세요');
+    } else {
+      postTag();
+      history.go(0);
+      getTag();
+    }
   };
 
   useEffect(() => {
@@ -34,8 +58,12 @@ const TagRegister = () => {
         <div></div>
       </S.AlarmHeader>
       <S.Register>
-        <input type='text' placeholder='등록할 태그를 입력하세요.' />
-        <button>등록하기</button>
+        <input
+          type='text'
+          placeholder='등록할 태그를 입력하세요.'
+          onChange={e => setTagName(e.target.value)}
+        />
+        <button onClick={() => onSubmit()}>등록하기</button>
       </S.Register>
       <h1>등록된 태그</h1>
       <article>

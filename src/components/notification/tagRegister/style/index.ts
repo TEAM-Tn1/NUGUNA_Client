@@ -23,6 +23,7 @@ export const Wrapper = styled.div`
     color: #ffffff;
     border: none;
     border-radius: 4px;
+    cursor: pointer;
   }
 `;
 
@@ -51,11 +52,13 @@ export const Register = styled.article`
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+
   > input {
     border: none;
     display: flex;
     flex: 0.99;
   }
+
   > button {
     width: 50px;
     height: 20px;
@@ -65,6 +68,7 @@ export const Register = styled.article`
     font-weight: 600;
     border: none;
     border-radius: 4px;
+    cursor: pointer;
   }
 `;
 
@@ -75,7 +79,12 @@ export const TagList = styled.div`
   align-items: center;
   padding: 8px 0;
   border-bottom: solid 1px ${color.subColor};
+
   &:nth-last-child(1) {
     border: none;
+  }
+  
+  > img {
+    cursor: pointer;
   }
 `;
