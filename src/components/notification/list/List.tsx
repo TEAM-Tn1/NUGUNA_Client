@@ -48,7 +48,7 @@ const List = React.forwardRef((props: listProps, ref: any) => {
   return (
     <S.List ref={ref} onClick={() => onCheck()}>
       <div>
-        <div style={{ backgroundColor: is_watch ? '#3D50FF' : 'transparent' }} />
+        <div style={{ backgroundColor: is_watch ? 'transparent' : ' #3D50FF' }} />
       </div>
       <div>
         <div>
