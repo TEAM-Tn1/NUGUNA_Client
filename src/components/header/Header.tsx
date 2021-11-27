@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './style';
 import { search, alram } from '../../assets/header';
 import useSearch from '../../util/hooks/search';
 import { useHistory } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { SEARCH } from '../../modules/action/search/interface';
+import notiCount from '../../util/api/header';
 
 const Header = () => {
+  const accessToken = localStorage.getItem('access_token');
+  const [count, setCount] = useState<number>();
+
   const { state, setState } = useSearch();
   const history = useHistory();
   const dispatch = useDispatch();
@@ -20,6 +24,17 @@ const Header = () => {
     dispatch({ type: SEARCH });
   };
 
+  useEffect(() => {
+    notiCount
+      .setNotiCount(accessToken)
+      .then(res => {
+        setCount(res.data.count);
+      })
+      .catch(err => {
+        throw err;
+      });
+  }, []);
+
   return (
     <S.Header>
       <S.Wrapper>
@@ -29,7 +44,9 @@ const Header = () => {
         </S.SearchInputBox>
         <S.AlramBox>
           <S.AlramImg src={alram} />
-          <S.AlramCheck />
+          <S.AlramCheck>
+            <span>{count}</span>
+          </S.AlramCheck>
         </S.AlramBox>
       </S.Wrapper>
     </S.Header>
