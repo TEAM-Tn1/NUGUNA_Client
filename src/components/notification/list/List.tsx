@@ -3,6 +3,7 @@ import React, { FC, useEffect, useState } from 'react';
 import * as S from './style';
 import { chat_icon, question_icon, report_icon, tag_icon } from '../../../assets/alarm/index';
 import { JsxAttribute } from 'typescript';
+import notiCheck from '../../../util/api/notificate';
 
 interface listProps {
   notification_id: number;
@@ -16,6 +17,7 @@ interface listProps {
 const List = React.forwardRef((props: listProps, ref: any) => {
   const { notification_id, title, message, content, is_watch } = props;
   const [icon, setIcon] = useState<string>('');
+  const accessToken = localStorage.getItem('access_token');
 
   useEffect(() => {
     switch (title) {
@@ -34,8 +36,17 @@ const List = React.forwardRef((props: listProps, ref: any) => {
     }
   }, []);
 
+  const onCheck = () => {
+    notiCheck
+      .setNotiCheck(accessToken, notification_id)
+      .then(res => {})
+      .catch(err => {
+        throw err;
+      });
+  };
+
   return (
-    <S.List ref={ref}>
+    <S.List ref={ref} onClick={() => onCheck()}>
       <div>
         <div style={{ backgroundColor: is_watch ? '#3D50FF' : 'transparent' }} />
       </div>
