@@ -3,12 +3,13 @@ import * as S from './style';
 import Header from '../header';
 import Footer from '../footer';
 import { ALRAMTITLE, GROUPTOGGLE, TRADETOGGLE } from '../../constance/chatList';
-import { bellRing } from '../../assets/chat';
+import { bellRing, bellNoRing } from '../../assets/chat';
 import TradeChatList from './TradeChatList';
 import GroupChatList from './GroupChatList';
 import { useDispatch } from 'react-redux';
 import { CARROT_CHAT, GROUP_CHAT } from '../../modules/action/chatList/interface';
 import { chatListResponseType } from '../../models/dto/response/chatListResponse';
+import ringGet from '../../util/api/chatNoti';
 
 interface Props {
   chatList: Array<chatListResponseType>;
@@ -16,6 +17,8 @@ interface Props {
 }
 
 const ChatList: FC<Props> = props => {
+  const accessToken = localStorage.getItem('access_token');
+  const [ring, setRing] = useState<boolean>(true);
   const [isClick, setIsClick] = useState({ trade: true, group: false });
   const { chatList, socket } = props;
   const dispatch = useDispatch();
@@ -44,13 +47,24 @@ const ChatList: FC<Props> = props => {
     else if (isClick.group) return <GroupChatList chatList={chatList} socket={socket} />;
   }, [isClick, chatList]);
 
+  useEffect(() => {
+    ringGet
+      .setRingGet(accessToken)
+      .then(res => {
+        setRing(res.data.notification);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, []);
+
   return (
     <>
       <Header />
       <S.ChatList>
         <S.AlarmLine>
           <p>{ALRAMTITLE}</p>
-          <img src={bellRing} alt='bell' />
+          <img src={ring ? bellRing : bellNoRing} alt='bell' />
         </S.AlarmLine>
         <S.ToggleLine>
           <S.ToggleBtn isClick={isClick.trade} onClick={tradeBtnClickEvent}>
