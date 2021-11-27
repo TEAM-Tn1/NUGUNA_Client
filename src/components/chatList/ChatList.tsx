@@ -65,7 +65,14 @@ const ChatList: FC<Props> = props => {
 
   const onclickBell = () => {
     ring
-      ? console.log('ring')
+      ? ringDelete
+          .setRingDelete(accessToken)
+          .then(res => {
+            history.go(0);
+          })
+          .catch(err => {
+            throw err;
+          })
       : ringPost
           .setRingPost(accessToken)
           .then(res => {
