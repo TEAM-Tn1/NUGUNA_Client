@@ -10,6 +10,9 @@ import { useDispatch } from 'react-redux';
 import { CARROT_CHAT, GROUP_CHAT } from '../../modules/action/chatList/interface';
 import { chatListResponseType } from '../../models/dto/response/chatListResponse';
 import ringGet from '../../util/api/chatNoti';
+import ringPost from '../../util/api/chatNoti';
+import ringDelete from '../../util/api/chatNoti';
+import { useHistory } from 'react-router';
 
 interface Props {
   chatList: Array<chatListResponseType>;
@@ -17,6 +20,7 @@ interface Props {
 }
 
 const ChatList: FC<Props> = props => {
+  const history = useHistory();
   const accessToken = localStorage.getItem('access_token');
   const [ring, setRing] = useState<boolean>(true);
   const [isClick, setIsClick] = useState({ trade: true, group: false });
@@ -59,13 +63,26 @@ const ChatList: FC<Props> = props => {
       });
   };
 
+  const onclickBell = () => {
+    ring
+      ? console.log('ring')
+      : ringPost
+          .setRingPost(accessToken)
+          .then(res => {
+            history.go(0);
+          })
+          .catch(err => {
+            throw err;
+          });
+  };
+
   return (
     <>
       <Header />
       <S.ChatList>
         <S.AlarmLine>
           <p>{ALRAMTITLE}</p>
-          <img src={ring ? bellRing : bellNoRing} alt='bell' />
+          <img src={ring ? bellRing : bellNoRing} alt='bell' onClick={onclickBell} />
         </S.AlarmLine>
         <S.ToggleLine>
           <S.ToggleBtn isClick={isClick.trade} onClick={tradeBtnClickEvent}>
