@@ -11,4 +11,14 @@ export default {
       data: {},
     });
   },
+  setRingPost(accessToken: string | null) {
+    return request({
+      url: `/users/notification`,
+      method: 'post',
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+      data: {},
+    });
+  },
 };
