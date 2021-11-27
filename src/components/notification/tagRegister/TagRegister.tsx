@@ -4,6 +4,7 @@ import { Tag } from './tag/index';
 import { delete_icon, exit_icon } from '../../../assets/alarm';
 import tagGet from '../../../util/api/notificate';
 import tagPost from '../../../util/api/notificate';
+import tagDelete from '../../../util/api/notificate';
 import { useHistory } from 'react-router';
 
 const TagRegister = () => {
@@ -44,6 +45,17 @@ const TagRegister = () => {
     }
   };
 
+  const deleteTag = (tagId: number) => {
+    tagDelete
+      .setTagDelete(accessToken, tagId)
+      .then(res => {
+        history.go(0);
+      })
+      .catch(err => {
+        throw err;
+      });
+  };
+
   useEffect(() => {
     getTag();
   }, []);
@@ -71,12 +83,11 @@ const TagRegister = () => {
           return (
             <S.TagList key={index}>
               <Tag tag={tagItem.tag} />
-              <img src={delete_icon} alt='' />
+              <img src={delete_icon} alt='' onClick={() => deleteTag(tagItem.tag_id)} />
             </S.TagList>
           );
         })}
       </article>
-      <button>완료</button>
     </S.Wrapper>
   );
 };

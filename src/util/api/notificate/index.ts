@@ -31,4 +31,14 @@ export default {
       data: { tag: tag },
     });
   },
+  setTagDelete(accessToken: string | null, tagId: number) {
+    return request({
+      url: `/notification/tags`,
+      method: 'delete',
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+      data: { tag_id: tagId },
+    });
+  },
 };
