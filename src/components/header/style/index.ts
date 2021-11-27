@@ -61,11 +61,19 @@ export const AlramImg = styled.img`
 `;
 
 export const AlramCheck = styled.div`
-  width: 7px;
-  height: 7px;
+  width: 11px;
+  height: 11px;
   border-radius: 7px;
   background-color: red;
   position: absolute;
   top: 0px;
-  right: 0px;
+  right: -3px;
+  display: flex;
+  align-items: center;
+  > span {
+    color: white;
+    font-size: 8px;
+    -webkit-transform: scale(0.78);
+    font-weight: 300;
+  }
 `;
