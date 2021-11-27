@@ -41,4 +41,14 @@ export default {
       data: { tag_id: tagId },
     });
   },
+  setNotiCheck(accessToken: string | null, notiId: number) {
+    return request({
+      url: `/notification/${notiId}`,
+      method: 'post',
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+      data: { Notification: notiId },
+    });
+  },
 };
