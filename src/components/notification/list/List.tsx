@@ -10,12 +10,12 @@ interface listProps {
   title: string;
   message: string;
   content: string | number;
-  is_watch: boolean;
+  watch: boolean;
   ref?: any;
 }
 
 const List = React.forwardRef((props: listProps, ref: any) => {
-  const { notification_id, title, message, content, is_watch } = props;
+  const { notification_id, title, message, content, watch } = props;
   const [icon, setIcon] = useState<string>('');
   const accessToken = localStorage.getItem('access_token');
 
@@ -48,7 +48,7 @@ const List = React.forwardRef((props: listProps, ref: any) => {
   return (
     <S.List ref={ref} onClick={() => onCheck()}>
       <div>
-        <div style={{ backgroundColor: is_watch ? 'transparent' : ' #3D50FF' }} />
+        <div style={{ backgroundColor: watch ? 'transparent' : ' #3D50FF' }} />
       </div>
       <div>
         <div>

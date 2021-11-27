@@ -60,7 +60,7 @@ const Noti = () => {
             title={listItem.title}
             message={listItem.message}
             content={listItem.content}
-            is_watch={listItem.is_watch}
+            watch={listItem.watch}
             ref={ref}
           />
         ) : (
@@ -69,7 +69,7 @@ const Noti = () => {
             title={listItem.title}
             message={listItem.message}
             content={listItem.content}
-            is_watch={listItem.is_watch}
+            watch={listItem.watch}
           />
         );
       })}
