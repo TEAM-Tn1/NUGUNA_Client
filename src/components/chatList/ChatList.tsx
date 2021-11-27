@@ -26,6 +26,7 @@ const ChatList: FC<Props> = props => {
   useEffect(() => {
     dispatch({ type: CARROT_CHAT });
     socket.current?.emit('subscribe-all', 'CARROT');
+    getRing();
   }, []);
 
   const tradeBtnClickEvent = () => {
@@ -47,16 +48,16 @@ const ChatList: FC<Props> = props => {
     else if (isClick.group) return <GroupChatList chatList={chatList} socket={socket} />;
   }, [isClick, chatList]);
 
-  useEffect(() => {
+  const getRing = () => {
     ringGet
       .setRingGet(accessToken)
       .then(res => {
         setRing(res.data.notification);
       })
       .catch(err => {
-        console.log(err);
+        throw err;
       });
-  }, []);
+  };
 
   return (
     <>
