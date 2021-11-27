@@ -21,4 +21,14 @@ export default {
       data: {},
     });
   },
+  setRingDelete(accessToken: string | null) {
+    return request({
+      url: `/users/notification`,
+      method: 'delete',
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+      data: {},
+    });
+  },
 };
