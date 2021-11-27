@@ -88,7 +88,6 @@ const TagRegister = () => {
           );
         })}
       </article>
-      <button>완료</button>
     </S.Wrapper>
   );
 };

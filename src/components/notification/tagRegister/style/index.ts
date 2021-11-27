@@ -13,18 +13,6 @@ export const Wrapper = styled.div`
     font-size: 18px;
     font-weight: 500;
   }
-
-  > button {
-    margin: 30px;
-    height: 40px;
-    font-size: 16px;
-    font-weight: 500;
-    background-color: ${color.subColor};
-    color: #ffffff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
 `;
 
 export const AlarmHeader = styled.article`
