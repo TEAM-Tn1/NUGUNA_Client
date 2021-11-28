@@ -7,3 +7,6 @@ export const MESSAGE = 'DETAILCHAT/MESSAGE' as const;
 export const GET_INFO = 'DETAILCHAT/GET_INFO' as const;
 export const GET_INFO_SUCCESS = 'DETAILCHAT/GET_INFO_SUCCESS' as const;
 export const GET_INFO_FAILURE = 'DETAILCHAT/GET_INFO_FAILURE' as const;
+export const GET_CHAT_INFO = 'DETAILCHAT/GET_CHAT_INFO' as const;
+export const GET_CHAT_INFO_SUCCESS = 'DETAILCHAT/GET_CHAT_INFO_SUCCESS' as const;
+export const GET_CHAT_INFO_FAILURE = 'DETAILCHAT/GET_CHAT_INFO_FAILURE' as const;
