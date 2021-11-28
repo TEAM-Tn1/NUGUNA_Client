@@ -12,6 +12,8 @@ interface Props {
   page: number;
   chatContent: Array<detailChatResponse>;
   accountNumber: string;
+  roomName: string;
+  count: number;
   isHaveNextPage: boolean;
   socket: React.MutableRefObject<SocketIOClient.Socket | undefined>;
   setPage: (payload: number) => void;
@@ -32,7 +34,7 @@ const DetailChat: FC<Props> = props => {
 
   return (
     <>
-      <Header socket={socket} type={type} id={id} />
+      <Header type={type} id={id} {...props} />
       <S.DetailChat>
         <S.ContentBox>
           <Chats {...props} />
