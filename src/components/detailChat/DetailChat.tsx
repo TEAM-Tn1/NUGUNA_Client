@@ -5,6 +5,8 @@ import Header from './Header';
 import Footer from './Footer';
 import Chats from './Chats';
 import { detailChatResponse } from '../../models/dto/response/detailChatResponse';
+import { useDispatch } from 'react-redux';
+import { GET_CHAT_INFO } from '../../modules/action/detailChat/interface';
 
 interface Props {
   page: number;
@@ -21,9 +23,11 @@ const DetailChat: FC<Props> = props => {
   const [isClickSettingBtn, setIsClickSettingBtn] = useState(false);
   const type = useLocation().pathname.slice(6, 11);
   const { id } = useParams<{ id: string }>();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     socket.current?.emit('subscribe', id);
+    dispatch({ type: GET_CHAT_INFO });
   }, []);
 
   return (
