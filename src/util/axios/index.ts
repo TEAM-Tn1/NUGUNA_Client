@@ -41,6 +41,7 @@ instance.interceptors.response.use(
       } catch (err: any) {
         if (err.response.status === 401) {
           window.location.href = '/auth';
+          localStorage.clear();
         }
       }
     }
