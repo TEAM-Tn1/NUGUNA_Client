@@ -49,7 +49,9 @@ const Chats: FC<Props> = props => {
                   chatContent[i - 1].type === 'SEND' &&
                   chatContent[i - 1].email === data.email
                     ? undefined
-                    : data.name
+                    : data.name !== null
+                    ? data.name
+                    : '알 수 없음'
                 }
               />
             );
