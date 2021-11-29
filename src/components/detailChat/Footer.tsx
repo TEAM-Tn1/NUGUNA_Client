@@ -59,6 +59,24 @@ const Footer: FC<Props> = props => {
     });
   };
 
+  const enterKeyPressHandler = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      socket.current?.emit('message', { message: chat, room_id: id });
+      socket.current?.on('message', (response: socketResponse) => {
+        setMessage({
+          message_id: response.message_id,
+          message: response.content,
+          type: response.type,
+          email: response.email,
+          name: response.name,
+          sent_at: response.sent_at,
+        });
+        input.value = '';
+        socket.current?.off('message');
+      });
+    }
+  };
+
   const arriveBtnClickHandler = () => {
     socket.current?.emit('message', { message: '택배 도착했습니다!', room_id: id });
     socket.current?.on('message', (response: socketResponse) => {
@@ -131,7 +149,7 @@ const Footer: FC<Props> = props => {
       <S.FooterWrapper>
         {showSetting}
         <img src={setting} alt='setting' onClick={settingBtnClickHandler} />
-        <S.ChatInput onChange={inputChangeHandler} id='input' />
+        <S.ChatInput onChange={inputChangeHandler} id='input' onKeyPress={enterKeyPressHandler} />
         <img src={send} alt='send' onClick={sendBtnClickHandler} />
       </S.FooterWrapper>
     </S.FooterBox>
