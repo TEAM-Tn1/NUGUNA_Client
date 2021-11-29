@@ -46,6 +46,7 @@ const Footer: FC<Props> = props => {
         sent_at: response.sent_at,
       });
       input.value = '';
+      socket.current?.off('message');
     });
   };
 
