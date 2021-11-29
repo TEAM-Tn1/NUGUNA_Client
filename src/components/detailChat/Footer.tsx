@@ -61,6 +61,7 @@ const Footer: FC<Props> = props => {
         name: response.name,
         sent_at: response.sent_at,
       });
+      socket.current?.off('message');
     });
   };
 
@@ -80,6 +81,7 @@ const Footer: FC<Props> = props => {
           name: response.name,
           sent_at: response.sent_at,
         });
+        socket.current?.off('message');
       });
     }
   }, [accountNumber]);
