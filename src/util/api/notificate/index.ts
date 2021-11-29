@@ -48,7 +48,17 @@ export default {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
-      data: { Notification: notiId },
+      data: {},
+    });
+  },
+  setQuestionAnswer(accessToken: string | null, id: number | string) {
+    return request({
+      url: `/question?question_id=${id}`,
+      method: 'get',
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+      data: {},
     });
   },
 };
