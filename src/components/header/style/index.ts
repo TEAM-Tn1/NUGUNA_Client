@@ -3,6 +3,7 @@ import { color } from '../../../style';
 
 export const Header = styled.div`
   width: 100%;
+  height: 100px;
   display: flex;
   justify-content: center;
   z-index: 1;
@@ -20,6 +21,7 @@ export const Wrapper = styled.div`
   gap: 7%;
   max-width: 500px;
   background-color: ${color.mainColor};
+  z-index: 1;
   > div {
     margin-top: 20px;
   }

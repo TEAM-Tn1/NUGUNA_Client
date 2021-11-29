@@ -32,6 +32,7 @@ export const Wrapper = styled.div<Props>`
   display: flex;
   align-items: center;
   gap: 25px;
+  background-color: white;
   padding: 0px 30px;
   border-top: 1px solid #ff9d86;
   border-bottom: 1px solid #ff9d86;
@@ -39,6 +40,7 @@ export const Wrapper = styled.div<Props>`
   top: ${props => props.top};
   animation: ${props => (props.isShow ? moveUp(props.top) : moveDown(props.top))} 0.75s;
   animation-fill-mode: forwards;
+  z-index: 1;
 
   & p {
     font-size: 18px;
