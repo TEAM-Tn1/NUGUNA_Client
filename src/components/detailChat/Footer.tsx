@@ -11,13 +11,22 @@ interface Props {
   id: string;
   accountNumber: string;
   isClickSettingBtn: boolean;
-  setIsClickSettingBtn: React.Dispatch<React.SetStateAction<boolean>>;
   socket: React.MutableRefObject<SocketIOClient.Socket | undefined>;
+  isSuccessGetInfo: boolean | undefined;
+  setIsClickSettingBtn: React.Dispatch<React.SetStateAction<boolean>>;
   setMessage: (payload: detailChatResponse) => void;
 }
 
 const Footer: FC<Props> = props => {
-  const { setIsClickSettingBtn, isClickSettingBtn, socket, id, setMessage, accountNumber } = props;
+  const {
+    setIsClickSettingBtn,
+    isClickSettingBtn,
+    socket,
+    id,
+    setMessage,
+    accountNumber,
+    isSuccessGetInfo,
+  } = props;
   const history = useHistory();
   const dispatch = useDispatch();
   const [chat, setChat] = useState<string>('');
@@ -70,7 +79,7 @@ const Footer: FC<Props> = props => {
   };
 
   useEffect(() => {
-    if (accountNumber !== '') {
+    if (isSuccessGetInfo === true) {
       socket.current?.emit('message', { message: accountNumber, room_id: id });
       socket.current?.on('message', (response: socketResponse) => {
         setMessage({
@@ -84,7 +93,7 @@ const Footer: FC<Props> = props => {
         socket.current?.off('message');
       });
     }
-  }, [accountNumber]);
+  }, [isSuccessGetInfo, accountNumber]);
 
   const showSetting = useMemo(() => {
     if (isClickSettingBtn)

@@ -11,6 +11,7 @@ interface DetailChatState {
   accountNumber: string;
   error: error;
   isSuccessGetDetailChat: boolean | undefined;
+  isSuccessGetInfo: boolean | undefined;
   isHaveNextPage: boolean;
 }
 
