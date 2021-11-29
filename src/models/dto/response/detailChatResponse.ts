@@ -20,3 +20,8 @@ export interface infoResponse {
   room_number: string;
   account_number: string;
 }
+
+export interface chatInfoResponse {
+  room_name: string;
+  count: number;
+}

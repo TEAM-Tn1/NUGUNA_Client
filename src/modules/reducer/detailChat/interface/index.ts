@@ -4,6 +4,8 @@ import { error } from '../../../../models/error';
 interface DetailChatState {
   page: number;
   roomId: string;
+  roomName: string;
+  count: number;
   chatContent: Array<detailChatResponse>;
   roomNumber: string;
   accountNumber: string;

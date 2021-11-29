@@ -18,3 +18,12 @@ export const getInfo = async (accessToken: string) => {
     throw error;
   }
 };
+
+export const getChatInfo = async (accessToken: string, roomId: string) => {
+  try {
+    const request = getRequestWithAccessToken(accessToken);
+    return await request.get(`${uri.chatinfo}?room_id=${roomId}`);
+  } catch (error) {
+    throw error;
+  }
+};

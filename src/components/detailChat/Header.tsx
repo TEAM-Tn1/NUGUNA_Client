@@ -6,17 +6,19 @@ import { useHistory } from 'react-router';
 interface Props {
   id: string;
   type: string;
+  roomName: string;
+  count: number;
   socket: React.MutableRefObject<SocketIOClient.Socket | undefined>;
 }
 
 const Header: FC<Props> = props => {
-  const { type, socket, id } = props;
+  const { type, socket, id, roomName, count } = props;
   const history = useHistory();
 
   const people = useMemo(() => {
-    if (type === 'group') return <span>4</span>;
+    if (type === 'group') return <span>{count}</span>;
     else return;
-  }, [type]);
+  }, [type, count]);
 
   const prevBtnClickHandler = () => {
     history.push('/chatting');
@@ -27,7 +29,7 @@ const Header: FC<Props> = props => {
     <S.Header>
       <S.HeaderWrapper>
         <img src={prev} alt='prev' onClick={prevBtnClickHandler} />
-        <p>일이삼사오육칠팔구십</p>
+        <p>{roomName}</p>
         {people}
       </S.HeaderWrapper>
     </S.Header>
