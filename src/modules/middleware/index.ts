@@ -18,7 +18,6 @@ export default function* rootSaga() {
     adminQuestionSaga(),
     adminReportPostSaga(),
     writePostSaga(),
-    chatListSaga(),
     searchSaga(),
     adminReportUserSaga(),
     detailChatSaga(),

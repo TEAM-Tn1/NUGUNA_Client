@@ -16,6 +16,7 @@ interface Props {
   count: number;
   isHaveNextPage: boolean;
   socket: React.MutableRefObject<SocketIOClient.Socket | undefined>;
+  isSuccessGetInfo: boolean | undefined;
   setPage: (payload: number) => void;
   setMessage: (payload: detailChatResponse) => void;
   setRoomId: (payload: string) => void;
@@ -44,11 +45,9 @@ const DetailChat: FC<Props> = props => {
       </S.DetailChat>
       <Footer
         id={id}
-        accountNumber={accountNumber}
         isClickSettingBtn={isClickSettingBtn}
         setIsClickSettingBtn={setIsClickSettingBtn}
-        socket={socket}
-        setMessage={setMessage}
+        {...props}
       />
     </>
   );

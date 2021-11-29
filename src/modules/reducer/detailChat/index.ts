@@ -10,6 +10,7 @@ import {
   GET_INFO_FAILURE,
   GET_CHAT_INFO_SUCCESS,
   GET_CHAT_INFO_FAILURE,
+  GET_INFO,
 } from '../../action/detailChat/interface';
 import DetailChatState from './interface';
 
@@ -28,6 +29,7 @@ const initState: DetailChatState = {
   },
   isSuccessGetDetailChat: undefined,
   isHaveNextPage: true,
+  isSuccessGetInfo: undefined,
 };
 
 const detailChatReducer = (
@@ -73,16 +75,23 @@ const detailChatReducer = (
         ...state,
         chatContent: state.chatContent.concat([action.payload]),
       };
+    case GET_INFO:
+      return {
+        ...state,
+        isSuccessGetInfo: undefined,
+      };
     case GET_INFO_SUCCESS:
       return {
         ...state,
         roomNumber: action.payload.room_number,
         accountNumber: action.payload.account_number,
+        isSuccessGetInfo: true,
       };
     case GET_INFO_FAILURE:
       return {
         ...state,
         error: action.payload,
+        isSuccessGetInfo: false,
       };
     case GET_CHAT_INFO_SUCCESS:
       return {

@@ -51,7 +51,7 @@ export const HeaderWrapper = styled.div`
 export const ContentBox = styled.div`
   width: 100%;
   max-width: 500px;
-  height: 100%;
+  height: calc(100% - 10px);
   overflow-y: auto;
   position: relative;
   padding-top: 15px;

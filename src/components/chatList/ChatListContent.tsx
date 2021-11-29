@@ -43,7 +43,7 @@ const ChatListContent: FC<Props> = props => {
       <S.ChatImg src={photoUrl} />
       <div>
         {showPeople}
-        <S.ChatTitle>{roomName}</S.ChatTitle>
+        <S.ChatTitle>{roomName ? roomName : '알 수 없음'}</S.ChatTitle>
         <S.ChatContent>{lastMessage}</S.ChatContent>
       </div>
     </S.ChatListContent>

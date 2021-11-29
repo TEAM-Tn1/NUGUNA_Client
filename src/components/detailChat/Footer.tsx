@@ -11,13 +11,22 @@ interface Props {
   id: string;
   accountNumber: string;
   isClickSettingBtn: boolean;
-  setIsClickSettingBtn: React.Dispatch<React.SetStateAction<boolean>>;
   socket: React.MutableRefObject<SocketIOClient.Socket | undefined>;
+  isSuccessGetInfo: boolean | undefined;
+  setIsClickSettingBtn: React.Dispatch<React.SetStateAction<boolean>>;
   setMessage: (payload: detailChatResponse) => void;
 }
 
 const Footer: FC<Props> = props => {
-  const { setIsClickSettingBtn, isClickSettingBtn, socket, id, setMessage, accountNumber } = props;
+  const {
+    setIsClickSettingBtn,
+    isClickSettingBtn,
+    socket,
+    id,
+    setMessage,
+    accountNumber,
+    isSuccessGetInfo,
+  } = props;
   const history = useHistory();
   const dispatch = useDispatch();
   const [chat, setChat] = useState<string>('');
@@ -46,7 +55,26 @@ const Footer: FC<Props> = props => {
         sent_at: response.sent_at,
       });
       input.value = '';
+      socket.current?.off('message');
     });
+  };
+
+  const enterKeyPressHandler = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      socket.current?.emit('message', { message: chat, room_id: id });
+      socket.current?.on('message', (response: socketResponse) => {
+        setMessage({
+          message_id: response.message_id,
+          message: response.content,
+          type: response.type,
+          email: response.email,
+          name: response.name,
+          sent_at: response.sent_at,
+        });
+        input.value = '';
+        socket.current?.off('message');
+      });
+    }
   };
 
   const arriveBtnClickHandler = () => {
@@ -60,6 +88,7 @@ const Footer: FC<Props> = props => {
         name: response.name,
         sent_at: response.sent_at,
       });
+      socket.current?.off('message');
     });
   };
 
@@ -68,7 +97,7 @@ const Footer: FC<Props> = props => {
   };
 
   useEffect(() => {
-    if (accountNumber !== '') {
+    if (isSuccessGetInfo === true) {
       socket.current?.emit('message', { message: accountNumber, room_id: id });
       socket.current?.on('message', (response: socketResponse) => {
         setMessage({
@@ -79,9 +108,10 @@ const Footer: FC<Props> = props => {
           name: response.name,
           sent_at: response.sent_at,
         });
+        socket.current?.off('message');
       });
     }
-  }, [accountNumber]);
+  }, [isSuccessGetInfo, accountNumber]);
 
   const showSetting = useMemo(() => {
     if (isClickSettingBtn)
@@ -119,7 +149,7 @@ const Footer: FC<Props> = props => {
       <S.FooterWrapper>
         {showSetting}
         <img src={setting} alt='setting' onClick={settingBtnClickHandler} />
-        <S.ChatInput onChange={inputChangeHandler} id='input' />
+        <S.ChatInput onChange={inputChangeHandler} id='input' onKeyPress={enterKeyPressHandler} />
         <img src={send} alt='send' onClick={sendBtnClickHandler} />
       </S.FooterWrapper>
     </S.FooterBox>
