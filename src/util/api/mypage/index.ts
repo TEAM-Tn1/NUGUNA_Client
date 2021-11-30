@@ -74,4 +74,14 @@ export default {
       },
     });
   },
+  getLikePost(page: number, postType: string) {
+    const is_used_item = postType === 'trade';
+    return request({
+      url: `/feed/me/like?page=${page}&size=5&is_used_item=${is_used_item}`,
+      method: 'get',
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+      },
+    });
+  },
 };
