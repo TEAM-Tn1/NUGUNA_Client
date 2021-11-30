@@ -69,7 +69,7 @@ const List = React.forwardRef((props: listProps, ref: any) => {
           </div>
         </div>
       </S.List>
-      <Answer isShow={modalShow} modalTitle={title} show={showModal} />
+      <Answer isShow={modalShow} modalTitle={title} show={showModal} id={content} />
     </>
   );
 });

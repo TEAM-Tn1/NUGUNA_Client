@@ -1,18 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './style';
+import questionAnswer from '../../../util/api/notificate';
 
 interface ModalProps {
   isShow: boolean;
   modalTitle: string;
   show: any;
+  id: number | string;
 }
 
-const Answer = ({ isShow, modalTitle, show }: ModalProps) => {
+const Answer = ({ isShow, modalTitle, show, id }: ModalProps) => {
+  const accessToken = localStorage.getItem('access_token');
   const [title, setTitle] = useState<string>('');
-  const [reason, setReason] = useState<string>('');
+  const [content, setContent] = useState<string>('');
   useEffect(() => {
     if (modalTitle == '문의') {
       setTitle('문의답변');
+      questionAnswer
+        .setQuestionAnswer(accessToken, id)
+        .then(res => {
+          setContent(res.data.reason);
+        })
+        .catch(err => {});
     } else if (modalTitle == '신고') {
       setTitle('신고결과');
     }
@@ -26,7 +35,7 @@ const Answer = ({ isShow, modalTitle, show }: ModalProps) => {
     <S.Modal>
       <div>
         <h2>{title}</h2>
-        <div>{reason}</div>
+        <div>{content}</div>
         <button onClick={show}>확인</button>
       </div>
     </S.Modal>
