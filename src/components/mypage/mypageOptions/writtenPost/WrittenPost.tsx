@@ -72,36 +72,34 @@ const WrittenPost = () => {
         isShow={isShow}
       />
       {isShow && (
-        <>
+        <S.ListWrapper>
           <S.TypeSelector postType={postType}>
             <p onClick={setCarrot}>거래</p>
             <p onClick={setGroup}>공구</p>
           </S.TypeSelector>
-          <S.ListWrapper>
-            {list.map(ele => {
-              const month = ele.date && ele.date.slice(5, 7);
-              const date = ele.date && ele.date.slice(8);
-              const dates = `${month}/${date}`;
-              const showPeople = `${ele.current_head_count}/${ele.head_count}`;
-              return (
-                <PostContent
-                  key={ele.feed_id}
-                  feedId={ele.feed_id}
-                  medium={ele.medium}
-                  title={ele.title}
-                  money={ele.price}
-                  like={ele.count}
-                  type={postType}
-                  date={dates}
-                  people={showPeople}
-                  hashtag={ele.tags}
-                  isLikeClick={ele.like}
-                />
-              );
-            })}
-            {!loading && <p ref={ref}>로딩 중...</p>}
-          </S.ListWrapper>
-        </>
+          {list.map(ele => {
+            const month = ele.date && ele.date.slice(5, 7);
+            const date = ele.date && ele.date.slice(8);
+            const dates = `${month}/${date}`;
+            const showPeople = `${ele.current_head_count}/${ele.head_count}`;
+            return (
+              <PostContent
+                key={ele.feed_id}
+                feedId={ele.feed_id}
+                medium={ele.medium}
+                title={ele.title}
+                money={ele.price}
+                like={ele.count}
+                type={postType}
+                date={dates}
+                people={showPeople}
+                hashtag={ele.tags}
+                isLikeClick={ele.like}
+              />
+            );
+          })}
+          {!loading && <p ref={ref}>로딩 중...</p>}
+        </S.ListWrapper>
       )}
 
       <Footer />
