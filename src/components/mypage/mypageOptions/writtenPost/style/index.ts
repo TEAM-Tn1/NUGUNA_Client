@@ -21,7 +21,7 @@ export const fadeIn = keyframes`
 export const ListWrapper = styled.div`
   width: 100%;
   position: relative;
-  top: 60px;
+  top: 160px;
   opacity: 0;
   animation: ${fadeIn} 0.25s ease 0.75s;
   animation-fill-mode: forwards;
