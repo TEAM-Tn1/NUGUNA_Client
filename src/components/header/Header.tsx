@@ -43,7 +43,12 @@ const Header = () => {
           <S.SearchInput type='text' onChange={inputChangeHandler} defaultValue={state.title} />
         </S.SearchInputBox>
         <S.AlramBox>
-          <S.AlramImg src={alram} />
+          <S.AlramImg
+            src={alram}
+            onClick={() => {
+              history.push('/noti/list');
+            }}
+          />
           <S.AlramCheck>
             <span>{count}</span>
           </S.AlramCheck>
