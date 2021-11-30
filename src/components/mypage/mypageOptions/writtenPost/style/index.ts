@@ -1,7 +1,7 @@
 import styled, { keyframes } from 'styled-components';
 
 interface Props {
-  isGroup: boolean;
+  postType: string;
 }
 
 export const Wrapper = styled.div`
@@ -25,12 +25,22 @@ export const ListWrapper = styled.div`
   opacity: 0;
   animation: ${fadeIn} 0.25s ease 0.75s;
   animation-fill-mode: forwards;
+  padding: 40px 0;
+
+  & > p {
+    opacity: 0;
+  }
 `;
 
 export const TypeSelector = styled.div<Props>`
+  width: 100%;
   display: flex;
   gap: 10px;
   padding: 10px 30px;
+  position: fixed;
+  top: 160px;
+  background-color: white;
+  z-index: 1;
 
   & > p {
     font-size: 11px;
@@ -38,10 +48,10 @@ export const TypeSelector = styled.div<Props>`
   }
 
   & > p:first-child {
-    opacity: ${props => (props.isGroup ? '0.5' : '1')};
+    opacity: ${props => (props.postType === 'trade' ? '1' : '0.5')};
   }
 
   & > p:last-child {
-    opacity: ${props => (props.isGroup ? '1' : '0.5')};
+    opacity: ${props => (props.postType === 'group' ? '1' : '0.5')};
   }
 `;
