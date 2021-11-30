@@ -48,10 +48,22 @@ const Noti = () => {
     <S.Wrapper>
       <S.AlarmHeader>
         <div>
-          <img src={exit_icon} alt='' />
+          <img
+            src={exit_icon}
+            alt=''
+            onClick={() => {
+              history.goBack();
+            }}
+          />
         </div>
         <h2>알람</h2>
-        <div>태그등록</div>
+        <div
+          onClick={() => {
+            history.push('/noti/tag');
+          }}
+        >
+          태그등록
+        </div>
       </S.AlarmHeader>
       {list.map((listItem: any, idx: number) => {
         return list.length - 1 == idx ? (
