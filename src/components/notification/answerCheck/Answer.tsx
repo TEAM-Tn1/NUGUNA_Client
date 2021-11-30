@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './style';
 import questionAnswer from '../../../util/api/notificate';
+import reportAnswer from '../../../util/api/notificate';
 
 interface ModalProps {
   isShow: boolean;
@@ -24,6 +25,12 @@ const Answer = ({ isShow, modalTitle, show, id }: ModalProps) => {
         .catch(err => {});
     } else if (modalTitle == '신고') {
       setTitle('신고결과');
+      reportAnswer
+        .setReportAnswer(accessToken, id)
+        .then(res => {
+          setContent(res.data.reason);
+        })
+        .catch(err => {});
     }
   }, []);
 
