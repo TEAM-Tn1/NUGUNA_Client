@@ -22,7 +22,9 @@ const Answer = ({ isShow, modalTitle, show, id }: ModalProps) => {
         .then(res => {
           setContent(res.data.reason);
         })
-        .catch(err => {});
+        .catch(err => {
+          throw err;
+        });
     } else if (modalTitle == '신고') {
       setTitle('신고결과');
       reportAnswer
@@ -30,7 +32,9 @@ const Answer = ({ isShow, modalTitle, show, id }: ModalProps) => {
         .then(res => {
           setContent(res.data.reason);
         })
-        .catch(err => {});
+        .catch(err => {
+          throw err;
+        });
     }
   }, []);
 
