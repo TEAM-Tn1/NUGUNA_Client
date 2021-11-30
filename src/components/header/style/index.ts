@@ -3,7 +3,6 @@ import { color } from '../../../style';
 
 export const Header = styled.div`
   width: 100%;
-  height: 100px;
   display: flex;
   justify-content: center;
   z-index: 1;
