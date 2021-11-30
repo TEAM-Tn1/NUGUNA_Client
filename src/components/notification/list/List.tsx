@@ -1,9 +1,8 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { FC, useEffect, useState } from 'react';
 import * as S from './style';
 import { chat_icon, question_icon, report_icon, tag_icon } from '../../../assets/alarm/index';
-import { JsxAttribute } from 'typescript';
 import notiCheck from '../../../util/api/notificate';
+import Answer from '../answerCheck/Answer';
 
 interface listProps {
   notification_id: number;
@@ -17,6 +16,7 @@ interface listProps {
 const List = React.forwardRef((props: listProps, ref: any) => {
   const { notification_id, title, message, content, watch } = props;
   const [icon, setIcon] = useState<string>('');
+  const [modalShow, setModalShow] = useState<boolean>(false);
   const accessToken = localStorage.getItem('access_token');
 
   useEffect(() => {
@@ -39,27 +39,38 @@ const List = React.forwardRef((props: listProps, ref: any) => {
   const onCheck = () => {
     notiCheck
       .setNotiCheck(accessToken, notification_id)
-      .then(res => {})
+      .then(res => {
+        if (title == '문의' || title == '신고') {
+          showModal();
+        }
+      })
       .catch(err => {
         throw err;
       });
   };
 
+  const showModal = () => {
+    setModalShow(!modalShow);
+  };
+
   return (
-    <S.List ref={ref} onClick={() => onCheck()}>
-      <div>
-        <div style={{ backgroundColor: watch ? 'transparent' : ' #3D50FF' }} />
-      </div>
-      <div>
+    <>
+      <S.List ref={ref} onClick={() => onCheck()}>
         <div>
-          <img src={icon} alt='' />
+          <div style={{ backgroundColor: watch ? 'transparent' : ' #3D50FF' }} />
         </div>
         <div>
-          <span>{title}</span>
-          <p>{message}</p>
+          <div>
+            <img src={icon} alt='' />
+          </div>
+          <div>
+            <span>{title}</span>
+            <p>{message}</p>
+          </div>
         </div>
-      </div>
-    </S.List>
+      </S.List>
+      <Answer isShow={modalShow} modalTitle={title} show={showModal} id={content} />
+    </>
   );
 });
 
