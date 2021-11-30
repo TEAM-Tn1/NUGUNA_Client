@@ -71,6 +71,7 @@ export const AlramCheck = styled.div`
   right: -3px;
   display: flex;
   align-items: center;
+  justify-content: center;
   > span {
     color: white;
     font-size: 8px;
