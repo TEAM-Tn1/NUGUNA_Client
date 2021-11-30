@@ -20,6 +20,7 @@ export const Wrapper = styled.div`
   gap: 7%;
   max-width: 500px;
   background-color: ${color.mainColor};
+  z-index: 1;
   > div {
     margin-top: 20px;
   }
@@ -70,6 +71,7 @@ export const AlramCheck = styled.div`
   right: -3px;
   display: flex;
   align-items: center;
+  justify-content: center;
   > span {
     color: white;
     font-size: 8px;

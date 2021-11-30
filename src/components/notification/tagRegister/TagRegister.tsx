@@ -64,7 +64,13 @@ const TagRegister = () => {
     <S.Wrapper>
       <S.AlarmHeader>
         <div>
-          <img src={exit_icon} alt='' />
+          <img
+            src={exit_icon}
+            alt=''
+            onClick={() => {
+              history.goBack();
+            }}
+          />
         </div>
         <h2>알람</h2>
         <div></div>
