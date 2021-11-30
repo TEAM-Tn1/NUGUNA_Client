@@ -61,4 +61,14 @@ export default {
       data: {},
     });
   },
+  setReportAnswer(accessToken: string | null, id: number | string) {
+    return request({
+      url: `/report?report_id=${id}`,
+      method: 'get',
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+      data: {},
+    });
+  },
 };
