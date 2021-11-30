@@ -19,7 +19,7 @@ export const fadeIn = keyframes`
 export const ModifyForm = styled.form`
   width: 100%;
   position: relative;
-  top: 220px;
+  top: 120px;
   display: flex;
   flex-direction: column;
   align-items: center;
