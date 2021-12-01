@@ -277,6 +277,7 @@ export const SliderBox = styled.div<{ length: number }>`
   height: 100%;
   position: absolute;
   top: 0;
+  left: 0%;
   display: flex;
   justify-content: center;
   align-items: center;
