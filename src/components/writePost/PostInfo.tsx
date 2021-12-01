@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useMemo, useState } from 'react';
+import React, { FC } from 'react';
 import * as S from './style';
 
 interface Props {
@@ -20,13 +20,25 @@ const PostInfo: FC<Props> = props => {
     else if (id === 'date') setDate && setDate(event.currentTarget.value);
   };
 
+  const onInput = (event: React.FormEvent<HTMLInputElement>) => {
+    event.currentTarget.value = event.currentTarget.value
+      .replace(/[^0-9.]/g, '')
+      .replace(/(\..*)\./g, '$1');
+  };
+
   return (
     <S.PostInfoContent>
       <S.SubTitle>
         {title}
         <span>*</span>
       </S.SubTitle>
-      <input placeholder={placeholder} onChange={inputChangeHander} defaultValue={content} />
+      <input
+        placeholder={placeholder}
+        onChange={inputChangeHander}
+        defaultValue={content}
+        maxLength={id === 'pay' ? 8 : undefined}
+        onInput={id === 'date' ? undefined : onInput}
+      />
     </S.PostInfoContent>
   );
 };
