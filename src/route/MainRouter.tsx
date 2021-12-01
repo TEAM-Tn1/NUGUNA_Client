@@ -9,6 +9,7 @@ import {
   Main,
   Noti,
   TagRegister,
+  Home,
 } from '../components';
 import { ModifyInfo, LikedPost, WrittenPost } from '../components/mypage/mypageOptions';
 import {
@@ -30,6 +31,7 @@ const MainRouter = () => {
   return (
     <Router>
       <Switch>
+        <Route exact path='/' component={Home} />
         <Route exact path='/mypage' component={Mypage} />
         <Route exact path='/mypage/modify' component={ModifyInfo} />
         <Route exact path='/mypage/liked_post' component={LikedPost} />

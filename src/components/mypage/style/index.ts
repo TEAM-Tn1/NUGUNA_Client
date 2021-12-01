@@ -131,6 +131,6 @@ export const Suggestion = styled.div`
   }
 `;
 
-export const Logout = styled(Suggestion)`
+export const Access = styled(Suggestion)`
   border-bottom: 1px solid #ff9d86;
 `;

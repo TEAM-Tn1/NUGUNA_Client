@@ -1,13 +1,15 @@
 /* eslint-disable import/no-anonymous-default-export */
 import requset from '../../axios';
 
+const access_token = localStorage.getItem('access_token');
+
 export default {
   getUserInfo(email: string) {
     return requset({
       url: `/users/${email}`,
       method: 'get',
       headers: {
-        Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+        Authorization: access_token && `Bearer ${access_token}`,
       },
     });
   },
@@ -19,7 +21,7 @@ export default {
       url: `report/${url}`,
       method: 'post',
       headers: {
-        Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+        Authorization: `Bearer ${access_token}`,
       },
       data: {
         title,
@@ -36,7 +38,7 @@ export default {
       url: `report/${report_id}/medium`,
       method: 'post',
       headers: {
-        Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+        Authorization: `Bearer ${access_token}`,
       },
       data: formData,
     });
