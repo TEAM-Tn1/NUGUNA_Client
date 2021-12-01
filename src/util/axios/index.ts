@@ -21,7 +21,8 @@ instance.interceptors.response.use(
   },
   async error => {
     const { config, response } = error;
-    if (response.status === 401) {
+
+    if (response.status === 401 && localStorage.getItem('refresh_token')) {
       try {
         const res = await axios({
           method: 'put',
@@ -40,6 +41,7 @@ instance.interceptors.response.use(
         return axios(config);
       } catch (err: any) {
         if (err.response.status === 401) {
+          alert('로그인이 만료되었습니다. 다시 로그인해주세요.');
           window.location.href = '/auth';
           localStorage.clear();
         }

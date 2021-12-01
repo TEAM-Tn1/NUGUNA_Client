@@ -14,6 +14,7 @@ export const Wrapper = styled.div`
 
 export const UserInfoBox = styled.div`
   width: 100%;
+  max-width: 500px;
   padding: 30px;
   margin-bottom: 20px;
   display: flex;
