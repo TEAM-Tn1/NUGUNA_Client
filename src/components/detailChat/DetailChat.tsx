@@ -7,7 +7,7 @@ import Chats from './Chats';
 import { detailChatResponse, socketResponse } from '../../models/dto/response/detailChatResponse';
 import { useDispatch } from 'react-redux';
 import { GET_CHAT_INFO } from '../../modules/action/detailChat/interface';
-import { setMessage } from '../../modules/action/detailChat';
+import useDetailChat from '../../util/hooks/detailChat';
 
 interface Props {
   page: number;
@@ -29,6 +29,7 @@ const DetailChat: FC<Props> = props => {
   const type = useLocation().pathname.slice(6, 11);
   const { id } = useParams<{ id: string }>();
   const dispatch = useDispatch();
+  const setMessage = useDetailChat().setState.setMessage;
 
   useEffect(() => {
     setRoomId(id);
@@ -46,6 +47,7 @@ const DetailChat: FC<Props> = props => {
         name: response.name,
         sent_at: response.sent_at,
       });
+      socket.current?.off('message');
     });
   }, []);
 
