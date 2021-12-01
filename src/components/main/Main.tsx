@@ -8,14 +8,13 @@ import carrotGet from '../../util/api/main';
 import grouptGet from '../../util/api/main';
 
 const Main = () => {
-  const accessToken = localStorage.getItem('access_token');
   const [carrot, setCarrot] = useState<any>();
   const [group, setGroup] = useState<any>();
 
   useEffect(() => {
     {
       carrotGet
-        .setCarrotGet(accessToken)
+        .setCarrotGet()
         .then(res => {
           setCarrot(res.data);
         })
@@ -25,7 +24,7 @@ const Main = () => {
     }
     {
       grouptGet
-        .setGroupGet(accessToken)
+        .setGroupGet()
         .then(res => {
           setGroup(res.data);
         })

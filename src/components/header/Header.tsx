@@ -6,10 +6,12 @@ import { useHistory } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { SEARCH } from '../../modules/action/search/interface';
 import notiCount from '../../util/api/header';
+import { setDescription } from '../../modules/action/writePost';
 
 const Header = () => {
   const accessToken = localStorage.getItem('access_token');
   const [count, setCount] = useState<number>();
+  const [divDisplay, setDivDisplay] = useState<string>('none');
 
   const { state, setState } = useSearch();
   const history = useHistory();
@@ -25,14 +27,23 @@ const Header = () => {
   };
 
   useEffect(() => {
-    notiCount
-      .setNotiCount(accessToken)
-      .then(res => {
-        setCount(res.data.count);
-      })
-      .catch(err => {
-        throw err;
-      });
+    if (accessToken !== null) {
+      notiCount
+        .setNotiCount(accessToken)
+        .then(res => {
+          setCount(res.data.count);
+          if (count == 0) {
+            setDivDisplay('none');
+          }else {
+            setDivDisplay('flex')
+          }
+        })
+        .catch(err => {
+          throw err;
+        });
+    } else {
+      setDivDisplay('none');
+    }
   }, []);
 
   return (
@@ -49,7 +60,7 @@ const Header = () => {
               history.push('/noti/list');
             }}
           />
-          <S.AlramCheck>
+          <S.AlramCheck style={{ display: divDisplay }}>
             <span>{count}</span>
           </S.AlramCheck>
         </S.AlramBox>

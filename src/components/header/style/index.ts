@@ -75,7 +75,7 @@ export const AlramCheck = styled.div`
   > span {
     color: white;
     font-size: 8px;
-    -webkit-transform: scale(0.78);
+    -webkit-transform: scale(0.8);
     font-weight: 300;
   }
 `;
