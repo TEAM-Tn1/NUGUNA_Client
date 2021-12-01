@@ -1,4 +1,5 @@
 import React, { FC, useState } from 'react';
+import { useHistory } from 'react-router';
 import { uploadIcon } from '../../../../assets/modal';
 import mypage from '../../../../util/api/mypage';
 import userInfo from '../../../../util/api/userInfo';
@@ -20,6 +21,7 @@ const ModalTemplate: FC<Props> = ({ subject, isShowModal, closeModal, id }) => {
   const { report, imageUpload } = userInfo;
   const [imageFile, setImageFile] = useState(null);
   const [imageUrl, setImageUrl] = useState('');
+  const { push } = useHistory();
 
   const onChange = (e: any) => {
     const { value, name } = e.target;
@@ -70,6 +72,9 @@ const ModalTemplate: FC<Props> = ({ subject, isShowModal, closeModal, id }) => {
               content: '',
             });
             closeModal();
+          } else if (err.response.status === 401) {
+            alert('로그인 후 이용 가능합니다.');
+            push('/auth');
           }
           throw err;
         });
