@@ -20,22 +20,14 @@ interface Props {
   isSuccessGetInfo: boolean | undefined;
   setPage: (payload: number) => void;
   setMessage: (payload: detailChatResponse) => void;
-  setRoomId: (payload: string) => void;
 }
 
 const DetailChat: FC<Props> = props => {
-  const { socket, setRoomId } = props;
+  const { socket } = props;
   const [isClickSettingBtn, setIsClickSettingBtn] = useState(false);
   const type = useLocation().pathname.slice(6, 11);
   const { id } = useParams<{ id: string }>();
-  const dispatch = useDispatch();
   const setMessage = useDetailChat().setState.setMessage;
-
-  useEffect(() => {
-    setRoomId(id);
-    socket.current?.emit('subscribe', id);
-    dispatch({ type: GET_CHAT_INFO });
-  }, []);
 
   useEffect(() => {
     socket.current?.on('message', (response: socketResponse) => {
