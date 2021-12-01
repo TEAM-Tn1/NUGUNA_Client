@@ -18,12 +18,12 @@ const DetailChatContainer: FC<Props> = props => {
   useEffect(() => {
     setState.setRoomId(id);
     dispatch({ type: CHAT_CONTENT });
-  }, [state.page]);
+  }, [state.page, id]);
 
   useEffect(() => {
     socket.current?.emit('subscribe', id);
     dispatch({ type: GET_CHAT_INFO });
-  }, []);
+  }, [state.roomId]);
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
