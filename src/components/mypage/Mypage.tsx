@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { PROFILE_ELEMENT } from '../../constance/mypage';
-import { logout_icon, suggestion } from '../../assets/mypage/index';
+import { login_icon, logout_icon, suggestion } from '../../assets/mypage/index';
 import Footer from '../footer';
 import Header from '../header';
 import * as S from './style';
@@ -10,6 +10,7 @@ import { useHistory } from 'react-router';
 
 const Mypage = () => {
   const [isHideAccount, setIsHideAccount] = useState(false);
+  const [isLogin, setIsLogin] = useState(false);
   const [isShowModal, setIsShowModal] = useState(false);
   const [informations, setInformations] = useState({
     name: '',
@@ -33,12 +34,13 @@ const Mypage = () => {
   useEffect(() => {
     getMyInfo()
       .then(res => {
+        setIsLogin(true);
         const { name, gcn, room_number, account_number, hide_account } = res.data;
         setInformations({
           ...informations,
           name,
           gcn,
-          room_number,
+          room_number: room_number + '호',
           account_number,
           hide_account,
         });
@@ -70,7 +72,6 @@ const Mypage = () => {
     if (window.confirm('로그아웃하시겠습니까?')) {
       deleteToken()
         .then(res => {
-          console.log(res);
           localStorage.clear();
           push('/auth');
         })
@@ -81,17 +82,22 @@ const Mypage = () => {
     }
   };
 
+  const login = () => {
+    alert('로그인 페이지로 이동합니다.');
+    push('/auth');
+  };
+
   return (
     <S.Wrapper>
       <Header />
       <S.UserInfoBox>
         <S.StudentInfo>
-          <span>{name}</span>
+          <span>{isLogin ? name : '로그인을 해주세요.'}</span>
           <span>{gcn}</span>
         </S.StudentInfo>
         <S.DormitoryInfo>
           <span>호실</span>
-          <span>{`${room_number}호`}</span>
+          <span>{room_number}</span>
         </S.DormitoryInfo>
         <S.AccountBox>
           <S.AccountInfo isHideAccount={isHideAccount}>
@@ -110,22 +116,32 @@ const Mypage = () => {
           </S.AccountCheckbox>
         </S.AccountBox>
       </S.UserInfoBox>
-      {PROFILE_ELEMENT.map(ele => {
-        return (
-          <S.DetailPage key={ele.id} to={`/mypage${ele.path}`}>
-            <img src={ele.img} alt='' />
-            <span>{ele.text}</span>
-          </S.DetailPage>
-        );
-      })}
-      <S.Suggestion onClick={openModal}>
-        <img src={suggestion} alt='' />
-        <span>문의사항 작성하기</span>
-      </S.Suggestion>
-      <S.Logout onClick={logout}>
-        <img src={logout_icon} alt='' />
-        <span>로그아웃하기</span>
-      </S.Logout>
+      {isLogin &&
+        PROFILE_ELEMENT.map(ele => {
+          return (
+            <S.DetailPage key={ele.id} to={`/mypage${ele.path}`}>
+              <img src={ele.img} alt='' />
+              <span>{ele.text}</span>
+            </S.DetailPage>
+          );
+        })}
+      {isLogin && (
+        <S.Suggestion onClick={openModal}>
+          <img src={suggestion} alt='' />
+          <span>문의사항 작성하기</span>
+        </S.Suggestion>
+      )}
+      {isLogin ? (
+        <S.Access onClick={logout}>
+          <img src={logout_icon} alt='' />
+          <span>로그아웃하기</span>
+        </S.Access>
+      ) : (
+        <S.Access onClick={login}>
+          <img src={login_icon} alt='' />
+          <span>로그인하기</span>
+        </S.Access>
+      )}
       <Footer />
       <Template subject='문의사항' isShowModal={isShowModal} closeModal={closeModal} />
     </S.Wrapper>
