@@ -2,7 +2,7 @@ import React, { FC, Suspense, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router';
 import DetailChat from '../../components/detailChat';
-import { CHAT_CONTENT } from '../../modules/action/detailChat/interface';
+import { CHAT_CONTENT, GET_CHAT_INFO } from '../../modules/action/detailChat/interface';
 import useDetailChat from '../../util/hooks/detailChat';
 
 interface Props {
@@ -19,6 +19,11 @@ const DetailChatContainer: FC<Props> = props => {
     setState.setRoomId(id);
     dispatch({ type: CHAT_CONTENT });
   }, [state.page]);
+
+  useEffect(() => {
+    socket.current?.emit('subscribe', id);
+    dispatch({ type: GET_CHAT_INFO });
+  }, []);
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
