@@ -23,7 +23,7 @@ interface Props {
 }
 
 const DetailChat: FC<Props> = props => {
-  const { socket, setMessage, accountNumber, setRoomId } = props;
+  const { socket, setRoomId } = props;
   const [isClickSettingBtn, setIsClickSettingBtn] = useState(false);
   const type = useLocation().pathname.slice(6, 11);
   const { id } = useParams<{ id: string }>();
