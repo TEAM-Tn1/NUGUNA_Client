@@ -42,6 +42,7 @@ const detailChatReducer = (
         return {
           ...state,
           isSuccessGetDetailChat: undefined,
+          isHaveNextPage: true,
           chatContent: [],
         };
       else

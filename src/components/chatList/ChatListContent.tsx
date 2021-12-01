@@ -1,6 +1,7 @@
 import React, { FC, useMemo } from 'react';
 import { useHistory } from 'react-router';
 import { people } from '../../assets/chat';
+import useDetailChat from '../../util/hooks/detailChat';
 import * as S from './style';
 
 interface Props {
@@ -16,6 +17,7 @@ interface Props {
 const ChatListContent: FC<Props> = props => {
   const { roomName, lastMessage, count, photoUrl, roomId, type, socket } = props;
   const history = useHistory();
+  const setPage = useDetailChat().setState.setPage;
 
   const showPeople = useMemo(() => {
     if (count)
@@ -31,8 +33,10 @@ const ChatListContent: FC<Props> = props => {
     socket.current?.emit('unsubscribe-all');
     if (type === 'trade') {
       history.push(`/chat/trade/${roomId}`);
+      setPage(0);
     } else if (type === 'group') {
       history.push(`/chat/group/${roomId}`);
+      setPage(0);
     }
   };
 
