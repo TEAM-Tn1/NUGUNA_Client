@@ -13,6 +13,7 @@ const PostImgSlider: FC<Props> = props => {
   const prevBtnClickHandler = () => {
     if (move > 0) {
       move--;
+      sliderBox.style.transition = 1000 + 'ms';
       sliderBox.style.left = move * -100 + '%';
     }
   };
@@ -20,14 +21,15 @@ const PostImgSlider: FC<Props> = props => {
   const nextBtnClickHandler = () => {
     if (move < photo.length - 1) {
       move++;
+      sliderBox.style.transition = 1000 + 'ms';
       sliderBox.style.left = move * -100 + '%';
     }
   };
 
   const sliderItem = useMemo(() => {
-    return photo.map(data => {
+    return photo.map((data, i) => {
       return (
-        <S.SliderItem length={photo.length}>
+        <S.SliderItem length={photo.length} key={i}>
           <img src={data} alt='img' />
         </S.SliderItem>
       );
