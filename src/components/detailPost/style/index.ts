@@ -280,11 +280,12 @@ export const SliderBox = styled.div<{ length: number }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: 1000ms;
 `;
 
 export const SliderItem = styled.div<{ length: number }>`
-  width: calc(100% / length);
+  ${({ length }) => css`
+    width: calc(100% / ${length});
+  `}
   height: 100%;
   > img {
     width: 100%;
