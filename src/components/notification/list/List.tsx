@@ -3,6 +3,7 @@ import * as S from './style';
 import { chat_icon, question_icon, report_icon, tag_icon } from '../../../assets/alarm/index';
 import notiCheck from '../../../util/api/notificate';
 import Answer from '../answerCheck/Answer';
+import { useHistory } from 'react-router';
 
 interface listProps {
   notification_id: number;
@@ -18,6 +19,7 @@ const List = React.forwardRef((props: listProps, ref: any) => {
   const [icon, setIcon] = useState<string>('');
   const [modalShow, setModalShow] = useState<boolean>(false);
   const accessToken = localStorage.getItem('access_token');
+  const history = useHistory();
 
   useEffect(() => {
     switch (title) {
@@ -42,6 +44,8 @@ const List = React.forwardRef((props: listProps, ref: any) => {
       .then(res => {
         if (title == '문의' || title == '신고') {
           showModal();
+        } else {
+          history.go(0);
         }
       })
       .catch(err => {
@@ -51,6 +55,9 @@ const List = React.forwardRef((props: listProps, ref: any) => {
 
   const showModal = () => {
     setModalShow(!modalShow);
+    if (modalShow == true) {
+      history.go(0);
+    }
   };
 
   return (
