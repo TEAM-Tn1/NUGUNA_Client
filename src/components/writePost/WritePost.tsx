@@ -2,14 +2,7 @@ import React, { FC, useEffect, useMemo, useState } from 'react';
 import * as S from './style';
 import Header from '../header';
 import { prevBtn } from '../../assets/writePost';
-import {
-  GROUPTITLE,
-  MODIFYBTN,
-  PAYINPUT,
-  PAYTITLE,
-  POSTTITLEANDHASHTAG,
-  TRADETITLE,
-} from '../../constance/writePost';
+import { GROUPTITLE, MODIFYBTN, POSTTITLEANDHASHTAG, TRADETITLE } from '../../constance/writePost';
 import Picture from './Picture';
 import ExplainPost from './ExplainPost';
 import PostInfo from './PostInfo';
@@ -154,6 +147,8 @@ const WritePost: FC<Props> = props => {
 
   useEffect(() => {
     if (isSuccessSavePost) dispatch({ type: PICTURE });
+    else if (isSuccessSavePost === false)
+      alert('게시글 작성을 실패하였습니다. 입력하신 내용을 확인해주세요.');
   }, [isSuccessSavePost]);
 
   useEffect(() => {
@@ -162,7 +157,7 @@ const WritePost: FC<Props> = props => {
       history.push('/post');
       window.location.reload();
     } else if (isSuccessSavePost === false) alert('게시글 작성을 실패하였습니다.');
-  }, [isSuccessSavePicture]);
+  }, [isSuccessSavePicture, isSuccessSavePost]);
 
   useEffect(() => {
     if (isSuccessModifyPost) dispatch({ type: MODIFY_HASHTAG });
@@ -213,6 +208,7 @@ const WritePost: FC<Props> = props => {
                     data.id === 'hashtag' ? hashtagInputChangeHandler : titleInputChangeHandler
                   }
                   defaultValue={data.id === 'hashtag' ? tags : title}
+                  maxLength={data.id === 'title' ? 30 : undefined}
                 />
               </S.TitleAndInput>
             );
