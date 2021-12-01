@@ -4,9 +4,10 @@ import { useLocation, useParams } from 'react-router';
 import Header from './Header';
 import Footer from './Footer';
 import Chats from './Chats';
-import { detailChatResponse } from '../../models/dto/response/detailChatResponse';
+import { detailChatResponse, socketResponse } from '../../models/dto/response/detailChatResponse';
 import { useDispatch } from 'react-redux';
 import { GET_CHAT_INFO } from '../../modules/action/detailChat/interface';
+import { setMessage } from '../../modules/action/detailChat';
 
 interface Props {
   page: number;
@@ -33,6 +34,19 @@ const DetailChat: FC<Props> = props => {
     setRoomId(id);
     socket.current?.emit('subscribe', id);
     dispatch({ type: GET_CHAT_INFO });
+  }, []);
+
+  useEffect(() => {
+    socket.current?.on('message', (response: socketResponse) => {
+      setMessage({
+        message_id: response.message_id,
+        message: response.content,
+        type: response.type,
+        email: response.email,
+        name: response.name,
+        sent_at: response.sent_at,
+      });
+    });
   }, []);
 
   return (
