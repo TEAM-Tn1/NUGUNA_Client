@@ -69,9 +69,6 @@ export default {
     return request({
       url: `/feed/users/${email}?page=${page}&size=5&is_used_item=${is_used_item}`,
       method: 'get',
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('access_token')}`,
-      },
     });
   },
   getLikePost(page: number, postType: string) {
