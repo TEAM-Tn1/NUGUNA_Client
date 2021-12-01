@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import * as S from './style';
 
 interface Props {
@@ -13,6 +13,10 @@ interface Props {
 
 const PostInfo: FC<Props> = props => {
   const { id, title, content, placeholder, setPrice, setDate, setHeadCount } = props;
+
+  useEffect(() => {
+    console.log(1234, content);
+  }, [content]);
 
   const inputChangeHander = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (id === 'pay') setPrice && setPrice(Number(event.currentTarget.value));
@@ -35,7 +39,7 @@ const PostInfo: FC<Props> = props => {
       <input
         placeholder={placeholder}
         onChange={inputChangeHander}
-        defaultValue={content}
+        value={content}
         maxLength={id === 'pay' ? 8 : undefined}
         onInput={id === 'date' ? undefined : onInput}
       />
