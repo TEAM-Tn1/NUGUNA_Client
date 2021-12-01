@@ -31,10 +31,8 @@ const ChatListContent: FC<Props> = props => {
     socket.current?.emit('unsubscribe-all');
     if (type === 'trade') {
       history.push(`/chat/trade/${roomId}`);
-      window.location.reload();
     } else if (type === 'group') {
       history.push(`/chat/group/${roomId}`);
-      window.location.reload();
     }
   };
 
