@@ -29,7 +29,7 @@ const Header: FC<Props> = props => {
     <S.Header>
       <S.HeaderWrapper>
         <img src={prev} alt='prev' onClick={prevBtnClickHandler} />
-        <p>{roomName}</p>
+        <p>{roomName ? roomName : '알 수 없음'}</p>
         {people}
       </S.HeaderWrapper>
     </S.Header>

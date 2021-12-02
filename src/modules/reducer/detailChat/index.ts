@@ -38,10 +38,18 @@ const detailChatReducer = (
 ): DetailChatState => {
   switch (action.type) {
     case CHAT_CONTENT:
-      return {
-        ...state,
-        isSuccessGetDetailChat: undefined,
-      };
+      if (state.page === 0)
+        return {
+          ...state,
+          isSuccessGetDetailChat: undefined,
+          isHaveNextPage: true,
+          chatContent: [],
+        };
+      else
+        return {
+          ...state,
+          isSuccessGetDetailChat: undefined,
+        };
     case CHAT_CONTENT_SUCCESS:
       if (action.payload.length !== 0)
         return {
