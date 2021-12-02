@@ -34,7 +34,7 @@ const PostDeleteModal: FC<Props> = props => {
       <S.DeleteExplain>{DELETEEXPLAIN}</S.DeleteExplain>
       <S.CheckBtnLine>
         <S.CheckBtn onClick={checkBtnClickHandler}>
-          <p onClick={checkBtnClickHandler}>{CHECKBTN}</p>
+          <p>{CHECKBTN}</p>
         </S.CheckBtn>
         <S.CancleBtn onClick={cancleBtnClickHandler}>
           <p onClick={cancleBtnClickHandler}>{CANCLE}</p>
