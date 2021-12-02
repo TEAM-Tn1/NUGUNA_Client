@@ -4,10 +4,7 @@ import { useLocation, useParams } from 'react-router';
 import Header from './Header';
 import Footer from './Footer';
 import Chats from './Chats';
-import { detailChatResponse, socketResponse } from '../../models/dto/response/detailChatResponse';
-import { useDispatch } from 'react-redux';
-import { GET_CHAT_INFO } from '../../modules/action/detailChat/interface';
-import useDetailChat from '../../util/hooks/detailChat';
+import { detailChatResponse } from '../../models/dto/response/detailChatResponse';
 
 interface Props {
   page: number;
@@ -23,25 +20,9 @@ interface Props {
 }
 
 const DetailChat: FC<Props> = props => {
-  const { socket } = props;
   const [isClickSettingBtn, setIsClickSettingBtn] = useState(false);
   const type = useLocation().pathname.slice(6, 11);
   const { id } = useParams<{ id: string }>();
-  const setMessage = useDetailChat().setState.setMessage;
-
-  useEffect(() => {
-    socket.current?.on('message', (response: socketResponse) => {
-      setMessage({
-        message_id: response.message_id,
-        message: response.content,
-        type: response.type,
-        email: response.email,
-        name: response.name,
-        sent_at: response.sent_at,
-      });
-      socket.current?.off('message');
-    });
-  }, []);
 
   return (
     <>
