@@ -73,6 +73,15 @@ const DetailContent: FC<Props> = props => {
     });
   };
 
+  const chattingBtn = useMemo(() => {
+    if (localStorage.getItem('access_token'))
+      return (
+        <S.ChattingBtn onClick={chattingBtnClickHandler}>
+          <p>{CHAT}</p>
+        </S.ChattingBtn>
+      );
+  }, [localStorage.getItem('access_token')]);
+
   const openReportModal = () => {
     setIsReportModal(true);
   };
@@ -106,9 +115,7 @@ const DetailContent: FC<Props> = props => {
             <p>{userInfo.writerName}</p>
             <p>{userInfo.writerEmail}</p>
           </div>
-          <S.ChattingBtn onClick={chattingBtnClickHandler}>
-            <p>{CHAT}</p>
-          </S.ChattingBtn>
+          {chattingBtn}
         </S.UserInfoAndChatLine>
         <PostImgSlider photo={photo} />
         <S.PostContent>{description}</S.PostContent>
