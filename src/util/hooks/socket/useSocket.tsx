@@ -5,7 +5,7 @@ import useDetailChat from '../../../util/hooks/detailChat';
 
 export const useSocket = () => {
   const socket = useRef<SocketIOClient.Socket>();
-  const setMessage = useDetailChat().setState.setMessage;
+  const { setMessage } = useDetailChat().setState;
   const SOCKET_SEVER_URL = `https://server.tn1-dsm.com?Authorization=${localStorage.getItem(
     'access_token',
   )}`;
@@ -25,7 +25,7 @@ export const useSocket = () => {
         sent_at: response.sent_at,
       });
     });
-  }, [SOCKET_SEVER_URL, socket]);
+  }, [socket]);
 
   return { socket } as const;
 };
