@@ -5,6 +5,7 @@ import PostImgSlider from './PostImgSlider';
 import DetailPostFooter from './DetailPostFooter';
 import { CHAT, REPORT } from '../../constance/detailPost';
 import { useHistory, useParams } from 'react-router';
+import useDetailChat from '../../util/hooks/detailChat';
 
 interface Props {
   title: string;
@@ -44,6 +45,7 @@ const DetailContent: FC<Props> = props => {
   } = props;
   const { id } = useParams<{ id: string }>();
   const history = useHistory();
+  const setPage = useDetailChat().setState.setPage;
 
   const makeDates = useMemo(() => {
     const month = date && date.slice(5, 7);
@@ -61,6 +63,7 @@ const DetailContent: FC<Props> = props => {
     socket.current?.on('room', (room_id: string) => {
       setRoomId(room_id);
       history.push(`/chat/${type}/${room_id}`);
+      setPage(0);
     });
     socket.current?.on('error', (response: { status: number; message: string }) => {
       if (response.status === 400 && response.message === 'Its your feed.')
