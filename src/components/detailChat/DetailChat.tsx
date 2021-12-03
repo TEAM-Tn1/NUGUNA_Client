@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useCallback, useEffect, useRef, useState } from 'react';
 import * as S from './style';
 import { useLocation, useParams } from 'react-router';
 import Header from './Header';
@@ -20,22 +20,30 @@ interface Props {
 }
 
 const DetailChat: FC<Props> = props => {
+  const { chatContent } = props;
   const [isClickSettingBtn, setIsClickSettingBtn] = useState(false);
+  const [isClickMore, setIsClickMore] = useState(false);
   const type = useLocation().pathname.slice(6, 11);
   const { id } = useParams<{ id: string }>();
+  const contentBox = document.getElementById('contentBox') as HTMLDivElement;
+
+  useEffect(() => {
+    if (contentBox && !isClickMore) contentBox.scrollTo(0, contentBox.scrollHeight);
+  }, [chatContent]);
 
   return (
     <>
       <Header type={type} id={id} {...props} />
       <S.DetailChat>
-        <S.ContentBox>
-          <Chats {...props} />
+        <S.ContentBox id='contentBox'>
+          <Chats {...props} setIsClickMore={setIsClickMore} />
         </S.ContentBox>
       </S.DetailChat>
       <Footer
         id={id}
         isClickSettingBtn={isClickSettingBtn}
         setIsClickSettingBtn={setIsClickSettingBtn}
+        setIsClickMore={setIsClickMore}
         {...props}
       />
     </>
