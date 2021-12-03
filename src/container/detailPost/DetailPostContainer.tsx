@@ -20,6 +20,7 @@ const DetailPostContainer: FC<Props> = props => {
     if (state.error.status === 401 || state.error.status === 403) {
       alert('로그인이 필요합니다');
       history.push('/auth');
+      window.location.reload();
     }
   }, [state.error]);
 
