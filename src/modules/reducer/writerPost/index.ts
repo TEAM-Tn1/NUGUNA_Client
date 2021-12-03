@@ -111,6 +111,7 @@ const writePostReducer = (
     case CARROT_FAILURE:
       return {
         ...state,
+        error: action.payload,
         isSuccessSavePost: false,
       };
     case GROUP:
@@ -128,6 +129,7 @@ const writePostReducer = (
       return {
         ...state,
         isSuccessSavePost: false,
+        error: action.payload,
       };
     case PICTURE:
       return {
@@ -143,6 +145,7 @@ const writePostReducer = (
       return {
         ...state,
         isSuccessSavePicture: false,
+        error: action.payload,
       };
     case POST_CONTENT_SUCCESS:
       return {
