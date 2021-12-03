@@ -6,11 +6,10 @@ import { useHistory } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { SEARCH } from '../../modules/action/search/interface';
 import notiCount from '../../util/api/header';
-import { setDescription } from '../../modules/action/writePost';
 
 const Header = () => {
   const accessToken = localStorage.getItem('access_token');
-  const [count, setCount] = useState<number>();
+  const [count, setCount] = useState<number>(0);
   const [divDisplay, setDivDisplay] = useState<string>('none');
 
   const { state, setState } = useSearch();
@@ -32,11 +31,6 @@ const Header = () => {
         .setNotiCount(accessToken)
         .then(res => {
           setCount(res.data.count);
-          if (count == 0) {
-            setDivDisplay('none');
-          }else {
-            setDivDisplay('flex')
-          }
         })
         .catch(err => {
           throw err;
@@ -45,6 +39,14 @@ const Header = () => {
       setDivDisplay('none');
     }
   }, []);
+
+  useEffect(() => {
+    if (count == 0) {
+      setDivDisplay('none');
+    } else {
+      setDivDisplay('flex');
+    }
+  }, [count]);
 
   return (
     <S.Header>
