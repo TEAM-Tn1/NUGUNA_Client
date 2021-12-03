@@ -25,7 +25,7 @@ export const useSocket = () => {
         sent_at: response.sent_at,
       });
     });
-  }, [socket]);
+  }, [socket, SOCKET_SEVER_URL]);
 
   return { socket } as const;
 };
