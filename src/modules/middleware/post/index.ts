@@ -9,7 +9,7 @@ const getStateFunc = (state: reducerType): PostState => state.post;
 const postGetSaga = function* (): any {
   const actionType = 'POST/GET_POST';
   const SUCCESS = `${actionType}_SUCCESS`;
-  const FAILURE = `${actionType}_FAILURE;`;
+  const FAILURE = `${actionType}_FAILURE`;
   const state = yield select(getStateFunc);
   const sort = state.order.newest ? 'time' : 'like';
   const accessToken = localStorage.getItem('access_token') || '';
