@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
   flex-direction: column;
   gap: 20px;
   position: relative;
-  
+
   > div:last-child {
     margin-bottom: 30px;
   }
@@ -30,6 +30,9 @@ export const AlarmHeader = styled.article`
 
   > div:first-child {
     width: 75px;
+    > img {
+      cursor: pointer;
+    }
   }
 
   > div:last-child {
@@ -43,5 +46,6 @@ export const AlarmHeader = styled.article`
     border-radius: 25px;
     font-size: 14px;
     font-weight: bold;
+    cursor: pointer;
   }
 `;
