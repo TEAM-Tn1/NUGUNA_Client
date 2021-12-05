@@ -72,8 +72,6 @@ const Main = () => {
         </div>
         {group &&
           group.map((group: any) => {
-            console.log(group);
-
             return (
               <PostContent
                 feedId={group.feed_id}
