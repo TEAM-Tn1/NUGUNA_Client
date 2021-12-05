@@ -4,17 +4,28 @@ import * as S from './style';
 
 const PostWriteModal = () => {
   const history = useHistory();
+  const accessToken = localStorage.getItem('access_token');
 
   const carrotBtnClickHandler = () => {
-    history.push('/write/post/trade');
-    localStorage.removeItem('feed_id');
-    window.location.reload();
+    if (accessToken) {
+      history.push('/write/post/trade');
+      localStorage.removeItem('feed_id');
+      window.location.reload();
+    } else {
+      alert('로그인이 필요합니다.');
+      history.push('/auth');
+    }
   };
 
   const groupBtnClickHandler = () => {
-    history.push('/write/post/group');
-    localStorage.removeItem('feed_id');
-    window.location.reload();
+    if (accessToken) {
+      history.push('/write/post/group');
+      localStorage.removeItem('feed_id');
+      window.location.reload();
+    } else {
+      alert('로그인이 필요합니다.');
+      history.push('/auth');
+    }
   };
 
   return (

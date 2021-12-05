@@ -27,14 +27,13 @@ interface Props {
   isUsedItem: boolean;
   setFeedId: (payload: number) => void;
   setRoomId: (payload: string) => void;
-  isSuccessDeletePost: boolean | undefined;
   socket: React.MutableRefObject<SocketIOClient.Socket | undefined>;
 }
 
 const DetailPost: FC<Props> = props => {
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
   const [isReportModal, setIsReportModal] = useState(false);
-  const { isSuccessDeletePost, userInfo, date, headCount } = props;
+  const { userInfo, date, headCount } = props;
   const userEmail = localStorage.getItem('email') as string;
   const history = useHistory();
   const { id } = useParams<{ id: string }>();
@@ -44,14 +43,8 @@ const DetailPost: FC<Props> = props => {
   };
 
   const openPostDeleteModal = useMemo(() => {
-    if (isOpenModal)
-      return (
-        <PostDeleteModal
-          setIsOpenModal={setIsOpenModal}
-          isSuccessDeletePost={isSuccessDeletePost}
-        />
-      );
-  }, [isOpenModal, isSuccessDeletePost]);
+    if (isOpenModal) return <PostDeleteModal setIsOpenModal={setIsOpenModal} />;
+  }, [isOpenModal]);
 
   const closeReportModal = () => {
     setIsReportModal(false);

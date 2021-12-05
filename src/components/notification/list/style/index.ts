@@ -4,6 +4,7 @@ export const List = styled.div`
   margin: 0 30px 0 20px;
   display: flex;
   gap: 6px;
+  cursor: pointer;
 
   > div:first-child {
     padding-top: 6px;
