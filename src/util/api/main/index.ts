@@ -11,7 +11,7 @@ export default {
   },
   setGroupGet() {
     return request({
-      url: `/feed?page=0&range=3&is_used_item=false&sort=time`,
+      url: `/feed?page=0&range=2&is_used_item=false&sort=time`,
       method: 'get',
       headers: {},
       data: {},
