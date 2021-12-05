@@ -19,7 +19,7 @@ const Main = () => {
           setCarrot(res.data);
         })
         .catch(err => {
-          throw (err);
+          throw err;
         });
     }
     {
@@ -29,7 +29,7 @@ const Main = () => {
           setGroup(res.data);
         })
         .catch(err => {
-          throw (err);
+          throw err;
         });
     }
   }, []);
@@ -72,6 +72,8 @@ const Main = () => {
         </div>
         {group &&
           group.map((group: any) => {
+            console.log(group);
+
             return (
               <PostContent
                 feedId={group.feed_id}
@@ -79,9 +81,9 @@ const Main = () => {
                 title={group.title}
                 money={group.price}
                 like={group.count}
-                type={''}
-                date={''}
-                people={''}
+                type={'group'}
+                date={group.date}
+                people={group.head_count}
                 hashtag={group.tags}
                 isLikeClick={group.like}
               />
