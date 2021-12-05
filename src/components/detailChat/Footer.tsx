@@ -3,7 +3,6 @@ import * as S from './style';
 import { setting, send } from '../../assets/chat';
 import { SETTING } from '../../constance/detailChat';
 import { useHistory } from 'react-router';
-import { detailChatResponse, socketResponse } from '../../models/dto/response/detailChatResponse';
 import { useDispatch } from 'react-redux';
 import { GET_INFO } from '../../modules/action/detailChat/interface';
 
@@ -14,7 +13,7 @@ interface Props {
   socket: React.MutableRefObject<SocketIOClient.Socket | undefined>;
   isSuccessGetInfo: boolean | undefined;
   setIsClickSettingBtn: React.Dispatch<React.SetStateAction<boolean>>;
-  setMessage: (payload: detailChatResponse) => void;
+  setIsClickMore: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const Footer: FC<Props> = props => {
@@ -23,9 +22,9 @@ const Footer: FC<Props> = props => {
     isClickSettingBtn,
     socket,
     id,
-    setMessage,
     accountNumber,
     isSuccessGetInfo,
+    setIsClickMore,
   } = props;
   const history = useHistory();
   const dispatch = useDispatch();
@@ -44,72 +43,32 @@ const Footer: FC<Props> = props => {
   };
 
   const sendBtnClickHandler = () => {
+    setIsClickMore(false);
     socket.current?.emit('message', { message: chat, room_id: id });
-    socket.current?.on('message', (response: socketResponse) => {
-      setMessage({
-        message_id: response.message_id,
-        message: response.content,
-        type: response.type,
-        email: response.email,
-        name: response.name,
-        sent_at: response.sent_at,
-      });
-      input.value = '';
-      socket.current?.off('message');
-    });
+    input.value = '';
   };
 
   const enterKeyPressHandler = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
+      setIsClickMore(false);
       socket.current?.emit('message', { message: chat, room_id: id });
-      socket.current?.on('message', (response: socketResponse) => {
-        setMessage({
-          message_id: response.message_id,
-          message: response.content,
-          type: response.type,
-          email: response.email,
-          name: response.name,
-          sent_at: response.sent_at,
-        });
-        input.value = '';
-        socket.current?.off('message');
-      });
+      input.value = '';
     }
   };
 
   const arriveBtnClickHandler = () => {
+    setIsClickMore(false);
     socket.current?.emit('message', { message: '택배 도착했습니다!', room_id: id });
-    socket.current?.on('message', (response: socketResponse) => {
-      setMessage({
-        message_id: response.message_id,
-        message: response.content,
-        type: response.type,
-        email: response.email,
-        name: response.name,
-        sent_at: response.sent_at,
-      });
-      socket.current?.off('message');
-    });
   };
 
   const accountBtnClickHandler = () => {
+    setIsClickMore(false);
     dispatch({ type: GET_INFO });
   };
 
   useEffect(() => {
     if (isSuccessGetInfo === true) {
       socket.current?.emit('message', { message: accountNumber, room_id: id });
-      socket.current?.on('message', (response: socketResponse) => {
-        setMessage({
-          message_id: response.message_id,
-          message: response.content,
-          type: response.type,
-          email: response.email,
-          name: response.name,
-          sent_at: response.sent_at,
-        });
-        socket.current?.off('message');
-      });
     }
   }, [isSuccessGetInfo, accountNumber]);
 

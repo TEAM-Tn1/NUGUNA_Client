@@ -7,15 +7,17 @@ import { detailChatResponse } from '../../models/dto/response/detailChatResponse
 interface Props {
   page: number;
   chatContent: Array<detailChatResponse>;
+  setIsClickMore: React.Dispatch<React.SetStateAction<boolean>>;
   isHaveNextPage: boolean;
   setPage: (payload: number) => void;
 }
 
 const Chats: FC<Props> = props => {
-  const { chatContent, setPage, page, isHaveNextPage } = props;
+  const { chatContent, setPage, page, isHaveNextPage, setIsClickMore } = props;
   const myEmail = localStorage.getItem('email');
 
   const moreBtnClickHandler = () => {
+    setIsClickMore(true);
     setPage(page + 1);
   };
 
@@ -29,7 +31,7 @@ const Chats: FC<Props> = props => {
           if (data.email === myEmail) {
             return (
               <MyChat
-                key={data.message_id}
+                key={i}
                 message={data.message}
                 isLastMessage={
                   chatContent[i + 1] && chatContent[i + 1].email === myEmail ? false : true
