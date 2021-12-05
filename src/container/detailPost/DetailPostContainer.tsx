@@ -25,6 +25,13 @@ const DetailPostContainer: FC<Props> = props => {
   }, [state.error]);
 
   useEffect(() => {
+    if (state.isSuccessDeletePost) {
+      history.push('/post');
+      window.location.reload();
+    }
+  }, [state.isSuccessDeletePost]);
+
+  useEffect(() => {
     setState.setFeedId(feedId);
     localStorage.setItem('feed_id', String(feedId));
     dispatch({ type: GET_POST });
